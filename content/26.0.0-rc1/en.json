@@ -1,0 +1,168 @@
+{
+  "title": "Nexwall Firewall 26.0.0-rc1",
+  "summary": "The first release candidate: network protection (IPS), application control, threat feeds, geo-blocking, a faster data path and sensible firewall defaults, in one image.",
+  "overview": "Nexwall Firewall 26.0.0-rc1 is the first release candidate of the Nexwall firewall. It brings inline intrusion prevention, application control, DNS and IP threat feeds served from Nexwall servers, country blocking, a selective fast path for forwarded traffic and a web interface in English, Spanish and Brazilian Portuguese.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
+  "at_a_glance": [
+    {"label": "Version", "value": "26.0.0-rc1"},
+    {"label": "Status", "value": "Release candidate"},
+    {"label": "Platform", "value": "x86-64, UEFI boot"},
+    {"label": "Interface languages", "value": "English, Spanish, Brazilian Portuguese"},
+    {"label": "Licensed features", "value": "Trial included"}
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "What is new",
+      "intro": "These features are new in this release.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Network Protection (IPS)",
+          "body": "Inline intrusion prevention that inspects forwarded traffic and blocks attacks before they reach your servers and users. The page that was called IPS / IDS is now Network Protection (IPS), and the default action for detected threats is Block.",
+          "bullets": [
+            "Signatures come in tiers from three sources: community rules, a converted open rule set and rules written by Nexwall Labs.",
+            "The signature bundle is built on Nexwall servers, signed, checked on the firewall and refreshed daily.",
+            "Queues and analysis threads follow the number of CPU cores, so a bigger machine inspects more traffic in parallel."
+          ],
+          "note": "Signature updates need a license; the trial includes them."
+        },
+        {
+          "tag": "new",
+          "title": "Application Control",
+          "body": "Recognizes the applications and services crossing the firewall and lets you allow, block or report them. The application catalog is built on Nexwall servers and refreshed daily, and the engine sizes its instances from the number of CPU cores.",
+          "bullets": [
+            "Rules can act on a single application or on a whole category.",
+            "Traffic statistics per application are available when the license is active."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Threat Shield feeds",
+          "body": "Nexwall now builds and serves its own block lists. A firewall downloads them from Nexwall, checks the signature and the checksum of every file and applies them locally, instead of reading lists from third-party servers.",
+          "bullets": [
+            "Twelve DNS categories, about 3.2 million entries in total: advertising and tracking, adult content, filter bypass, crypto mining, drugs, gambling, malware (core and extended), phishing, piracy, ransomware and scams.",
+            "Two IP lists: known attackers and botnet command servers.",
+            "Each list shows a readable title, the number of entries and a confidence level, so you can decide what to switch on.",
+            "The lists are rebuilt every day and the firewall reloads its DNS service only when something changed.",
+            "A sensible set of categories is switched on by default; your own choices are kept when you update."
+          ],
+          "note": "The Nexwall lists need a license; the trial includes them."
+        },
+        {
+          "tag": "new",
+          "title": "Memory warning for DNS lists",
+          "body": "Large lists need memory. The DNS block lists page now shows how much memory the switched-on categories need compared with the memory installed, and warns you when they would use more than a fifth of it (an error above a third).",
+          "bullets": ["As a guide, every blocked domain takes about 75 bytes."]
+        },
+        {
+          "tag": "new",
+          "title": "Geo-blocking from Nexwall servers",
+          "body": "Country blocking now uses address lists built by Nexwall from the public registry allocation data, split by country and published in the same signed bundle as the other lists. The firewall loads them from local files in seconds, instead of downloading a list per country every time the service starts.",
+          "bullets": ["IPv4 and IPv6 are covered.", "Registry data shows where an address block was allocated, not always where it is used today."]
+        },
+        {
+          "tag": "new",
+          "title": "Fast path and performance settings",
+          "body": "Established connections that need no inspection can bypass most of the packet processing. The fast path is selective: traffic that Network Protection or Application Control must see stays on the inspected path, and connection counters keep working.",
+          "bullets": [
+            "Packet steering spreads network processing across the CPU cores.",
+            "Network card ring buffers are raised to the maximum the card supports.",
+            "The connection tracking table scales with installed memory (32 entries per MiB, at least 65,536).",
+            "A new Engine monitor page shows what the inspection engines are doing, and a Performance page holds the related settings."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Licensing",
+          "body": "A firewall is unlicensed, in trial or subscribed. Unlicensed firewalls keep the core firewall functions; the features delivered from Nexwall servers (signatures, application catalog, threat feeds) need a trial or a subscription. The license component updates itself and downloads large data sets reliably."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Improvements and changes",
+      "intro": "",
+      "items": [
+        {
+          "tag": "changed",
+          "title": "Sensible firewall defaults",
+          "body": "A new installation no longer starts with an empty forward rules list. It starts with two rules: LAN -> WAN, which allows your internal networks to reach the internet, and DROP DEFAULT, which closes that path and logs what it drops.",
+          "bullets": [
+            "DROP DEFAULT cannot be deleted or moved; it always stays the last forward rule.",
+            "A rule you add is placed above it automatically, so it takes effect."
+          ],
+          "note": "Existing firewalls keep their current configuration."
+        },
+        {
+          "tag": "improved",
+          "title": "Clearer output rules",
+          "body": "The description of output rules now says what they are: rules for traffic that the firewall itself starts, such as updates, DNS, license checks and VPN connections. Every zone already allows this traffic, so you only need output rules to restrict it."
+        },
+        {
+          "tag": "improved",
+          "title": "Web interface",
+          "body": "The interface carries the Nexwall design and is available in English, Spanish and Brazilian Portuguese. The Threat Shield tables show titles, entry counts and confidence for every list."
+        },
+        {
+          "tag": "changed",
+          "title": "No third-party list mirrors",
+          "body": "Threat Shield no longer reads block lists from third-party servers or from a mirror. Everything comes from the signed Nexwall bundle."
+        }
+      ]
+    },
+    {
+      "id": "resolved",
+      "title": "Resolved issues",
+      "intro": "",
+      "items": [
+        {
+          "tag": "fixed",
+          "title": "Large license data downloads",
+          "body": "Downloads of big data sets from the license service were cut silently at 1 MiB and timed out after 30 seconds. They now accept up to 64 MiB and have ten minutes to complete."
+        },
+        {
+          "tag": "fixed",
+          "title": "Memory exhaustion with very high connection limits",
+          "body": "A fixed, very high connection tracking limit could exhaust memory on small machines under heavy load. The limit is now derived from the installed memory."
+        }
+      ]
+    }
+  ],
+  "known_issues": [
+    {
+      "title": "New defaults apply to new installations only",
+      "body": "The LAN -> WAN and DROP DEFAULT rules are part of the default configuration. A firewall that was installed earlier keeps the rules it has.",
+      "workaround": "Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list."
+    },
+    {
+      "title": "Country blocking without a license",
+      "body": "A firewall without a license cannot use the Nexwall country lists. Country blocking then uses the public lists of the underlying component, which are downloaded every time the service starts and can take a long time."
+    },
+    {
+      "title": "Large DNS list selections",
+      "body": "Reloading the DNS service with about 1.8 million blocked domains interrupts name resolution for roughly ten seconds. Lists are reloaded only when they change, normally once a day.",
+      "workaround": "Switch off the categories you do not need. The memory warning on the DNS block lists page helps you choose."
+    },
+    {
+      "title": "Emulated network cards limit throughput",
+      "body": "In virtual machines with emulated Intel e1000 network cards, throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall.",
+      "workaround": "Use paravirtualized adapters (virtio or vmxnet3) or physical hardware for performance tests."
+    },
+    {
+      "title": "Release candidate",
+      "body": "Interfaces and defaults can still change before the final release."
+    }
+  ],
+  "requirements": [
+    "x86-64 processor, UEFI firmware with Secure Boot off.",
+    "At least two network interfaces (one for the internal network, one for the internet).",
+    "2 GB of memory with the default categories; 4 GB or more if you switch on the adult, advertising and extended malware lists.",
+    "Internet access to updates.nexwall.com.br and license.nexwall.com.br for updates, licenses and threat feeds."
+  ],
+  "upgrade": [
+    "The release is an installable disk image for virtual machines and appliances. Check its SHA-256 first.",
+    "After the first start the internal interface answers on 192.168.1.1.",
+    "Firewalls running an earlier internal build are not upgraded in place by this release candidate; install the image on a test machine and compare."
+  ],
+  "open_source": "Nexwall Firewall is built on open source software. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+}

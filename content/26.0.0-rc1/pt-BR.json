@@ -1,0 +1,168 @@
+{
+  "title": "Nexwall Firewall 26.0.0-rc1",
+  "summary": "A primeira versão candidata: proteção de rede (IPS), controle de aplicações, listas de ameaças, bloqueio por país, um caminho de dados mais rápido e padrões sensatos do firewall, em uma única imagem.",
+  "overview": "O Nexwall Firewall 26.0.0-rc1 é a primeira versão candidata do firewall da Nexwall. Traz prevenção de intrusões em linha, controle de aplicações, listas de ameaças de DNS e IP servidas pelos servidores da Nexwall, bloqueio por país, um caminho rápido seletivo para o tráfego encaminhado e uma interface web em inglês, espanhol e português do Brasil.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
+  "at_a_glance": [
+    {"label": "Versão", "value": "26.0.0-rc1"},
+    {"label": "Situação", "value": "Versão candidata"},
+    {"label": "Plataforma", "value": "x86-64, boot UEFI"},
+    {"label": "Idiomas da interface", "value": "Inglês, espanhol, português do Brasil"},
+    {"label": "Recursos licenciados", "value": "Teste incluído"}
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "Novidades",
+      "intro": "Estes recursos são novos nesta versão.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Proteção de rede (IPS)",
+          "body": "Prevenção de intrusões em linha que inspeciona o tráfego encaminhado e bloqueia ataques antes que cheguem aos seus servidores e usuários. A página que se chamava IPS / IDS agora é Proteção de rede (IPS) e a ação padrão para ameaças detectadas é Bloquear.",
+          "bullets": [
+            "As assinaturas são organizadas em níveis e vêm de três origens: regras da comunidade, um conjunto aberto de regras convertido e regras escritas pela Nexwall Labs.",
+            "O pacote de assinaturas é construído nos servidores da Nexwall, assinado, verificado pelo firewall e atualizado diariamente.",
+            "As filas e as threads de análise acompanham o número de núcleos de CPU, de modo que uma máquina maior inspeciona mais tráfego em paralelo."
+          ],
+          "note": "As atualizações de assinaturas exigem licença; o teste as inclui."
+        },
+        {
+          "tag": "new",
+          "title": "Controle de aplicações",
+          "body": "Reconhece as aplicações e os serviços que atravessam o firewall e permite liberá-los, bloqueá-los ou registrá-los. O catálogo de aplicações é construído nos servidores da Nexwall e atualizado diariamente, e o motor dimensiona suas instâncias conforme o número de núcleos de CPU.",
+          "bullets": [
+            "As regras podem atuar sobre uma aplicação ou sobre uma categoria inteira.",
+            "As estatísticas de tráfego por aplicação ficam disponíveis com a licença ativa."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Listas do Threat Shield",
+          "body": "A Nexwall agora constrói e serve as suas próprias listas de bloqueio. O firewall as baixa da Nexwall, confere a assinatura e o checksum de cada arquivo e as aplica localmente, em vez de ler listas de servidores de terceiros.",
+          "bullets": [
+            "Doze categorias de DNS, cerca de 3,2 milhões de entradas no total: publicidade e rastreamento, conteúdo adulto, contorno de filtros, mineração de criptomoedas, drogas, jogos de azar, malware (básico e estendido), phishing, pirataria, ransomware e golpes.",
+            "Duas listas de IP: atacantes conhecidos e servidores de comando de botnets.",
+            "Cada lista mostra um título legível, o número de entradas e um nível de confiança, para você decidir o que ativar.",
+            "As listas são reconstruídas todos os dias e o firewall recarrega o serviço de DNS somente quando algo mudou.",
+            "Um conjunto sensato de categorias vem ativado por padrão; as suas escolhas são mantidas nas atualizações."
+          ],
+          "note": "As listas da Nexwall exigem licença; o teste as inclui."
+        },
+        {
+          "tag": "new",
+          "title": "Aviso de memória para as listas de DNS",
+          "body": "Listas grandes precisam de memória. A página de listas de bloqueio de DNS agora mostra quanta memória as categorias ativadas precisam em comparação com a memória instalada e avisa quando elas usariam mais de um quinto dela (erro acima de um terço).",
+          "bullets": ["Como referência, cada domínio bloqueado ocupa cerca de 75 bytes."]
+        },
+        {
+          "tag": "new",
+          "title": "Bloqueio por país a partir dos servidores da Nexwall",
+          "body": "O bloqueio por país agora usa listas de endereços que a Nexwall constrói a partir dos dados públicos de alocação dos registros de Internet, separadas por país e publicadas no mesmo pacote assinado das outras listas. O firewall as carrega de arquivos locais em segundos, em vez de baixar uma lista por país toda vez que o serviço inicia.",
+          "bullets": ["Cobre IPv4 e IPv6.", "Os dados dos registros mostram onde um bloco de endereços foi alocado, nem sempre onde ele é usado hoje."]
+        },
+        {
+          "tag": "new",
+          "title": "Caminho rápido e ajustes de desempenho",
+          "body": "Conexões estabelecidas que não precisam de inspeção podem pular a maior parte do processamento de pacotes. O caminho rápido é seletivo: o tráfego que a Proteção de rede ou o Controle de aplicações precisa ver continua no caminho inspecionado, e os contadores de conexão continuam funcionando.",
+          "bullets": [
+            "A distribuição de pacotes espalha o processamento de rede entre os núcleos de CPU.",
+            "Os buffers de anel das placas de rede são elevados ao máximo que a placa aceita.",
+            "A tabela de rastreamento de conexões escala com a memória instalada (32 entradas por MiB, no mínimo 65.536).",
+            "Uma nova página Monitor do motor mostra o que os motores de inspeção estão fazendo, e uma página Desempenho reúne os ajustes relacionados."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Licenciamento",
+          "body": "Um firewall pode estar sem licença, em teste ou com assinatura. Firewalls sem licença mantêm as funções básicas; os recursos entregues pelos servidores da Nexwall (assinaturas, catálogo de aplicações, listas de ameaças) exigem um teste ou uma assinatura. O componente de licenciamento se atualiza sozinho e baixa grandes conjuntos de dados com confiabilidade."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Melhorias e mudanças",
+      "intro": "",
+      "items": [
+        {
+          "tag": "changed",
+          "title": "Padrões sensatos do firewall",
+          "body": "Uma instalação nova não começa mais com a lista de regras de encaminhamento vazia. Ela começa com duas regras: LAN -> WAN, que permite às suas redes internas chegar à Internet, e DROP DEFAULT, que fecha esse caminho e registra o que descarta.",
+          "bullets": [
+            "DROP DEFAULT não pode ser excluída nem movida; ela é sempre a última regra de encaminhamento.",
+            "Uma regra que você adiciona é colocada automaticamente acima dela, para que tenha efeito."
+          ],
+          "note": "Os firewalls existentes mantêm a configuração atual."
+        },
+        {
+          "tag": "improved",
+          "title": "Regras de saída mais claras",
+          "body": "A descrição das regras de saída agora diz o que elas são: regras para o tráfego que o próprio firewall inicia, como atualizações, DNS, verificações de licença e conexões VPN. Todas as zonas já permitem esse tráfego, então você só precisa de regras de saída para restringi-lo."
+        },
+        {
+          "tag": "improved",
+          "title": "Interface web",
+          "body": "A interface traz o design da Nexwall e está disponível em inglês, espanhol e português do Brasil. As tabelas do Threat Shield mostram título, número de entradas e confiança de cada lista."
+        },
+        {
+          "tag": "changed",
+          "title": "Sem espelhos de listas de terceiros",
+          "body": "O Threat Shield não lê mais listas de bloqueio de servidores de terceiros nem de um espelho. Tudo vem do pacote assinado da Nexwall."
+        }
+      ]
+    },
+    {
+      "id": "resolved",
+      "title": "Problemas resolvidos",
+      "intro": "",
+      "items": [
+        {
+          "tag": "fixed",
+          "title": "Downloads grandes do serviço de licenças",
+          "body": "Downloads de grandes conjuntos de dados do serviço de licenças eram cortados em silêncio em 1 MiB e expiravam após 30 segundos. Agora aceitam até 64 MiB e têm dez minutos para terminar."
+        },
+        {
+          "tag": "fixed",
+          "title": "Esgotamento de memória com limites de conexão muito altos",
+          "body": "Um limite fixo e muito alto de rastreamento de conexões podia esgotar a memória de máquinas pequenas sob carga pesada. Agora o limite é calculado a partir da memória instalada."
+        }
+      ]
+    }
+  ],
+  "known_issues": [
+    {
+      "title": "Os novos padrões valem apenas para instalações novas",
+      "body": "As regras LAN -> WAN e DROP DEFAULT fazem parte da configuração padrão. Um firewall instalado antes mantém as regras que tem.",
+      "workaround": "Adicione as duas regras manualmente em um firewall existente e mantenha DROP DEFAULT no fim da lista."
+    },
+    {
+      "title": "Bloqueio por país sem licença",
+      "body": "Um firewall sem licença não pode usar as listas de países da Nexwall. O bloqueio por país passa a usar as listas públicas do componente subjacente, que são baixadas toda vez que o serviço inicia e podem demorar muito."
+    },
+    {
+      "title": "Seleções grandes de listas de DNS",
+      "body": "Recarregar o serviço de DNS com cerca de 1,8 milhão de domínios bloqueados interrompe a resolução de nomes por cerca de dez segundos. As listas são recarregadas somente quando mudam, normalmente uma vez por dia.",
+      "workaround": "Desative as categorias de que você não precisa. O aviso de memória da página de listas de bloqueio de DNS ajuda a escolher."
+    },
+    {
+      "title": "Placas de rede emuladas limitam o desempenho",
+      "body": "Em máquinas virtuais com placas de rede Intel e1000 emuladas, a vazão fica entre 0,7 e 1 Gbit/s, qualquer que seja a CPU. É um limite da emulação, não do firewall.",
+      "workaround": "Use adaptadores paravirtualizados (virtio ou vmxnet3) ou hardware físico para testes de desempenho."
+    },
+    {
+      "title": "Versão candidata",
+      "body": "Interfaces e padrões ainda podem mudar antes da versão final."
+    }
+  ],
+  "requirements": [
+    "Processador x86-64, firmware UEFI com Secure Boot desativado.",
+    "Pelo menos duas interfaces de rede (uma para a rede interna e outra para a Internet).",
+    "2 GB de memória com as categorias padrão; 4 GB ou mais se você ativar as listas de adulto, publicidade e malware estendido.",
+    "Acesso à Internet a updates.nexwall.com.br e license.nexwall.com.br para atualizações, licenças e listas de ameaças."
+  ],
+  "upgrade": [
+    "A versão é uma imagem de disco instalável para máquinas virtuais e appliances. Confira primeiro o SHA-256.",
+    "Após o primeiro boot, a interface interna responde em 192.168.1.1.",
+    "Firewalls com uma compilação interna anterior não são atualizados no local por esta versão candidata; instale a imagem em uma máquina de testes e compare."
+  ],
+  "open_source": "O Nexwall Firewall é construído sobre software de código aberto. O firewall e as ferramentas de operação são publicados com as suas licenças originais, e os textos de licença e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas do Threat Shield são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as relaciona faz parte de cada pacote."
+}
