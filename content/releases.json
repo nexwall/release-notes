@@ -3,6 +3,12 @@
     "version": "26.0.0-rc1",
     "date": "2026-10-03",
     "status": "rc",
-    "downloads": []
+    "downloads": [
+      {
+        "name": "nexwall-26.0.0-rc1-x86-64-generic-squashfs-combined-efi.img.gz",
+        "size": "97.9 MB (97,895,355 bytes)",
+        "sha256": "c7fdd28ea6a378ac11f6c68d820479207c57dd3bce3dcd5fba28898ef0ed7c6c"
+      }
+    ]
   }
 ]
