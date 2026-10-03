@@ -3,12 +3,30 @@
   "summary": "A primeira versão candidata do Nexwall Firewall: Proteção de rede (IPS), Controle de aplicações, listas de ameaças, bloqueio por país, um visualizador de logs com rastreamento de regras ao vivo, um caminho de dados mais rápido e um modelo de licenciamento entregue por serviços assinados da Nexwall.",
   "overview": "O Nexwall Firewall 26.0.0-rc1 é a primeira versão candidata do firewall da Nexwall. É uma imagem instalável para máquinas x86-64 e máquinas virtuais, com interface web em inglês, espanhol e português do Brasil.\n\nOs recursos de proteção são servidos pela Nexwall: as assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças são construídos nos servidores da Nexwall, assinados, verificados pelo firewall e atualizados todos os dias. As atualizações da interface web e do componente de licenciamento vêm de um feed assinado da Nexwall, cujos arquivos são fixados por checksum.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
   "at_a_glance": [
-    {"label": "Versão", "value": "26.0.0-rc1"},
-    {"label": "Situação", "value": "Versão candidata"},
-    {"label": "Plataforma", "value": "x86-64, boot UEFI"},
-    {"label": "Sistema base", "value": "OpenWrt 25.12.5, kernel 6.12"},
-    {"label": "Idiomas da interface", "value": "Inglês, espanhol, português do Brasil"},
-    {"label": "Recursos licenciados", "value": "Teste incluído"}
+    {
+      "label": "Versão",
+      "value": "26.0.0-rc1"
+    },
+    {
+      "label": "Situação",
+      "value": "Versão candidata"
+    },
+    {
+      "label": "Plataforma",
+      "value": "x86-64, boot UEFI"
+    },
+    {
+      "label": "Sistema base",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Idiomas da interface",
+      "value": "Inglês, espanhol, português do Brasil"
+    },
+    {
+      "label": "Recursos licenciados",
+      "value": "Teste incluído"
+    }
   ],
   "sections": [
     {
@@ -58,13 +76,18 @@
           "tag": "new",
           "title": "Aviso de memória para as listas de DNS",
           "body": "Listas grandes precisam de memória. A página de listas de bloqueio de DNS agora mostra quanta memória as categorias ativadas precisam em comparação com a memória instalada e avisa quando elas usariam mais de um quinto dela (erro acima de um terço).",
-          "bullets": ["Como referência, cada domínio bloqueado ocupa cerca de 75 bytes."]
+          "bullets": [
+            "Como referência, cada domínio bloqueado ocupa cerca de 75 bytes."
+          ]
         },
         {
           "tag": "new",
           "title": "Bloqueio por país a partir dos servidores da Nexwall",
           "body": "O bloqueio por país agora usa listas de endereços que a Nexwall constrói a partir dos dados públicos de alocação dos registros de Internet (cinco registros regionais), separadas por país e publicadas no mesmo pacote assinado das outras listas. O firewall as carrega de arquivos locais em segundos, em vez de baixar uma lista por país toda vez que o serviço inicia.",
-          "bullets": ["Cobre IPv4 (cerca de 179.000 blocos) e IPv6 (cerca de 70.000 blocos).", "Os dados dos registros mostram onde um bloco de endereços foi alocado, nem sempre onde ele é usado hoje."]
+          "bullets": [
+            "Cobre IPv4 (cerca de 179.000 blocos) e IPv6 (cerca de 70.000 blocos).",
+            "Os dados dos registros mostram onde um bloco de endereços foi alocado, nem sempre onde ele é usado hoje."
+          ]
         },
         {
           "tag": "new",
@@ -211,29 +234,106 @@
   "components": {
     "intro": "As versões abaixo formam a imagem. A maioria é fixada por checksum, de modo que a imagem contém sempre exatamente estas versões. O pacote de assinaturas, o catálogo de aplicações e as listas de ameaças não fazem parte da imagem: são baixados e atualizados todos os dias.",
     "rows": [
-      {"name": "Imagem", "version": "26.0.0-rc1", "note": "x86-64, UEFI, imagem de disco compactada"},
-      {"name": "Sistema base", "version": "OpenWrt 25.12.5", "note": "Kernel Linux 6.12, nftables 1.1"},
-      {"name": "Interface web", "version": "1.3.6", "note": "Inglês, espanhol, português do Brasil"},
-      {"name": "Componente de licenciamento", "version": "1.5.2", "note": "Atualiza-se sozinho a partir do feed assinado"},
-      {"name": "Motor de classificação de tráfego", "version": "5.2.8 (versão 6)", "note": "Netify Agent com plugins da Nexwall"},
-      {"name": "Plugins do motor de tráfego", "version": "1.0.1", "note": "Cinco plugins, compilados para a versão 6 do motor"},
-      {"name": "Motor de prevenção de intrusões", "version": "Snort 3.10.0.0", "note": "Com o plugin de controle da Nexwall 1.0.1"},
-      {"name": "Assinaturas de intrusão", "version": "pacote diário", "note": "Comunidade, regras abertas convertidas e Nexwall Labs; 2026.10.02.1 na publicação"},
-      {"name": "Catálogo de aplicações", "version": "pacote diário", "note": "2026.10.02.1 na publicação"},
-      {"name": "Listas de ameaças", "version": "2026.10.02.3", "note": "12 categorias de DNS, 2 listas de IP, listas por país; reconstruídas todos os dias"}
+      {
+        "name": "Imagem",
+        "version": "26.0.0-rc1",
+        "note": "x86-64, UEFI, imagem de disco compactada"
+      },
+      {
+        "name": "Código do firmware",
+        "version": "c1bb1dd4",
+        "note": "Commit do repositório público do firewall a partir do qual a imagem é construída"
+      },
+      {
+        "name": "Sistema base",
+        "version": "OpenWrt 25.12.5",
+        "note": "Kernel Linux 6.12, nftables 1.1"
+      },
+      {
+        "name": "Interface web",
+        "version": "1.3.6",
+        "note": "Inglês, espanhol, português do Brasil"
+      },
+      {
+        "name": "Componente de licenciamento",
+        "version": "1.5.2",
+        "note": "Atualiza-se sozinho a partir do feed assinado"
+      },
+      {
+        "name": "Motor de classificação de tráfego",
+        "version": "5.2.8 (versão 6)",
+        "note": "Netify Agent com plugins da Nexwall"
+      },
+      {
+        "name": "Plugins do motor de tráfego",
+        "version": "1.0.1",
+        "note": "Cinco plugins, compilados para a versão 6 do motor"
+      },
+      {
+        "name": "Motor de prevenção de intrusões",
+        "version": "Snort 3.10.0.0",
+        "note": "Com o plugin de controle da Nexwall 1.0.1"
+      },
+      {
+        "name": "Assinaturas de intrusão",
+        "version": "pacote diário",
+        "note": "Comunidade, regras abertas convertidas e Nexwall Labs; 2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Catálogo de aplicações",
+        "version": "pacote diário",
+        "note": "2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Listas de ameaças",
+        "version": "2026.10.02.3",
+        "note": "12 categorias de DNS, 2 listas de IP, listas por país; reconstruídas todos os dias"
+      }
     ]
   },
   "timeline": {
     "intro": "Como esta versão foi formada, da primeira imagem até a versão candidata.",
     "entries": [
-      {"date": "2026-09-19", "title": "Primeira imagem", "text": "Marca, nomes e arquivos de licenciamento da Nexwall; a imagem base iniciou em uma máquina virtual."},
-      {"date": "2026-09-20", "title": "Código da Nexwall", "text": "A interface web, o monitoramento, o portal cativo e as verificações do Checkmk passam a ser compilados de repositórios da Nexwall; foram adicionados a aplicação de regras do Controle de aplicações e suas estatísticas; os serviços migraram para hosts da Nexwall; o erro de endereços de DNS e DHCP foi corrigido."},
-      {"date": "2026-09-21", "title": "Primeira imagem somente Nexwall", "text": "Iniciou com a nova interface e a tradução para português; um túnel IPsec com um firewall de terceiros, um Active Directory remoto e o acesso remoto OpenVPN foram configurados e funcionaram."},
-      {"date": "2026-09-22 a 23", "title": "Motor de tráfego 5.2.8 e plugins da Nexwall", "text": "O motor foi atualizado e os plugins de fluxos, estatísticas e saída HTTP foram verificados de ponta a ponta em uma unidade em funcionamento."},
-      {"date": "2026-09-24", "title": "Ações do Controle de aplicações", "text": "O plugin de ações foi testado ao vivo; um ciclo de falhas e uma espera ativa que usava um núcleo de CPU inteiro foram encontrados e corrigidos, e os rótulos foram confirmados de ponta a ponta."},
-      {"date": "2026-09-30", "title": "Catálogo, contabilização e logs", "text": "Foram construídos e testados o catálogo de aplicações da Nexwall, a correção da contabilização de tráfego, o visualizador de logs com rastreamento de regras ao vivo e o vigia de filas travadas."},
-      {"date": "2026-10-01", "title": "Feed assinado e serviços licenciados", "text": "O feed de atualizações assinado, os tokens de recurso para Controle de aplicações, estatísticas e Proteção de rede, o serviço de assinaturas de intrusão e o plugin de controle da Proteção de rede."},
-      {"date": "2026-10-02", "title": "Desempenho, listas de ameaças e padrões", "text": "Threads de inspeção, caminho rápido, distribuição de pacotes, buffers maiores e o Monitor do motor; nome da Proteção de rede e ação padrão Bloquear; atualização diária de assinaturas e catálogo; listas do Threat Shield, bloqueio por país e aviso de memória; regras padrão do firewall; interface web 1.3.6; a imagem da versão candidata."}
+      {
+        "date": "2026-09-19",
+        "title": "Primeira imagem",
+        "text": "Marca, nomes e arquivos de licenciamento da Nexwall; a imagem base iniciou em uma máquina virtual."
+      },
+      {
+        "date": "2026-09-20",
+        "title": "Código da Nexwall",
+        "text": "A interface web, o monitoramento, o portal cativo e as verificações do Checkmk passam a ser compilados de repositórios da Nexwall; foram adicionados a aplicação de regras do Controle de aplicações e suas estatísticas; os serviços migraram para hosts da Nexwall; o erro de endereços de DNS e DHCP foi corrigido."
+      },
+      {
+        "date": "2026-09-21",
+        "title": "Primeira imagem somente Nexwall",
+        "text": "Iniciou com a nova interface e a tradução para português; um túnel IPsec com um firewall de terceiros, um Active Directory remoto e o acesso remoto OpenVPN foram configurados e funcionaram."
+      },
+      {
+        "date": "2026-09-22 a 23",
+        "title": "Motor de tráfego 5.2.8 e plugins da Nexwall",
+        "text": "O motor foi atualizado e os plugins de fluxos, estatísticas e saída HTTP foram verificados de ponta a ponta em uma unidade em funcionamento."
+      },
+      {
+        "date": "2026-09-24",
+        "title": "Ações do Controle de aplicações",
+        "text": "O plugin de ações foi testado ao vivo; um ciclo de falhas e uma espera ativa que usava um núcleo de CPU inteiro foram encontrados e corrigidos, e os rótulos foram confirmados de ponta a ponta."
+      },
+      {
+        "date": "2026-09-30",
+        "title": "Catálogo, contabilização e logs",
+        "text": "Foram construídos e testados o catálogo de aplicações da Nexwall, a correção da contabilização de tráfego, o visualizador de logs com rastreamento de regras ao vivo e o vigia de filas travadas."
+      },
+      {
+        "date": "2026-10-01",
+        "title": "Feed assinado e serviços licenciados",
+        "text": "O feed de atualizações assinado, os tokens de recurso para Controle de aplicações, estatísticas e Proteção de rede, o serviço de assinaturas de intrusão e o plugin de controle da Proteção de rede."
+      },
+      {
+        "date": "2026-10-02",
+        "title": "Desempenho, listas de ameaças e padrões",
+        "text": "Threads de inspeção, caminho rápido, distribuição de pacotes, buffers maiores e o Monitor do motor; nome da Proteção de rede e ação padrão Bloquear; atualização diária de assinaturas e catálogo; listas do Threat Shield, bloqueio por país e aviso de memória; regras padrão do firewall; interface web 1.3.6; a imagem da versão candidata."
+      }
     ]
   },
   "known_issues": [
@@ -280,7 +380,9 @@
     "A versão é uma imagem de disco instalável para máquinas virtuais e appliances. Confira primeiro o SHA-256.",
     "Após o primeiro boot, a interface interna responde em 192.168.1.1. Altere a senha do administrador no primeiro login.",
     "Firewalls com uma compilação interna anterior não são atualizados no local por esta versão candidata; instale a imagem em uma máquina de testes e compare.",
-    "Não restaure um backup de configuração feito em uma compilação interna anterior: as configurações do seu motor de tráfego usam outro formato."
+    "Não restaure um backup de configuração feito em uma compilação interna anterior: as configurações do seu motor de tráfego usam outro formato.",
+    "Para conferir o arquivo no Linux, execute sha256sum nele; no Windows, execute Get-FileHash com -Algorithm SHA256 no PowerShell. O resultado deve ser igual ao SHA-256 da tabela de downloads.",
+    "O guia de administração está em https://docs.nexwall.com.br."
   ],
   "open_source": "O Nexwall Firewall é construído sobre software de código aberto, entre outros OpenWrt, o kernel do Linux, nftables, Snort 3, Netify Agent e nDPI, dnsmasq, banIP, adblock e VictoriaMetrics. O firewall e as ferramentas de operação são publicados com as suas licenças originais, e os textos de licença e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas do Threat Shield são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as relaciona faz parte de cada pacote."
 }
