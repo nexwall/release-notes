@@ -126,6 +126,13 @@ table { border-collapse: collapse; width: 100%; background: var(--surface); bord
 th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
 .copy { border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 6px; padding: .1rem .5rem; cursor: pointer; font: inherit; font-size: .8rem; }
+.timeline { list-style: none; margin: 1rem 0 0; padding: 0 0 0 1rem; border-left: 2px solid var(--line); }
+.timeline li { position: relative; display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; padding: 0 0 1.4rem 1rem; }
+.timeline li::before { content: ""; position: absolute; left: -1.38rem; top: .45rem; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 3px var(--bg); }
+.timeline time { color: var(--muted); font: .85rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding-top: .15rem; }
+.timeline h3 { font-size: 1rem; margin-bottom: .2rem; }
+.timeline p { margin: 0; color: var(--muted); }
+@media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: .2rem; } }
 .foot { border-top: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: .88rem; }
 .foot-in { width: min(1180px, 100% - 32px); margin: 0 auto; padding: 1.2rem 0; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 

@@ -153,6 +153,13 @@ def build_release(lang, ui, rel, note, releases):
     for sec in note['sections']:
         intro = paragraphs(sec['intro']) if sec.get('intro') else ''
         section(sec['id'], sec['title'], intro + ''.join(render_item(ui, i) for i in sec['items']))
+    comp = note['components']
+    rows = ''.join('<tr><td>%s</td><td><code>%s</code></td><td>%s</td></tr>' % (esc(c['name']), esc(c['version']), esc(c['note'])) for c in comp['rows'])
+    section('components', ui['components'], paragraphs(comp['intro']) + '<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>' % (
+        esc(ui['col_component']), esc(ui['version']), esc(ui['col_notes']), rows))
+    tl = note['timeline']
+    entries = ''.join('<li><time>%s</time><div><h3>%s</h3><p>%s</p></div></li>' % (esc(e['date']), esc(e['title']), esc(e['text'])) for e in tl['entries'])
+    section('release-track', ui['timeline'], paragraphs(tl['intro']) + '<ol class="timeline">%s</ol>' % entries)
     issues = ''.join('<article class="item" data-tag="known"><header><span class="tag tag-known">%s</span><h3>%s</h3></header>%s%s</article>' % (
         esc(ui['tag_known']), esc(k['title']), paragraphs(k['body']),
         ('<p class="note"><b>%s</b> %s</p>' % (esc(ui['workaround']), esc(k['workaround']))) if k.get('workaround') else '') for k in note['known_issues'])
@@ -193,6 +200,8 @@ def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(OUT, 'assets'))
+    if os.path.isfile(os.path.join(ROOT, 'CNAME')):
+        shutil.copy(os.path.join(ROOT, 'CNAME'), os.path.join(OUT, 'CNAME'))
     write('.nojekyll', '')
     urls = []
     for lang, _ in LANGS:

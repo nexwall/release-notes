@@ -1,11 +1,12 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc1",
-  "summary": "The first release candidate: network protection (IPS), application control, threat feeds, geo-blocking, a faster data path and sensible firewall defaults, in one image.",
-  "overview": "Nexwall Firewall 26.0.0-rc1 is the first release candidate of the Nexwall firewall. It brings inline intrusion prevention, application control, DNS and IP threat feeds served from Nexwall servers, country blocking, a selective fast path for forwarded traffic and a web interface in English, Spanish and Brazilian Portuguese.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
+  "summary": "The first release candidate of Nexwall Firewall: Network Protection (IPS), Application Control, threat feeds, geo-blocking, a log viewer with live rule tracing, a faster data path and a licensing model delivered from signed Nexwall services.",
+  "overview": "Nexwall Firewall 26.0.0-rc1 is the first release candidate of the Nexwall firewall. It is an installable image for x86-64 machines and virtual machines, with a web interface in English, Spanish and Brazilian Portuguese.\n\nThe protection features are served by Nexwall: intrusion signatures, the application catalog and the threat lists are built on Nexwall servers, signed, checked by the firewall and refreshed every day. Updates of the web interface and of the license component come from a signed Nexwall feed whose files are pinned by checksum.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
   "at_a_glance": [
     {"label": "Version", "value": "26.0.0-rc1"},
     {"label": "Status", "value": "Release candidate"},
     {"label": "Platform", "value": "x86-64, UEFI boot"},
+    {"label": "Base system", "value": "OpenWrt 25.12.5, kernel 6.12"},
     {"label": "Interface languages", "value": "English, Spanish, Brazilian Portuguese"},
     {"label": "Licensed features", "value": "Trial included"}
   ],
@@ -13,26 +14,31 @@
     {
       "id": "whats-new",
       "title": "What is new",
-      "intro": "These features are new in this release.",
+      "intro": "The features below are new in this release.",
       "items": [
         {
           "tag": "new",
           "title": "Network Protection (IPS)",
-          "body": "Inline intrusion prevention that inspects forwarded traffic and blocks attacks before they reach your servers and users. The page that was called IPS / IDS is now Network Protection (IPS), and the default action for detected threats is Block.",
+          "body": "Inline intrusion prevention that inspects forwarded traffic and blocks attacks before they reach your servers and users. The page that was called IPS / IDS is now Network Protection (IPS), and the default action for detected threats is Block. You can switch to Detect only and turn alert logging on or off.",
           "bullets": [
-            "Signatures come in tiers from three sources: community rules, a converted open rule set and rules written by Nexwall Labs.",
-            "The signature bundle is built on Nexwall servers, signed, checked on the firewall and refreshed daily.",
-            "Queues and analysis threads follow the number of CPU cores, so a bigger machine inspects more traffic in parallel."
+            "The signature bundle combines three sources in policy tiers: the Snort community rules (4,017 rules), a converted open rule set (51,873 rules) and rules written by Nexwall Labs. It is built on Nexwall servers, signed, and refreshed daily.",
+            "The firewall verifies every bundle, validates it with Snort before installing it and rolls back to the previous one if it does not load.",
+            "A signatures card shows the bundle in use and lets you update it on demand.",
+            "Queues and analysis threads follow the number of CPU cores.",
+            "When the license no longer allows the service, the page shows a banner and inspection is suspended instead of failing silently."
           ],
-          "note": "Signature updates need a license; the trial includes them."
+          "note": "Signature updates need a license; the trial includes them. The open sources used are redistributed under their own licenses."
         },
         {
           "tag": "new",
-          "title": "Application Control",
-          "body": "Recognizes the applications and services crossing the firewall and lets you allow, block or report them. The application catalog is built on Nexwall servers and refreshed daily, and the engine sizes its instances from the number of CPU cores.",
+          "title": "Application Control (DPI)",
+          "body": "Recognizes the applications and services crossing the firewall and lets you block, re-prioritize or report them. The traffic classification engine is Netify Agent 5.2.8 with Nexwall's own plugins, and enforcement is applied in the firewall as nftables rules that are validated before they replace the running ones.",
           "bullets": [
+            "A Nexwall application catalog is delivered daily. The first build knew about 1,500 applications with about 26,000 domain rules, 783 network rules and 26 soft dissectors, compared with 199 applications in the open list shipped with the engine, so far fewer flows stay Unknown.",
+            "A Settings tab shows the catalog status and lets you update now or choose the automatic update frequency.",
             "Rules can act on a single application or on a whole category.",
-            "Traffic statistics per application are available when the license is active."
+            "Enforcement is tied to a short-lived feature token from the license service. If the token cannot be renewed, enforcement is suspended within seconds and a banner says so; it resumes when the service is back.",
+            "Traffic statistics per application are available while the license is active."
           ]
         },
         {
@@ -43,10 +49,10 @@
             "Twelve DNS categories, about 3.2 million entries in total: advertising and tracking, adult content, filter bypass, crypto mining, drugs, gambling, malware (core and extended), phishing, piracy, ransomware and scams.",
             "Two IP lists: known attackers and botnet command servers.",
             "Each list shows a readable title, the number of entries and a confidence level, so you can decide what to switch on.",
-            "The lists are rebuilt every day and the firewall reloads its DNS service only when something changed.",
-            "A sensible set of categories is switched on by default; your own choices are kept when you update."
+            "The lists are rebuilt every day; the firewall checks every 30 minutes and reloads its DNS service only when something changed.",
+            "A sensible set of categories is switched on by default and your own choices are kept when you update. A selection made with the earlier categories is migrated."
           ],
-          "note": "The Nexwall lists need a license; the trial includes them."
+          "note": "The Nexwall lists need a license; the trial includes them. They are built only from sources whose licenses allow redistribution."
         },
         {
           "tag": "new",
@@ -57,24 +63,63 @@
         {
           "tag": "new",
           "title": "Geo-blocking from Nexwall servers",
-          "body": "Country blocking now uses address lists built by Nexwall from the public registry allocation data, split by country and published in the same signed bundle as the other lists. The firewall loads them from local files in seconds, instead of downloading a list per country every time the service starts.",
-          "bullets": ["IPv4 and IPv6 are covered.", "Registry data shows where an address block was allocated, not always where it is used today."]
+          "body": "Country blocking now uses address lists built by Nexwall from the public registry allocation data (five regional internet registries), split by country and published in the same signed bundle as the other lists. The firewall loads them from local files in seconds, instead of downloading a list per country every time the service starts.",
+          "bullets": ["IPv4 (about 179,000 blocks) and IPv6 (about 70,000 blocks) are covered.", "Registry data shows where an address block was allocated, not always where it is used today."]
         },
         {
           "tag": "new",
-          "title": "Fast path and performance settings",
-          "body": "Established connections that need no inspection can bypass most of the packet processing. The fast path is selective: traffic that Network Protection or Application Control must see stays on the inspected path, and connection counters keep working.",
+          "title": "Log Viewer",
+          "body": "A new viewer for the firewall's logs, opened from the Logs page in its own window. Logs are stored locally for 30 days and the viewer follows the interface language and theme.",
           "bullets": [
-            "Packet steering spreads network processing across the CPU cores.",
-            "Network card ring buffers are raised to the maximum the card supports.",
-            "The connection tracking table scales with installed memory (32 entries per MiB, at least 65,536).",
-            "A new Engine monitor page shows what the inspection engines are doing, and a Performance page holds the related settings."
+            "Thirteen tabs: firewall, IP and geo blocking, intrusion prevention, application control, DNS filtering, VPN, high availability, reverse proxy, authentication, administrator activity, system and more.",
+            "Every blocked line tells you the reason; a rule with logging turned on is logged under its own name.",
+            "Click a value to filter by it, and export the result to CSV.",
+            "Live rule tracing shows which rule accepted, rejected or dropped a packet, including blocks by application control; the trace link on each firewall row starts it.",
+            "The viewer runs only while it is enabled."
           ]
         },
         {
           "tag": "new",
+          "title": "Fast path and performance settings",
+          "body": "Established connections that need no inspection can bypass most of the packet processing. The fast path is selective: traffic that Network Protection or Application Control must see stays on the inspected path, and connection counters keep working. It is off by default and is one switch on both the Application Control and Network Protection settings pages.",
+          "bullets": [
+            "Packet steering spreads network processing across the CPU cores; it is on by default for new multi-core installations.",
+            "Larger network card buffers are on by default for new installations. Small default buffers dropped bursts in tests.",
+            "The connection tracking table scales with installed memory (32 entries per MiB, at least 65,536).",
+            "Application Control instances are sized from the CPU count (half of the cores, one to four); Network Protection uses one thread per CPU."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Engine monitor",
+          "body": "A new page shows what the inspection engines are doing: how busy the traffic classification and intrusion prevention engines are and how much load they put on the machine. Use it to see whether a machine is sized correctly."
+        },
+        {
+          "tag": "new",
+          "title": "Stalled inspection watchdog",
+          "body": "If an inspection queue stops issuing verdicts, new connections would wait forever. A watchdog checks every minute, detects a stuck or badly backed-up queue, writes a report with the details, logs it and restarts the engine that owns the queue. The longest outage before recovery is about one to two minutes."
+        },
+        {
+          "tag": "new",
           "title": "Licensing",
-          "body": "A firewall is unlicensed, in trial or subscribed. Unlicensed firewalls keep the core firewall functions; the features delivered from Nexwall servers (signatures, application catalog, threat feeds) need a trial or a subscription. The license component updates itself and downloads large data sets reliably."
+          "body": "A firewall is unlicensed, in trial (30 days) or subscribed. Unlicensed firewalls keep the core firewall functions; the features delivered from Nexwall servers (signatures, application catalog, threat feeds) need a trial or a subscription. The license component updates itself from the signed feed and downloads large data sets reliably."
+        },
+        {
+          "tag": "new",
+          "title": "Signed update feed",
+          "body": "The web interface, the license component and the traffic-engine plugins are published to a signed Nexwall feed. Every file is pinned by its SHA-256 checksum in the firmware build, so an image always contains exactly the version it was built with."
+        },
+        {
+          "tag": "new",
+          "title": "Also in the image",
+          "body": "The firewall platform includes the functions you expect from a complete firewall.",
+          "bullets": [
+            "Zones, policies, port forwarding, NAT, multiple WAN with failover and QoS.",
+            "VPN: IPsec tunnels and OpenVPN remote access, both tested in this release.",
+            "Authentication against a remote Active Directory, tested in this release.",
+            "High availability, reverse proxy with certificates, captive portal and DNS category filtering through a cloud resolver.",
+            "Monitoring with real-time graphs and Checkmk checks, configuration backup and central management."
+          ]
         }
       ]
     },
@@ -101,7 +146,17 @@
         {
           "tag": "improved",
           "title": "Web interface",
-          "body": "The interface carries the Nexwall design and is available in English, Spanish and Brazilian Portuguese. The Threat Shield tables show titles, entry counts and confidence for every list."
+          "body": "The interface carries the Nexwall design and is available in English, Spanish and Brazilian Portuguese; tabs follow the chosen language. The Threat Shield tables show titles, entry counts and confidence for every list, and the pages for the licensed features say clearly when a license is missing."
+        },
+        {
+          "tag": "improved",
+          "title": "Accurate traffic figures",
+          "body": "The traffic shown in the Monitor (daily traffic, top talkers, live flows) now matches the interface counters. In a test with a 36 MB download the Monitor showed 35.99 MB against 36.33 MB on the interface; before it showed 14 KB."
+        },
+        {
+          "tag": "changed",
+          "title": "Nexwall naming and services",
+          "body": "The product, the image file names, the host name (Nexwall) and the service endpoints use Nexwall names. Registration, inventory, backup, telemetry, updates and licenses are served from Nexwall hosts."
         },
         {
           "tag": "changed",
@@ -117,6 +172,26 @@
       "items": [
         {
           "tag": "fixed",
+          "title": "DNS & DHCP page failed to load",
+          "body": "The page raised an error when an interface address was stored as 192.168.1.1/24. Addresses are now read in every form and interfaces without a usable IPv4 address are skipped."
+        },
+        {
+          "tag": "fixed",
+          "title": "Traffic engine crash loop",
+          "body": "A plugin of the traffic engine crashed the engine again and again right after it started. The cause was found with a symbolized backtrace and fixed."
+        },
+        {
+          "tag": "fixed",
+          "title": "Engine using a whole CPU core",
+          "body": "A plugin queue spun without waiting and kept the engine at 100% of a core. It now waits for work like the other plugins."
+        },
+        {
+          "tag": "fixed",
+          "title": "Engine deadlock",
+          "body": "A plugin could lock the engine against itself. The call path was changed so the engine no longer blocks."
+        },
+        {
+          "tag": "fixed",
           "title": "Large license data downloads",
           "body": "Downloads of big data sets from the license service were cut silently at 1 MiB and timed out after 30 seconds. They now accept up to 64 MiB and have ten minutes to complete."
         },
@@ -124,14 +199,47 @@
           "tag": "fixed",
           "title": "Memory exhaustion with very high connection limits",
           "body": "A fixed, very high connection tracking limit could exhaust memory on small machines under heavy load. The limit is now derived from the installed memory."
+        },
+        {
+          "tag": "fixed",
+          "title": "Bursts dropped on virtual network cards",
+          "body": "Small default network card buffers dropped traffic bursts and kept throughput low in tests. Larger buffers and packet steering are now on by default for new installations."
         }
       ]
     }
   ],
+  "components": {
+    "intro": "The versions below make up the image. Most of them are pinned by checksum, so the image always contains exactly these versions. The signature bundle, the application catalog and the threat lists are not part of the image: they are downloaded and refreshed daily.",
+    "rows": [
+      {"name": "Image", "version": "26.0.0-rc1", "note": "x86-64, UEFI, compressed disk image"},
+      {"name": "Base system", "version": "OpenWrt 25.12.5", "note": "Linux kernel 6.12, nftables 1.1"},
+      {"name": "Web interface", "version": "1.3.6", "note": "English, Spanish, Brazilian Portuguese"},
+      {"name": "License component", "version": "1.5.2", "note": "Updates itself from the signed feed"},
+      {"name": "Traffic classification engine", "version": "5.2.8 (release 6)", "note": "Netify Agent with Nexwall plugins"},
+      {"name": "Traffic engine plugins", "version": "1.0.1", "note": "Five plugins, built for engine release 6"},
+      {"name": "Intrusion prevention engine", "version": "Snort 3.10.0.0", "note": "With the Nexwall gate plugin 1.0.1"},
+      {"name": "Intrusion signatures", "version": "daily bundle", "note": "Community, converted open rules and Nexwall Labs; 2026.10.02.1 at release"},
+      {"name": "Application catalog", "version": "daily bundle", "note": "2026.10.02.1 at release"},
+      {"name": "Threat lists", "version": "2026.10.02.3", "note": "12 DNS categories, 2 IP lists, country lists; rebuilt daily"}
+    ]
+  },
+  "timeline": {
+    "intro": "How this release came together, from the first image to the release candidate.",
+    "entries": [
+      {"date": "2026-09-19", "title": "First image", "text": "Nexwall branding, naming and licensing files; the baseline image booted in a virtual machine."},
+      {"date": "2026-09-20", "title": "Nexwall sources", "text": "The web interface, monitoring, captive portal and Checkmk checks are built from Nexwall repositories; Application Control enforcement and its statistics were added; services moved to Nexwall hosts; the DNS & DHCP address bug was fixed."},
+      {"date": "2026-09-21", "title": "First Nexwall-only image", "text": "Booted with the new interface and Portuguese translation; an IPsec tunnel to a third-party firewall, a remote Active Directory and OpenVPN remote access were configured and worked."},
+      {"date": "2026-09-22 to 23", "title": "Traffic engine 5.2.8 and Nexwall plugins", "text": "The engine was upgraded and the flow, statistics and HTTP-sink plugins were verified end to end on a running unit."},
+      {"date": "2026-09-24", "title": "Application Control actions", "text": "The action plugin was tested live; a crash loop and a busy-wait that used a whole CPU core were found and fixed, and labels were confirmed end to end."},
+      {"date": "2026-09-30", "title": "Catalog, accounting and logs", "text": "The Nexwall application catalog, the traffic accounting fix, the Log Viewer with live rule tracing and the stalled-queue watchdog were built and tested."},
+      {"date": "2026-10-01", "title": "Signed feed and licensed services", "text": "The signed update feed, feature tokens for Application Control, statistics and Network Protection, the intrusion signature service and the Network Protection gate plugin."},
+      {"date": "2026-10-02", "title": "Performance, threat feeds and defaults", "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat Shield feeds, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."}
+    ]
+  },
   "known_issues": [
     {
       "title": "New defaults apply to new installations only",
-      "body": "The LAN -> WAN and DROP DEFAULT rules are part of the default configuration. A firewall that was installed earlier keeps the rules it has.",
+      "body": "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has.",
       "workaround": "Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list."
     },
     {
@@ -149,6 +257,15 @@
       "workaround": "Use paravirtualized adapters (virtio or vmxnet3) or physical hardware for performance tests."
     },
     {
+      "title": "Fast path is off by default",
+      "body": "The fast path has been verified for correctness and counters, but it has not been measured on physical hardware yet.",
+      "workaround": "Switch it on in the Performance card of the Application Control or Network Protection settings and compare on your own traffic."
+    },
+    {
+      "title": "Encrypted traffic",
+      "body": "Application Control and Network Protection do not decrypt HTTPS. Applications are recognized from the connection, the domain name and the traffic pattern."
+    },
+    {
       "title": "Release candidate",
       "body": "Interfaces and defaults can still change before the final release."
     }
@@ -156,13 +273,14 @@
   "requirements": [
     "x86-64 processor, UEFI firmware with Secure Boot off.",
     "At least two network interfaces (one for the internal network, one for the internet).",
-    "2 GB of memory with the default categories; 4 GB or more if you switch on the adult, advertising and extended malware lists.",
-    "Internet access to updates.nexwall.com.br and license.nexwall.com.br for updates, licenses and threat feeds."
+    "2 GB of memory with the default threat categories; 4 GB or more if you switch on the adult, advertising and extended malware lists.",
+    "Internet access to updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, threat feeds and registration."
   ],
   "upgrade": [
     "The release is an installable disk image for virtual machines and appliances. Check its SHA-256 first.",
-    "After the first start the internal interface answers on 192.168.1.1.",
-    "Firewalls running an earlier internal build are not upgraded in place by this release candidate; install the image on a test machine and compare."
+    "After the first start the internal interface answers on 192.168.1.1. Change the administrator password on the first login.",
+    "Firewalls running an earlier internal build are not upgraded in place by this release candidate; install the image on a test machine and compare.",
+    "Do not restore a configuration backup taken on an older internal build: its traffic engine settings use another format."
   ],
-  "open_source": "Nexwall Firewall is built on open source software. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
 }

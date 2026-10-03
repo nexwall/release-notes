@@ -1,11 +1,12 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc1",
-  "summary": "A primeira versão candidata: proteção de rede (IPS), controle de aplicações, listas de ameaças, bloqueio por país, um caminho de dados mais rápido e padrões sensatos do firewall, em uma única imagem.",
-  "overview": "O Nexwall Firewall 26.0.0-rc1 é a primeira versão candidata do firewall da Nexwall. Traz prevenção de intrusões em linha, controle de aplicações, listas de ameaças de DNS e IP servidas pelos servidores da Nexwall, bloqueio por país, um caminho rápido seletivo para o tráfego encaminhado e uma interface web em inglês, espanhol e português do Brasil.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
+  "summary": "A primeira versão candidata do Nexwall Firewall: Proteção de rede (IPS), Controle de aplicações, listas de ameaças, bloqueio por país, um visualizador de logs com rastreamento de regras ao vivo, um caminho de dados mais rápido e um modelo de licenciamento entregue por serviços assinados da Nexwall.",
+  "overview": "O Nexwall Firewall 26.0.0-rc1 é a primeira versão candidata do firewall da Nexwall. É uma imagem instalável para máquinas x86-64 e máquinas virtuais, com interface web em inglês, espanhol e português do Brasil.\n\nOs recursos de proteção são servidos pela Nexwall: as assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças são construídos nos servidores da Nexwall, assinados, verificados pelo firewall e atualizados todos os dias. As atualizações da interface web e do componente de licenciamento vêm de um feed assinado da Nexwall, cujos arquivos são fixados por checksum.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
   "at_a_glance": [
     {"label": "Versão", "value": "26.0.0-rc1"},
     {"label": "Situação", "value": "Versão candidata"},
     {"label": "Plataforma", "value": "x86-64, boot UEFI"},
+    {"label": "Sistema base", "value": "OpenWrt 25.12.5, kernel 6.12"},
     {"label": "Idiomas da interface", "value": "Inglês, espanhol, português do Brasil"},
     {"label": "Recursos licenciados", "value": "Teste incluído"}
   ],
@@ -13,26 +14,31 @@
     {
       "id": "whats-new",
       "title": "Novidades",
-      "intro": "Estes recursos são novos nesta versão.",
+      "intro": "Os recursos abaixo são novos nesta versão.",
       "items": [
         {
           "tag": "new",
           "title": "Proteção de rede (IPS)",
-          "body": "Prevenção de intrusões em linha que inspeciona o tráfego encaminhado e bloqueia ataques antes que cheguem aos seus servidores e usuários. A página que se chamava IPS / IDS agora é Proteção de rede (IPS) e a ação padrão para ameaças detectadas é Bloquear.",
+          "body": "Prevenção de intrusões em linha que inspeciona o tráfego encaminhado e bloqueia ataques antes que cheguem aos seus servidores e usuários. A página que se chamava IPS / IDS agora é Proteção de rede (IPS) e a ação padrão para ameaças detectadas é Bloquear. Você pode mudar para Somente detectar e ligar ou desligar o registro de alertas.",
           "bullets": [
-            "As assinaturas são organizadas em níveis e vêm de três origens: regras da comunidade, um conjunto aberto de regras convertido e regras escritas pela Nexwall Labs.",
-            "O pacote de assinaturas é construído nos servidores da Nexwall, assinado, verificado pelo firewall e atualizado diariamente.",
-            "As filas e as threads de análise acompanham o número de núcleos de CPU, de modo que uma máquina maior inspeciona mais tráfego em paralelo."
+            "O pacote de assinaturas combina três origens em níveis de política: as regras da comunidade do Snort (4.017 regras), um conjunto aberto de regras convertido (51.873 regras) e regras escritas pela Nexwall Labs. Ele é construído nos servidores da Nexwall, assinado e atualizado diariamente.",
+            "O firewall verifica cada pacote, valida com o Snort antes de instalar e volta ao anterior se ele não carregar.",
+            "Um cartão de assinaturas mostra o pacote em uso e permite atualizá-lo sob demanda.",
+            "As filas e as threads de análise acompanham o número de núcleos de CPU.",
+            "Quando a licença deixa de permitir o serviço, a página mostra um aviso e a inspeção é suspensa em vez de falhar em silêncio."
           ],
-          "note": "As atualizações de assinaturas exigem licença; o teste as inclui."
+          "note": "As atualizações de assinaturas exigem licença; o teste as inclui. As fontes abertas usadas são redistribuídas sob as suas próprias licenças."
         },
         {
           "tag": "new",
-          "title": "Controle de aplicações",
-          "body": "Reconhece as aplicações e os serviços que atravessam o firewall e permite liberá-los, bloqueá-los ou registrá-los. O catálogo de aplicações é construído nos servidores da Nexwall e atualizado diariamente, e o motor dimensiona suas instâncias conforme o número de núcleos de CPU.",
+          "title": "Controle de aplicações (DPI)",
+          "body": "Reconhece as aplicações e os serviços que atravessam o firewall e permite bloqueá-los, repriorizá-los ou registrá-los. O motor de classificação de tráfego é o Netify Agent 5.2.8 com plugins próprios da Nexwall, e a aplicação das regras é feita no firewall como regras do nftables, validadas antes de substituírem as que estão em execução.",
           "bullets": [
+            "Um catálogo de aplicações da Nexwall é entregue todos os dias. A primeira compilação conhecia cerca de 1.500 aplicações, com cerca de 26.000 regras de domínio, 783 regras de rede e 26 dissectores, contra 199 aplicações da lista aberta que acompanha o motor, de modo que muito menos fluxos ficam como Desconhecido.",
+            "Uma aba de Configurações mostra o estado do catálogo e permite atualizar agora ou escolher a frequência da atualização automática.",
             "As regras podem atuar sobre uma aplicação ou sobre uma categoria inteira.",
-            "As estatísticas de tráfego por aplicação ficam disponíveis com a licença ativa."
+            "A aplicação das regras depende de um token de recurso de curta duração do serviço de licenças. Se o token não puder ser renovado, ela é suspensa em segundos e um aviso informa; ela volta quando o serviço retorna.",
+            "As estatísticas de tráfego por aplicação ficam disponíveis enquanto a licença estiver ativa."
           ]
         },
         {
@@ -43,10 +49,10 @@
             "Doze categorias de DNS, cerca de 3,2 milhões de entradas no total: publicidade e rastreamento, conteúdo adulto, contorno de filtros, mineração de criptomoedas, drogas, jogos de azar, malware (básico e estendido), phishing, pirataria, ransomware e golpes.",
             "Duas listas de IP: atacantes conhecidos e servidores de comando de botnets.",
             "Cada lista mostra um título legível, o número de entradas e um nível de confiança, para você decidir o que ativar.",
-            "As listas são reconstruídas todos os dias e o firewall recarrega o serviço de DNS somente quando algo mudou.",
-            "Um conjunto sensato de categorias vem ativado por padrão; as suas escolhas são mantidas nas atualizações."
+            "As listas são reconstruídas todos os dias; o firewall verifica a cada 30 minutos e recarrega o serviço de DNS somente quando algo mudou.",
+            "Um conjunto sensato de categorias vem ativado por padrão e as suas escolhas são mantidas nas atualizações. Uma seleção feita com as categorias anteriores é migrada."
           ],
-          "note": "As listas da Nexwall exigem licença; o teste as inclui."
+          "note": "As listas da Nexwall exigem licença; o teste as inclui. Elas são construídas somente a partir de fontes cujas licenças permitem a redistribuição."
         },
         {
           "tag": "new",
@@ -57,24 +63,63 @@
         {
           "tag": "new",
           "title": "Bloqueio por país a partir dos servidores da Nexwall",
-          "body": "O bloqueio por país agora usa listas de endereços que a Nexwall constrói a partir dos dados públicos de alocação dos registros de Internet, separadas por país e publicadas no mesmo pacote assinado das outras listas. O firewall as carrega de arquivos locais em segundos, em vez de baixar uma lista por país toda vez que o serviço inicia.",
-          "bullets": ["Cobre IPv4 e IPv6.", "Os dados dos registros mostram onde um bloco de endereços foi alocado, nem sempre onde ele é usado hoje."]
+          "body": "O bloqueio por país agora usa listas de endereços que a Nexwall constrói a partir dos dados públicos de alocação dos registros de Internet (cinco registros regionais), separadas por país e publicadas no mesmo pacote assinado das outras listas. O firewall as carrega de arquivos locais em segundos, em vez de baixar uma lista por país toda vez que o serviço inicia.",
+          "bullets": ["Cobre IPv4 (cerca de 179.000 blocos) e IPv6 (cerca de 70.000 blocos).", "Os dados dos registros mostram onde um bloco de endereços foi alocado, nem sempre onde ele é usado hoje."]
         },
         {
           "tag": "new",
-          "title": "Caminho rápido e ajustes de desempenho",
-          "body": "Conexões estabelecidas que não precisam de inspeção podem pular a maior parte do processamento de pacotes. O caminho rápido é seletivo: o tráfego que a Proteção de rede ou o Controle de aplicações precisa ver continua no caminho inspecionado, e os contadores de conexão continuam funcionando.",
+          "title": "Visualizador de logs",
+          "body": "Um novo visualizador dos logs do firewall, aberto a partir da página Logs em sua própria janela. Os logs ficam guardados localmente por 30 dias e o visualizador segue o idioma e o tema da interface.",
           "bullets": [
-            "A distribuição de pacotes espalha o processamento de rede entre os núcleos de CPU.",
-            "Os buffers de anel das placas de rede são elevados ao máximo que a placa aceita.",
-            "A tabela de rastreamento de conexões escala com a memória instalada (32 entradas por MiB, no mínimo 65.536).",
-            "Uma nova página Monitor do motor mostra o que os motores de inspeção estão fazendo, e uma página Desempenho reúne os ajustes relacionados."
+            "Treze abas: firewall, bloqueio por IP e país, prevenção de intrusões, controle de aplicações, filtro de DNS, VPN, alta disponibilidade, proxy reverso, autenticação, atividade de administradores, sistema e mais.",
+            "Cada linha bloqueada informa o motivo; uma regra com registro ligado é registrada com o seu próprio nome.",
+            "Clique em um valor para filtrar por ele e exporte o resultado para CSV.",
+            "O rastreamento de regras ao vivo mostra qual regra aceitou, rejeitou ou descartou um pacote, inclusive os bloqueios do controle de aplicações; o link de rastreamento em cada linha do firewall o inicia.",
+            "O visualizador funciona somente enquanto está ativado."
           ]
         },
         {
           "tag": "new",
+          "title": "Caminho rápido e ajustes de desempenho",
+          "body": "Conexões estabelecidas que não precisam de inspeção podem pular a maior parte do processamento de pacotes. O caminho rápido é seletivo: o tráfego que a Proteção de rede ou o Controle de aplicações precisa ver continua no caminho inspecionado, e os contadores de conexão continuam funcionando. Vem desligado por padrão e é uma única chave nas páginas de configurações do Controle de aplicações e da Proteção de rede.",
+          "bullets": [
+            "A distribuição de pacotes espalha o processamento de rede entre os núcleos de CPU; vem ligada por padrão nas instalações novas com vários núcleos.",
+            "Buffers maiores nas placas de rede vêm ligados por padrão nas instalações novas. Buffers pequenos descartavam rajadas nos testes.",
+            "A tabela de rastreamento de conexões escala com a memória instalada (32 entradas por MiB, no mínimo 65.536).",
+            "As instâncias do Controle de aplicações são dimensionadas pela CPU (metade dos núcleos, de um a quatro); a Proteção de rede usa uma thread por CPU."
+          ]
+        },
+        {
+          "tag": "new",
+          "title": "Monitor do motor",
+          "body": "Uma nova página mostra o que os motores de inspeção estão fazendo: quão ocupados estão o motor de classificação de tráfego e o de prevenção de intrusões e quanta carga colocam na máquina. Use-a para ver se uma máquina está bem dimensionada."
+        },
+        {
+          "tag": "new",
+          "title": "Vigia de inspeção travada",
+          "body": "Se uma fila de inspeção parar de emitir vereditos, as conexões novas esperariam para sempre. Um vigia verifica a cada minuto, detecta uma fila travada ou com muito acúmulo, grava um relatório com os detalhes, registra o evento e reinicia o motor dono da fila. A interrupção máxima antes da recuperação é de um a dois minutos."
+        },
+        {
+          "tag": "new",
           "title": "Licenciamento",
-          "body": "Um firewall pode estar sem licença, em teste ou com assinatura. Firewalls sem licença mantêm as funções básicas; os recursos entregues pelos servidores da Nexwall (assinaturas, catálogo de aplicações, listas de ameaças) exigem um teste ou uma assinatura. O componente de licenciamento se atualiza sozinho e baixa grandes conjuntos de dados com confiabilidade."
+          "body": "Um firewall pode estar sem licença, em teste (30 dias) ou com assinatura. Firewalls sem licença mantêm as funções básicas; os recursos entregues pelos servidores da Nexwall (assinaturas, catálogo de aplicações, listas de ameaças) exigem um teste ou uma assinatura. O componente de licenciamento se atualiza sozinho a partir do feed assinado e baixa grandes conjuntos de dados com confiabilidade."
+        },
+        {
+          "tag": "new",
+          "title": "Feed de atualizações assinado",
+          "body": "A interface web, o componente de licenciamento e os plugins do motor de tráfego são publicados em um feed assinado da Nexwall. Cada arquivo é fixado pelo seu SHA-256 na compilação do firmware, de modo que uma imagem contém sempre exatamente a versão com que foi construída."
+        },
+        {
+          "tag": "new",
+          "title": "Também na imagem",
+          "body": "A plataforma do firewall inclui as funções esperadas de um firewall completo.",
+          "bullets": [
+            "Zonas, políticas, redirecionamento de portas, NAT, múltiplas WANs com failover e QoS.",
+            "VPN: túneis IPsec e acesso remoto OpenVPN, ambos testados nesta versão.",
+            "Autenticação em um Active Directory remoto, testada nesta versão.",
+            "Alta disponibilidade, proxy reverso com certificados, portal cativo e filtro de DNS por categorias por meio de um resolvedor na nuvem.",
+            "Monitoramento com gráficos em tempo real e verificações do Checkmk, backup da configuração e gerenciamento central."
+          ]
         }
       ]
     },
@@ -101,7 +146,17 @@
         {
           "tag": "improved",
           "title": "Interface web",
-          "body": "A interface traz o design da Nexwall e está disponível em inglês, espanhol e português do Brasil. As tabelas do Threat Shield mostram título, número de entradas e confiança de cada lista."
+          "body": "A interface traz o design da Nexwall e está disponível em inglês, espanhol e português do Brasil; as abas seguem o idioma escolhido. As tabelas do Threat Shield mostram título, número de entradas e confiança de cada lista, e as páginas dos recursos licenciados dizem com clareza quando falta uma licença."
+        },
+        {
+          "tag": "improved",
+          "title": "Números de tráfego precisos",
+          "body": "O tráfego mostrado no Monitor (tráfego diário, maiores consumidores, fluxos ao vivo) agora corresponde aos contadores das interfaces. Em um teste com um download de 36 MB, o Monitor mostrou 35,99 MB contra 36,33 MB na interface; antes mostrava 14 KB."
+        },
+        {
+          "tag": "changed",
+          "title": "Nomes e serviços da Nexwall",
+          "body": "O produto, os nomes de arquivo da imagem, o nome do host (Nexwall) e os endereços dos serviços usam nomes da Nexwall. Registro, inventário, backup, telemetria, atualizações e licenças são servidos por hosts da Nexwall."
         },
         {
           "tag": "changed",
@@ -117,6 +172,26 @@
       "items": [
         {
           "tag": "fixed",
+          "title": "A página DNS e DHCP não carregava",
+          "body": "A página gerava um erro quando o endereço de uma interface estava gravado como 192.168.1.1/24. Agora os endereços são lidos em todas as formas e as interfaces sem endereço IPv4 utilizável são ignoradas."
+        },
+        {
+          "tag": "fixed",
+          "title": "Ciclo de falhas do motor de tráfego",
+          "body": "Um plugin do motor de tráfego derrubava o motor repetidamente logo depois de iniciar. A causa foi encontrada com um backtrace simbolizado e corrigida."
+        },
+        {
+          "tag": "fixed",
+          "title": "Motor usando um núcleo de CPU inteiro",
+          "body": "Uma fila de um plugin girava sem esperar e mantinha o motor em 100% de um núcleo. Agora ela espera por trabalho como os outros plugins."
+        },
+        {
+          "tag": "fixed",
+          "title": "Deadlock do motor",
+          "body": "Um plugin podia travar o motor contra si mesmo. O caminho da chamada foi alterado para que o motor não bloqueie mais."
+        },
+        {
+          "tag": "fixed",
           "title": "Downloads grandes do serviço de licenças",
           "body": "Downloads de grandes conjuntos de dados do serviço de licenças eram cortados em silêncio em 1 MiB e expiravam após 30 segundos. Agora aceitam até 64 MiB e têm dez minutos para terminar."
         },
@@ -124,14 +199,47 @@
           "tag": "fixed",
           "title": "Esgotamento de memória com limites de conexão muito altos",
           "body": "Um limite fixo e muito alto de rastreamento de conexões podia esgotar a memória de máquinas pequenas sob carga pesada. Agora o limite é calculado a partir da memória instalada."
+        },
+        {
+          "tag": "fixed",
+          "title": "Rajadas descartadas em placas de rede virtuais",
+          "body": "Buffers pequenos nas placas de rede descartavam rajadas de tráfego e mantinham a vazão baixa nos testes. Buffers maiores e distribuição de pacotes agora vêm ligados por padrão nas instalações novas."
         }
       ]
     }
   ],
+  "components": {
+    "intro": "As versões abaixo formam a imagem. A maioria é fixada por checksum, de modo que a imagem contém sempre exatamente estas versões. O pacote de assinaturas, o catálogo de aplicações e as listas de ameaças não fazem parte da imagem: são baixados e atualizados todos os dias.",
+    "rows": [
+      {"name": "Imagem", "version": "26.0.0-rc1", "note": "x86-64, UEFI, imagem de disco compactada"},
+      {"name": "Sistema base", "version": "OpenWrt 25.12.5", "note": "Kernel Linux 6.12, nftables 1.1"},
+      {"name": "Interface web", "version": "1.3.6", "note": "Inglês, espanhol, português do Brasil"},
+      {"name": "Componente de licenciamento", "version": "1.5.2", "note": "Atualiza-se sozinho a partir do feed assinado"},
+      {"name": "Motor de classificação de tráfego", "version": "5.2.8 (versão 6)", "note": "Netify Agent com plugins da Nexwall"},
+      {"name": "Plugins do motor de tráfego", "version": "1.0.1", "note": "Cinco plugins, compilados para a versão 6 do motor"},
+      {"name": "Motor de prevenção de intrusões", "version": "Snort 3.10.0.0", "note": "Com o plugin de controle da Nexwall 1.0.1"},
+      {"name": "Assinaturas de intrusão", "version": "pacote diário", "note": "Comunidade, regras abertas convertidas e Nexwall Labs; 2026.10.02.1 na publicação"},
+      {"name": "Catálogo de aplicações", "version": "pacote diário", "note": "2026.10.02.1 na publicação"},
+      {"name": "Listas de ameaças", "version": "2026.10.02.3", "note": "12 categorias de DNS, 2 listas de IP, listas por país; reconstruídas todos os dias"}
+    ]
+  },
+  "timeline": {
+    "intro": "Como esta versão foi formada, da primeira imagem até a versão candidata.",
+    "entries": [
+      {"date": "2026-09-19", "title": "Primeira imagem", "text": "Marca, nomes e arquivos de licenciamento da Nexwall; a imagem base iniciou em uma máquina virtual."},
+      {"date": "2026-09-20", "title": "Código da Nexwall", "text": "A interface web, o monitoramento, o portal cativo e as verificações do Checkmk passam a ser compilados de repositórios da Nexwall; foram adicionados a aplicação de regras do Controle de aplicações e suas estatísticas; os serviços migraram para hosts da Nexwall; o erro de endereços de DNS e DHCP foi corrigido."},
+      {"date": "2026-09-21", "title": "Primeira imagem somente Nexwall", "text": "Iniciou com a nova interface e a tradução para português; um túnel IPsec com um firewall de terceiros, um Active Directory remoto e o acesso remoto OpenVPN foram configurados e funcionaram."},
+      {"date": "2026-09-22 a 23", "title": "Motor de tráfego 5.2.8 e plugins da Nexwall", "text": "O motor foi atualizado e os plugins de fluxos, estatísticas e saída HTTP foram verificados de ponta a ponta em uma unidade em funcionamento."},
+      {"date": "2026-09-24", "title": "Ações do Controle de aplicações", "text": "O plugin de ações foi testado ao vivo; um ciclo de falhas e uma espera ativa que usava um núcleo de CPU inteiro foram encontrados e corrigidos, e os rótulos foram confirmados de ponta a ponta."},
+      {"date": "2026-09-30", "title": "Catálogo, contabilização e logs", "text": "Foram construídos e testados o catálogo de aplicações da Nexwall, a correção da contabilização de tráfego, o visualizador de logs com rastreamento de regras ao vivo e o vigia de filas travadas."},
+      {"date": "2026-10-01", "title": "Feed assinado e serviços licenciados", "text": "O feed de atualizações assinado, os tokens de recurso para Controle de aplicações, estatísticas e Proteção de rede, o serviço de assinaturas de intrusão e o plugin de controle da Proteção de rede."},
+      {"date": "2026-10-02", "title": "Desempenho, listas de ameaças e padrões", "text": "Threads de inspeção, caminho rápido, distribuição de pacotes, buffers maiores e o Monitor do motor; nome da Proteção de rede e ação padrão Bloquear; atualização diária de assinaturas e catálogo; listas do Threat Shield, bloqueio por país e aviso de memória; regras padrão do firewall; interface web 1.3.6; a imagem da versão candidata."}
+    ]
+  },
   "known_issues": [
     {
       "title": "Os novos padrões valem apenas para instalações novas",
-      "body": "As regras LAN -> WAN e DROP DEFAULT fazem parte da configuração padrão. Um firewall instalado antes mantém as regras que tem.",
+      "body": "As regras LAN -> WAN e DROP DEFAULT, a distribuição de pacotes e os buffers maiores das placas de rede fazem parte da configuração padrão. Um firewall instalado antes mantém as configurações que tem.",
       "workaround": "Adicione as duas regras manualmente em um firewall existente e mantenha DROP DEFAULT no fim da lista."
     },
     {
@@ -149,6 +257,15 @@
       "workaround": "Use adaptadores paravirtualizados (virtio ou vmxnet3) ou hardware físico para testes de desempenho."
     },
     {
+      "title": "O caminho rápido vem desligado por padrão",
+      "body": "O caminho rápido foi verificado quanto à correção e aos contadores, mas ainda não foi medido em hardware físico.",
+      "workaround": "Ligue-o no cartão Desempenho das configurações do Controle de aplicações ou da Proteção de rede e compare com o seu próprio tráfego."
+    },
+    {
+      "title": "Tráfego criptografado",
+      "body": "O Controle de aplicações e a Proteção de rede não descriptografam HTTPS. As aplicações são reconhecidas pela conexão, pelo nome de domínio e pelo padrão de tráfego."
+    },
+    {
       "title": "Versão candidata",
       "body": "Interfaces e padrões ainda podem mudar antes da versão final."
     }
@@ -156,13 +273,14 @@
   "requirements": [
     "Processador x86-64, firmware UEFI com Secure Boot desativado.",
     "Pelo menos duas interfaces de rede (uma para a rede interna e outra para a Internet).",
-    "2 GB de memória com as categorias padrão; 4 GB ou mais se você ativar as listas de adulto, publicidade e malware estendido.",
-    "Acesso à Internet a updates.nexwall.com.br e license.nexwall.com.br para atualizações, licenças e listas de ameaças."
+    "2 GB de memória com as categorias de ameaças padrão; 4 GB ou mais se você ativar as listas de adulto, publicidade e malware estendido.",
+    "Acesso à Internet a updates.nexwall.com.br, license.nexwall.com.br e services.nexwall.com.br para atualizações, licenças, listas de ameaças e registro."
   ],
   "upgrade": [
     "A versão é uma imagem de disco instalável para máquinas virtuais e appliances. Confira primeiro o SHA-256.",
-    "Após o primeiro boot, a interface interna responde em 192.168.1.1.",
-    "Firewalls com uma compilação interna anterior não são atualizados no local por esta versão candidata; instale a imagem em uma máquina de testes e compare."
+    "Após o primeiro boot, a interface interna responde em 192.168.1.1. Altere a senha do administrador no primeiro login.",
+    "Firewalls com uma compilação interna anterior não são atualizados no local por esta versão candidata; instale a imagem em uma máquina de testes e compare.",
+    "Não restaure um backup de configuração feito em uma compilação interna anterior: as configurações do seu motor de tráfego usam outro formato."
   ],
-  "open_source": "O Nexwall Firewall é construído sobre software de código aberto. O firewall e as ferramentas de operação são publicados com as suas licenças originais, e os textos de licença e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas do Threat Shield são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as relaciona faz parte de cada pacote."
+  "open_source": "O Nexwall Firewall é construído sobre software de código aberto, entre outros OpenWrt, o kernel do Linux, nftables, Snort 3, Netify Agent e nDPI, dnsmasq, banIP, adblock e VictoriaMetrics. O firewall e as ferramentas de operação são publicados com as suas licenças originais, e os textos de licença e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas do Threat Shield são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as relaciona faz parte de cada pacote."
 }
