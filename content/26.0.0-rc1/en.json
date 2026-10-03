@@ -36,6 +36,18 @@
       "items": [
         {
           "tag": "new",
+          "title": "Guided setup",
+          "body": "The first start guides you through everything a new firewall needs: the administrator password, the name of the firewall, how it connects to the internet (automatic DHCP by default, fixed IP address or PPPoE), remote access and the security services. After the setup the firewall protects the network without further configuration.",
+          "bullets": [
+            "The WAN interface and the address it received are shown during the setup.",
+            "The default name is FIREWALL.",
+            "The security services are switched on by default; the countries or regions to block are chosen on the last pages.",
+            "A language icon on every page, also on the login page, changes the language and the choice is remembered.",
+            "Nothing is applied until you finish the setup."
+          ]
+        },
+        {
+          "tag": "new",
           "title": "Network Protection (IPS)",
           "body": "Inline intrusion prevention that inspects forwarded traffic and blocks attacks before they reach your servers and users. The page that was called IPS / IDS is now Network Protection (IPS), and the default action for detected threats is Block. You can switch to Detect only and turn alert logging on or off.",
           "bullets": [
@@ -125,7 +137,7 @@
         {
           "tag": "new",
           "title": "Licensing",
-          "body": "A firewall is unlicensed, in trial (30 days) or subscribed. Unlicensed firewalls keep the core firewall functions; the features delivered from Nexwall servers (signatures, application catalog, threat feeds) need a trial or a subscription. The license component updates itself from the signed feed and downloads large data sets reliably."
+          "body": "A firewall registers itself with the license server: no code is typed. It starts in a 30-day trial that includes Application Control, Network Protection, DNS Filtering, IP & Geo Blocking and VPN Extended, and the trial ends when your reseller applies a subscription. The Licensing page lists the subscriptions that are active and the ones that are not, including the additional Web Server Protection (WAF) and Email Protection (MTA), and has a Synchronize with server button. The license component updates itself from the signed feed and downloads large data sets reliably."
         },
         {
           "tag": "new",
@@ -151,6 +163,16 @@
       "title": "Improvements and changes",
       "intro": "",
       "items": [
+        {
+          "tag": "improved",
+          "title": "Unit name in the top bar",
+          "body": "The name of the firewall is shown at the right of the top bar, next to the Log Viewer button."
+        },
+        {
+          "tag": "improved",
+          "title": "Enable all lists at once",
+          "body": "The DNS Filtering and the IP & Geo Blocking pages have an Enable all switch at the top right of the lists. A new firewall switches all the Nexwall lists on by itself when they arrive, if its memory allows it."
+        },
         {
           "tag": "changed",
           "title": "Sensible firewall defaults",
@@ -193,6 +215,16 @@
       "title": "Resolved issues",
       "intro": "",
       "items": [
+        {
+          "tag": "fixed",
+          "title": "Reinstalled firewall stayed unregistered",
+          "body": "A firewall that was reinstalled kept its old registration on the license server and could not get its license or its downloads (IPS signatures, lists). Your reseller can now reset the device in the license panel, and the firewall registers again by itself."
+        },
+        {
+          "tag": "fixed",
+          "title": "Log Viewer did not open",
+          "body": "Opening the Log Viewer restarted the web server under the request that asked for it and the browser reported a network error. Enabling it again no longer restarts anything, and the first time the page waits for the web server."
+        },
         {
           "tag": "fixed",
           "title": "DNS & DHCP page failed to load",
@@ -241,7 +273,7 @@
       },
       {
         "name": "Firmware sources",
-        "version": "c1bb1dd4",
+        "version": "b06442df",
         "note": "Commit of the public firewall repository the image is built from"
       },
       {
@@ -251,12 +283,12 @@
       },
       {
         "name": "Web interface",
-        "version": "1.3.6",
+        "version": "1.3.7",
         "note": "English, Spanish, Brazilian Portuguese"
       },
       {
         "name": "License component",
-        "version": "1.5.2",
+        "version": "1.6.0",
         "note": "Updates itself from the signed feed"
       },
       {
@@ -333,6 +365,11 @@
         "date": "2026-10-02",
         "title": "Performance, threat feeds and defaults",
         "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat Shield feeds, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
+      },
+      {
+        "date": "2026-10-03",
+        "title": "Guided setup and licensing by module",
+        "text": "Setup wizard with network and security steps, subscriptions by module, registration without a code, enable-all switches, Log Viewer fix, web interface 1.3.7 and license component 1.6.0."
       }
     ]
   },
@@ -341,6 +378,14 @@
       "title": "New defaults apply to new installations only",
       "body": "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has.",
       "workaround": "Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list."
+    },
+    {
+      "title": "Reinstalled firewalls",
+      "body": "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
+    },
+    {
+      "title": "Additional subscriptions",
+      "body": "Web Server Protection (WAF) and Email Protection (MTA) are listed as subscriptions, but their features are not available yet."
     },
     {
       "title": "Country blocking without a license",

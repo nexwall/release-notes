@@ -36,6 +36,18 @@
       "items": [
         {
           "tag": "new",
+          "title": "Configuración guiada",
+          "body": "El primer arranque le guía por todo lo que necesita un firewall nuevo: la contraseña del administrador, el nombre del firewall, cómo se conecta a Internet (DHCP automático de forma predeterminada, dirección IP fija o PPPoE), el acceso remoto y los servicios de seguridad. Terminada la configuración, el firewall protege la red sin más ajustes.",
+          "bullets": [
+            "Durante la configuración se muestran la interfaz WAN y la dirección que recibió.",
+            "El nombre predeterminado es FIREWALL.",
+            "Los servicios de seguridad vienen activados; los países o regiones a bloquear se eligen en las últimas páginas.",
+            "Un icono de idioma en todas las páginas, también en el inicio de sesión, cambia el idioma y la elección se recuerda.",
+            "No se aplica nada hasta que termine la configuración."
+          ]
+        },
+        {
+          "tag": "new",
           "title": "Protección de red (IPS)",
           "body": "Prevención de intrusiones en línea que inspecciona el tráfico reenviado y bloquea los ataques antes de que lleguen a sus servidores y usuarios. La página que se llamaba IPS / IDS ahora es Protección de red (IPS) y la acción predeterminada para las amenazas detectadas es Bloquear. Puede cambiar a Solo detectar y activar o desactivar el registro de alertas.",
           "bullets": [
@@ -125,7 +137,7 @@
         {
           "tag": "new",
           "title": "Licencias",
-          "body": "Un firewall puede estar sin licencia, en prueba (30 días) o con suscripción. Los firewalls sin licencia conservan las funciones básicas; las funciones entregadas desde los servidores de Nexwall (firmas, catálogo de aplicaciones, listas de amenazas) requieren una prueba o una suscripción. El componente de licencias se actualiza solo desde el feed firmado y descarga conjuntos de datos grandes de forma fiable."
+          "body": "El firewall se registra por sí mismo en el servidor de licencias: no se escribe ningún código. Empieza con una prueba de 30 días que incluye Control de aplicaciones, Protección de red, Filtrado DNS, Bloqueo de IP y por país y VPN ampliada, y la prueba termina cuando su revendedor aplica una suscripción. La página Licencias muestra las suscripciones activas y las que no lo están, incluidas las adicionales Protección de servidores web (WAF) y Protección del correo (MTA), y tiene un botón Sincronizar con el servidor. El componente de licencias se actualiza solo desde el feed firmado y descarga conjuntos de datos grandes de forma fiable."
         },
         {
           "tag": "new",
@@ -151,6 +163,16 @@
       "title": "Mejoras y cambios",
       "intro": "",
       "items": [
+        {
+          "tag": "improved",
+          "title": "Nombre de la unidad en la barra superior",
+          "body": "El nombre del firewall se muestra a la derecha de la barra superior, junto al botón del Visor de registros."
+        },
+        {
+          "tag": "improved",
+          "title": "Activar todas las listas a la vez",
+          "body": "Las páginas Filtrado DNS y Bloqueo de IP y por país tienen un interruptor Activar todas arriba a la derecha de las listas. Un firewall nuevo activa por sí mismo todas las listas de Nexwall cuando llegan, si su memoria lo permite."
+        },
         {
           "tag": "changed",
           "title": "Valores predeterminados sensatos del firewall",
@@ -193,6 +215,16 @@
       "title": "Problemas resueltos",
       "intro": "",
       "items": [
+        {
+          "tag": "fixed",
+          "title": "Un firewall reinstalado seguía sin registrar",
+          "body": "Un firewall reinstalado conservaba su antiguo registro en el servidor de licencias y no podía obtener su licencia ni sus descargas (firmas IPS, listas). Su revendedor ahora puede restablecer el dispositivo en el panel de licencias y el firewall se registra de nuevo por sí mismo."
+        },
+        {
+          "tag": "fixed",
+          "title": "El Visor de registros no se abría",
+          "body": "Abrir el Visor de registros reiniciaba el servidor web durante la petición que lo pedía y el navegador mostraba un error de red. Volver a activarlo ya no reinicia nada y la primera vez la página espera al servidor web."
+        },
         {
           "tag": "fixed",
           "title": "La página DNS y DHCP no cargaba",
@@ -241,7 +273,7 @@
       },
       {
         "name": "Código del firmware",
-        "version": "c1bb1dd4",
+        "version": "b06442df",
         "note": "Commit del repositorio público del firewall con el que se construye la imagen"
       },
       {
@@ -251,12 +283,12 @@
       },
       {
         "name": "Interfaz web",
-        "version": "1.3.6",
+        "version": "1.3.7",
         "note": "Inglés, español, portugués de Brasil"
       },
       {
         "name": "Componente de licencias",
-        "version": "1.5.2",
+        "version": "1.6.0",
         "note": "Se actualiza solo desde el feed firmado"
       },
       {
@@ -333,6 +365,11 @@
         "date": "2026-10-02",
         "title": "Rendimiento, listas de amenazas y valores predeterminados",
         "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de Threat Shield, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
+      },
+      {
+        "date": "2026-10-03",
+        "title": "Configuración guiada y licencias por módulo",
+        "text": "Asistente con pasos de red y seguridad, suscripciones por módulo, registro sin código, interruptores de activar todas, corrección del Visor de registros, interfaz web 1.3.7 y componente de licencias 1.6.0."
       }
     ]
   },
@@ -341,6 +378,14 @@
       "title": "Los nuevos valores predeterminados solo se aplican a instalaciones nuevas",
       "body": "Las reglas LAN -> WAN y DROP DEFAULT, la distribución de paquetes y los búferes grandes de las tarjetas de red forman parte de la configuración predeterminada. Un firewall instalado antes conserva los ajustes que tiene.",
       "workaround": "Añada las dos reglas a mano en un firewall existente y mantenga DROP DEFAULT al final de la lista."
+    },
+    {
+      "title": "Firewalls reinstalados",
+      "body": "Un firewall que se reinstala mientras está asignado a un cliente necesita que el revendedor restablezca el dispositivo antes de poder obtener de nuevo su licencia."
+    },
+    {
+      "title": "Suscripciones adicionales",
+      "body": "Protección de servidores web (WAF) y Protección del correo (MTA) aparecen como suscripciones, pero sus funciones todavía no están disponibles."
     },
     {
       "title": "Bloqueo por país sin licencia",
