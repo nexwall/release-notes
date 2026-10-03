@@ -133,8 +133,9 @@ def render_downloads(ui, rel):
         return '<p class="note">%s</p>' % esc(ui['downloads_pending'])
     out = ['<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>' % (esc(ui['file']), esc(ui['size']), esc(ui['checksum']))]
     for d in rows:
-        out.append('<tr><td><code>%s</code></td><td>%s</td><td><code class="hash" id="h-%s">%s</code> <button type="button" class="copy" data-copy="h-%s" data-done="%s">%s</button></td></tr>'
-                   % (esc(d['name']), esc(d['size']), esc(d['name']), esc(d['sha256']), esc(d['name']), esc(ui['copied']), esc(ui['copy'])))
+        name_html = ('<a href="%s"><code>%s</code></a>' % (esc(d['url']), esc(d['name']))) if d.get('url') else '<code>%s</code>' % esc(d['name'])
+        out.append('<tr><td>' + name_html + '</td><td>%s</td><td><code class="hash" id="h-%s">%s</code> <button type="button" class="copy" data-copy="h-%s" data-done="%s">%s</button></td></tr>'
+                   % (esc(d['size']), esc(d['name']), esc(d['sha256']), esc(d['name']), esc(ui['copied']), esc(ui['copy'])))
     out.append('</tbody></table></div>')
     out.append('<p class="hint">%s</p>' % esc(ui['verify_hint']))
     return ''.join(out)
