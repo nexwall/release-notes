@@ -1,15 +1,21 @@
 [
   {
-    "version": "26.0.0-rc1",
-    "date": "2026-10-03",
+    "version": "26.0.0-rc2",
+    "date": "2026-10-05",
     "status": "rc",
     "downloads": [
       {
-        "name": "nexwall-26.0.0-rc1-x86-64-generic-squashfs-combined-efi.img.gz",
-        "size": "97.9 MB (97,901,944 bytes)",
-        "sha256": "22466c27585fc3636908d59770c8bd0986b8eb96da17e683ff891143ff25ceb2",
-        "url": "https://updates.nexwall.com.br/dev/26.0.0-rc1/targets/x86/64/nexwall-26.0.0-rc1-x86-64-generic-squashfs-combined-efi.img.gz"
+        "name": "nexwall-26.0.0-rc2-x86-64-generic-squashfs-combined-efi.img.gz",
+        "size": "97.9 MB (97,926,817 bytes)",
+        "sha256": "a279f3b0e402ce9cb1dac66a9358f614305329ea25ed6c43faedfccb106c94f3",
+        "url": "https://updates.nexwall.com.br/dev/26.0.0-rc2/targets/x86/64/nexwall-26.0.0-rc2-x86-64-generic-squashfs-combined-efi.img.gz"
       }
     ]
+  },
+  {
+    "version": "26.0.0-rc1",
+    "date": "2026-10-03",
+    "status": "rc",
+    "downloads": []
   }
 ]

@@ -1,0 +1,324 @@
+{
+  "title": "Nexwall Firewall 26.0.0-rc2",
+  "summary": "Segundo candidato a versión: el firewall protege la red desde el primer arranque, antes de que alguien inicie sesión, con perfiles de Control de aplicaciones listos, un asistente que aparece sin iniciar sesión, una dirección de confianza para la interfaz web y un Visor de registros renovado.",
+  "overview": "El candidato 2 hace que un firewall nuevo sea seguro por sí mismo: Protección de red (política Security), Control de aplicaciones (perfil Estándar), Filtrado DNS y Bloqueo de IP y geografía se activan en el primer arranque, aunque nadie ejecute el asistente. El asistente, el certificado de la interfaz web, el Visor de registros y los análisis de tráfico se rehicieron tras las pruebas de rc1.\n\nLas funciones de protección las sirve Nexwall: las firmas de intrusión, el catálogo de aplicaciones y las listas de amenazas se construyen en los servidores de Nexwall, se firman, el firewall las verifica y se actualizan a diario. Las actualizaciones de la interfaz web y del componente de licencias provienen de un feed firmado de Nexwall cuyos archivos se fijan por suma de verificación.\n\nEs una versión candidata. Úsela para evaluar, para probar en laboratorio y para enviar comentarios; todavía no la use como única protección de una red de producción.",
+  "at_a_glance": [
+    {
+      "label": "Versión",
+      "value": "26.0.0-rc2"
+    },
+    {
+      "label": "Estado",
+      "value": "Versión candidata"
+    },
+    {
+      "label": "Plataforma",
+      "value": "x86-64, arranque UEFI"
+    },
+    {
+      "label": "Sistema base",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Idiomas de la interfaz",
+      "value": "Inglés, español, portugués de Brasil"
+    },
+    {
+      "label": "Funciones con licencia",
+      "value": "Prueba incluida"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "Novedades",
+      "intro": "Las funciones siguientes son nuevas en esta versión.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Seguro desde el primer arranque",
+          "body": "Un firewall que nadie ha configurado activa por sí mismo y antes de cualquier inicio de sesión: Protección de red con la política Security bloqueando lo que detecta, Control de aplicaciones con el perfil Estándar, Filtrado DNS y Bloqueo de IP y geografía con todas las listas de Nexwall. Las conexiones nuevas se bloquean cuando el motor de inspección no da abasto, así nada pasa sin inspeccionar. Si aún no se conoce la licencia porque el firewall no tiene internet, los pasos se repiten durante media hora y luego en el siguiente arranque. El asistente puede cambiar cada elección."
+        },
+        {
+          "tag": "new",
+          "title": "Perfiles de Control de aplicaciones",
+          "body": "Tres perfiles listos crean las reglas de Control de aplicaciones: Estándar (contenido adulto, malware, anonimizadores VPN y proxy, peer-to-peer, DNS cifrado que evita el filtro DNS), Escuela (Estándar más redes sociales, alojamiento y streaming de video, juegos, entretenimiento) y Restringido (Escuela más compras en línea, ocio y deportes, escritorio remoto, compartición de archivos en la nube, publicidad). En Estándar las redes sociales y el uso normal de un hogar siguen permitidos. Las reglas bloquean categorías completas del catálogo de aplicaciones, así que las aplicaciones nuevas de una categoría quedan cubiertas automáticamente. El perfil se elige en el asistente o por línea de comandos con nexwall-dpi-profile."
+        },
+        {
+          "tag": "new",
+          "title": "Asistente antes de iniciar sesión",
+          "body": "El asistente aparece en el primer acceso a un firewall nuevo sin pedir antes la contraseña predeterminada, también cuando el navegador conserva una sesión de un firewall anterior en la misma dirección. Después de los servicios de seguridad, una página nueva ofrece los tres perfiles, explica qué bloquea cada uno y lo aplica junto con todas las listas de protección DNS e IP."
+        },
+        {
+          "tag": "new",
+          "title": "Conexión a internet lista en el puerto 2",
+          "body": "Un firewall nuevo con dos puertos usa el segundo como conexión a internet (WAN) con DHCP: si el módem o router entrega una dirección, el asistente la muestra. Si el firewall no tiene puerto de internet configurado, el asistente permite elegir el puerto y luego DHCP, dirección fija o PPPoE."
+        },
+        {
+          "tag": "new",
+          "title": "Una dirección de confianza para la interfaz web",
+          "body": "Abra https://firewall.nexwall.com.br desde la red interna. El firewall responde por sí mismo a ese nombre, con una entrada que sigue su dirección interna, y presenta un certificado que descarga del servidor de licencias de Nexwall. La interfaz web conserva su certificado propio hasta que haya uno válido instalado y vuelve a él si el descargado deja de ser válido. Abrir la interfaz por la dirección IP sigue mostrando la advertencia del navegador: ninguna autoridad pública emite certificados para direcciones privadas."
+        },
+        {
+          "tag": "new",
+          "title": "Información de amenazas y actualizaciones",
+          "body": "La configuración de Filtrado DNS y de Bloqueo de IP y geografía muestra una tarjeta con la versión instalada de las listas, cuántas están activas, cuántos dominios, direcciones y bloques por país contienen, la última comprobación y su resultado, y un botón para buscar actualizaciones ahora."
+        },
+        {
+          "tag": "new",
+          "title": "Bloqueos DNS y por país en el Análisis de tráfico",
+          "body": "El Análisis de tráfico muestra lo que el Filtrado DNS bloqueó hoy (total, por hora, dominios más bloqueados) y lo que rechazaron los bloqueos por país (total, por hora, por país), junto a los gráficos existentes de lista de IP y fuerza bruta."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Mejoras y cambios",
+      "intro": "",
+      "items": [
+        {
+          "tag": "improved",
+          "title": "Visor de registros",
+          "body": "El visor se abre en una ventana propia que ocupa toda la pantalla, se titula FIREWALL LOG VIEWER y tiene el icono del firewall. Tras Tráfico del firewall las pestañas son Control de aplicaciones (DPI), Protección de red (IPS), Protección DNS y Bloqueo de IP y geografía; tras Traza de reglas en vivo y Ruta del paquete hay una pestaña nueva Paquetes descartados. El idioma se elige con el mismo icono que la interfaz web."
+        },
+        {
+          "tag": "improved",
+          "title": "Se registra el tráfico permitido",
+          "body": "La regla predeterminada LAN -> WAN registra ahora, con tasa limitada, el tráfico que deja pasar, así la pestaña Tráfico del firewall muestra tráfico permitido además del bloqueado."
+        },
+        {
+          "tag": "improved",
+          "title": "Empresa y nombre de la unidad",
+          "body": "El nombre de la empresa (cuando el firewall está registrado) y el de la unidad se muestran juntos en una insignia a la derecha de la barra superior, junto al botón del Visor de registros."
+        },
+        {
+          "tag": "improved",
+          "title": "Listas de Bloqueo de IP y geografía",
+          "body": "El interruptor Activar todas está entre el botón de búsqueda y el estado del servicio, y activa o desactiva las listas de Nexwall. La página muestra las listas de Nexwall; las listas comunitarias de terceros solo aparecen si ya están activadas, para poder desactivarlas."
+        },
+        {
+          "tag": "improved",
+          "title": "Principales consumidores",
+          "body": "El volumen de cada equipo local viene del rastreador de conexiones del firewall, de modo que cuenta todo el tráfico, también la parte de las transferencias largas que el motor de inspección no mira. La primera actualización tras una pausa muestra las cifras de inspección hasta que existe una medición."
+        },
+        {
+          "tag": "improved",
+          "title": "Selector de idioma",
+          "body": "El control de idioma de la página de inicio de sesión y del asistente es un botón visible con el idioma actual."
+        },
+        {
+          "tag": "changed",
+          "title": "Bienvenida del asistente",
+          "body": "La página de bienvenida ya no aconseja desconectar la unidad de internet: las listas de protección se descargan durante la configuración."
+        }
+      ]
+    },
+    {
+      "id": "resolved",
+      "title": "Problemas resueltos",
+      "intro": "",
+      "items": [
+        {
+          "tag": "fixed",
+          "title": "Asistente oculto por una sesión antigua",
+          "body": "Un navegador que conservaba el inicio de sesión de un firewall anterior en la misma dirección iba a la página de inicio de sesión en lugar de al asistente del firewall nuevo."
+        },
+        {
+          "tag": "fixed",
+          "title": "Sin interfaz en el paso WAN",
+          "body": "En un firewall cuyos puertos la imagen no había nombrado, el asistente informaba que la zona WAN no tenía interfaz."
+        },
+        {
+          "tag": "fixed",
+          "title": "Fallo de la API de la interfaz web",
+          "body": "Un token de sesión sin usuario hacía que la API de gestión dejara de responder esa solicitud con un fallo; ahora responde no autorizado."
+        },
+        {
+          "tag": "fixed",
+          "title": "Errores en el registro del sistema",
+          "body": "El reinicio de cron tras un cambio de IPS llamaba a una ruta incorrecta; la comprobación DNS de la telemetría hacía una pregunta que el firewall rechaza; los actualizadores del antiguo servicio de catálogo de aplicaciones informaban un 404 cada día y en cada arranque; dos actualizaciones de las firmas de IPS podían escribir el mismo archivo a la vez. Todos están corregidos o eliminados."
+        }
+      ]
+    }
+  ],
+  "components": {
+    "intro": "Las versiones siguientes forman la imagen. La mayoría se fijan por suma de verificación, de modo que la imagen contiene siempre exactamente estas versiones. El paquete de firmas, el catálogo de aplicaciones y las listas de amenazas no forman parte de la imagen: se descargan y se actualizan a diario.",
+    "rows": [
+      {
+        "name": "Imagen",
+        "version": "26.0.0-rc2",
+        "note": "x86-64, UEFI, imagen de disco comprimida"
+      },
+      {
+        "name": "Código del firmware",
+        "version": "60a30c0e",
+        "note": "Commit del repositorio público del firewall con el que se construye la imagen"
+      },
+      {
+        "name": "Sistema base",
+        "version": "OpenWrt 25.12.5",
+        "note": "Kernel Linux 6.12, nftables 1.1"
+      },
+      {
+        "name": "Interfaz web",
+        "version": "1.3.9",
+        "note": "Inglés, español, portugués de Brasil"
+      },
+      {
+        "name": "Componente de licencias",
+        "version": "1.6.0",
+        "note": "Se actualiza solo desde el feed firmado"
+      },
+      {
+        "name": "Motor de clasificación de tráfico",
+        "version": "5.2.8 (versión 6)",
+        "note": "Netify Agent con plugins de Nexwall"
+      },
+      {
+        "name": "Plugins del motor de tráfico",
+        "version": "1.0.1",
+        "note": "Cinco plugins, compilados para la versión 6 del motor"
+      },
+      {
+        "name": "Motor de prevención de intrusiones",
+        "version": "Snort 3.10.0.0",
+        "note": "Con el plugin de control de Nexwall 1.0.1"
+      },
+      {
+        "name": "Firmas de intrusión",
+        "version": "paquete diario",
+        "note": "Comunidad, reglas abiertas convertidas y Nexwall Labs; 2026.10.02.1 en la publicación"
+      },
+      {
+        "name": "Catálogo de aplicaciones",
+        "version": "paquete diario",
+        "note": "2026.10.02.1 en la publicación"
+      },
+      {
+        "name": "Listas de amenazas",
+        "version": "2026.10.02.3",
+        "note": "12 categorías DNS, 2 listas de IP, listas por país; se reconstruyen a diario"
+      }
+    ]
+  },
+  "timeline": {
+    "intro": "Cómo se formó esta versión, desde la primera imagen hasta la versión candidata.",
+    "entries": [
+      {
+        "date": "2026-09-19",
+        "title": "Primera imagen",
+        "text": "Marca, nombres y archivos de licencia de Nexwall; la imagen base arrancó en una máquina virtual."
+      },
+      {
+        "date": "2026-09-20",
+        "title": "Código de Nexwall",
+        "text": "La interfaz web, la monitorización, el portal cautivo y las comprobaciones de Checkmk se compilan desde repositorios de Nexwall; se añadió la aplicación de reglas del Control de aplicaciones y sus estadísticas; los servicios pasaron a hosts de Nexwall; se corrigió el error de direcciones de DNS y DHCP."
+      },
+      {
+        "date": "2026-09-21",
+        "title": "Primera imagen solo de Nexwall",
+        "text": "Arrancó con la nueva interfaz y la traducción al portugués; se configuraron y funcionaron un túnel IPsec con un firewall de terceros, un Active Directory remoto y el acceso remoto OpenVPN."
+      },
+      {
+        "date": "2026-09-22 al 23",
+        "title": "Motor de tráfico 5.2.8 y plugins de Nexwall",
+        "text": "Se actualizó el motor y los plugins de flujos, estadísticas y salida HTTP se verificaron de extremo a extremo en una unidad en funcionamiento."
+      },
+      {
+        "date": "2026-09-24",
+        "title": "Acciones del Control de aplicaciones",
+        "text": "El plugin de acciones se probó en vivo; se encontraron y corrigieron un bucle de fallos y una espera activa que usaba un núcleo de CPU completo, y las etiquetas se confirmaron de extremo a extremo."
+      },
+      {
+        "date": "2026-09-30",
+        "title": "Catálogo, contabilidad y registros",
+        "text": "Se construyeron y probaron el catálogo de aplicaciones de Nexwall, la corrección de la contabilidad de tráfico, el visor de registros con trazado de reglas en vivo y el vigilante de colas detenidas."
+      },
+      {
+        "date": "2026-10-01",
+        "title": "Feed firmado y servicios con licencia",
+        "text": "El feed de actualizaciones firmado, los tokens de función para Control de aplicaciones, estadísticas y Protección de red, el servicio de firmas de intrusión y el plugin de control de Protección de red."
+      },
+      {
+        "date": "2026-10-02",
+        "title": "Rendimiento, listas de amenazas y valores predeterminados",
+        "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de Threat Shield, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
+      },
+      {
+        "date": "2026-10-03",
+        "title": "Configuración guiada y licencias por módulo",
+        "text": "Asistente con pasos de red y seguridad, suscripciones por módulo, registro sin código, interruptores de activar todas, corrección del Visor de registros, interfaz web 1.3.7 y componente de licencias 1.6.0."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Seguro por defecto y dirección web de confianza",
+        "text": "Perfiles de Control de aplicaciones, protección desde el primer arranque, asistente antes del inicio de sesión, certificado para firewall.nexwall.com.br, Visor de registros renovado, análisis de DNS y países, interfaz web 1.3.9."
+      }
+    ]
+  },
+  "known_issues": [
+    {
+      "title": "Los nuevos valores predeterminados solo se aplican a instalaciones nuevas",
+      "body": "Las reglas LAN -> WAN y DROP DEFAULT, la distribución de paquetes y los búferes grandes de las tarjetas de red forman parte de la configuración predeterminada. Un firewall instalado antes conserva los ajustes que tiene.",
+      "workaround": "Añada las dos reglas a mano en un firewall existente y mantenga DROP DEFAULT al final de la lista."
+    },
+    {
+      "title": "Firewalls reinstalados",
+      "body": "Un firewall que se reinstala mientras está asignado a un cliente necesita que el revendedor restablezca el dispositivo antes de poder obtener de nuevo su licencia."
+    },
+    {
+      "title": "Suscripciones adicionales",
+      "body": "Protección de servidores web (WAF) y Protección del correo (MTA) aparecen como suscripciones, pero sus funciones todavía no están disponibles."
+    },
+    {
+      "title": "Bloqueo por país sin licencia",
+      "body": "Un firewall sin licencia no puede usar las listas de países de Nexwall. El bloqueo por país usa entonces las listas públicas del componente subyacente, que se descargan cada vez que arranca el servicio y pueden tardar mucho."
+    },
+    {
+      "title": "Selecciones grandes de listas DNS",
+      "body": "Recargar el servicio DNS con unos 1,8 millones de dominios bloqueados interrumpe la resolución de nombres durante unos diez segundos. Las listas se recargan solo cuando cambian, normalmente una vez al día.",
+      "workaround": "Desactive las categorías que no necesite. El aviso de memoria de la página de listas de bloqueo DNS le ayuda a elegir."
+    },
+    {
+      "title": "Las tarjetas de red emuladas limitan el rendimiento",
+      "body": "En máquinas virtuales con tarjetas de red Intel e1000 emuladas, el rendimiento se queda entre 0,7 y 1 Gbit/s sea cual sea la CPU. Es un límite de la emulación, no del firewall.",
+      "workaround": "Use adaptadores paravirtualizados (virtio o vmxnet3) o hardware físico para las pruebas de rendimiento."
+    },
+    {
+      "title": "La ruta rápida está desactivada de forma predeterminada",
+      "body": "La ruta rápida se ha verificado en cuanto a corrección y contadores, pero todavía no se ha medido en hardware físico.",
+      "workaround": "Actívela en la tarjeta Rendimiento de los ajustes de Control de aplicaciones o de Protección de red y compare con su propio tráfico."
+    },
+    {
+      "title": "Tráfico cifrado",
+      "body": "Control de aplicaciones y Protección de red no descifran HTTPS. Las aplicaciones se reconocen por la conexión, el nombre de dominio y el patrón de tráfico."
+    },
+    {
+      "title": "Versión candidata",
+      "body": "Las interfaces y los valores predeterminados aún pueden cambiar antes de la versión final."
+    },
+    {
+      "title": "Interfaz web por dirección IP",
+      "body": "https://192.168.1.1 muestra la advertencia de certificado del navegador; use https://firewall.nexwall.com.br. El nombre necesita que el firewall sea el servidor DNS del equipo, que es lo predeterminado con DHCP. Escribir el nombre sin https:// no redirige."
+    },
+    {
+      "title": "Estadísticas de bloqueos DNS",
+      "body": "Los dominios bloqueados se cuentan a partir del registro DNS. Las instalaciones nuevas tienen el registro de consultas activado con una regla que conserva solo las respuestas bloqueadas; un firewall instalado antes necesita activar el registro de consultas en su configuración DNS para verlos."
+    }
+  ],
+  "requirements": [
+    "Procesador x86-64, firmware UEFI con Secure Boot desactivado.",
+    "Al menos dos interfaces de red (una para la red interna y otra para Internet).",
+    "2 GB de memoria con las categorías de amenazas predeterminadas; 4 GB o más si activa las listas de adultos, publicidad y malware ampliado.",
+    "Acceso a Internet a updates.nexwall.com.br, license.nexwall.com.br y services.nexwall.com.br para actualizaciones, licencias, listas de amenazas y registro."
+  ],
+  "upgrade": [
+    "La versión es una imagen de disco instalable para máquinas virtuales y appliances. Compruebe primero su SHA-256.",
+    "Tras el primer arranque, la interfaz interna responde en 192.168.1.1. Cambie la contraseña del administrador en el primer inicio de sesión.",
+    "Los firewalls con una compilación interna anterior no se actualizan en el sitio con esta versión candidata; instale la imagen en un equipo de pruebas y compare.",
+    "No restaure una copia de seguridad de la configuración hecha con una compilación interna anterior: los ajustes de su motor de tráfico usan otro formato.",
+    "Para comprobar el archivo en Linux ejecute sha256sum sobre él; en Windows ejecute Get-FileHash con -Algorithm SHA256 en PowerShell. El resultado debe ser igual al SHA-256 de la tabla de descargas.",
+    "La guía de administración está en https://docs.nexwall.com.br."
+  ],
+  "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de Threat Shield se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete."
+}
