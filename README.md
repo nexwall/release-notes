@@ -38,3 +38,5 @@ statement must be true of the image that is published.
 
 Repository settings, Pages, Source: GitHub Actions. To use a custom domain add a `CNAME` file to `assets/` and set the
 domain in the Pages settings.
+
+If the address answers 404 or shows this README instead of the site: Pages must use **Source: GitHub Actions**, then run the workflow "Publish release notes" (Actions tab, Run workflow) or push a commit.
