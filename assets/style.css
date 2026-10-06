@@ -159,3 +159,8 @@ th { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: 
 table.issues td:first-child, table.issues th:first-child { white-space: nowrap; }
 tr[hidden] { display: none; }
 @media (max-width: 760px) { .top-nav { display: flex; flex-wrap: wrap; gap: .4rem .9rem; } .top-in { flex-wrap: wrap; } }
+
+.brand { gap: .65rem; }
+.logo-mark { flex: none; display: block; }
+.logo-word { font-weight: 800; font-size: 1.15rem; letter-spacing: .16em; line-height: 1; color: var(--text); text-transform: uppercase; }
+.logo-word span { color: hsl(216, 92%, 58%); }

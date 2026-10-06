@@ -18,6 +18,13 @@ from html import escape as esc
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'site')
 LANGS = [('en', 'English'), ('es', 'Español'), ('pt-BR', 'Português (Brasil)')]
+# the Nexwall lockup: the N monogram and the wordmark, drawn inline so it follows the theme
+LOGO = ('<svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true" width="36" height="36"><defs>'
+        '<linearGradient id="nx-mark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(213,94%,62%)"/>'
+        '<stop offset="1" stop-color="hsl(220,100%,52%)"/></linearGradient></defs>'
+        '<rect width="64" height="64" rx="14" fill="#0b1730" stroke="rgba(59,130,246,.35)" stroke-width="1.5"/>'
+        '<path d="M18 46V18h8l12 17.5V18h8v28h-8L26 28.5V46z" fill="url(#nx-mark)"/></svg>'
+        '<span class="logo-word">NE<span>X</span>WALL</span>')
 TAGS = ['new', 'improved', 'changed', 'fixed']
 ISSUES = None
 COMPAT = None
@@ -90,7 +97,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 <a class="skip" href="#main">{skip}</a>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="{base}{lang}/"><span class="mark" aria-hidden="true"></span><span>Nexwall <b>{site}</b></span></a>
+    <a class="brand" href="{base}{lang}/" aria-label="Nexwall">{logo}</a>
     <nav class="top-nav" aria-label="{site}">
       <a href="{base}{lang}/">{all}</a>
       <a href="{base}{lang}/resolved-issues/">{nav_resolved}</a>
@@ -110,7 +117,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
-           all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
+           logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
            body=body, footer=esc(ui['footer']))
 
 
