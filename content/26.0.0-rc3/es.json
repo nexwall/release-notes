@@ -1,11 +1,11 @@
 {
-  "title": "Nexwall Firewall 26.0.0-rc2",
-  "summary": "Segundo candidato a versión: el firewall protege la red desde el primer arranque, antes de que alguien inicie sesión, con perfiles de Control de aplicaciones listos, un asistente que aparece sin iniciar sesión, una dirección de confianza para la interfaz web y un Visor de registros renovado.",
+  "title": "Nexwall Firewall 26.0.0-rc3",
+  "summary": "Tercer candidato a versión: correcciones encontradas al probar rc2 en un firewall recién instalado (instalación de firmas, el salto del asistente, edición y registro del Control de aplicaciones, las trazas del Visor de registros), sobre el firewall seguro por defecto de rc2.",
   "overview": "El candidato 2 hace que un firewall nuevo sea seguro por sí mismo: Protección de red (política Security), Control de aplicaciones (perfil Estándar), Filtrado DNS y Bloqueo de IP y geografía se activan en el primer arranque, aunque nadie ejecute el asistente. El asistente, el certificado de la interfaz web, el Visor de registros y los análisis de tráfico se rehicieron tras las pruebas de rc1.\n\nLas funciones de protección las sirve Nexwall: las firmas de intrusión, el catálogo de aplicaciones y las listas de amenazas se construyen en los servidores de Nexwall, se firman, el firewall las verifica y se actualizan a diario. Las actualizaciones de la interfaz web y del componente de licencias provienen de un feed firmado de Nexwall cuyos archivos se fijan por suma de verificación.\n\nEs una versión candidata. Úsela para evaluar, para probar en laboratorio y para enviar comentarios; todavía no la use como única protección de una red de producción.",
   "at_a_glance": [
     {
       "label": "Versión",
-      "value": "26.0.0-rc2"
+      "value": "26.0.0-rc3"
     },
     {
       "label": "Estado",
@@ -79,7 +79,7 @@
         {
           "tag": "improved",
           "title": "Visor de registros",
-          "body": "El visor se abre en una ventana propia que ocupa toda la pantalla, se titula FIREWALL LOG VIEWER y tiene el icono del firewall. Tras Tráfico del firewall las pestañas son Control de aplicaciones (DPI), Protección de red (IPS), Protección DNS y Bloqueo de IP y geografía; tras Traza de reglas en vivo y Ruta del paquete hay una pestaña nueva Paquetes descartados. El idioma se elige con el mismo icono que la interfaz web."
+          "body": "El visor se abre en una ventana propia que ocupa toda la pantalla, se titula FIREWALL LOG VIEWER y tiene el icono del firewall. Tras Tráfico del firewall las pestañas son Control de aplicaciones (DPI), Protección de red (IPS), Protección DNS y Bloqueo de IP y geografía; tras Traza de reglas en vivo y Ruta del paquete hay una pestaña Paquetes descartados, una traza en vivo de los paquetes que el firewall descarta o rechaza con la regla que detuvo cada uno. El idioma se elige con el mismo icono que la interfaz web."
         },
         {
           "tag": "improved",
@@ -110,6 +110,31 @@
           "tag": "changed",
           "title": "Bienvenida del asistente",
           "body": "La página de bienvenida ya no aconseja desconectar la unidad de internet: las listas de protección se descargan durante la configuración."
+        },
+        {
+          "tag": "improved",
+          "title": "Asistente: omitir sin iniciar sesión",
+          "body": "Omitir asistente funciona en la primera página antes de cualquier inicio de sesión: el firewall conserva su contraseña predeterminada y usted inicia sesión con ella. Un firewall cuya contraseña se cambió pero cuyo asistente quedó sin terminar muestra la página de inicio de sesión, y el inicio de sesión lleva de vuelta al asistente."
+        },
+        {
+          "tag": "improved",
+          "title": "Se pueden editar las reglas de un perfil de Control de aplicaciones",
+          "body": "Las reglas que creó un perfil se abren en la misma ventana que cualquier otra regla: se muestran y se conservan las categorías que bloquean, y puede cambiar la interfaz, los orígenes, el nombre y el registro, o añadir aplicaciones."
+        },
+        {
+          "tag": "improved",
+          "title": "Cualquier interfaz para una regla nueva de Control de aplicaciones",
+          "body": "El puente interno y cualquier otra interfaz se pueden elegir para una regla nueva, también después de que un perfil creó reglas en ella."
+        },
+        {
+          "tag": "improved",
+          "title": "Se registran las aplicaciones bloqueadas",
+          "body": "Lo que bloquea el Control de aplicaciones se registra (con tasa limitada) y aparece en el Visor de registros, en los firewalls nuevos y cada vez que se aplica un perfil."
+        },
+        {
+          "tag": "improved",
+          "title": "Se registran las reglas nuevas del firewall",
+          "body": "Una regla nueva del firewall comienza con el registro activado (con tasa limitada), así su tráfico bloqueado o permitido aparece en el Visor de registros."
         }
       ]
     },
@@ -118,6 +143,21 @@
       "title": "Problemas resueltos",
       "intro": "",
       "items": [
+        {
+          "tag": "fixed",
+          "title": "Firmas de intrusión descargadas pero no instaladas",
+          "body": "El actualizador de firmas esperaba su propio bloqueo al iniciar el paso de instalación, así las firmas se descargaban pero nunca se instalaban y la página de IPS no mostraba información de firmas. Ahora solo los comandos que escriben toman el bloqueo y el estado siempre responde."
+        },
+        {
+          "tag": "fixed",
+          "title": "Omitir el asistente no hacía nada antes de iniciar sesión",
+          "body": "Omitir asistente necesitaba una sesión que no existe en un firewall nuevo."
+        },
+        {
+          "tag": "fixed",
+          "title": "Fallo de la API de gestión al cerrar sesión",
+          "body": "Cerrar sesión con una sesión que el firewall no podía leer detenía la solicitud con un fallo en el registro."
+        },
         {
           "tag": "fixed",
           "title": "Asistente oculto por una sesión antigua",
@@ -146,12 +186,12 @@
     "rows": [
       {
         "name": "Imagen",
-        "version": "26.0.0-rc2",
+        "version": "26.0.0-rc3",
         "note": "x86-64, UEFI, imagen de disco comprimida"
       },
       {
         "name": "Código del firmware",
-        "version": "v26.0.0-rc2",
+        "version": "v26.0.0-rc3",
         "note": "Commit del repositorio público del firewall con el que se construye la imagen"
       },
       {
@@ -161,7 +201,7 @@
       },
       {
         "name": "Interfaz web",
-        "version": "1.3.9",
+        "version": "1.3.10",
         "note": "Inglés, español, portugués de Brasil"
       },
       {
@@ -253,6 +293,11 @@
         "date": "2026-10-05",
         "title": "Seguro por defecto y dirección web de confianza",
         "text": "Perfiles de Control de aplicaciones, protección desde el primer arranque, asistente antes del inicio de sesión, certificado para firewall.nexwall.com.br, Visor de registros renovado, análisis de DNS y países, interfaz web 1.3.9."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Correcciones tras probar rc2",
+        "text": "Instalación de firmas, omitir el asistente sin iniciar sesión, reglas de perfil editables, cualquier interfaz para reglas nuevas de Control de aplicaciones, registro de aplicaciones bloqueadas y de reglas nuevas del firewall, traza en vivo de Paquetes descartados, interfaz web 1.3.10."
       }
     ]
   },

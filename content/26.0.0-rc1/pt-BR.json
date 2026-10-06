@@ -273,7 +273,7 @@
       },
       {
         "name": "Código do firmware",
-        "version": "b06442df",
+        "version": "v26.0.0-rc1",
         "note": "Commit do repositório público do firewall a partir do qual a imagem é construída"
       },
       {

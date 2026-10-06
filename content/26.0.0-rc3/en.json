@@ -1,11 +1,11 @@
 {
-  "title": "Nexwall Firewall 26.0.0-rc2",
-  "summary": "Second release candidate: the firewall protects the network from its first start, before anyone logs in, with ready-made Application Control profiles, a setup wizard that appears without a login, a trusted address for the web interface, and a reworked Log Viewer.",
+  "title": "Nexwall Firewall 26.0.0-rc3",
+  "summary": "Third release candidate: fixes found while testing rc2 on a freshly installed firewall (signature installation, the wizard skip, Application Control editing and logging, the Log Viewer traces), on top of the secure-by-default firewall of rc2.",
   "overview": "Release candidate 2 makes a new firewall safe by itself: Network Protection (Security policy), Application Control (Standard profile), DNS Filtering and IP & Geo Blocking are switched on at the first start, even if nobody runs the setup wizard. The wizard, the web interface certificate, the Log Viewer and the traffic analytics were reworked after testing rc1.\n\nThe protection features are served by Nexwall: intrusion signatures, the application catalog and the threat lists are built on Nexwall servers, signed, checked by the firewall and refreshed every day. Updates of the web interface and of the license component come from a signed Nexwall feed whose files are pinned by checksum.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
   "at_a_glance": [
     {
       "label": "Version",
-      "value": "26.0.0-rc2"
+      "value": "26.0.0-rc3"
     },
     {
       "label": "Status",
@@ -79,7 +79,7 @@
         {
           "tag": "improved",
           "title": "Log Viewer",
-          "body": "The viewer opens in a window of its own that fills the screen, is titled FIREWALL LOG VIEWER and has the icon of the firewall. After Firewall traffic the tabs are Application Control (DPI), Network Protection (IPS), DNS Protection and IP & Geo Block; Live rule trace and Packet path are followed by a new Dropped Packets tab. The language is chosen with the same icon as the web interface."
+          "body": "The viewer opens in a window of its own that fills the screen, is titled FIREWALL LOG VIEWER and has the icon of the firewall. After Firewall traffic the tabs are Application Control (DPI), Network Protection (IPS), DNS Protection and IP & Geo Block; Live rule trace and Packet path are followed by a Dropped Packets tab, a live trace of the packets the firewall drops or rejects with the rule that stopped each one. The language is chosen with the same icon as the web interface."
         },
         {
           "tag": "improved",
@@ -110,6 +110,31 @@
           "tag": "changed",
           "title": "Setup wizard welcome",
           "body": "The welcome page no longer advises to disconnect the unit from the internet: the protection lists are downloaded during the setup."
+        },
+        {
+          "tag": "improved",
+          "title": "Setup wizard: skip without logging in",
+          "body": "Skip wizard works on the first page before any login: the firewall keeps its default password and you log in with it. A firewall whose password was changed but whose wizard was left unfinished shows the login page, and the login leads back into the wizard."
+        },
+        {
+          "tag": "improved",
+          "title": "Application Control rules of a profile can be edited",
+          "body": "The rules a profile created open in the same window as any other rule: the categories they block are shown and kept, and you can change the interface, the sources, the name and the logging, or add applications."
+        },
+        {
+          "tag": "improved",
+          "title": "Any interface for a new Application Control rule",
+          "body": "The internal bridge and every other interface can be chosen for a new rule, also after a profile created rules on it."
+        },
+        {
+          "tag": "improved",
+          "title": "Blocked applications are logged",
+          "body": "What Application Control blocks is logged (rate limited) and shows in the Log Viewer, on new firewalls and whenever a profile is applied."
+        },
+        {
+          "tag": "improved",
+          "title": "New firewall rules are logged",
+          "body": "A new firewall rule starts with logging on (rate limited), so its blocked or allowed traffic shows in the Log Viewer."
         }
       ]
     },
@@ -118,6 +143,21 @@
       "title": "Resolved issues",
       "intro": "",
       "items": [
+        {
+          "tag": "fixed",
+          "title": "Intrusion signatures downloaded but not installed",
+          "body": "The signature updater waited for its own lock when it started the installation step, so the signatures were downloaded but never installed and the IPS page showed no signature information. Only the commands that write take the lock now and the status always answers."
+        },
+        {
+          "tag": "fixed",
+          "title": "Wizard skip did nothing before login",
+          "body": "Skip wizard needed a session that does not exist on a new firewall."
+        },
+        {
+          "tag": "fixed",
+          "title": "Management API crash on sign-out",
+          "body": "Signing out with a session the firewall could not read stopped the request with a crash in the log."
+        },
         {
           "tag": "fixed",
           "title": "Setup wizard hidden by an old session",
@@ -146,12 +186,12 @@
     "rows": [
       {
         "name": "Image",
-        "version": "26.0.0-rc2",
+        "version": "26.0.0-rc3",
         "note": "x86-64, UEFI, compressed disk image"
       },
       {
         "name": "Firmware sources",
-        "version": "v26.0.0-rc2",
+        "version": "v26.0.0-rc3",
         "note": "Commit of the public firewall repository the image is built from"
       },
       {
@@ -161,7 +201,7 @@
       },
       {
         "name": "Web interface",
-        "version": "1.3.9",
+        "version": "1.3.10",
         "note": "English, Spanish, Brazilian Portuguese"
       },
       {
@@ -253,6 +293,11 @@
         "date": "2026-10-05",
         "title": "Secure by default and trusted web address",
         "text": "Application Control profiles, protection from the first start, wizard before login, certificate for firewall.nexwall.com.br, Log Viewer rework, DNS and country analytics, web interface 1.3.9."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Fixes after testing rc2",
+        "text": "Signature installation, wizard skip without login, editable profile rules, any interface for new Application Control rules, logging of blocked applications and of new firewall rules, Dropped Packets live trace, web interface 1.3.10."
       }
     ]
   },

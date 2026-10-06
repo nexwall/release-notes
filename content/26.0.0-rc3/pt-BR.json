@@ -1,11 +1,11 @@
 {
-  "title": "Nexwall Firewall 26.0.0-rc2",
-  "summary": "Segundo release candidate: o firewall protege a rede desde a primeira inicialização, antes de qualquer login, com perfis prontos de Controle de aplicações, um assistente que aparece sem login, um endereço confiável para a interface web e um Visualizador de logs reformulado.",
+  "title": "Nexwall Firewall 26.0.0-rc3",
+  "summary": "Terceiro release candidate: correções encontradas ao testar o rc2 em um firewall recém-instalado (instalação das assinaturas, o pular do assistente, edição e registro do Controle de aplicações, os rastreios do Visualizador de logs), sobre o firewall seguro por padrão do rc2.",
   "overview": "O candidato 2 faz um firewall novo ser seguro por si só: Proteção de rede (política Security), Controle de aplicações (perfil Padrão), Filtro de DNS e Bloqueio de IP e geografia são ativados na primeira inicialização, mesmo que ninguém execute o assistente. O assistente, o certificado da interface web, o Visualizador de logs e as análises de tráfego foram refeitos após os testes do rc1.\n\nOs recursos de proteção são servidos pela Nexwall: as assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças são construídos nos servidores da Nexwall, assinados, verificados pelo firewall e atualizados todos os dias. As atualizações da interface web e do componente de licenciamento vêm de um feed assinado da Nexwall, cujos arquivos são fixados por checksum.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
   "at_a_glance": [
     {
       "label": "Versão",
-      "value": "26.0.0-rc2"
+      "value": "26.0.0-rc3"
     },
     {
       "label": "Situação",
@@ -79,7 +79,7 @@
         {
           "tag": "improved",
           "title": "Visualizador de logs",
-          "body": "O visualizador abre em uma janela própria que ocupa a tela inteira, tem o título FIREWALL LOG VIEWER e o ícone do firewall. Depois de Tráfego do firewall as abas são Controle de aplicações (DPI), Proteção de rede (IPS), Proteção DNS e Bloqueio de IP e geografia; depois de Rastreio de regras ao vivo e Caminho do pacote há uma nova aba Pacotes descartados. O idioma é escolhido com o mesmo ícone da interface web."
+          "body": "O visualizador abre em uma janela própria que ocupa a tela inteira, tem o título FIREWALL LOG VIEWER e o ícone do firewall. Depois de Tráfego do firewall as abas são Controle de aplicações (DPI), Proteção de rede (IPS), Proteção DNS e Bloqueio de IP e geografia; depois de Rastreio de regras ao vivo e Caminho do pacote há uma aba Pacotes descartados, um rastreio ao vivo dos pacotes que o firewall descarta ou rejeita com a regra que parou cada um. O idioma é escolhido com o mesmo ícone da interface web."
         },
         {
           "tag": "improved",
@@ -110,6 +110,31 @@
           "tag": "changed",
           "title": "Boas-vindas do assistente",
           "body": "A página de boas-vindas não recomenda mais desconectar a unidade da internet: as listas de proteção são baixadas durante a configuração."
+        },
+        {
+          "tag": "improved",
+          "title": "Assistente: pular sem fazer login",
+          "body": "Pular assistente funciona na primeira página antes de qualquer login: o firewall mantém sua senha padrão e você entra com ela. Um firewall cuja senha foi alterada mas cujo assistente ficou inacabado mostra a página de login, e o login leva de volta ao assistente."
+        },
+        {
+          "tag": "improved",
+          "title": "As regras de um perfil do Controle de aplicações podem ser editadas",
+          "body": "As regras criadas por um perfil abrem na mesma janela de qualquer outra regra: as categorias que bloqueiam são mostradas e mantidas, e você pode alterar a interface, as origens, o nome e o registro, ou adicionar aplicações."
+        },
+        {
+          "tag": "improved",
+          "title": "Qualquer interface para uma nova regra do Controle de aplicações",
+          "body": "A ponte interna e qualquer outra interface podem ser escolhidas para uma nova regra, também depois de um perfil ter criado regras nela."
+        },
+        {
+          "tag": "improved",
+          "title": "Aplicações bloqueadas são registradas",
+          "body": "O que o Controle de aplicações bloqueia é registrado (com taxa limitada) e aparece no Visualizador de logs, em firewalls novos e sempre que um perfil é aplicado."
+        },
+        {
+          "tag": "improved",
+          "title": "Novas regras do firewall são registradas",
+          "body": "Uma nova regra do firewall começa com o registro ligado (com taxa limitada), assim seu tráfego bloqueado ou permitido aparece no Visualizador de logs."
         }
       ]
     },
@@ -118,6 +143,21 @@
       "title": "Problemas resolvidos",
       "intro": "",
       "items": [
+        {
+          "tag": "fixed",
+          "title": "Assinaturas de intrusão baixadas mas não instaladas",
+          "body": "O atualizador de assinaturas esperava o próprio bloqueio ao iniciar a etapa de instalação, então as assinaturas eram baixadas mas nunca instaladas e a página do IPS não mostrava informações das assinaturas. Agora só os comandos que gravam usam o bloqueio e o status sempre responde."
+        },
+        {
+          "tag": "fixed",
+          "title": "Pular o assistente não fazia nada antes do login",
+          "body": "Pular assistente precisava de uma sessão que não existe em um firewall novo."
+        },
+        {
+          "tag": "fixed",
+          "title": "Falha da API de gerenciamento ao sair",
+          "body": "Sair com uma sessão que o firewall não conseguia ler interrompia a requisição com uma falha no log."
+        },
         {
           "tag": "fixed",
           "title": "Assistente escondido por uma sessão antiga",
@@ -146,12 +186,12 @@
     "rows": [
       {
         "name": "Imagem",
-        "version": "26.0.0-rc2",
+        "version": "26.0.0-rc3",
         "note": "x86-64, UEFI, imagem de disco compactada"
       },
       {
         "name": "Código do firmware",
-        "version": "v26.0.0-rc2",
+        "version": "v26.0.0-rc3",
         "note": "Commit do repositório público do firewall a partir do qual a imagem é construída"
       },
       {
@@ -161,7 +201,7 @@
       },
       {
         "name": "Interface web",
-        "version": "1.3.9",
+        "version": "1.3.10",
         "note": "Inglês, espanhol, português do Brasil"
       },
       {
@@ -253,6 +293,11 @@
         "date": "2026-10-05",
         "title": "Seguro por padrão e endereço web confiável",
         "text": "Perfis de Controle de aplicações, proteção desde a primeira inicialização, assistente antes do login, certificado para firewall.nexwall.com.br, Visualizador de logs reformulado, análises de DNS e países, interface web 1.3.9."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Correções após testar o rc2",
+        "text": "Instalação das assinaturas, pular o assistente sem login, regras de perfil editáveis, qualquer interface para novas regras do Controle de aplicações, registro de aplicações bloqueadas e de novas regras do firewall, rastreio ao vivo de Pacotes descartados, interface web 1.3.10."
       }
     ]
   },
