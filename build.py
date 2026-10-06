@@ -19,6 +19,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'site')
 LANGS = [('en', 'English'), ('es', 'Español'), ('pt-BR', 'Português (Brasil)')]
 TAGS = ['new', 'improved', 'changed', 'fixed']
+ISSUES = None
+COMPAT = None
 
 
 def load(*parts):
@@ -39,6 +41,32 @@ def up(depth):
 
 def paragraphs(text):
     return ''.join('<p>%s</p>' % esc(p) for p in text.split('\n\n') if p.strip())
+
+
+def issue_state(issues, releases):
+    """order: index in the release list, newest first; an issue is open in a version older than the one that fixed it"""
+    order = {r['version']: i for i, r in enumerate(releases)}
+    return order
+
+
+def issues_for_version(issues, releases, ver, kind):
+    order = issue_state(issues, releases)
+    out = []
+    for it in issues:
+        if it['type'] != kind:
+            continue
+        if kind == 'fixed' and it['version'] == ver:
+            out.append(it)
+        if kind == 'known':
+            since = order[it['introduced']]
+            fixed = it.get('fixed')
+            if order[ver] <= since and (fixed is None or order[ver] > order[fixed]):
+                out.append(it)
+    return out
+
+
+def area_name(areas, lang, key):
+    return areas.get(key, {}).get(lang, key)
 
 
 def shell(lang, ui, title, body, depth, here, nav_extra=''):
@@ -65,6 +93,9 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
     <a class="brand" href="{base}{lang}/"><span class="mark" aria-hidden="true"></span><span>Nexwall <b>{site}</b></span></a>
     <nav class="top-nav" aria-label="{site}">
       <a href="{base}{lang}/">{all}</a>
+      <a href="{base}{lang}/resolved-issues/">{nav_resolved}</a>
+      <a href="{base}{lang}/known-issues/">{nav_known}</a>
+      <a href="{base}{lang}/compatibility/">{nav_compat}</a>
       {nav_extra}
     </nav>
     <div class="top-tools">
@@ -79,7 +110,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
-           all=esc(ui['all_releases']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
+           all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
            body=body, footer=esc(ui['footer']))
 
 
@@ -154,6 +185,16 @@ def build_release(lang, ui, rel, note, releases):
     for sec in note['sections']:
         intro = paragraphs(sec['intro']) if sec.get('intro') else ''
         section(sec['id'], sec['title'], intro + ''.join(render_item(ui, i) for i in sec['items']))
+    fixed = issues_for_version(ISSUES['issues'], releases, ver, 'fixed')
+    fixed_html = ''.join('<article class="item" data-tag="fixed"><header><span class="tag tag-fixed">%s</span><span class="code">%s</span><h3>%s</h3></header>%s<p class="meta-line">%s</p></article>' % (
+        esc(ui['tag_fixed']), esc(i['id']), esc(i['title'][lang]), paragraphs(i['body'][lang]), esc(area_name(ISSUES['areas'], lang, i['area']))) for i in fixed)
+    section('resolved', ui['resolved_issues'], fixed_html or '<p class="note">%s</p>' % esc(ui['resolved_none']))
+    known = issues_for_version(ISSUES['issues'], releases, ver, 'known')
+    issues = ''.join('<article class="item" data-tag="known"><header><span class="tag tag-known">%s</span><span class="code">%s</span><h3>%s</h3></header>%s%s<p class="meta-line">%s</p></article>' % (
+        esc(ui['tag_known']), esc(k['id']), esc(k['title'][lang]), paragraphs(k['body'][lang]),
+        ('<p class="note"><b>%s</b> %s</p>' % (esc(ui['workaround']), esc(k['workaround'][lang]))) if k['workaround'].get(lang) else '',
+        esc(area_name(ISSUES['areas'], lang, k['area']))) for k in known)
+    section('known-issues', ui['known_issues'], issues or '<p class="note">%s</p>' % esc(ui['known_none']))
     comp = note['components']
     rows = ''.join('<tr><td>%s</td><td><code>%s</code></td><td>%s</td></tr>' % (esc(c['name']), esc(c['version']), esc(c['note'])) for c in comp['rows'])
     section('components', ui['components'], paragraphs(comp['intro']) + '<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>' % (
@@ -161,10 +202,7 @@ def build_release(lang, ui, rel, note, releases):
     tl = note['timeline']
     entries = ''.join('<li><time>%s</time><div><h3>%s</h3><p>%s</p></div></li>' % (esc(e['date']), esc(e['title']), esc(e['text'])) for e in tl['entries'])
     section('release-track', ui['timeline'], paragraphs(tl['intro']) + '<ol class="timeline">%s</ol>' % entries)
-    issues = ''.join('<article class="item" data-tag="known"><header><span class="tag tag-known">%s</span><h3>%s</h3></header>%s%s</article>' % (
-        esc(ui['tag_known']), esc(k['title']), paragraphs(k['body']),
-        ('<p class="note"><b>%s</b> %s</p>' % (esc(ui['workaround']), esc(k['workaround']))) if k.get('workaround') else '') for k in note['known_issues'])
-    section('known-issues', ui['known_issues'], issues)
+
     req = '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(r) for r in note['requirements'])
     section('requirements', ui['requirements'], req)
     upg = '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(r) for r in note['upgrade'])
@@ -195,7 +233,68 @@ def build_release(lang, ui, rel, note, releases):
     write('%s/%s/index.html' % (lang, ver), shell(lang, ui, '%s | Nexwall' % note['title'], body, 2, '%s/' % ver))
 
 
+def table_page(lang, ui, title, lead, controls, head, rows, here, versions=None):
+    ths = ''.join('<th>%s</th>' % esc(h) for h in head)
+    trs = ''.join(rows) or '<tr><td colspan="%d">%s</td></tr>' % (len(head), esc(ui['no_results']))
+    vs = ''
+    if versions:
+        vs = '<label class="ver-select"><span>%s</span><select data-table-version><option value="">%s</option>%s</select></label>' % (
+            esc(ui['col_version']), esc(ui['all_versions']), ''.join('<option value="%s">%s</option>' % (esc(v), esc(v)) for v in versions))
+    body = ('<div class="release-head"><div class="wrap"><h1>%s</h1><p class="lead">%s</p></div></div>'
+            '<div class="wrap"><main id="main" class="doc wide"><div class="table-tools"><label class="search"><span>%s</span>'
+            '<input type="search" data-table-search placeholder="%s"></label>%s</div>'
+            '<div class="table-wrap"><table class="issues"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></main></div>') % (
+        esc(title), esc(lead), esc(ui['search']), esc(ui['search_placeholder']), vs, ths, trs)
+    write('%s/%s/index.html' % (lang, here), shell(lang, ui, '%s | Nexwall' % title, body, 2, '%s/' % here))
+
+
+def build_resolved_page(lang, ui, releases):
+    rows = []
+    fixed = [i for i in ISSUES['issues'] if i['type'] == 'fixed']
+    order = {r['version']: n for n, r in enumerate(releases)}
+    for it in sorted(fixed, key=lambda x: (order[x['version']], x['id'])):
+        rows.append('<tr data-version="%s"><td><code class="code">%s</code></td><td><a href="../../%s/%s/#resolved">%s</a></td><td>%s</td><td><b>%s</b><br>%s</td></tr>' % (
+            esc(it['version']), esc(it['id']), lang, esc(it['version']), esc(it['version']), esc(area_name(ISSUES['areas'], lang, it['area'])),
+            esc(it['title'][lang]), esc(it['body'][lang])))
+    table_page(lang, ui, ui['issues_resolved_title'], ui['issues_resolved_lead'], '', [ui['col_id'], ui['col_fixed_in'], ui['col_area'], ui['col_description']],
+               rows, 'resolved-issues', [r['version'] for r in releases])
+
+
+def build_known_page(lang, ui, releases):
+    rows = []
+    known = [i for i in ISSUES['issues'] if i['type'] == 'known']
+    for it in known:
+        status = ui['status_open'] if not it.get('fixed') else '%s %s' % (ui['status_fixed_in'], it['fixed'])
+        wa = esc(it['workaround'].get(lang, '')) or '&ndash;'
+        rows.append('<tr data-version="%s"><td><code class="code">%s</code></td><td>%s</td><td>%s</td><td><b>%s</b><br>%s</td><td>%s</td><td>%s</td></tr>' % (
+            esc(it['introduced']), esc(it['id']), esc(it['introduced']), esc(area_name(ISSUES['areas'], lang, it['area'])), esc(it['title'][lang]),
+            esc(it['body'][lang]), wa, esc(status)))
+    table_page(lang, ui, ui['issues_known_title'], ui['issues_known_lead'], '', [ui['col_id'], ui['col_since'], ui['col_area'], ui['col_description'],
+               ui['col_workaround'], ui['col_status']], rows, 'known-issues', None)
+
+
+def build_compat_page(lang, ui):
+    c = COMPAT[lang]
+    parts = []
+    for sec in c['sections']:
+        if sec.get('items'):
+            inner = '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(i) for i in sec['items'])
+        else:
+            inner = '<div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (
+                ''.join('<th>%s</th>' % esc(h) for h in sec['head']),
+                ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % esc(cell) for cell in row) for row in sec['rows']))
+        parts.append('<section id="%s"><h2>%s</h2>%s</section>' % (sec['id'], esc(sec['title']), inner))
+    toc = ''.join('<li><a href="#%s">%s</a></li>' % (sec['id'], esc(sec['title'])) for sec in c['sections'])
+    body = ('<div class="release-head"><div class="wrap"><h1>%s</h1><p class="lead">%s</p></div></div>'
+            '<div class="wrap layout"><aside class="toc" aria-label="%s"><p class="toc-title">%s</p><ol>%s</ol></aside>'
+            '<main id="main" class="doc">%s</main></div>') % (esc(c['title']), esc(c['lead']), esc(ui['on_this_page']), esc(ui['on_this_page']), toc, ''.join(parts))
+    write('%s/compatibility/index.html' % lang, shell(lang, ui, '%s | Nexwall' % c['title'], body, 2, 'compatibility/'))
+
+
 def main():
+    global ISSUES, COMPAT
+    ISSUES = load('content', 'issues.json')
+    COMPAT = load('content', 'compatibility.json')
     uis = load('content', 'ui.json')
     releases = load('content', 'releases.json')
     if os.path.isdir(OUT):
@@ -210,6 +309,10 @@ def main():
         notes = {r['version']: load('content', r['version'], '%s.json' % lang) for r in releases}
         build_home(lang, ui, releases, notes)
         urls.append('%s/' % lang)
+        build_resolved_page(lang, ui, releases)
+        build_known_page(lang, ui, releases)
+        build_compat_page(lang, ui)
+        urls += ['%s/resolved-issues/' % lang, '%s/known-issues/' % lang, '%s/compatibility/' % lang]
         for rel in releases:
             build_release(lang, ui, rel, notes[rel['version']], releases)
             urls.append('%s/%s/' % (lang, rel['version']))

@@ -25,14 +25,23 @@ python3 -m http.server -d site 8000      # http://localhost:8000/
 ## Publish a new release
 
 1. Create `content/<version>/en.json`, `es.json` and `pt-BR.json` (copy the previous ones; same structure in all three languages).
-2. Add the version at the top of `content/releases.json`.
-3. After the image is built and published, fill `downloads` with the file name, size and SHA-256:
+   Each version lists **only what is new in that version**: `overview` is a short statement of what the product offers up to this
+   version (no mention of other release candidates), `whats-new` and `improvements` carry only the items of this version (leave
+   `whats-new` out when there is none).
+2. Resolved and known issues are **not** in the version files. They live in `content/issues.json`, one register with codes:
+   - fixed issue: `{"id": "NXW-10xx", "type": "fixed", "version": "<version>", "area": "<area key>", "title": {..}, "body": {..}}`
+   - known issue: `{"id": "NXW-20xx", "type": "known", "introduced": "<version>", "fixed": null, "area": .., "title": {..}, "body": {..}, "workaround": {..}}`
+     and set `fixed` to the version that fixes it (the issue then shows as open only in the older versions).
+   The version pages, the "Resolved issues" table and the "Known issues" table are all generated from it. Keep installation advice
+   in `upgrade`, not in the known issues; hardware and drivers belong in `content/compatibility.json`.
+3. Update `content/compatibility.json` when the drivers or the tested platforms change (state only what was verified).
+4. Add the version at the top of `content/releases.json`.
+5. After the image is built and published, fill `downloads` with the file name, size and SHA-256:
    `{"name": "nexwall-26.0.0-rc1-x86-64-generic-squashfs-combined-efi.img.gz", "size": "82 MB", "sha256": "..."}`.
-4. Commit and push to `main`.
+6. Commit and push to `main`.
 
-Item types in the notes: `new`, `improved`, `changed`, `fixed` (known issues have their own list). Write the notes for the
-people who run the firewall: what they can do now, what behaves differently, what to watch out for. Facts only: every
-statement must be true of the image that is published.
+Item types in the notes: `new`, `improved`, `changed`, `fixed`. Write the notes for the people who run the firewall: what they can do
+now, what behaves differently, what to watch out for. Facts only: every statement must be true of the image that is published.
 
 ## One-time setup on GitHub
 

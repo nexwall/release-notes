@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc2",
-  "summary": "Segundo release candidate: o firewall protege a rede desde a primeira inicialização, antes de qualquer login, com perfis prontos de Controle de aplicações, um assistente que aparece sem login, um endereço confiável para a interface web e um Visualizador de logs reformulado.",
-  "overview": "O candidato 2 faz um firewall novo ser seguro por si só: Proteção de rede (política Security), Controle de aplicações (perfil Padrão), Filtro de DNS e Bloqueio de IP e geografia são ativados na primeira inicialização, mesmo que ninguém execute o assistente. O assistente, o certificado da interface web, o Visualizador de logs e as análises de tráfego foram refeitos após os testes do rc1.\n\nOs recursos de proteção são servidos pela Nexwall: as assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças são construídos nos servidores da Nexwall, assinados, verificados pelo firewall e atualizados todos os dias. As atualizações da interface web e do componente de licenciamento vêm de um feed assinado da Nexwall, cujos arquivos são fixados por checksum.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
+  "summary": "Seguro desde o primeiro início: as proteções estão ativas antes do assistente, o assistente funciona sem login, a interface web tem um endereço confiável e o Visualizador de logs foi refeito.",
+  "overview": "O Nexwall Firewall 26.0.0-rc2 protege um firewall novo desde o primeiro início: a Proteção de rede, o Controle de aplicações com perfil Padrão, a filtragem DNS e o bloqueio de IP e países ficam ativos antes de alguém executar o assistente, e o assistente está disponível sem login. A interface web tem um endereço confiável, e o Visualizador de logs e a análise de tráfego foram refeitos. As assinaturas, o catálogo de aplicações e as listas de ameaças são atualizados diariamente por serviços assinados da Nexwall.\n\nEsta é uma versão candidata: use-a para avaliar e testar em laboratório, não como única proteção de uma rede de produção.",
   "at_a_glance": [
     {
       "label": "Versão",
@@ -110,33 +110,6 @@
           "tag": "changed",
           "title": "Boas-vindas do assistente",
           "body": "A página de boas-vindas não recomenda mais desconectar a unidade da internet: as listas de proteção são baixadas durante a configuração."
-        }
-      ]
-    },
-    {
-      "id": "resolved",
-      "title": "Problemas resolvidos",
-      "intro": "",
-      "items": [
-        {
-          "tag": "fixed",
-          "title": "Assistente escondido por uma sessão antiga",
-          "body": "Um navegador que ainda guardava o login de um firewall anterior no mesmo endereço ia para a página de login em vez do assistente do firewall novo."
-        },
-        {
-          "tag": "fixed",
-          "title": "Sem interface na etapa WAN",
-          "body": "Em um firewall cujas portas a imagem não havia nomeado, o assistente informava que a zona WAN não tinha interface."
-        },
-        {
-          "tag": "fixed",
-          "title": "Falha da API da interface web",
-          "body": "Um token de sessão sem usuário fazia a API de gerenciamento parar de responder àquela requisição com uma falha; agora ela responde não autorizado."
-        },
-        {
-          "tag": "fixed",
-          "title": "Erros no log do sistema",
-          "body": "A reinicialização do cron após uma mudança do IPS chamava um caminho errado; a verificação de DNS da telemetria fazia uma pergunta que o firewall recusa; os atualizadores do antigo serviço de catálogo de aplicações relatavam um 404 todos os dias e a cada inicialização; duas atualizações das assinaturas do IPS podiam escrever o mesmo arquivo ao mesmo tempo. Todos foram corrigidos ou removidos."
         }
       ]
     }
@@ -256,56 +229,6 @@
       }
     ]
   },
-  "known_issues": [
-    {
-      "title": "Os novos padrões valem apenas para instalações novas",
-      "body": "As regras LAN -> WAN e DROP DEFAULT, a distribuição de pacotes e os buffers maiores das placas de rede fazem parte da configuração padrão. Um firewall instalado antes mantém as configurações que tem.",
-      "workaround": "Adicione as duas regras manualmente em um firewall existente e mantenha DROP DEFAULT no fim da lista."
-    },
-    {
-      "title": "Firewalls reinstalados",
-      "body": "Um firewall reinstalado enquanto está atribuído a um cliente precisa que o revendedor redefina o dispositivo antes de obter a licença de novo."
-    },
-    {
-      "title": "Assinaturas adicionais",
-      "body": "Proteção de servidores web (WAF) e Proteção de e-mail (MTA) aparecem como assinaturas, mas os recursos ainda não estão disponíveis."
-    },
-    {
-      "title": "Bloqueio por país sem licença",
-      "body": "Um firewall sem licença não pode usar as listas de países da Nexwall. O bloqueio por país passa a usar as listas públicas do componente subjacente, que são baixadas toda vez que o serviço inicia e podem demorar muito."
-    },
-    {
-      "title": "Seleções grandes de listas de DNS",
-      "body": "Recarregar o serviço de DNS com cerca de 1,8 milhão de domínios bloqueados interrompe a resolução de nomes por cerca de dez segundos. As listas são recarregadas somente quando mudam, normalmente uma vez por dia.",
-      "workaround": "Desative as categorias de que você não precisa. O aviso de memória da página de listas de bloqueio de DNS ajuda a escolher."
-    },
-    {
-      "title": "Placas de rede emuladas limitam o desempenho",
-      "body": "Em máquinas virtuais com placas de rede Intel e1000 emuladas, a vazão fica entre 0,7 e 1 Gbit/s, qualquer que seja a CPU. É um limite da emulação, não do firewall.",
-      "workaround": "Use adaptadores paravirtualizados (virtio ou vmxnet3) ou hardware físico para testes de desempenho."
-    },
-    {
-      "title": "O caminho rápido vem desligado por padrão",
-      "body": "O caminho rápido foi verificado quanto à correção e aos contadores, mas ainda não foi medido em hardware físico.",
-      "workaround": "Ligue-o no cartão Desempenho das configurações do Controle de aplicações ou da Proteção de rede e compare com o seu próprio tráfego."
-    },
-    {
-      "title": "Tráfego criptografado",
-      "body": "O Controle de aplicações e a Proteção de rede não descriptografam HTTPS. As aplicações são reconhecidas pela conexão, pelo nome de domínio e pelo padrão de tráfego."
-    },
-    {
-      "title": "Versão candidata",
-      "body": "Interfaces e padrões ainda podem mudar antes da versão final."
-    },
-    {
-      "title": "Interface web pelo endereço IP",
-      "body": "https://192.168.1.1 mostra o aviso de certificado do navegador; use https://firewall.nexwall.com.br. O nome exige que o firewall seja o servidor DNS do computador, o padrão com DHCP. Digitar o nome sem https:// não redireciona."
-    },
-    {
-      "title": "Estatísticas de bloqueios de DNS",
-      "body": "Os domínios bloqueados são contados a partir do log de DNS. Instalações novas têm o registro de consultas ligado com uma regra que guarda apenas as respostas bloqueadas; um firewall instalado antes precisa ligar o registro de consultas nas configurações de DNS para vê-los."
-    }
-  ],
   "requirements": [
     "Processador x86-64, firmware UEFI com Secure Boot desativado.",
     "Pelo menos duas interfaces de rede (uma para a rede interna e outra para a Internet).",

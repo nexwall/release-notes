@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc1",
-  "summary": "The first release candidate of Nexwall Firewall: Network Protection (IPS), Application Control, threat feeds, geo-blocking, a log viewer with live rule tracing, a faster data path and a licensing model delivered from signed Nexwall services.",
-  "overview": "Nexwall Firewall 26.0.0-rc1 is the first release candidate of the Nexwall firewall. It is an installable image for x86-64 machines and virtual machines, with a web interface in English, Spanish and Brazilian Portuguese.\n\nThe protection features are served by Nexwall: intrusion signatures, the application catalog and the threat lists are built on Nexwall servers, signed, checked by the firewall and refreshed every day. Updates of the web interface and of the license component come from a signed Nexwall feed whose files are pinned by checksum.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
+  "summary": "First release candidate: intrusion prevention, Application Control, DNS filtering, IP and geo blocking, a Log Viewer and licensing by module.",
+  "overview": "Nexwall Firewall 26.0.0-rc1 is the first release candidate: an installable image for x86-64 machines and virtual machines, with a web interface in English, Spanish and Brazilian Portuguese. It provides Network Protection (intrusion prevention), Application Control, DNS filtering, IP and geo blocking, a Log Viewer with live rule tracing and licensing by module. Intrusion signatures, the application catalog and the threat lists come from signed Nexwall services and are refreshed daily.\n\nThis is a release candidate: use it to evaluate and to test in the lab, not as the only protection of a production network.",
   "at_a_glance": [
     {
       "label": "Version",
@@ -209,58 +209,6 @@
           "body": "Threat Shield no longer reads block lists from third-party servers or from a mirror. Everything comes from the signed Nexwall bundle."
         }
       ]
-    },
-    {
-      "id": "resolved",
-      "title": "Resolved issues",
-      "intro": "",
-      "items": [
-        {
-          "tag": "fixed",
-          "title": "Reinstalled firewall stayed unregistered",
-          "body": "A firewall that was reinstalled kept its old registration on the license server and could not get its license or its downloads (IPS signatures, lists). Your reseller can now reset the device in the license panel, and the firewall registers again by itself."
-        },
-        {
-          "tag": "fixed",
-          "title": "Log Viewer did not open",
-          "body": "Opening the Log Viewer restarted the web server under the request that asked for it and the browser reported a network error. Enabling it again no longer restarts anything, and the first time the page waits for the web server."
-        },
-        {
-          "tag": "fixed",
-          "title": "DNS & DHCP page failed to load",
-          "body": "The page raised an error when an interface address was stored as 192.168.1.1/24. Addresses are now read in every form and interfaces without a usable IPv4 address are skipped."
-        },
-        {
-          "tag": "fixed",
-          "title": "Traffic engine crash loop",
-          "body": "A plugin of the traffic engine crashed the engine again and again right after it started. The cause was found with a symbolized backtrace and fixed."
-        },
-        {
-          "tag": "fixed",
-          "title": "Engine using a whole CPU core",
-          "body": "A plugin queue spun without waiting and kept the engine at 100% of a core. It now waits for work like the other plugins."
-        },
-        {
-          "tag": "fixed",
-          "title": "Engine deadlock",
-          "body": "A plugin could lock the engine against itself. The call path was changed so the engine no longer blocks."
-        },
-        {
-          "tag": "fixed",
-          "title": "Large license data downloads",
-          "body": "Downloads of big data sets from the license service were cut silently at 1 MiB and timed out after 30 seconds. They now accept up to 64 MiB and have ten minutes to complete."
-        },
-        {
-          "tag": "fixed",
-          "title": "Memory exhaustion with very high connection limits",
-          "body": "A fixed, very high connection tracking limit could exhaust memory on small machines under heavy load. The limit is now derived from the installed memory."
-        },
-        {
-          "tag": "fixed",
-          "title": "Bursts dropped on virtual network cards",
-          "body": "Small default network card buffers dropped traffic bursts and kept throughput low in tests. Larger buffers and packet steering are now on by default for new installations."
-        }
-      ]
     }
   ],
   "components": {
@@ -373,48 +321,6 @@
       }
     ]
   },
-  "known_issues": [
-    {
-      "title": "New defaults apply to new installations only",
-      "body": "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has.",
-      "workaround": "Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list."
-    },
-    {
-      "title": "Reinstalled firewalls",
-      "body": "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
-    },
-    {
-      "title": "Additional subscriptions",
-      "body": "Web Server Protection (WAF) and Email Protection (MTA) are listed as subscriptions, but their features are not available yet."
-    },
-    {
-      "title": "Country blocking without a license",
-      "body": "A firewall without a license cannot use the Nexwall country lists. Country blocking then uses the public lists of the underlying component, which are downloaded every time the service starts and can take a long time."
-    },
-    {
-      "title": "Large DNS list selections",
-      "body": "Reloading the DNS service with about 1.8 million blocked domains interrupts name resolution for roughly ten seconds. Lists are reloaded only when they change, normally once a day.",
-      "workaround": "Switch off the categories you do not need. The memory warning on the DNS block lists page helps you choose."
-    },
-    {
-      "title": "Emulated network cards limit throughput",
-      "body": "In virtual machines with emulated Intel e1000 network cards, throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall.",
-      "workaround": "Use paravirtualized adapters (virtio or vmxnet3) or physical hardware for performance tests."
-    },
-    {
-      "title": "Fast path is off by default",
-      "body": "The fast path has been verified for correctness and counters, but it has not been measured on physical hardware yet.",
-      "workaround": "Switch it on in the Performance card of the Application Control or Network Protection settings and compare on your own traffic."
-    },
-    {
-      "title": "Encrypted traffic",
-      "body": "Application Control and Network Protection do not decrypt HTTPS. Applications are recognized from the connection, the domain name and the traffic pattern."
-    },
-    {
-      "title": "Release candidate",
-      "body": "Interfaces and defaults can still change before the final release."
-    }
-  ],
   "requirements": [
     "x86-64 processor, UEFI firmware with Secure Boot off.",
     "At least two network interfaces (one for the internal network, one for the internet).",
@@ -427,7 +333,9 @@
     "Firewalls running an earlier internal build are not upgraded in place by this release candidate; install the image on a test machine and compare.",
     "Do not restore a configuration backup taken on an older internal build: its traffic engine settings use another format.",
     "To check the file on Linux run sha256sum on it; on Windows run Get-FileHash with -Algorithm SHA256 in PowerShell. The result must equal the SHA-256 in the Downloads table.",
-    "The administration guide is at https://docs.nexwall.com.br."
+    "The administration guide is at https://docs.nexwall.com.br.",
+    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
+    "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
   ],
   "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
 }

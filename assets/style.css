@@ -148,3 +148,14 @@ th { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: 
   .top, .toc, .filters, .foot, .copy { display: none; }
   .item { break-inside: avoid; }
 }
+
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8rem; color: var(--muted); background: var(--brand-soft); padding: .1rem .4rem; border-radius: 5px; margin-right: .4rem; white-space: nowrap; }
+.item header { flex-wrap: wrap; }
+.meta-line { color: var(--muted); font-size: .85rem; margin: .2rem 0 0; }
+.doc.wide { max-width: none; }
+.table-tools { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; margin-bottom: 1rem; }
+.table-tools label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; color: var(--muted); }
+.table-tools input, .table-tools select { font: inherit; padding: .4rem .6rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); min-width: 14rem; }
+table.issues td:first-child, table.issues th:first-child { white-space: nowrap; }
+tr[hidden] { display: none; }
+@media (max-width: 760px) { .top-nav { display: flex; flex-wrap: wrap; gap: .4rem .9rem; } .top-in { flex-wrap: wrap; } }

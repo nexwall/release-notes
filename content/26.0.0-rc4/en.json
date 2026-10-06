@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc4",
-  "summary": "Fourth release candidate: every firewall gets a trusted web address with a certificate of its own, the logs stay quiet on a busy firewall, and the remaining errors found in the system log of a running unit are gone.",
-  "overview": "Release candidate 2 makes a new firewall safe by itself: Network Protection (Security policy), Application Control (Standard profile), DNS Filtering and IP & Geo Blocking are switched on at the first start, even if nobody runs the setup wizard. The wizard, the web interface certificate, the Log Viewer and the traffic analytics were reworked after testing rc1.\n\nThe protection features are served by Nexwall: intrusion signatures, the application catalog and the threat lists are built on Nexwall servers, signed, checked by the firewall and refreshed every day. Updates of the web interface and of the license component come from a signed Nexwall feed whose files are pinned by checksum.\n\nThis is a release candidate. Use it to evaluate, to test in the lab and to give feedback; do not use it as the only protection of a production network yet.",
+  "summary": "A trusted web address with its own certificate for every firewall, quiet logs on a busy firewall, and the remaining system log errors fixed.",
+  "overview": "Nexwall Firewall 26.0.0-rc4 gives every firewall a trusted web address with a certificate of its own, so the administrator's browser opens the web interface without a warning, and it keeps the system log and the console quiet on a busy firewall. It builds on a firewall that protects the network from the first start, with editable Application Control profiles, a setup wizard that works without a login and a Log Viewer with live rule tracing.\n\nThis is a release candidate: use it to evaluate and to test in the lab, not as the only protection of a production network.",
   "at_a_glance": [
     {
       "label": "Version",
@@ -36,43 +36,13 @@
       "items": [
         {
           "tag": "new",
-          "title": "Secure from the first start",
-          "body": "A firewall nobody has configured yet switches on, by itself and before any login: Network Protection with the Security rule policy blocking what it detects, Application Control with the Standard profile, DNS Filtering and IP & Geo Blocking with all the Nexwall lists. New connections are blocked when the inspection engine cannot keep up, so nothing passes uninspected. If the license is not known yet because the firewall has no internet, the steps are tried again for about half an hour, then at the next start. The setup wizard can change every choice."
-        },
-        {
-          "tag": "new",
-          "title": "Application Control profiles",
-          "body": "Three ready-made profiles create the Application Control rules for you: Standard (adult content, malware, VPN and proxy anonymizers, peer-to-peer, encrypted DNS that bypasses the DNS filter), School (Standard plus social networks, video hosting and streaming, games, entertainment) and Restricted (School plus online shopping, recreation and sports, remote-desktop tools, cloud file sharing, advertising). Social networks and normal home use stay allowed in Standard. The rules block whole categories of the application catalog, so new applications of a category are covered automatically. Choose the profile in the setup wizard, or from the command line with nexwall-dpi-profile."
-        },
-        {
-          "tag": "new",
-          "title": "Setup wizard before any login",
-          "body": "The wizard is shown at the first access to a new firewall without asking for the default password first, also when the browser still holds a session of an earlier firewall at the same address. After the security services a new page offers the three profiles, explains what each one blocks and applies it together with all the DNS and IP protection lists."
-        },
-        {
-          "tag": "new",
-          "title": "Internet connection ready on port 2",
-          "body": "A new firewall with two network ports uses the second one as its internet connection (WAN) with DHCP: when the modem or router gives an address, the wizard shows it. If the firewall has no internet port configured, the wizard lets you choose the port and then DHCP, a fixed address or PPPoE."
-        },
-        {
-          "tag": "new",
           "title": "A trusted web address, one certificate for each firewall",
-          "body": "Open https://firewall.lan.nexwall.com.br (or https://<serial>.lan.nexwall.com.br, with the serial number of the unit in lower case) from the internal network. The firewall answers those names itself and presents a Let's Encrypt certificate that belongs to this unit alone: it makes its own private key (which never leaves the firewall), asks the Nexwall license server for the certificate and installs it, and renews it by itself 28 days before it ends. Until the certificate is installed, or if it stops being valid, the web interface keeps its own certificate, so it is always reachable. The computer must use the firewall as DNS server (the default with DHCP). Opening the web interface by its IP address still shows the browser warning: no public authority issues certificates for private addresses."
-        },
-        {
-          "tag": "new",
-          "title": "Threat information and updates",
-          "body": "The DNS Filtering and the IP & Geo Blocking settings show a card with the installed list version, how many lists are on, how many domains, addresses and country blocks they hold, the last check and its result, and a button to check for updates now."
-        },
-        {
-          "tag": "new",
-          "title": "DNS and country blocks in Traffic Analytics",
-          "body": "Traffic Analytics shows what DNS Filtering blocked today (total, by hour, most blocked domains) and what the country blocks refused (total, by hour, by country), next to the existing IP blocklist and brute-force charts."
+          "body": "Every firewall answers at https://firewall.lan.nexwall.com.br and at https://<serial>.lan.nexwall.com.br (the serial number in lower case) with a Let's Encrypt certificate that belongs to that firewall alone. The firewall creates its own private key, which never leaves it, requests the certificate through the Nexwall license server and renews it 28 days before it expires. Until a certificate is installed, or if it becomes invalid, the web interface keeps its own certificate and stays reachable. The computer must use the firewall as DNS server (the default with DHCP)."
         },
         {
           "tag": "new",
           "title": "The address on port 80",
-          "body": "http://192.168.1.1 (or the LAN address you configured) and http://firewall.lan open a small page that goes to the trusted address when the computer can reach it, and offers the direct link when it cannot (for example a computer that does not use the firewall as DNS server)."
+          "body": "http://<LAN address> and http://firewall.lan open a short page that forwards to the trusted address when the computer can reach it and shows the direct link when it cannot."
         }
       ]
     },
@@ -83,120 +53,13 @@
       "items": [
         {
           "tag": "improved",
-          "title": "Log Viewer",
-          "body": "The viewer opens in a window of its own that fills the screen, is titled FIREWALL LOG VIEWER and has the icon of the firewall. After Firewall traffic the tabs are Application Control (DPI), Network Protection (IPS), DNS Protection and IP & Geo Block; Live rule trace and Packet path are followed by a Dropped Packets tab, a live trace of the packets the firewall drops or rejects with the rule that stopped each one. The language is chosen with the same icon as the web interface."
-        },
-        {
-          "tag": "improved",
           "title": "Quiet logs",
-          "body": "The default rule LAN -> WAN no longer writes a log line for the traffic it allows: on a busy firewall that would flood the system log and the console. The console of the firewall shows only errors now (the log lines still go to the system log and the Log Viewer), Application Control writes at most 5 lines a second for what it blocks, and a firewall that had the earlier setting is switched back at the update. Allowed traffic is seen in Flows, Top talkers and Traffic analytics, or by switching logging on in a rule."
-        },
-        {
-          "tag": "improved",
-          "title": "Company and unit name",
-          "body": "The company name (when the firewall is registered) and the unit name are shown together as one badge at the right of the top bar, next to the Log Viewer button."
-        },
-        {
-          "tag": "improved",
-          "title": "IP & Geo Blocking lists",
-          "body": "The Enable all switch sits between the search button and the service state, and switches the Nexwall lists on and off. The page lists the Nexwall lists; third-party community lists are shown only when they are already switched on, so they can be switched off."
-        },
-        {
-          "tag": "improved",
-          "title": "Top talkers",
-          "body": "The volume of every local host comes from the connection tracker of the firewall, so it counts all the traffic, also the part of long transfers that the inspection engine does not look at. The first refresh after a pause shows the inspection figures until a measurement exists."
-        },
-        {
-          "tag": "improved",
-          "title": "Language switcher",
-          "body": "The language control on the login page and in the setup wizard is a visible button with the current language."
-        },
-        {
-          "tag": "changed",
-          "title": "Setup wizard welcome",
-          "body": "The welcome page no longer advises to disconnect the unit from the internet: the protection lists are downloaded during the setup."
-        },
-        {
-          "tag": "improved",
-          "title": "Setup wizard: skip without logging in",
-          "body": "Skip wizard works on the first page before any login: the firewall keeps its default password and you log in with it. A firewall whose password was changed but whose wizard was left unfinished shows the login page, and the login leads back into the wizard."
-        },
-        {
-          "tag": "improved",
-          "title": "Application Control rules of a profile can be edited",
-          "body": "The rules a profile created open in the same window as any other rule: the categories they block are shown and kept, and you can change the interface, the sources, the name and the logging, or add applications."
-        },
-        {
-          "tag": "improved",
-          "title": "Any interface for a new Application Control rule",
-          "body": "The internal bridge and every other interface can be chosen for a new rule, also after a profile created rules on it."
-        },
-        {
-          "tag": "improved",
-          "title": "Blocked applications are logged",
-          "body": "What Application Control blocks is logged (rate limited) and shows in the Log Viewer, on new firewalls and whenever a profile is applied."
+          "body": "The default LAN -> WAN rule no longer logs the traffic it allows, and the firewall console shows errors only (the system log and the Log Viewer keep every line). Application Control logs at most 5 blocked connections per second. Allowed traffic stays visible in Flows, Top talkers and Traffic analytics, or by turning logging on in a rule. A firewall that had the earlier setting is switched back at the update."
         },
         {
           "tag": "improved",
           "title": "New blocking rules are logged",
-          "body": "A new firewall rule that blocks (drop or reject) starts with logging on, at a limited rate, so what it blocks shows in the Log Viewer. A rule that allows starts with logging off."
-        }
-      ]
-    },
-    {
-      "id": "resolved",
-      "title": "Resolved issues",
-      "intro": "",
-      "items": [
-        {
-          "tag": "fixed",
-          "title": "Cloud backup requests in the log",
-          "body": "The Dashboard asked every few seconds for the list of cloud backups and logged an error each time on a firewall without cloud backup. The request now answers that there are none, and the Dashboard card is hidden and stops asking."
-        },
-        {
-          "tag": "fixed",
-          "title": "Warning about /etc/firewall.user",
-          "body": "The firewall configuration pointed to a file that did not exist and logged a warning at every start; the file is now part of the image."
-        },
-        {
-          "tag": "fixed",
-          "title": "Errors of the port 80 page in the log",
-          "body": "The page on port 80 wrote an error line for every unknown address it was asked for."
-        },
-        {
-          "tag": "fixed",
-          "title": "Intrusion signatures downloaded but not installed",
-          "body": "The signature updater waited for its own lock when it started the installation step, so the signatures were downloaded but never installed and the IPS page showed no signature information. Only the commands that write take the lock now and the status always answers."
-        },
-        {
-          "tag": "fixed",
-          "title": "Wizard skip did nothing before login",
-          "body": "Skip wizard needed a session that does not exist on a new firewall."
-        },
-        {
-          "tag": "fixed",
-          "title": "Management API crash on sign-out",
-          "body": "Signing out with a session the firewall could not read stopped the request with a crash in the log."
-        },
-        {
-          "tag": "fixed",
-          "title": "Setup wizard hidden by an old session",
-          "body": "A browser that still held a login of an earlier firewall at the same address went to the login page instead of the wizard of a new firewall."
-        },
-        {
-          "tag": "fixed",
-          "title": "No interface in the WAN step",
-          "body": "On a firewall whose ports were not named by the image, the wizard reported that the WAN zone had no interface."
-        },
-        {
-          "tag": "fixed",
-          "title": "Web interface API crash",
-          "body": "A session token without a user made the management API stop answering that request with a crash; it now answers not authorized."
-        },
-        {
-          "tag": "fixed",
-          "title": "Errors in the system log",
-          "body": "The cron restart after an IPS change called a wrong path; the telemetry DNS check asked a question the firewall refuses; the updaters of the old application catalog service reported a 404 every day and at every start; two updates of the IPS signatures could write the same file at once. All of them are corrected or removed."
+          "body": "A new firewall rule that drops or rejects starts with logging on, at a limited rate, so what it blocks appears in the Log Viewer. A rule that allows starts with logging off."
         }
       ]
     }
@@ -326,56 +189,6 @@
       }
     ]
   },
-  "known_issues": [
-    {
-      "title": "New defaults apply to new installations only",
-      "body": "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has.",
-      "workaround": "Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list."
-    },
-    {
-      "title": "Reinstalled firewalls",
-      "body": "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
-    },
-    {
-      "title": "Additional subscriptions",
-      "body": "Web Server Protection (WAF) and Email Protection (MTA) are listed as subscriptions, but their features are not available yet."
-    },
-    {
-      "title": "Country blocking without a license",
-      "body": "A firewall without a license cannot use the Nexwall country lists. Country blocking then uses the public lists of the underlying component, which are downloaded every time the service starts and can take a long time."
-    },
-    {
-      "title": "Large DNS list selections",
-      "body": "Reloading the DNS service with about 1.8 million blocked domains interrupts name resolution for roughly ten seconds. Lists are reloaded only when they change, normally once a day.",
-      "workaround": "Switch off the categories you do not need. The memory warning on the DNS block lists page helps you choose."
-    },
-    {
-      "title": "Emulated network cards limit throughput",
-      "body": "In virtual machines with emulated Intel e1000 network cards, throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall.",
-      "workaround": "Use paravirtualized adapters (virtio or vmxnet3) or physical hardware for performance tests."
-    },
-    {
-      "title": "Fast path is off by default",
-      "body": "The fast path has been verified for correctness and counters, but it has not been measured on physical hardware yet.",
-      "workaround": "Switch it on in the Performance card of the Application Control or Network Protection settings and compare on your own traffic."
-    },
-    {
-      "title": "Encrypted traffic",
-      "body": "Application Control and Network Protection do not decrypt HTTPS. Applications are recognized from the connection, the domain name and the traffic pattern."
-    },
-    {
-      "title": "Release candidate",
-      "body": "Interfaces and defaults can still change before the final release."
-    },
-    {
-      "title": "Web interface by IP address",
-      "body": "https://192.168.1.1 shows the browser certificate warning; use https://firewall.lan.nexwall.com.br, or http://192.168.1.1, which opens it. The trusted name needs the firewall as DNS server of the computer, which is the default with DHCP."
-    },
-    {
-      "title": "DNS block statistics",
-      "body": "Blocked domains are counted from the DNS log. New installations have query logging on with a rule that keeps only the blocked answers; a firewall installed earlier needs query logging switched on in its DNS settings to see them."
-    }
-  ],
   "requirements": [
     "x86-64 processor, UEFI firmware with Secure Boot off.",
     "At least two network interfaces (one for the internal network, one for the internet).",
@@ -388,7 +201,9 @@
     "Firewalls running an earlier internal build are not upgraded in place by this release candidate; install the image on a test machine and compare.",
     "Do not restore a configuration backup taken on an older internal build: its traffic engine settings use another format.",
     "To check the file on Linux run sha256sum on it; on Windows run Get-FileHash with -Algorithm SHA256 in PowerShell. The result must equal the SHA-256 in the Downloads table.",
-    "The administration guide is at https://docs.nexwall.com.br."
+    "The administration guide is at https://docs.nexwall.com.br.",
+    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
+    "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
   ],
   "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
 }

@@ -39,6 +39,21 @@
     });
   });
 
+  // issue tables: search text and version
+  var search = document.querySelector('[data-table-search]');
+  var verSel = document.querySelector('[data-table-version]');
+  function filterRows() {
+    var q = search ? search.value.trim().toLowerCase() : '';
+    var v = verSel ? verSel.value : '';
+    document.querySelectorAll('table.issues tbody tr').forEach(function (tr) {
+      var okText = !q || tr.textContent.toLowerCase().indexOf(q) !== -1;
+      var okVer = !v || tr.getAttribute('data-version') === v;
+      tr.hidden = !(okText && okVer);
+    });
+  }
+  if (search) { search.addEventListener('input', filterRows); }
+  if (verSel) { verSel.addEventListener('change', filterRows); }
+
   // copy a checksum
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {

@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.0.0-rc1",
-  "summary": "A primeira versão candidata do Nexwall Firewall: Proteção de rede (IPS), Controle de aplicações, listas de ameaças, bloqueio por país, um visualizador de logs com rastreamento de regras ao vivo, um caminho de dados mais rápido e um modelo de licenciamento entregue por serviços assinados da Nexwall.",
-  "overview": "O Nexwall Firewall 26.0.0-rc1 é a primeira versão candidata do firewall da Nexwall. É uma imagem instalável para máquinas x86-64 e máquinas virtuais, com interface web em inglês, espanhol e português do Brasil.\n\nOs recursos de proteção são servidos pela Nexwall: as assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças são construídos nos servidores da Nexwall, assinados, verificados pelo firewall e atualizados todos os dias. As atualizações da interface web e do componente de licenciamento vêm de um feed assinado da Nexwall, cujos arquivos são fixados por checksum.\n\nEsta é uma versão candidata. Use-a para avaliar, testar em laboratório e enviar comentários; ainda não a use como única proteção de uma rede de produção.",
+  "summary": "Primeiro release candidate: prevenção de intrusões, Controle de aplicações, filtragem DNS, bloqueio de IP e países, Visualizador de logs e licenciamento por módulo.",
+  "overview": "O Nexwall Firewall 26.0.0-rc1 é o primeiro release candidate: uma imagem instalável para máquinas x86-64 e máquinas virtuais, com interface web em português do Brasil, inglês e espanhol. Oferece Proteção de rede (prevenção de intrusões), Controle de aplicações, filtragem DNS, bloqueio de IP e países, um Visualizador de logs com rastreamento de regras ao vivo e licenciamento por módulo. As assinaturas de intrusão, o catálogo de aplicações e as listas de ameaças vêm de serviços assinados da Nexwall e são atualizados diariamente.\n\nEsta é uma versão candidata: use-a para avaliar e testar em laboratório, não como única proteção de uma rede de produção.",
   "at_a_glance": [
     {
       "label": "Versão",
@@ -209,58 +209,6 @@
           "body": "O Threat Shield não lê mais listas de bloqueio de servidores de terceiros nem de um espelho. Tudo vem do pacote assinado da Nexwall."
         }
       ]
-    },
-    {
-      "id": "resolved",
-      "title": "Problemas resolvidos",
-      "intro": "",
-      "items": [
-        {
-          "tag": "fixed",
-          "title": "Firewall reinstalado continuava sem registro",
-          "body": "Um firewall reinstalado mantinha o registro antigo no servidor de licenças e não conseguia obter a licença nem os downloads (assinaturas do IPS, listas). Agora o seu revendedor pode redefinir o dispositivo no painel de licenças e o firewall se registra de novo sozinho."
-        },
-        {
-          "tag": "fixed",
-          "title": "O Visualizador de logs não abria",
-          "body": "Abrir o Visualizador de logs reiniciava o servidor web durante a requisição que o pedia e o navegador mostrava um erro de rede. Ativá-lo de novo não reinicia mais nada e, na primeira vez, a página espera pelo servidor web."
-        },
-        {
-          "tag": "fixed",
-          "title": "A página DNS e DHCP não carregava",
-          "body": "A página gerava um erro quando o endereço de uma interface estava gravado como 192.168.1.1/24. Agora os endereços são lidos em todas as formas e as interfaces sem endereço IPv4 utilizável são ignoradas."
-        },
-        {
-          "tag": "fixed",
-          "title": "Ciclo de falhas do motor de tráfego",
-          "body": "Um plugin do motor de tráfego derrubava o motor repetidamente logo depois de iniciar. A causa foi encontrada com um backtrace simbolizado e corrigida."
-        },
-        {
-          "tag": "fixed",
-          "title": "Motor usando um núcleo de CPU inteiro",
-          "body": "Uma fila de um plugin girava sem esperar e mantinha o motor em 100% de um núcleo. Agora ela espera por trabalho como os outros plugins."
-        },
-        {
-          "tag": "fixed",
-          "title": "Deadlock do motor",
-          "body": "Um plugin podia travar o motor contra si mesmo. O caminho da chamada foi alterado para que o motor não bloqueie mais."
-        },
-        {
-          "tag": "fixed",
-          "title": "Downloads grandes do serviço de licenças",
-          "body": "Downloads de grandes conjuntos de dados do serviço de licenças eram cortados em silêncio em 1 MiB e expiravam após 30 segundos. Agora aceitam até 64 MiB e têm dez minutos para terminar."
-        },
-        {
-          "tag": "fixed",
-          "title": "Esgotamento de memória com limites de conexão muito altos",
-          "body": "Um limite fixo e muito alto de rastreamento de conexões podia esgotar a memória de máquinas pequenas sob carga pesada. Agora o limite é calculado a partir da memória instalada."
-        },
-        {
-          "tag": "fixed",
-          "title": "Rajadas descartadas em placas de rede virtuais",
-          "body": "Buffers pequenos nas placas de rede descartavam rajadas de tráfego e mantinham a vazão baixa nos testes. Buffers maiores e distribuição de pacotes agora vêm ligados por padrão nas instalações novas."
-        }
-      ]
     }
   ],
   "components": {
@@ -373,48 +321,6 @@
       }
     ]
   },
-  "known_issues": [
-    {
-      "title": "Os novos padrões valem apenas para instalações novas",
-      "body": "As regras LAN -> WAN e DROP DEFAULT, a distribuição de pacotes e os buffers maiores das placas de rede fazem parte da configuração padrão. Um firewall instalado antes mantém as configurações que tem.",
-      "workaround": "Adicione as duas regras manualmente em um firewall existente e mantenha DROP DEFAULT no fim da lista."
-    },
-    {
-      "title": "Firewalls reinstalados",
-      "body": "Um firewall reinstalado enquanto está atribuído a um cliente precisa que o revendedor redefina o dispositivo antes de obter a licença de novo."
-    },
-    {
-      "title": "Assinaturas adicionais",
-      "body": "Proteção de servidores web (WAF) e Proteção de e-mail (MTA) aparecem como assinaturas, mas os recursos ainda não estão disponíveis."
-    },
-    {
-      "title": "Bloqueio por país sem licença",
-      "body": "Um firewall sem licença não pode usar as listas de países da Nexwall. O bloqueio por país passa a usar as listas públicas do componente subjacente, que são baixadas toda vez que o serviço inicia e podem demorar muito."
-    },
-    {
-      "title": "Seleções grandes de listas de DNS",
-      "body": "Recarregar o serviço de DNS com cerca de 1,8 milhão de domínios bloqueados interrompe a resolução de nomes por cerca de dez segundos. As listas são recarregadas somente quando mudam, normalmente uma vez por dia.",
-      "workaround": "Desative as categorias de que você não precisa. O aviso de memória da página de listas de bloqueio de DNS ajuda a escolher."
-    },
-    {
-      "title": "Placas de rede emuladas limitam o desempenho",
-      "body": "Em máquinas virtuais com placas de rede Intel e1000 emuladas, a vazão fica entre 0,7 e 1 Gbit/s, qualquer que seja a CPU. É um limite da emulação, não do firewall.",
-      "workaround": "Use adaptadores paravirtualizados (virtio ou vmxnet3) ou hardware físico para testes de desempenho."
-    },
-    {
-      "title": "O caminho rápido vem desligado por padrão",
-      "body": "O caminho rápido foi verificado quanto à correção e aos contadores, mas ainda não foi medido em hardware físico.",
-      "workaround": "Ligue-o no cartão Desempenho das configurações do Controle de aplicações ou da Proteção de rede e compare com o seu próprio tráfego."
-    },
-    {
-      "title": "Tráfego criptografado",
-      "body": "O Controle de aplicações e a Proteção de rede não descriptografam HTTPS. As aplicações são reconhecidas pela conexão, pelo nome de domínio e pelo padrão de tráfego."
-    },
-    {
-      "title": "Versão candidata",
-      "body": "Interfaces e padrões ainda podem mudar antes da versão final."
-    }
-  ],
   "requirements": [
     "Processador x86-64, firmware UEFI com Secure Boot desativado.",
     "Pelo menos duas interfaces de rede (uma para a rede interna e outra para a Internet).",

@@ -1,0 +1,572 @@
+{
+ "en": {
+  "title": "Compatibility",
+  "lead": "Hardware, virtualization platforms and drivers of release 26.0.0-rc4. The drivers come from the image itself (package list and kernel configuration of the build); the Status column says what Nexwall has tested.",
+  "sections": [
+   {
+    "id": "platform",
+    "title": "Platform",
+    "head": [
+     "Item",
+     "Requirement"
+    ],
+    "rows": [
+     [
+      "Processor",
+      "64-bit x86 (x86-64)."
+     ],
+     [
+      "Firmware",
+      "UEFI with Secure Boot off. The image boots in UEFI mode only."
+     ],
+     [
+      "Memory",
+      "2 GB with the default threat categories; 4 GB or more with the adult, advertising and extended malware DNS lists."
+     ],
+     [
+      "Image",
+      "97.9 MB compressed, 316 MiB written to the disk."
+     ],
+     [
+      "Network interfaces",
+      "At least two: one for the internal network and one for the internet."
+     ],
+     [
+      "Internet access",
+      "updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, threat lists and registration."
+     ]
+    ]
+   },
+   {
+    "id": "virtualization",
+    "title": "Virtualization platforms",
+    "head": [
+     "Platform",
+     "Network driver",
+     "Status"
+    ],
+    "rows": [
+     [
+      "VMware (Workstation, ESXi)",
+      "vmxnet3, e1000, e1000e",
+      "Tested in VMware with emulated Intel e1000 adapters. vmxnet3 is included and recommended; not measured yet."
+     ],
+     [
+      "KVM, QEMU, Proxmox",
+      "virtio-net",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "Microsoft Hyper-V",
+      "Hyper-V network adapter (hv_netvsc)",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "Xen",
+      "Xen network frontend",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "Amazon EC2",
+      "Elastic Network Adapter (ena)",
+      "Module in the image. Not tested."
+     ]
+    ]
+   },
+   {
+    "id": "network-adapters",
+    "title": "Network adapters",
+    "head": [
+     "Vendor and family",
+     "Driver",
+     "Status"
+    ],
+    "rows": [
+     [
+      "Intel Fast Ethernet (82557 and later)",
+      "e100",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Intel gigabit (82540 to 82545, PCIe 82571 and later, I217, I218, I219)",
+      "e1000, e1000e",
+      "Included. e1000 tested in a virtual machine."
+     ],
+     [
+      "Intel gigabit (82576, I210, I211, I350)",
+      "igb",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Intel 2.5 gigabit (I225, I226)",
+      "igc",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Intel 10 gigabit (X520, X540, X550)",
+      "ixgbe",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Intel 10 and 40 gigabit (X710, XL710)",
+      "i40e",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Intel integrated Ethernet",
+      "dwmac-intel (stmmac)",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Realtek gigabit and 2.5 gigabit (RTL8111, RTL8168, RTL8125)",
+      "r8169",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Realtek Fast Ethernet (RTL8139)",
+      "8139cp, 8139too",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Broadcom NetXtreme",
+      "tg3, bnx2, bnx2x, bnxt_en",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "NVIDIA nForce",
+      "forcedeth",
+      "Included. Not tested on hardware."
+     ],
+     [
+      "Not in this release",
+      "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, USB Ethernet adapters, Wi-Fi adapters",
+      "Not included."
+     ]
+    ]
+   },
+   {
+    "id": "storage",
+    "title": "Storage controllers",
+    "head": [
+     "Controller",
+     "Status"
+    ],
+    "rows": [
+     [
+      "NVMe",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "SATA (AHCI) and legacy IDE (PIIX)",
+      "Driver in the kernel. Not tested on hardware."
+     ],
+     [
+      "VirtIO block and SCSI",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "VMware paravirtual SCSI",
+      "Driver in the kernel. Tested in VMware."
+     ],
+     [
+      "Hyper-V storage",
+      "Driver in the kernel. Not tested."
+     ],
+     [
+      "LSI Fusion-MPT (SAS, SPI)",
+      "Driver in the kernel. Not tested."
+     ]
+    ]
+   },
+   {
+    "id": "notes",
+    "title": "Notes",
+    "items": [
+     "In virtual machines with emulated Intel e1000 adapters throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall: use vmxnet3 or virtio for performance tests.",
+     "The fast path is off by default. It was verified for correctness, but its gain has not been measured on physical hardware yet.",
+     "Nexwall has tested this release in virtual machines only. Results on physical hardware are welcome; the Status column will be updated."
+    ]
+   }
+  ]
+ },
+ "es": {
+  "title": "Compatibilidad",
+  "lead": "Hardware, plataformas de virtualización y controladores de la versión 26.0.0-rc4. Los controladores salen de la propia imagen (lista de paquetes y configuración del kernel de la compilación); la columna Estado indica qué ha probado Nexwall.",
+  "sections": [
+   {
+    "id": "platform",
+    "title": "Plataforma",
+    "head": [
+     "Elemento",
+     "Requisito"
+    ],
+    "rows": [
+     [
+      "Procesador",
+      "x86 de 64 bits (x86-64)."
+     ],
+     [
+      "Firmware",
+      "UEFI con Secure Boot desactivado. La imagen arranca solo en modo UEFI."
+     ],
+     [
+      "Memoria",
+      "2 GB con las categorías de amenazas predeterminadas; 4 GB o más con las listas DNS de adultos, publicidad y malware extendido."
+     ],
+     [
+      "Imagen",
+      "97,9 MB comprimida, 316 MiB escritos en el disco."
+     ],
+     [
+      "Interfaces de red",
+      "Al menos dos: una para la red interna y otra para internet."
+     ],
+     [
+      "Acceso a internet",
+      "updates.nexwall.com.br, license.nexwall.com.br y services.nexwall.com.br para actualizaciones, licencias, listas de amenazas y registro."
+     ]
+    ]
+   },
+   {
+    "id": "virtualization",
+    "title": "Plataformas de virtualización",
+    "head": [
+     "Plataforma",
+     "Controlador de red",
+     "Estado"
+    ],
+    "rows": [
+     [
+      "VMware (Workstation, ESXi)",
+      "vmxnet3, e1000, e1000e",
+      "Probado en VMware con adaptadores Intel e1000 emulados. vmxnet3 está incluido y es el recomendado; aún no medido."
+     ],
+     [
+      "KVM, QEMU, Proxmox",
+      "virtio-net",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "Microsoft Hyper-V",
+      "Adaptador de red de Hyper-V (hv_netvsc)",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "Xen",
+      "Frontend de red de Xen",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "Amazon EC2",
+      "Elastic Network Adapter (ena)",
+      "Módulo en la imagen. No probado."
+     ]
+    ]
+   },
+   {
+    "id": "network-adapters",
+    "title": "Adaptadores de red",
+    "head": [
+     "Fabricante y familia",
+     "Controlador",
+     "Estado"
+    ],
+    "rows": [
+     [
+      "Intel Fast Ethernet (82557 y posteriores)",
+      "e100",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Intel gigabit (82540 a 82545, PCIe 82571 y posteriores, I217, I218, I219)",
+      "e1000, e1000e",
+      "Incluido. e1000 probado en una máquina virtual."
+     ],
+     [
+      "Intel gigabit (82576, I210, I211, I350)",
+      "igb",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Intel 2,5 gigabit (I225, I226)",
+      "igc",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Intel 10 gigabit (X520, X540, X550)",
+      "ixgbe",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Intel 10 y 40 gigabit (X710, XL710)",
+      "i40e",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Ethernet integrado de Intel",
+      "dwmac-intel (stmmac)",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Realtek gigabit y 2,5 gigabit (RTL8111, RTL8168, RTL8125)",
+      "r8169",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Realtek Fast Ethernet (RTL8139)",
+      "8139cp, 8139too",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "Broadcom NetXtreme",
+      "tg3, bnx2, bnx2x, bnxt_en",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "NVIDIA nForce",
+      "forcedeth",
+      "Incluido. No probado en hardware."
+     ],
+     [
+      "No incluidos en esta versión",
+      "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, adaptadores Ethernet USB, adaptadores Wi-Fi",
+      "No incluido."
+     ]
+    ]
+   },
+   {
+    "id": "storage",
+    "title": "Controladores de almacenamiento",
+    "head": [
+     "Controlador",
+     "Estado"
+    ],
+    "rows": [
+     [
+      "NVMe",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "SATA (AHCI) e IDE heredado (PIIX)",
+      "Controlador en el kernel. No probado en hardware."
+     ],
+     [
+      "VirtIO block y SCSI",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "SCSI paravirtual de VMware",
+      "Controlador en el kernel. Probado en VMware."
+     ],
+     [
+      "Almacenamiento de Hyper-V",
+      "Controlador en el kernel. No probado."
+     ],
+     [
+      "LSI Fusion-MPT (SAS, SPI)",
+      "Controlador en el kernel. No probado."
+     ]
+    ]
+   },
+   {
+    "id": "notes",
+    "title": "Notas",
+    "items": [
+     "En máquinas virtuales con adaptadores Intel e1000 emulados el rendimiento se mantiene entre 0,7 y 1 Gbit/s sea cual sea la CPU. Es un límite de la emulación, no del firewall: use vmxnet3 o virtio para pruebas de rendimiento.",
+     "La ruta rápida está desactivada de forma predeterminada. Se verificó su corrección, pero su beneficio aún no se ha medido en hardware físico.",
+     "Nexwall ha probado esta versión solo en máquinas virtuales. Los resultados en hardware físico son bienvenidos; la columna Estado se actualizará."
+    ]
+   }
+  ]
+ },
+ "pt-BR": {
+  "title": "Compatibilidade",
+  "lead": "Hardware, plataformas de virtualização e drivers da versão 26.0.0-rc4. Os drivers vêm da própria imagem (lista de pacotes e configuração do kernel da compilação); a coluna Situação informa o que a Nexwall testou.",
+  "sections": [
+   {
+    "id": "platform",
+    "title": "Plataforma",
+    "head": [
+     "Item",
+     "Requisito"
+    ],
+    "rows": [
+     [
+      "Processador",
+      "x86 de 64 bits (x86-64)."
+     ],
+     [
+      "Firmware",
+      "UEFI com Secure Boot desligado. A imagem inicia somente em modo UEFI."
+     ],
+     [
+      "Memória",
+      "2 GB com as categorias de ameaças padrão; 4 GB ou mais com as listas DNS de adultos, publicidade e malware estendido."
+     ],
+     [
+      "Imagem",
+      "97,9 MB compactada, 316 MiB gravados no disco."
+     ],
+     [
+      "Interfaces de rede",
+      "Pelo menos duas: uma para a rede interna e outra para a internet."
+     ],
+     [
+      "Acesso à internet",
+      "updates.nexwall.com.br, license.nexwall.com.br e services.nexwall.com.br para atualizações, licenças, listas de ameaças e registro."
+     ]
+    ]
+   },
+   {
+    "id": "virtualization",
+    "title": "Plataformas de virtualização",
+    "head": [
+     "Plataforma",
+     "Driver de rede",
+     "Situação"
+    ],
+    "rows": [
+     [
+      "VMware (Workstation, ESXi)",
+      "vmxnet3, e1000, e1000e",
+      "Testado no VMware com adaptadores Intel e1000 emulados. O vmxnet3 está incluído e é o recomendado; ainda não medido."
+     ],
+     [
+      "KVM, QEMU, Proxmox",
+      "virtio-net",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "Microsoft Hyper-V",
+      "Adaptador de rede do Hyper-V (hv_netvsc)",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "Xen",
+      "Frontend de rede do Xen",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "Amazon EC2",
+      "Elastic Network Adapter (ena)",
+      "Módulo na imagem. Não testado."
+     ]
+    ]
+   },
+   {
+    "id": "network-adapters",
+    "title": "Adaptadores de rede",
+    "head": [
+     "Fabricante e família",
+     "Driver",
+     "Situação"
+    ],
+    "rows": [
+     [
+      "Intel Fast Ethernet (82557 e posteriores)",
+      "e100",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Intel gigabit (82540 a 82545, PCIe 82571 e posteriores, I217, I218, I219)",
+      "e1000, e1000e",
+      "Incluído. e1000 testado em máquina virtual."
+     ],
+     [
+      "Intel gigabit (82576, I210, I211, I350)",
+      "igb",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Intel 2,5 gigabit (I225, I226)",
+      "igc",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Intel 10 gigabit (X520, X540, X550)",
+      "ixgbe",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Intel 10 e 40 gigabit (X710, XL710)",
+      "i40e",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Ethernet integrado da Intel",
+      "dwmac-intel (stmmac)",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Realtek gigabit e 2,5 gigabit (RTL8111, RTL8168, RTL8125)",
+      "r8169",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Realtek Fast Ethernet (RTL8139)",
+      "8139cp, 8139too",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Broadcom NetXtreme",
+      "tg3, bnx2, bnx2x, bnxt_en",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "NVIDIA nForce",
+      "forcedeth",
+      "Incluído. Não testado em hardware."
+     ],
+     [
+      "Não incluídos nesta versão",
+      "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, adaptadores Ethernet USB, adaptadores Wi-Fi",
+      "Não incluído."
+     ]
+    ]
+   },
+   {
+    "id": "storage",
+    "title": "Controladoras de armazenamento",
+    "head": [
+     "Controladora",
+     "Situação"
+    ],
+    "rows": [
+     [
+      "NVMe",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "SATA (AHCI) e IDE legado (PIIX)",
+      "Driver no kernel. Não testado em hardware."
+     ],
+     [
+      "VirtIO block e SCSI",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "SCSI paravirtual do VMware",
+      "Driver no kernel. Testado no VMware."
+     ],
+     [
+      "Armazenamento do Hyper-V",
+      "Driver no kernel. Não testado."
+     ],
+     [
+      "LSI Fusion-MPT (SAS, SPI)",
+      "Driver no kernel. Não testado."
+     ]
+    ]
+   },
+   {
+    "id": "notes",
+    "title": "Observações",
+    "items": [
+     "Em máquinas virtuais com adaptadores Intel e1000 emulados o desempenho fica entre 0,7 e 1 Gbit/s qualquer que seja a CPU. É um limite da emulação, não do firewall: use vmxnet3 ou virtio para testes de desempenho.",
+     "O caminho rápido vem desligado por padrão. Sua correção foi verificada, mas o ganho ainda não foi medido em hardware físico.",
+     "A Nexwall testou esta versão somente em máquinas virtuais. Resultados em hardware físico são bem-vindos; a coluna Situação será atualizada."
+    ]
+   }
+  ]
+ }
+}

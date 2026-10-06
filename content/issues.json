@@ -1,0 +1,502 @@
+{
+ "areas": {
+  "traffic-engine": {
+   "en": "Application Control",
+   "es": "Control de aplicaciones",
+   "pt-BR": "Controle de aplicações"
+  },
+  "ips": {
+   "en": "Network Protection (IPS)",
+   "es": "Protección de red (IPS)",
+   "pt-BR": "Proteção de rede (IPS)"
+  },
+  "dns": {
+   "en": "DNS Filtering",
+   "es": "Filtrado DNS",
+   "pt-BR": "Filtragem DNS"
+  },
+  "geo": {
+   "en": "IP & Geo Blocking",
+   "es": "Bloqueo de IP y países",
+   "pt-BR": "Bloqueio de IP e países"
+  },
+  "logging": {
+   "en": "Logging",
+   "es": "Registros",
+   "pt-BR": "Logs"
+  },
+  "wizard": {
+   "en": "Setup wizard",
+   "es": "Asistente de configuración",
+   "pt-BR": "Assistente de configuração"
+  },
+  "web-interface": {
+   "en": "Web interface",
+   "es": "Interfaz web",
+   "pt-BR": "Interface web"
+  },
+  "management-api": {
+   "en": "Management API",
+   "es": "API de gestión",
+   "pt-BR": "API de gerenciamento"
+  },
+  "licensing": {
+   "en": "Licensing",
+   "es": "Licencias",
+   "pt-BR": "Licenciamento"
+  },
+  "performance": {
+   "en": "Performance",
+   "es": "Rendimiento",
+   "pt-BR": "Desempenho"
+  },
+  "networking": {
+   "en": "Networking",
+   "es": "Red",
+   "pt-BR": "Rede"
+  },
+  "backup": {
+   "en": "Backup",
+   "es": "Copias de seguridad",
+   "pt-BR": "Backup"
+  }
+ },
+ "issues": [
+  {
+   "id": "NXW-1001",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "licensing",
+   "title": {
+    "en": "Reinstalled firewall stayed unregistered",
+    "es": "Un firewall reinstalado seguía sin registrar",
+    "pt-BR": "Firewall reinstalado continuava sem registro"
+   },
+   "body": {
+    "en": "A firewall that was reinstalled kept its old registration on the license server and could not get its license or its downloads (IPS signatures, lists). Your reseller can now reset the device in the license panel, and the firewall registers again by itself.",
+    "es": "Un firewall reinstalado conservaba su antiguo registro en el servidor de licencias y no podía obtener su licencia ni sus descargas (firmas IPS, listas). Su revendedor ahora puede restablecer el dispositivo en el panel de licencias y el firewall se registra de nuevo por sí mismo.",
+    "pt-BR": "Um firewall reinstalado mantinha o registro antigo no servidor de licenças e não conseguia obter a licença nem os downloads (assinaturas do IPS, listas). Agora o seu revendedor pode redefinir o dispositivo no painel de licenças e o firewall se registra de novo sozinho."
+   }
+  },
+  {
+   "id": "NXW-1002",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "logging",
+   "title": {
+    "en": "Log Viewer did not open",
+    "es": "El Visor de registros no se abría",
+    "pt-BR": "O Visualizador de logs não abria"
+   },
+   "body": {
+    "en": "Opening the Log Viewer restarted the web server under the request that asked for it and the browser reported a network error. Enabling it again no longer restarts anything, and the first time the page waits for the web server.",
+    "es": "Abrir el Visor de registros reiniciaba el servidor web durante la petición que lo pedía y el navegador mostraba un error de red. Volver a activarlo ya no reinicia nada y la primera vez la página espera al servidor web.",
+    "pt-BR": "Abrir o Visualizador de logs reiniciava o servidor web durante a requisição que o pedia e o navegador mostrava um erro de rede. Ativá-lo de novo não reinicia mais nada e, na primeira vez, a página espera pelo servidor web."
+   }
+  },
+  {
+   "id": "NXW-1003",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "web-interface",
+   "title": {
+    "en": "DNS & DHCP page failed to load",
+    "es": "La página DNS y DHCP no cargaba",
+    "pt-BR": "A página DNS e DHCP não carregava"
+   },
+   "body": {
+    "en": "The page raised an error when an interface address was stored as 192.168.1.1/24. Addresses are now read in every form and interfaces without a usable IPv4 address are skipped.",
+    "es": "La página producía un error cuando la dirección de una interfaz estaba guardada como 192.168.1.1/24. Ahora las direcciones se leen en todas sus formas y se omiten las interfaces sin una dirección IPv4 utilizable.",
+    "pt-BR": "A página gerava um erro quando o endereço de uma interface estava gravado como 192.168.1.1/24. Agora os endereços são lidos em todas as formas e as interfaces sem endereço IPv4 utilizável são ignoradas."
+   }
+  },
+  {
+   "id": "NXW-1004",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "traffic-engine",
+   "title": {
+    "en": "Traffic engine crash loop",
+    "es": "Bucle de fallos del motor de tráfico",
+    "pt-BR": "Ciclo de falhas do motor de tráfego"
+   },
+   "body": {
+    "en": "A plugin of the traffic engine crashed the engine again and again right after it started. The cause was found with a symbolized backtrace and fixed.",
+    "es": "Un plugin del motor de tráfico hacía fallar el motor una y otra vez justo después de arrancar. La causa se encontró con un backtrace simbolizado y se corrigió.",
+    "pt-BR": "Um plugin do motor de tráfego derrubava o motor repetidamente logo depois de iniciar. A causa foi encontrada com um backtrace simbolizado e corrigida."
+   }
+  },
+  {
+   "id": "NXW-1005",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "traffic-engine",
+   "title": {
+    "en": "Engine using a whole CPU core",
+    "es": "Motor usando un núcleo de CPU completo",
+    "pt-BR": "Motor usando um núcleo de CPU inteiro"
+   },
+   "body": {
+    "en": "A plugin queue spun without waiting and kept the engine at 100% of a core. It now waits for work like the other plugins.",
+    "es": "Una cola de un plugin giraba sin esperar y mantenía el motor al 100 % de un núcleo. Ahora espera trabajo como los demás plugins.",
+    "pt-BR": "Uma fila de um plugin girava sem esperar e mantinha o motor em 100% de um núcleo. Agora ela espera por trabalho como os outros plugins."
+   }
+  },
+  {
+   "id": "NXW-1006",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "traffic-engine",
+   "title": {
+    "en": "Engine deadlock",
+    "es": "Interbloqueo del motor",
+    "pt-BR": "Deadlock do motor"
+   },
+   "body": {
+    "en": "A plugin could lock the engine against itself. The call path was changed so the engine no longer blocks.",
+    "es": "Un plugin podía bloquear el motor contra sí mismo. Se cambió la ruta de la llamada para que el motor ya no se bloquee.",
+    "pt-BR": "Um plugin podia travar o motor contra si mesmo. O caminho da chamada foi alterado para que o motor não bloqueie mais."
+   }
+  },
+  {
+   "id": "NXW-1007",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "licensing",
+   "title": {
+    "en": "Large license data downloads",
+    "es": "Descargas grandes del servicio de licencias",
+    "pt-BR": "Downloads grandes do serviço de licenças"
+   },
+   "body": {
+    "en": "Downloads of big data sets from the license service were cut silently at 1 MiB and timed out after 30 seconds. They now accept up to 64 MiB and have ten minutes to complete.",
+    "es": "Las descargas de conjuntos de datos grandes desde el servicio de licencias se cortaban en silencio a 1 MiB y expiraban a los 30 segundos. Ahora aceptan hasta 64 MiB y disponen de diez minutos para completarse.",
+    "pt-BR": "Downloads de grandes conjuntos de dados do serviço de licenças eram cortados em silêncio em 1 MiB e expiravam após 30 segundos. Agora aceitam até 64 MiB e têm dez minutos para terminar."
+   }
+  },
+  {
+   "id": "NXW-1008",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "performance",
+   "title": {
+    "en": "Memory exhaustion with very high connection limits",
+    "es": "Agotamiento de memoria con límites de conexión muy altos",
+    "pt-BR": "Esgotamento de memória com limites de conexão muito altos"
+   },
+   "body": {
+    "en": "A fixed, very high connection tracking limit could exhaust memory on small machines under heavy load. The limit is now derived from the installed memory.",
+    "es": "Un límite fijo y muy alto de seguimiento de conexiones podía agotar la memoria de equipos pequeños con mucha carga. Ahora el límite se calcula a partir de la memoria instalada.",
+    "pt-BR": "Um limite fixo e muito alto de rastreamento de conexões podia esgotar a memória de máquinas pequenas sob carga pesada. Agora o limite é calculado a partir da memória instalada."
+   }
+  },
+  {
+   "id": "NXW-1009",
+   "type": "fixed",
+   "version": "26.0.0-rc1",
+   "area": "networking",
+   "title": {
+    "en": "Bursts dropped on virtual network cards",
+    "es": "Ráfagas descartadas en tarjetas de red virtuales",
+    "pt-BR": "Rajadas descartadas em placas de rede virtuais"
+   },
+   "body": {
+    "en": "Small default network card buffers dropped traffic bursts and kept throughput low in tests. Larger buffers and packet steering are now on by default for new installations.",
+    "es": "Los búferes pequeños de las tarjetas de red descartaban ráfagas de tráfico y mantenían bajo el rendimiento en las pruebas. Los búferes grandes y la distribución de paquetes ahora están activados de forma predeterminada en las instalaciones nuevas.",
+    "pt-BR": "Buffers pequenos nas placas de rede descartavam rajadas de tráfego e mantinham a vazão baixa nos testes. Buffers maiores e distribuição de pacotes agora vêm ligados por padrão nas instalações novas."
+   }
+  },
+  {
+   "id": "NXW-1010",
+   "type": "fixed",
+   "version": "26.0.0-rc2",
+   "area": "wizard",
+   "title": {
+    "en": "Setup wizard hidden by an old session",
+    "es": "Asistente oculto por una sesión antigua",
+    "pt-BR": "Assistente escondido por uma sessão antiga"
+   },
+   "body": {
+    "en": "A browser that still held a login of an earlier firewall at the same address went to the login page instead of the wizard of a new firewall.",
+    "es": "Un navegador que conservaba el inicio de sesión de un firewall anterior en la misma dirección iba a la página de inicio de sesión en lugar de al asistente del firewall nuevo.",
+    "pt-BR": "Um navegador que ainda guardava o login de um firewall anterior no mesmo endereço ia para a página de login em vez do assistente do firewall novo."
+   }
+  },
+  {
+   "id": "NXW-1011",
+   "type": "fixed",
+   "version": "26.0.0-rc2",
+   "area": "wizard",
+   "title": {
+    "en": "No interface in the WAN step",
+    "es": "Sin interfaz en el paso WAN",
+    "pt-BR": "Sem interface na etapa WAN"
+   },
+   "body": {
+    "en": "On a firewall whose ports were not named by the image, the wizard reported that the WAN zone had no interface.",
+    "es": "En un firewall cuyos puertos la imagen no había nombrado, el asistente informaba que la zona WAN no tenía interfaz.",
+    "pt-BR": "Em um firewall cujas portas a imagem não havia nomeado, o assistente informava que a zona WAN não tinha interface."
+   }
+  },
+  {
+   "id": "NXW-1012",
+   "type": "fixed",
+   "version": "26.0.0-rc2",
+   "area": "management-api",
+   "title": {
+    "en": "Web interface API crash",
+    "es": "Fallo de la API de la interfaz web",
+    "pt-BR": "Falha da API da interface web"
+   },
+   "body": {
+    "en": "A session token without a user made the management API stop answering that request with a crash; it now answers not authorized.",
+    "es": "Un token de sesión sin usuario hacía que la API de gestión dejara de responder esa solicitud con un fallo; ahora responde no autorizado.",
+    "pt-BR": "Um token de sessão sem usuário fazia a API de gerenciamento parar de responder àquela requisição com uma falha; agora ela responde não autorizado."
+   }
+  },
+  {
+   "id": "NXW-1013",
+   "type": "fixed",
+   "version": "26.0.0-rc2",
+   "area": "logging",
+   "title": {
+    "en": "Errors in the system log",
+    "es": "Errores en el registro del sistema",
+    "pt-BR": "Erros no log do sistema"
+   },
+   "body": {
+    "en": "The cron restart after an IPS change called a wrong path; the telemetry DNS check asked a question the firewall refuses; the updaters of the old application catalog service reported a 404 every day and at every start; two updates of the IPS signatures could write the same file at once. All of them are corrected or removed.",
+    "es": "El reinicio de cron tras un cambio de IPS llamaba a una ruta incorrecta; la comprobación DNS de la telemetría hacía una pregunta que el firewall rechaza; los actualizadores del antiguo servicio de catálogo de aplicaciones informaban un 404 cada día y en cada arranque; dos actualizaciones de las firmas de IPS podían escribir el mismo archivo a la vez. Todos están corregidos o eliminados.",
+    "pt-BR": "A reinicialização do cron após uma mudança do IPS chamava um caminho errado; a verificação de DNS da telemetria fazia uma pergunta que o firewall recusa; os atualizadores do antigo serviço de catálogo de aplicações relatavam um 404 todos os dias e a cada inicialização; duas atualizações das assinaturas do IPS podiam escrever o mesmo arquivo ao mesmo tempo. Todos foram corrigidos ou removidos."
+   }
+  },
+  {
+   "id": "NXW-1014",
+   "type": "fixed",
+   "version": "26.0.0-rc3",
+   "area": "ips",
+   "title": {
+    "en": "Intrusion signatures downloaded but not installed",
+    "es": "Firmas de intrusión descargadas pero no instaladas",
+    "pt-BR": "Assinaturas de intrusão baixadas mas não instaladas"
+   },
+   "body": {
+    "en": "The signature updater waited for its own lock when it started the installation step, so the signatures were downloaded but never installed and the IPS page showed no signature information. Only the commands that write take the lock now and the status always answers.",
+    "es": "El actualizador de firmas esperaba su propio bloqueo al iniciar el paso de instalación, así las firmas se descargaban pero nunca se instalaban y la página de IPS no mostraba información de firmas. Ahora solo los comandos que escriben toman el bloqueo y el estado siempre responde.",
+    "pt-BR": "O atualizador de assinaturas esperava o próprio bloqueio ao iniciar a etapa de instalação, então as assinaturas eram baixadas mas nunca instaladas e a página do IPS não mostrava informações das assinaturas. Agora só os comandos que gravam usam o bloqueio e o status sempre responde."
+   }
+  },
+  {
+   "id": "NXW-1015",
+   "type": "fixed",
+   "version": "26.0.0-rc3",
+   "area": "wizard",
+   "title": {
+    "en": "Wizard skip did nothing before login",
+    "es": "Omitir el asistente no hacía nada antes de iniciar sesión",
+    "pt-BR": "Pular o assistente não fazia nada antes do login"
+   },
+   "body": {
+    "en": "Skip wizard needed a session that does not exist on a new firewall.",
+    "es": "Omitir asistente necesitaba una sesión que no existe en un firewall nuevo.",
+    "pt-BR": "Pular assistente precisava de uma sessão que não existe em um firewall novo."
+   }
+  },
+  {
+   "id": "NXW-1016",
+   "type": "fixed",
+   "version": "26.0.0-rc3",
+   "area": "management-api",
+   "title": {
+    "en": "Management API crash on sign-out",
+    "es": "Fallo de la API de gestión al cerrar sesión",
+    "pt-BR": "Falha da API de gerenciamento ao sair"
+   },
+   "body": {
+    "en": "Signing out with a session the firewall could not read stopped the request with a crash in the log.",
+    "es": "Cerrar sesión con una sesión que el firewall no podía leer detenía la solicitud con un fallo en el registro.",
+    "pt-BR": "Sair com uma sessão que o firewall não conseguia ler interrompia a requisição com uma falha no log."
+   }
+  },
+  {
+   "id": "NXW-1017",
+   "type": "fixed",
+   "version": "26.0.0-rc4",
+   "area": "backup",
+   "title": {
+    "en": "Cloud backup requests in the log",
+    "es": "Solicitudes de copia de seguridad en la nube en el registro",
+    "pt-BR": "Requisições de backup na nuvem no log"
+   },
+   "body": {
+    "en": "The Dashboard asked every few seconds for the list of cloud backups and logged an error each time on a firewall without cloud backup. The request now answers that there are none, and the Dashboard card is hidden and stops asking.",
+    "es": "El Panel pedía cada pocos segundos la lista de copias en la nube y registraba un error cada vez en un firewall sin copia en la nube. Ahora la solicitud responde que no hay ninguna, y la tarjeta del Panel se oculta y deja de preguntar.",
+    "pt-BR": "O Painel pedia a cada poucos segundos a lista de backups na nuvem e registrava um erro a cada vez em um firewall sem backup na nuvem. Agora a requisição responde que não há nenhum, e o cartão do Painel fica oculto e deixa de perguntar."
+   }
+  },
+  {
+   "id": "NXW-1018",
+   "type": "fixed",
+   "version": "26.0.0-rc4",
+   "area": "logging",
+   "title": {
+    "en": "Warning about /etc/firewall.user",
+    "es": "Aviso sobre /etc/firewall.user",
+    "pt-BR": "Aviso sobre /etc/firewall.user"
+   },
+   "body": {
+    "en": "The firewall configuration pointed to a file that did not exist and logged a warning at every start; the file is now part of the image.",
+    "es": "La configuración del firewall apuntaba a un archivo que no existía y registraba un aviso en cada arranque; el archivo ahora forma parte de la imagen.",
+    "pt-BR": "A configuração do firewall apontava para um arquivo que não existia e registrava um aviso a cada inicialização; o arquivo agora faz parte da imagem."
+   }
+  },
+  {
+   "id": "NXW-1019",
+   "type": "fixed",
+   "version": "26.0.0-rc4",
+   "area": "logging",
+   "title": {
+    "en": "Errors of the port 80 page in the log",
+    "es": "Errores de la página del puerto 80 en el registro",
+    "pt-BR": "Erros da página da porta 80 no log"
+   },
+   "body": {
+    "en": "The page on port 80 wrote an error line for every unknown address it was asked for.",
+    "es": "La página del puerto 80 escribía una línea de error por cada dirección desconocida que se le pedía.",
+    "pt-BR": "A página da porta 80 escrevia uma linha de erro para cada endereço desconhecido que lhe era pedido."
+   }
+  },
+  {
+   "id": "NXW-2001",
+   "type": "known",
+   "introduced": "26.0.0-rc1",
+   "fixed": null,
+   "area": "geo",
+   "title": {
+    "en": "Country blocking without a license",
+    "es": "Bloqueo por país sin licencia",
+    "pt-BR": "Bloqueio por país sem licença"
+   },
+   "body": {
+    "en": "Without a license, country blocking falls back to the public lists of the underlying component, which are downloaded at every service start and can take a long time. The Nexwall country lists need a license.",
+    "es": "Sin licencia, el bloqueo por país recurre a las listas públicas del componente subyacente, que se descargan en cada inicio del servicio y pueden tardar mucho. Las listas de países de Nexwall requieren licencia.",
+    "pt-BR": "Sem licença, o bloqueio por país recorre às listas públicas do componente subjacente, que são baixadas a cada início do serviço e podem demorar. As listas de países da Nexwall exigem licença."
+   },
+   "workaround": {
+    "en": "Activate the license to use the Nexwall lists.",
+    "es": "Active la licencia para usar las listas de Nexwall.",
+    "pt-BR": "Ative a licença para usar as listas da Nexwall."
+   }
+  },
+  {
+   "id": "NXW-2002",
+   "type": "known",
+   "introduced": "26.0.0-rc1",
+   "fixed": null,
+   "area": "dns",
+   "title": {
+    "en": "Large DNS list selections",
+    "es": "Selecciones grandes de listas DNS",
+    "pt-BR": "Seleções grandes de listas de DNS"
+   },
+   "body": {
+    "en": "Reloading the DNS service with about 1.8 million blocked domains interrupts name resolution for about ten seconds. Lists reload only when they change, normally once a day.",
+    "es": "Recargar el servicio DNS con unos 1,8 millones de dominios bloqueados interrumpe la resolución de nombres durante unos diez segundos. Las listas se recargan solo cuando cambian, normalmente una vez al día.",
+    "pt-BR": "Recarregar o serviço DNS com cerca de 1,8 milhão de domínios bloqueados interrompe a resolução de nomes por cerca de dez segundos. As listas são recarregadas somente quando mudam, normalmente uma vez por dia."
+   },
+   "workaround": {
+    "en": "Switch off the categories you do not need; the memory warning on the DNS block lists page helps you choose.",
+    "es": "Desactive las categorías que no necesite; la advertencia de memoria de la página de listas de bloqueo DNS ayuda a elegir.",
+    "pt-BR": "Desative as categorias de que não precisa; o aviso de memória na página de listas de bloqueio DNS ajuda a escolher."
+   }
+  },
+  {
+   "id": "NXW-2003",
+   "type": "known",
+   "introduced": "26.0.0-rc1",
+   "fixed": null,
+   "area": "licensing",
+   "title": {
+    "en": "Additional subscriptions",
+    "es": "Suscripciones adicionales",
+    "pt-BR": "Assinaturas adicionais"
+   },
+   "body": {
+    "en": "Web Server Protection (WAF) and Email Protection (MTA) appear as subscriptions, but their features are not available yet.",
+    "es": "Protección de servidores web (WAF) y Protección de correo (MTA) aparecen como suscripciones, pero sus funciones aún no están disponibles.",
+    "pt-BR": "Proteção de servidores web (WAF) e Proteção de e-mail (MTA) aparecem como assinaturas, mas suas funções ainda não estão disponíveis."
+   },
+   "workaround": {
+    "en": "",
+    "es": "",
+    "pt-BR": ""
+   }
+  },
+  {
+   "id": "NXW-2004",
+   "type": "known",
+   "introduced": "26.0.0-rc1",
+   "fixed": null,
+   "area": "traffic-engine",
+   "title": {
+    "en": "Encrypted traffic",
+    "es": "Tráfico cifrado",
+    "pt-BR": "Tráfego criptografado"
+   },
+   "body": {
+    "en": "Application Control and Network Protection do not decrypt HTTPS. They recognize applications from the connection, the domain name and the traffic pattern.",
+    "es": "El Control de aplicaciones y la Protección de red no descifran HTTPS. Reconocen las aplicaciones por la conexión, el nombre de dominio y el patrón de tráfico.",
+    "pt-BR": "O Controle de aplicações e a Proteção de rede não decifram HTTPS. Reconhecem as aplicações pela conexão, pelo nome de domínio e pelo padrão de tráfego."
+   },
+   "workaround": {
+    "en": "",
+    "es": "",
+    "pt-BR": ""
+   }
+  },
+  {
+   "id": "NXW-2005",
+   "type": "known",
+   "introduced": "26.0.0-rc2",
+   "fixed": null,
+   "area": "web-interface",
+   "title": {
+    "en": "Web interface by IP address",
+    "es": "Interfaz web por dirección IP",
+    "pt-BR": "Interface web pelo endereço IP"
+   },
+   "body": {
+    "en": "Opening the web interface by its IP address (for example https://192.168.1.1) shows a browser certificate warning, because no public authority issues certificates for private addresses.",
+    "es": "Abrir la interfaz web por su dirección IP (por ejemplo https://192.168.1.1) muestra una advertencia de certificado en el navegador, porque ninguna autoridad pública emite certificados para direcciones privadas.",
+    "pt-BR": "Abrir a interface web pelo endereço IP (por exemplo https://192.168.1.1) mostra um aviso de certificado no navegador, porque nenhuma autoridade pública emite certificados para endereços privados."
+   },
+   "workaround": {
+    "en": "Use https://firewall.lan.nexwall.com.br (the computer must use the firewall as DNS server, the default with DHCP), or http://192.168.1.1, which forwards to it.",
+    "es": "Use https://firewall.lan.nexwall.com.br (el equipo debe usar el firewall como servidor DNS, lo predeterminado con DHCP), o http://192.168.1.1, que redirige a esa dirección.",
+    "pt-BR": "Use https://firewall.lan.nexwall.com.br (o computador deve usar o firewall como servidor DNS, o padrão com DHCP), ou http://192.168.1.1, que redireciona para esse endereço."
+   }
+  },
+  {
+   "id": "NXW-2006",
+   "type": "known",
+   "introduced": "26.0.0-rc2",
+   "fixed": null,
+   "area": "dns",
+   "title": {
+    "en": "DNS block statistics",
+    "es": "Estadísticas de bloqueos DNS",
+    "pt-BR": "Estatísticas de bloqueios de DNS"
+   },
+   "body": {
+    "en": "Blocked domains are counted from the DNS log. A firewall installed before rc2 needs query logging switched on in its DNS settings to show them.",
+    "es": "Los dominios bloqueados se cuentan a partir del registro DNS. Un firewall instalado antes de rc2 necesita el registro de consultas activado en su configuración DNS para mostrarlos.",
+    "pt-BR": "Os domínios bloqueados são contados a partir do log DNS. Um firewall instalado antes do rc2 precisa do registro de consultas ativado em suas configurações DNS para exibi-los."
+   },
+   "workaround": {
+    "en": "Turn on query logging in the DNS settings.",
+    "es": "Active el registro de consultas en la configuración DNS.",
+    "pt-BR": "Ative o registro de consultas nas configurações DNS."
+   }
+  }
+ ]
+}
