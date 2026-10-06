@@ -1,0 +1,290 @@
+{
+  "title": "Nexwall Firewall 26.1.0",
+  "summary": "Proteção web: sites por categoria com inspeção opcional do tráfego criptografado, antivírus para downloads, perfis de uma só escolha para casa, escola e empresa, restrições de SafeSearch e YouTube, e uma visão de tráfego e aplicações no visualizador de logs.",
+  "overview": "O Nexwall Firewall 26.1.0 traz a proteção web para o firewall. Uma única escolha no assistente (Padrão, Escola ou Restrito) agora protege aplicações e sites ao mesmo tempo: as categorias de sites indesejadas são bloqueadas, as categorias que continuam permitidas mas merecem uma olhada são inspecionadas dentro do tráfego criptografado e cada download é analisado em busca de vírus. Os buscadores e o YouTube podem ser forçados aos modos seguros para crianças. O visualizador de logs mostra as aplicações e sites usados e os relatórios de tráfego ficam guardados por 35 dias. A partição do sistema é maior, o firewall tem swap e remover o armazenamento não pode mais apagá-lo por engano.",
+  "at_a_glance": [
+    {
+      "label": "Versão",
+      "value": "26.1.0"
+    },
+    {
+      "label": "Situação",
+      "value": "Versão candidata"
+    },
+    {
+      "label": "Plataforma",
+      "value": "x86-64, boot UEFI"
+    },
+    {
+      "label": "Sistema base",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Idiomas da interface",
+      "value": "Inglês, espanhol, português do Brasil"
+    },
+    {
+      "label": "Recursos licenciados",
+      "value": "Teste incluído"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "Novidades",
+      "intro": "Os recursos abaixo são novos nesta versão.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Proteção web: bloqueio de sites por categoria",
+          "body": "Escolha entre 59 categorias de sites (conteúdo adulto, jogos de azar, drogas, redes sociais, streaming, jogos, malware, phishing e mais, 5,4 milhões de domínios no primeiro catálogo) e aplique às suas redes internas ou a dispositivos escolhidos. As listas vêm do servidor de licenças da Nexwall e são atualizadas toda semana; no firewall só são instaladas as categorias que as suas regras usam. Os sites bloqueados são registrados e aparecem no visualizador de logs."
+        },
+        {
+          "tag": "new",
+          "title": "Inspeção do tráfego criptografado",
+          "body": "Para as categorias que você escolher, o firewall abre a conexão criptografada pelo seu proxy web, confere o certificado do site (vencido, autoassinado, nome errado, autoridade desconhecida) e analisa o que é baixado. Cada firewall cria a sua própria autoridade certificadora, que você instala nos dispositivos inspecionados; sites de bancos, financeiros, de governo e de educação nunca são abertos. Um vigia retira o redirecionamento sozinho se o proxy deixar de responder, e a rede continua funcionando."
+        },
+        {
+          "tag": "new",
+          "title": "Antivírus para downloads",
+          "body": "Os arquivos baixados por conexões inspecionadas (e os downloads web sem criptografia dos mesmos dispositivos) são analisados pelo ClamAV e por regras YARA. Um arquivo infectado é substituído por uma página de bloqueio e registrado. Você decide o que acontece com arquivos grandes demais e quando o analisador não está disponível (permitir ou bloquear). As assinaturas do ClamAV são baixadas automaticamente para o disco de armazenamento; as regras YARA (3.435 no lançamento) vêm do servidor de licenças."
+        },
+        {
+          "tag": "new",
+          "title": "Perfis que protegem os sites também",
+          "body": "Os perfis Padrão, Escola e Restrito do assistente agora criam também as regras web: as categorias a bloquear, as a inspecionar, o antivírus e as opções para a família. O assistente mostra exatamente o que cada perfil faz. As regras criadas por um perfil são marcadas e podem ser editadas."
+        },
+        {
+          "tag": "new",
+          "title": "SafeSearch e modo restrito do YouTube",
+          "body": "Uma regra pode forçar Google, Bing e DuckDuckGo à busca segura e colocar o YouTube no modo Estrito (para crianças) ou Moderado, para os dispositivos dessa regra. Funciona por DNS e alcança também dispositivos que usam outro servidor DNS. O perfil Escola liga o SafeSearch e o YouTube Estrito."
+        },
+        {
+          "tag": "new",
+          "title": "Tráfego e aplicações no visualizador de logs",
+          "body": "Uma nova aba lista as conexões com a aplicação, o nome do site, origem, destino, bytes em cada sentido e duração. Ela só registra enquanto o visualizador está aberto e começa com as conexões abertas naquele momento, assim o log do sistema não se enche de registros de tráfego."
+        },
+        {
+          "tag": "new",
+          "title": "Licenças como pacote e complementos",
+          "body": "A página de Assinatura lista Proteção web, Antivírus / Sandbox e Proteção avançada contra ameaças junto com Controle de aplicações, Proteção de rede, Filtragem DNS, Bloqueio de IP e geografia e VPN estendida (o pacote de segurança), e Proteção do ambiente de trabalho (ZTNA), Proteção de servidores web (WAF) e Proteção de e-mail (MTA) como assinaturas separadas. Os revendedores mantêm um conjunto de licenças e as aplicam aos firewalls; uma licença pode ser movida para outro firewall."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Melhorias e mudanças",
+      "intro": "",
+      "items": [
+        {
+          "tag": "improved",
+          "title": "Relatórios de tráfego guardados por 35 dias",
+          "body": "Os relatórios de tráfego por hora, por dispositivo, aplicação, protocolo e site ficavam na memória e sumiam a cada reinício. Agora ficam no disco de dados por 35 dias."
+        },
+        {
+          "tag": "improved",
+          "title": "Mais espaço na partição do sistema",
+          "body": "A partição do sistema tem 1 GB em vez de 300 MB e a de boot 64 MB, e fica reservado espaço no disco para uma segunda cópia do sistema, o que prepara as atualizações seguras de dois compartimentos previstas para a próxima versão."
+        },
+        {
+          "tag": "improved",
+          "title": "Swap para os serviços que mais usam memória",
+          "body": "O firewall agora usa swap em memória comprimida e, em discos de 16 GB ou mais, um arquivo de swap no disco de dados, para que o antivírus, o proxy web e a prevenção de intrusão funcionem juntos com 4 GB."
+        },
+        {
+          "tag": "improved",
+          "title": "Remover o armazenamento ficou mais seguro",
+          "body": "Remover o armazenamento agora o desconecta e mantém a partição e os dados. Apagar a partição é uma escolha separada que precisa ser marcada, e a janela lista o que usa o armazenamento (assinaturas do antivírus, histórico do visualizador, relatórios de tráfego, swap). O antivírus é desligado quando o seu armazenamento sai."
+        },
+        {
+          "tag": "improved",
+          "title": "Aba Controle de aplicações do visualizador de logs",
+          "body": "O tráfego bloqueado agora aparece na aba Controle de aplicações do visualizador de logs; ele não aparecia por causa de um espaço no início do texto registrado."
+        },
+        {
+          "tag": "improved",
+          "title": "QUIC recusado nos dispositivos inspecionados",
+          "body": "Navegadores que tentam usar QUIC (UDP 443) em redes inspecionadas voltam para a conexão TLS inspecionada, e assim a inspeção e o antivírus não podem ser contornados desse jeito."
+        }
+      ]
+    }
+  ],
+  "components": {
+    "intro": "As versões abaixo formam a imagem. A maioria é fixada por checksum, de modo que a imagem contém sempre exatamente estas versões. O pacote de assinaturas, o catálogo de aplicações e as listas de ameaças não fazem parte da imagem: são baixados e atualizados todos os dias.",
+    "rows": [
+      {
+        "name": "Imagem",
+        "version": "26.1.0",
+        "note": "x86-64, UEFI, imagem de disco compactada"
+      },
+      {
+        "name": "Fontes do firmware",
+        "version": "main 437eb59",
+        "note": "Commit do repositório público do firewall do qual a imagem é construída; a etiqueta da versão vem depois"
+      },
+      {
+        "name": "Sistema base",
+        "version": "OpenWrt 25.12.5",
+        "note": "Kernel Linux 6.12, nftables 1.1"
+      },
+      {
+        "name": "Interface web",
+        "version": "1.5.0",
+        "note": "Inglês, espanhol, português do Brasil"
+      },
+      {
+        "name": "Componente de licenciamento",
+        "version": "1.7.1",
+        "note": "Atualiza-se pelo canal assinado; conhece os novos módulos de licença"
+      },
+      {
+        "name": "Proteção web",
+        "version": "0.5.0",
+        "note": "Categorias, perfis, inspeção, controle do antivírus, opções de SafeSearch e YouTube"
+      },
+      {
+        "name": "Serviços de proteção web",
+        "version": "1.1.0",
+        "note": "Serviço de análise, conector do proxy e vigia, com licença"
+      },
+      {
+        "name": "Proxy web",
+        "version": "Squid 7.1",
+        "note": "Inspeção do tráfego criptografado, uma autoridade certificadora por firewall"
+      },
+      {
+        "name": "Antivírus",
+        "version": "ClamAV 1.4.3, YARA 4.5.0",
+        "note": "Assinaturas baixadas pelo firewall; regras YARA do servidor de licenças"
+      },
+      {
+        "name": "Categorias de sites",
+        "version": "2026.10.06.1",
+        "note": "59 categorias, 5,4 milhões de domínios (UT1, CC BY-SA 4.0); atualizadas toda semana"
+      },
+      {
+        "name": "Regras YARA",
+        "version": "2026.10.06.1",
+        "note": "3.435 regras de coleções abertas e da Nexwall; atualizadas toda semana"
+      },
+      {
+        "name": "Motor de classificação de tráfego",
+        "version": "5.2.8 (versão 6)",
+        "note": "Netify Agent com plugins da Nexwall"
+      },
+      {
+        "name": "Plugins do motor de tráfego",
+        "version": "1.0.1",
+        "note": "Cinco plugins, compilados para a versão 6 do motor"
+      },
+      {
+        "name": "Motor de prevenção de intrusões",
+        "version": "Snort 3.10.0.0",
+        "note": "Com o plugin de controle da Nexwall 1.0.1"
+      },
+      {
+        "name": "Assinaturas de intrusão",
+        "version": "pacote diário",
+        "note": "Comunidade, regras abertas convertidas e Nexwall Labs; 2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Catálogo de aplicações",
+        "version": "pacote diário",
+        "note": "2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Listas de ameaças",
+        "version": "2026.10.02.3",
+        "note": "12 categorias de DNS, 2 listas de IP, listas por país; reconstruídas todos os dias"
+      }
+    ]
+  },
+  "timeline": {
+    "intro": "Como esta versão foi formada, da primeira imagem até a versão candidata.",
+    "entries": [
+      {
+        "date": "2026-09-19",
+        "title": "Primeira imagem",
+        "text": "Marca, nomes e arquivos de licenciamento da Nexwall; a imagem base iniciou em uma máquina virtual."
+      },
+      {
+        "date": "2026-09-20",
+        "title": "Código da Nexwall",
+        "text": "A interface web, o monitoramento, o portal cativo e as verificações do Checkmk passam a ser compilados de repositórios da Nexwall; foram adicionados a aplicação de regras do Controle de aplicações e suas estatísticas; os serviços migraram para hosts da Nexwall; o erro de endereços de DNS e DHCP foi corrigido."
+      },
+      {
+        "date": "2026-09-21",
+        "title": "Primeira imagem somente Nexwall",
+        "text": "Iniciou com a nova interface e a tradução para português; um túnel IPsec com um firewall de terceiros, um Active Directory remoto e o acesso remoto OpenVPN foram configurados e funcionaram."
+      },
+      {
+        "date": "2026-09-22 a 23",
+        "title": "Motor de tráfego 5.2.8 e plugins da Nexwall",
+        "text": "O motor foi atualizado e os plugins de fluxos, estatísticas e saída HTTP foram verificados de ponta a ponta em uma unidade em funcionamento."
+      },
+      {
+        "date": "2026-09-24",
+        "title": "Ações do Controle de aplicações",
+        "text": "O plugin de ações foi testado ao vivo; um ciclo de falhas e uma espera ativa que usava um núcleo de CPU inteiro foram encontrados e corrigidos, e os rótulos foram confirmados de ponta a ponta."
+      },
+      {
+        "date": "2026-09-30",
+        "title": "Catálogo, contabilização e logs",
+        "text": "Foram construídos e testados o catálogo de aplicações da Nexwall, a correção da contabilização de tráfego, o visualizador de logs com rastreamento de regras ao vivo e o vigia de filas travadas."
+      },
+      {
+        "date": "2026-10-01",
+        "title": "Feed assinado e serviços licenciados",
+        "text": "O feed de atualizações assinado, os tokens de recurso para Controle de aplicações, estatísticas e Proteção de rede, o serviço de assinaturas de intrusão e o plugin de controle da Proteção de rede."
+      },
+      {
+        "date": "2026-10-02",
+        "title": "Desempenho, listas de ameaças e padrões",
+        "text": "Threads de inspeção, caminho rápido, distribuição de pacotes, buffers maiores e o Monitor do motor; nome da Proteção de rede e ação padrão Bloquear; atualização diária de assinaturas e catálogo; listas do Threat Shield, bloqueio por país e aviso de memória; regras padrão do firewall; interface web 1.3.6; a imagem da versão candidata."
+      },
+      {
+        "date": "2026-10-03",
+        "title": "Configuração guiada e licenciamento por módulo",
+        "text": "Assistente com etapas de rede e segurança, assinaturas por módulo, registro sem código, chaves de ativar todas, correção do Visualizador de logs, interface web 1.3.7 e componente de licenciamento 1.6.0."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Seguro por padrão e endereço web confiável",
+        "text": "Perfis de Controle de aplicações, proteção desde a primeira inicialização, assistente antes do login, certificado para firewall.nexwall.com.br, Visualizador de logs reformulado, análises de DNS e países, interface web 1.3.9."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Correções após testar o rc2",
+        "text": "Instalação das assinaturas, pular o assistente sem login, regras de perfil editáveis, qualquer interface para novas regras do Controle de aplicações, registro de aplicações bloqueadas e de novas regras do firewall, rastreio ao vivo de Pacotes descartados, interface web 1.3.10."
+      },
+      {
+        "date": "2026-10-06",
+        "title": "Um certificado para cada firewall, logs silenciosos",
+        "text": "Certificados web por unidade com o endereço confiável firewall.lan.nexwall.com.br, a página da porta 80, logs e console mais silenciosos, lista de backups na nuvem sem erros, interface web 1.3.12."
+      },
+      {
+        "date": "2026-10-06 a 07",
+        "title": "Proteção web",
+        "text": "Categorias de sites com um catálogo do servidor de licenças, inspeção do tráfego criptografado com a sua própria autoridade certificadora, o antivírus (ClamAV e YARA), perfis que aplicam tudo isso, restrições de SafeSearch e YouTube, a visão de tráfego e aplicações, relatórios de tráfego persistentes, uma partição do sistema maior com swap e licenças como pacote com complementos."
+      }
+    ]
+  },
+  "requirements": [
+    "Processador x86-64, firmware UEFI com Secure Boot desligado.",
+    "Pelo menos duas interfaces de rede (uma para a rede interna, outra para a internet).",
+    "2 GB de memória sem a proteção web; 4 GB ou mais com o antivírus e a inspeção do tráfego criptografado, e com as listas de adultos, publicidade e malware ampliado.",
+    "Um disco de 16 GB ou mais: o firewall cria o seu armazenamento de dados (logs, relatórios, assinaturas do antivírus, arquivo de swap) na primeira inicialização. Discos menores funcionam, sem o armazenamento de assinaturas do antivírus, o arquivo de swap e o espaço reservado para uma segunda cópia do sistema.",
+    "Acesso à internet a updates.nexwall.com.br, license.nexwall.com.br e services.nexwall.com.br para atualizações, licenças, categorias, regras, listas de ameaças e registro, e aos espelhos do ClamAV para as assinaturas do antivírus."
+  ],
+  "upgrade": [
+    "A versão é uma imagem de disco instalável para máquinas virtuais e appliances. Confira primeiro o SHA-256.",
+    "Após o primeiro boot, a interface interna responde em 192.168.1.1. Altere a senha do administrador no primeiro login.",
+    "Para conferir o arquivo no Linux, execute sha256sum nele; no Windows, execute Get-FileHash com -Algorithm SHA256 no PowerShell. O resultado deve ser igual ao SHA-256 da tabela de downloads.",
+    "O guia de administração está em https://docs.nexwall.com.br.",
+    "Firewalls com 26.0.0-rc4 ou anterior não são atualizados no local por esta versão: a disposição do disco mudou (partição do sistema de 1 GB, de boot de 64 MB). Instale a imagem em uma máquina de teste ou em um disco novo e compare. Restaurar um backup de configuração de uma versão anterior não foi testado.",
+    "Para inspecionar o tráfego criptografado, instale nos dispositivos o certificado de inspeção do firewall (Proteção web, Inspeção). Sem ele os navegadores mostram um aviso nos sites inspecionados.",
+    "O antivírus precisa do armazenamento de dados e baixa as suas assinaturas depois de ligado; leva alguns minutos. Escolher um perfil no assistente o liga se o firewall tiver licença e armazenamento.",
+    "As licenças de um revendedor são aplicadas aos firewalls a partir de um conjunto e podem ser movidas para outro firewall; uma mudança chega ao firewall na próxima verificação de licença (cerca de uma vez ao dia)."
+  ],
+  "open_source": "O Nexwall Firewall é construído sobre software de código aberto, entre outros OpenWrt, o kernel do Linux, nftables, Snort 3, Netify Agent e nDPI, dnsmasq, banIP, adblock e VictoriaMetrics. O firewall e as ferramentas de operação são publicados com as suas licenças originais, e os textos de licença e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas do Threat Shield são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as relaciona faz parte de cada pacote."
+}

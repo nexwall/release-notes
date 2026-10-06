@@ -1,0 +1,292 @@
+{
+  "title": "Nexwall Firewall 26.1.0",
+  "summary": "Web Protection: websites by category with optional inspection of encrypted traffic, an antivirus for downloads, one-choice profiles for home, school and company, SafeSearch and YouTube restrictions, and a traffic and applications view in the Log Viewer.",
+  "overview": "Nexwall Firewall 26.1.0 adds Web Protection to the firewall. A single choice in the setup wizard (Standard, School or Restricted) now protects applications and websites together: unwanted website categories are blocked, categories that stay allowed but deserve a look are inspected inside the encrypted traffic and every download is scanned for viruses. Search engines and YouTube can be forced into their safe modes for children. The Log Viewer shows the applications and websites used, and the traffic reports are kept for 35 days. The system partition is larger, the firewall has swap, and removing the storage can no longer erase it by accident.",
+  "at_a_glance": [
+    {
+      "label": "Version",
+      "value": "26.1.0"
+    },
+    {
+      "label": "Status",
+      "value": "Release candidate"
+    },
+    {
+      "label": "Platform",
+      "value": "x86-64, UEFI boot"
+    },
+    {
+      "label": "Base system",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Interface languages",
+      "value": "English, Spanish, Brazilian Portuguese"
+    },
+    {
+      "label": "Licensed features",
+      "value": "Trial included"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "What is new",
+      "intro": "The features below are new in this release.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Web Protection: block websites by category",
+          "body": "Choose from 59 website categories (adult content, gambling, drugs, social networks, streaming, games, malware, phishing and more, 5.4 million domains in the first catalog) and apply them to your internal networks or to chosen devices. The lists come from the Nexwall license server and are refreshed every week; only the categories your rules use are installed on the firewall. Blocked websites are logged and shown in the Log Viewer."
+        },
+        {
+          "tag": "new",
+          "title": "Inspection of encrypted traffic",
+          "body": "For the categories you choose, the firewall opens the encrypted connection through its web proxy, checks the website certificate (expired, self-signed, wrong name, unknown authority) and scans what is downloaded. Each firewall creates its own certificate authority, which you install on the devices that are inspected; banking, financial, government and education sites are never opened. A guard removes the redirect by itself if the proxy stops answering, so the network keeps working."
+        },
+        {
+          "tag": "new",
+          "title": "Antivirus for downloads",
+          "body": "Files downloaded through inspected connections (and plain web downloads of the same devices) are scanned by ClamAV and by YARA rules. An infected file is replaced by a block page and logged. You decide what happens with files that are too large and when the scanner is not available (allow or block). The ClamAV signatures are downloaded automatically to the storage disk; the YARA rules (3,435 at release) come from the license server."
+        },
+        {
+          "tag": "new",
+          "title": "Profiles that protect websites too",
+          "body": "The Standard, School and Restricted profiles of the setup wizard now create the website rules as well: the categories to block, the categories to inspect, the antivirus and the family options. The wizard shows exactly what each profile does. Rules created by a profile are marked and can be edited."
+        },
+        {
+          "tag": "new",
+          "title": "SafeSearch and YouTube Restricted Mode",
+          "body": "A rule can force Google, Bing and DuckDuckGo into their safe search and put YouTube in Strict (for children) or Moderate mode, for the devices of that rule. It works through DNS and also catches devices that use another DNS server. The School profile turns on SafeSearch and YouTube Strict."
+        },
+        {
+          "tag": "new",
+          "title": "Traffic and applications in the Log Viewer",
+          "body": "A new tab lists the connections with the application, website name, source, destination, bytes in each direction and duration. It records only while the Log Viewer is open and starts with the connections that are open at that moment, so the system log is not filled with traffic records."
+        },
+        {
+          "tag": "new",
+          "title": "Licenses as a bundle and add-ons",
+          "body": "The Subscription page lists Web Protection, Antivirus / Sandbox and Advanced Threat Protection together with Application Control, Network Protection, DNS Filtering, IP & Geo Blocking and VPN Extended (the Security Bundle), and Workspace Protection (ZTNA), Web Server Protection (WAF) and Email Protection (MTA) as separate subscriptions. Resellers hold a pool of licenses and apply them to firewalls; a license can be moved to another firewall."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Improvements and changes",
+      "intro": "",
+      "items": [
+        {
+          "tag": "improved",
+          "title": "Traffic reports are kept for 35 days",
+          "body": "The hourly traffic reports per device, application, protocol and website used to live in memory and disappeared at every restart. They are now stored on the data disk and kept for 35 days."
+        },
+        {
+          "tag": "improved",
+          "title": "More room on the system partition",
+          "body": "The system partition is 1 GB instead of 300 MB and the boot partition 64 MB, and space is reserved on the disk for a second system copy, which prepares the safe two-slot updates planned for the next release."
+        },
+        {
+          "tag": "improved",
+          "title": "Swap for the memory-hungry services",
+          "body": "The firewall now uses compressed memory swap and, on disks of 16 GB or more, a swap file on the data disk, so the antivirus, the web proxy and the intrusion prevention can run together on 4 GB."
+        },
+        {
+          "tag": "improved",
+          "title": "Removing the storage is safer",
+          "body": "Removing the storage now detaches it and keeps the partition and its data. Erasing the partition is a separate choice that must be ticked, and the dialog lists what uses the storage (antivirus signatures, Log Viewer history, traffic reports, swap). The antivirus is switched off when its storage goes away."
+        },
+        {
+          "tag": "improved",
+          "title": "Application Control tab of the Log Viewer",
+          "body": "Blocked traffic now appears in the Application Control tab of the Log Viewer; it was missing because of a leading space in the logged text."
+        },
+        {
+          "tag": "improved",
+          "title": "QUIC is refused for inspected devices",
+          "body": "Browsers that try to use QUIC (UDP 443) on inspected networks fall back to the inspected TLS connection, so inspection and the antivirus cannot be bypassed that way."
+        }
+      ]
+    }
+  ],
+  "components": {
+    "intro": "The versions below make up the image. Most of them are pinned by checksum, so the image always contains exactly these versions. The signature bundle, the application catalog and the threat lists are not part of the image: they are downloaded and refreshed daily.",
+    "rows": [
+      {
+        "name": "Image",
+        "version": "26.1.0",
+        "note": "x86-64, UEFI, compressed disk image"
+      },
+      {
+        "name": "Firmware sources",
+        "version": "main 437eb59",
+        "note": "Commit of the public firewall repository the image is built from; the release tag follows"
+      },
+      {
+        "name": "Base system",
+        "version": "OpenWrt 25.12.5",
+        "note": "Linux kernel 6.12, nftables 1.1"
+      },
+      {
+        "name": "Web interface",
+        "version": "1.5.0",
+        "note": "English, Spanish, Brazilian Portuguese"
+      },
+      {
+        "name": "License component",
+        "version": "1.7.1",
+        "note": "Updates itself from the signed feed; knows the new license modules"
+      },
+      {
+        "name": "Web Protection",
+        "version": "0.5.0",
+        "note": "Categories, profiles, inspection, antivirus control, SafeSearch and YouTube options"
+      },
+      {
+        "name": "Web Protection services",
+        "version": "1.1.0",
+        "note": "Scanning service, proxy connector and guard, licensed"
+      },
+      {
+        "name": "Web proxy",
+        "version": "Squid 7.1",
+        "note": "Inspection of encrypted traffic, one certificate authority per firewall"
+      },
+      {
+        "name": "Antivirus",
+        "version": "ClamAV 1.4.3, YARA 4.5.0",
+        "note": "Signatures downloaded by the firewall; YARA rules from the license server"
+      },
+      {
+        "name": "Website categories",
+        "version": "2026.10.06.1",
+        "note": "59 categories, 5.4 million domains (UT1, CC BY-SA 4.0); refreshed weekly"
+      },
+      {
+        "name": "YARA rules",
+        "version": "2026.10.06.1",
+        "note": "3,435 rules from open collections and Nexwall; refreshed weekly"
+      },
+      {
+        "name": "Traffic classification engine",
+        "version": "5.2.8 (release 6)",
+        "note": "Netify Agent with Nexwall plugins"
+      },
+      {
+        "name": "Traffic engine plugins",
+        "version": "1.0.1",
+        "note": "Five plugins, built for engine release 6"
+      },
+      {
+        "name": "Intrusion prevention engine",
+        "version": "Snort 3.10.0.0",
+        "note": "With the Nexwall gate plugin 1.0.1"
+      },
+      {
+        "name": "Intrusion signatures",
+        "version": "daily bundle",
+        "note": "Community, converted open rules and Nexwall Labs; 2026.10.02.1 at release"
+      },
+      {
+        "name": "Application catalog",
+        "version": "daily bundle",
+        "note": "2026.10.02.1 at release"
+      },
+      {
+        "name": "Threat lists",
+        "version": "2026.10.02.3",
+        "note": "12 DNS categories, 2 IP lists, country lists; rebuilt daily"
+      }
+    ]
+  },
+  "timeline": {
+    "intro": "How this release came together, from the first image to the release candidate.",
+    "entries": [
+      {
+        "date": "2026-09-19",
+        "title": "First image",
+        "text": "Nexwall branding, naming and licensing files; the baseline image booted in a virtual machine."
+      },
+      {
+        "date": "2026-09-20",
+        "title": "Nexwall sources",
+        "text": "The web interface, monitoring, captive portal and Checkmk checks are built from Nexwall repositories; Application Control enforcement and its statistics were added; services moved to Nexwall hosts; the DNS & DHCP address bug was fixed."
+      },
+      {
+        "date": "2026-09-21",
+        "title": "First Nexwall-only image",
+        "text": "Booted with the new interface and Portuguese translation; an IPsec tunnel to a third-party firewall, a remote Active Directory and OpenVPN remote access were configured and worked."
+      },
+      {
+        "date": "2026-09-22 to 23",
+        "title": "Traffic engine 5.2.8 and Nexwall plugins",
+        "text": "The engine was upgraded and the flow, statistics and HTTP-sink plugins were verified end to end on a running unit."
+      },
+      {
+        "date": "2026-09-24",
+        "title": "Application Control actions",
+        "text": "The action plugin was tested live; a crash loop and a busy-wait that used a whole CPU core were found and fixed, and labels were confirmed end to end."
+      },
+      {
+        "date": "2026-09-30",
+        "title": "Catalog, accounting and logs",
+        "text": "The Nexwall application catalog, the traffic accounting fix, the Log Viewer with live rule tracing and the stalled-queue watchdog were built and tested."
+      },
+      {
+        "date": "2026-10-01",
+        "title": "Signed feed and licensed services",
+        "text": "The signed update feed, feature tokens for Application Control, statistics and Network Protection, the intrusion signature service and the Network Protection gate plugin."
+      },
+      {
+        "date": "2026-10-02",
+        "title": "Performance, threat feeds and defaults",
+        "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat Shield feeds, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
+      },
+      {
+        "date": "2026-10-03",
+        "title": "Guided setup and licensing by module",
+        "text": "Setup wizard with network and security steps, subscriptions by module, registration without a code, enable-all switches, Log Viewer fix, web interface 1.3.7 and license component 1.6.0."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Secure by default and trusted web address",
+        "text": "Application Control profiles, protection from the first start, wizard before login, certificate for firewall.nexwall.com.br, Log Viewer rework, DNS and country analytics, web interface 1.3.9."
+      },
+      {
+        "date": "2026-10-05",
+        "title": "Fixes after testing rc2",
+        "text": "Signature installation, wizard skip without login, editable profile rules, any interface for new Application Control rules, logging of blocked applications and of new firewall rules, Dropped Packets live trace, web interface 1.3.10."
+      },
+      {
+        "date": "2026-10-06",
+        "title": "A certificate for each firewall, quiet logs",
+        "text": "Per-unit web certificates with the trusted address firewall.lan.nexwall.com.br, the port 80 page, quieter logs and console, cloud backup list without errors, web interface 1.3.12."
+      },
+      {
+        "date": "2026-10-06 to 07",
+        "title": "Web Protection",
+        "text": "Website categories with a license-server catalog, inspection of encrypted traffic with its own certificate authority, the antivirus (ClamAV and YARA), profiles that apply all of it, SafeSearch and YouTube restrictions, the traffic and applications view, persistent traffic reports, a larger system partition with swap, and licenses as a bundle with add-ons."
+      }
+    ]
+  },
+  "requirements": [
+    "x86-64 processor, UEFI firmware with Secure Boot off.",
+    "At least two network interfaces (one for the internal network, one for the internet).",
+    "2 GB of memory without Web Protection; 4 GB or more with the antivirus and the inspection of encrypted traffic, and with the adult, advertising and extended malware lists.",
+    "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at the first start. Smaller disks work, without the antivirus signatures store, the swap file and the space kept for a second system copy.",
+    "Internet access to updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, categories, rules, threat feeds and registration, and to the ClamAV mirrors for the antivirus signatures."
+  ],
+  "upgrade": [
+    "The release is an installable disk image for virtual machines and appliances. Check its SHA-256 first.",
+    "After the first start the internal interface answers on 192.168.1.1. Change the administrator password on the first login.",
+    "To check the file on Linux run sha256sum on it; on Windows run Get-FileHash with -Algorithm SHA256 in PowerShell. The result must equal the SHA-256 in the Downloads table.",
+    "The administration guide is at https://docs.nexwall.com.br.",
+    "Firewalls running 26.0.0-rc4 or earlier are not upgraded in place by this release: the disk layout changed (system partition 1 GB, boot partition 64 MB). Install the image on a test machine or a new disk and compare. Restoring a configuration backup taken on an earlier build was not tested.",
+    "To inspect encrypted traffic, install the firewall's inspection certificate on the devices (Web Protection, Inspection). Without it browsers show a warning for inspected sites.",
+    "The antivirus needs the data storage and downloads its signatures after it is switched on; this takes a few minutes. Choosing a profile in the setup wizard switches it on when the firewall is licensed and has storage.",
+    "The licenses of a reseller are applied to firewalls from a pool and can be moved to another firewall; a change reaches the firewall at its next license check (about once a day).",
+    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
+    "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
+  ],
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+}

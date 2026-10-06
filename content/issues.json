@@ -59,6 +59,11 @@
    "en": "Backup",
    "es": "Copias de seguridad",
    "pt-BR": "Backup"
+  },
+  "web-protection": {
+   "en": "Web Protection",
+   "es": "Protección web",
+   "pt-BR": "Proteção web"
   }
  },
  "issues": [
@@ -444,9 +449,9 @@
     "pt-BR": "Tráfego criptografado"
    },
    "body": {
-    "en": "Application Control and Network Protection do not decrypt HTTPS. They recognize applications from the connection, the domain name and the traffic pattern.",
-    "es": "El Control de aplicaciones y la Protección de red no descifran HTTPS. Reconocen las aplicaciones por la conexión, el nombre de dominio y el patrón de tráfico.",
-    "pt-BR": "O Controle de aplicações e a Proteção de rede não decifram HTTPS. Reconhecem as aplicações pela conexão, pelo nome de domínio e pelo padrão de tráfego."
+    "en": "Application Control and Network Protection do not decrypt HTTPS. They recognize applications from the connection, the domain name and the traffic pattern. Web Protection can inspect chosen categories of encrypted traffic (see NXW-2007).",
+    "es": "El Control de aplicaciones y la Protección de red no descifran HTTPS. Reconocen las aplicaciones por la conexión, el nombre de dominio y el patrón de tráfico. La protección web puede inspeccionar categorías elegidas del tráfico cifrado (vea NXW-2007).",
+    "pt-BR": "O Controle de aplicações e a Proteção de rede não decifram HTTPS. Reconhecem as aplicações pela conexão, pelo nome de domínio e pelo padrão de tráfego. A proteção web pode inspecionar categorias escolhidas do tráfego criptografado (veja NXW-2007)."
    },
    "workaround": {
     "en": "",
@@ -496,6 +501,202 @@
     "en": "Turn on query logging in the DNS settings.",
     "es": "Active el registro de consultas en la configuración DNS.",
     "pt-BR": "Ative o registro de consultas nas configurações DNS."
+   }
+  },
+  {
+   "id": "NXW-1020",
+   "type": "fixed",
+   "version": "26.1.0",
+   "area": "logging",
+   "title": {
+    "en": "Application Control tab of the Log Viewer was empty",
+    "es": "La pestaña Control de aplicaciones del visor de registros estaba vacía",
+    "pt-BR": "A aba Controle de aplicações do visualizador de logs estava vazia"
+   },
+   "body": {
+    "en": "Blocked traffic was logged but did not show in the Application Control tab of the Log Viewer (it did show in Firewall traffic), because of a leading space in the logged text. It shows now.",
+    "es": "El tráfico bloqueado se registraba pero no aparecía en la pestaña Control de aplicaciones del visor de registros (sí en Tráfico del firewall), por un espacio inicial en el texto registrado. Ahora aparece.",
+    "pt-BR": "O tráfego bloqueado era registrado mas não aparecia na aba Controle de aplicações do visualizador de logs (aparecia em Tráfego do firewall), por causa de um espaço no início do texto registrado. Agora aparece."
+   }
+  },
+  {
+   "id": "NXW-1021",
+   "type": "fixed",
+   "version": "26.1.0",
+   "area": "logging",
+   "title": {
+    "en": "Traffic reports lost at every restart",
+    "es": "Informes de tráfico perdidos en cada reinicio",
+    "pt-BR": "Relatórios de tráfego perdidos a cada reinício"
+   },
+   "body": {
+    "en": "The hourly traffic reports were kept in memory and disappeared when the firewall restarted, and only as many days fitted in 1% of the memory. They are now on the data disk and kept for 35 days.",
+    "es": "Los informes horarios de tráfico se guardaban en memoria y desaparecían al reiniciar el firewall, y solo cabían los días que entraban en el 1 % de la memoria. Ahora están en el disco de datos y se conservan 35 días.",
+    "pt-BR": "Os relatórios de tráfego por hora ficavam na memória e sumiam quando o firewall reiniciava, e só cabiam os dias que entravam em 1 % da memória. Agora ficam no disco de dados e são mantidos por 35 dias."
+   }
+  },
+  {
+   "id": "NXW-1022",
+   "type": "fixed",
+   "version": "26.1.0",
+   "area": "backup",
+   "title": {
+    "en": "Removing the storage deleted its partition",
+    "es": "Quitar el almacenamiento borraba su partición",
+    "pt-BR": "Remover o armazenamento apagava a sua partição"
+   },
+   "body": {
+    "en": "Removing the storage deleted the partition and everything on it. It now only detaches the storage; deleting the partition is a separate choice that must be ticked.",
+    "es": "Quitar el almacenamiento borraba la partición y todo lo que contenía. Ahora solo lo desconecta; borrar la partición es una opción aparte que hay que marcar.",
+    "pt-BR": "Remover o armazenamento apagava a partição e tudo o que havia nela. Agora ele apenas é desconectado; apagar a partição é uma escolha separada que precisa ser marcada."
+   }
+  },
+  {
+   "id": "NXW-1023",
+   "type": "fixed",
+   "version": "26.1.0",
+   "area": "performance",
+   "title": {
+    "en": "System partition too small for extra packages",
+    "es": "Partición del sistema demasiado pequeña para paquetes adicionales",
+    "pt-BR": "Partição do sistema pequena demais para pacotes adicionais"
+   },
+   "body": {
+    "en": "The writable part of the system partition was about 213 MB, which filled up when services such as the antivirus were added. The system partition is now 1 GB. Firewalls installed with an earlier image keep their size.",
+    "es": "La parte escribible de la partición del sistema era de unos 213 MB y se llenaba al añadir servicios como el antivirus. Ahora la partición del sistema es de 1 GB. Los firewalls instalados con una imagen anterior conservan su tamaño.",
+    "pt-BR": "A parte gravável da partição do sistema tinha cerca de 213 MB e enchia ao acrescentar serviços como o antivírus. Agora a partição do sistema tem 1 GB. Firewalls instalados com uma imagem anterior mantêm o tamanho."
+   }
+  },
+  {
+   "id": "NXW-2007",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "Inspection needs the firewall certificate on the devices",
+    "es": "La inspección necesita el certificado del firewall en los dispositivos",
+    "pt-BR": "A inspeção precisa do certificado do firewall nos dispositivos"
+   },
+   "body": {
+    "en": "Inspected sites show a certificate warning until the firewall's inspection certificate is installed on the device. Applications that pin their certificate fail when inspected.",
+    "es": "Los sitios inspeccionados muestran una advertencia de certificado hasta que se instala en el dispositivo el certificado de inspección del firewall. Las aplicaciones que fijan su certificado fallan al ser inspeccionadas.",
+    "pt-BR": "Os sites inspecionados mostram um aviso de certificado até que o certificado de inspeção do firewall seja instalado no dispositivo. Aplicações que fixam o certificado falham quando inspecionadas."
+   },
+   "workaround": {
+    "en": "Install the certificate (Web Protection, Inspection) and add pinned applications as exceptions.",
+    "es": "Instale el certificado (Protección web, Inspección) y añada las aplicaciones con certificado fijo como excepciones.",
+    "pt-BR": "Instale o certificado (Proteção web, Inspeção) e adicione as aplicações com certificado fixo como exceções."
+   }
+  },
+  {
+   "id": "NXW-2008",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "The antivirus needs the data storage",
+    "es": "El antivirus necesita el almacenamiento de datos",
+    "pt-BR": "O antivírus precisa do armazenamento de dados"
+   },
+   "body": {
+    "en": "The antivirus does not start without the data storage, which holds its signatures (about 300 MB), and it is not active until the first download of the signatures has finished.",
+    "es": "El antivirus no arranca sin el almacenamiento de datos, que guarda sus firmas (unos 300 MB), y no está activo hasta que termina la primera descarga de las firmas.",
+    "pt-BR": "O antivírus não inicia sem o armazenamento de dados, que guarda as suas assinaturas (cerca de 300 MB), e não fica ativo até terminar o primeiro download das assinaturas."
+   },
+   "workaround": {
+    "en": "Check the Storage page; the antivirus page shows the state of each engine.",
+    "es": "Compruebe la página Almacenamiento; la página del antivirus muestra el estado de cada motor.",
+    "pt-BR": "Confira a página Armazenamento; a página do antivírus mostra o estado de cada motor."
+   }
+  },
+  {
+   "id": "NXW-2009",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "SafeSearch and YouTube options apply to devices only",
+    "es": "Las opciones de SafeSearch y YouTube se aplican solo a dispositivos",
+    "pt-BR": "As opções de SafeSearch e YouTube valem só para dispositivos"
+   },
+   "body": {
+    "en": "The family options follow the devices and networks of a rule, not user accounts. There are no schedules or time quotas yet, and a device that uses a VPN or a mobile network is outside the firewall.",
+    "es": "Las opciones familiares siguen a los dispositivos y redes de una regla, no a las cuentas de usuario. Todavía no hay horarios ni cuotas de tiempo, y un dispositivo que usa una VPN o la red móvil queda fuera del firewall.",
+    "pt-BR": "As opções para a família seguem os dispositivos e redes de uma regra, não contas de usuário. Ainda não há horários nem cotas de tempo, e um dispositivo que usa uma VPN ou a rede móvel fica fora do firewall."
+   },
+   "workaround": {
+    "en": "",
+    "es": "",
+    "pt-BR": ""
+   }
+  },
+  {
+   "id": "NXW-2010",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "performance",
+   "title": {
+    "en": "Throughput of the inspection is not measured",
+    "es": "El rendimiento de la inspección no está medido",
+    "pt-BR": "A taxa de transferência da inspeção não foi medida"
+   },
+   "body": {
+    "en": "Inspection of encrypted traffic uses one web proxy process, so it is limited to about one processor core, and the speed it reaches has not been measured yet. Only the categories that you list are inspected.",
+    "es": "La inspección del tráfico cifrado usa un solo proceso de proxy web, por lo que se limita a cerca de un núcleo de procesador, y aún no se midió la velocidad que alcanza. Solo se inspeccionan las categorías que usted indica.",
+    "pt-BR": "A inspeção do tráfego criptografado usa um único processo de proxy web, por isso fica limitada a cerca de um núcleo de processador, e a velocidade que alcança ainda não foi medida. Só são inspecionadas as categorias que você indica."
+   },
+   "workaround": {
+    "en": "Inspect only the categories you need, and keep large downloads and streaming out of the inspected list.",
+    "es": "Inspeccione solo las categorías que necesite y deje las descargas grandes y el streaming fuera de la lista inspeccionada.",
+    "pt-BR": "Inspecione só as categorias de que precisa e deixe downloads grandes e streaming fora da lista inspecionada."
+   }
+  },
+  {
+   "id": "NXW-2011",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "licensing",
+   "title": {
+    "en": "Advanced Threat Protection and Workspace Protection have no features yet",
+    "es": "La protección avanzada contra amenazas y la protección del espacio de trabajo aún no tienen funciones",
+    "pt-BR": "A proteção avançada contra ameaças e a proteção do ambiente de trabalho ainda não têm funções"
+   },
+   "body": {
+    "en": "Advanced Threat Protection and Antivirus / Sandbox (its sandbox part) and Workspace Protection (ZTNA) appear in the license, but only the antivirus part of Antivirus / Sandbox is available in this release.",
+    "es": "La protección avanzada contra amenazas, el Antivirus / Sandbox (su parte de sandbox) y la protección del espacio de trabajo (ZTNA) aparecen en la licencia, pero en esta versión solo está disponible la parte de antivirus de Antivirus / Sandbox.",
+    "pt-BR": "A proteção avançada contra ameaças, o Antivírus / Sandbox (a parte de sandbox) e a proteção do ambiente de trabalho (ZTNA) aparecem na licença, mas nesta versão só está disponível a parte de antivírus do Antivírus / Sandbox."
+   },
+   "workaround": {
+    "en": "",
+    "es": "",
+    "pt-BR": ""
+   }
+  },
+  {
+   "id": "NXW-2012",
+   "type": "known",
+   "introduced": "26.1.0",
+   "fixed": null,
+   "area": "logging",
+   "title": {
+    "en": "The traffic and applications tab starts when the Log Viewer is opened",
+    "es": "La pestaña de tráfico y aplicaciones empieza al abrir el visor de registros",
+    "pt-BR": "A aba de tráfego e aplicações começa quando o visualizador de logs é aberto"
+   },
+   "body": {
+    "en": "Connections that ended before the Log Viewer was opened are not recorded. The tab lists the connections that are open at that moment and everything after.",
+    "es": "Las conexiones que terminaron antes de abrir el visor de registros no se registran. La pestaña lista las conexiones abiertas en ese momento y todo lo posterior.",
+    "pt-BR": "As conexões que terminaram antes de o visualizador de logs ser aberto não são registradas. A aba lista as conexões abertas naquele momento e tudo o que vem depois."
+   },
+   "workaround": {
+    "en": "",
+    "es": "",
+    "pt-BR": ""
    }
   }
  ]
