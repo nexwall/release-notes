@@ -43,7 +43,7 @@ const REL = { ok: true, t: 'tok', release: { version: '26.1.0', files: [{ name: 
   // client side validation: nothing is sent
   const ev = { preventDefault() {} };
   s.form.listeners.submit(ev); await tick();
-  ok(s.calls.length === 1 && s.err.first_name.textContent === T.err_required && s.err.phone.textContent === T.err_required && s.err.privacy.textContent === T.err_privacy, 'empty form: required messages (the phone too), no request');
+  ok(s.calls.length === 1 && s.err.first_name.textContent === T.err_required && s.err.privacy.textContent === T.err_privacy, 'empty form: required messages , no request');
   Object.assign(s.elements.first_name, { value: 'Ana' }); s.elements.last_name.value = 'Souza'; s.elements.company.value = 'Acme'; s.elements.email.value = 'not-mail'; s.elements.phone.value = '+55 11 99999-0000'; s.elements.privacy.checked = true;
   s.form.listeners.submit(ev); await tick();
   ok(s.calls.length === 1 && s.err.email.textContent === T.err_invalid, 'bad email: invalid message, no request');
@@ -53,10 +53,10 @@ const REL = { ok: true, t: 'tok', release: { version: '26.1.0', files: [{ name: 
   s.calls.length = 0;
   const s2 = run([{ status: 200, body: REL }, { status: 200, body: { ok: true, url: 'https://files.test/get/xyz', file: REL.release.files[0] } }]); await tick(); await tick();
   Object.assign(s2.elements.first_name, { value: 'Ana' }); s2.elements.last_name.value = 'Souza'; s2.elements.company.value = 'Acme'; s2.elements.email.value = 'ana@acme.com.br'; s2.elements.phone.value = '+55 11 99999-0000';
-  s2.elements.privacy.checked = true; s2.elements.contact_ok.checked = true;
+  s2.elements.privacy.checked = true; 
   s2.form.listeners.submit(ev); await tick(); await tick();
   const sent = JSON.parse(s2.calls[1].opt.body);
-  ok(sent.email === 'ana@acme.com.br' && sent.privacy === true && sent.contact_ok === true && sent.t === 'tok' && sent.version === '26.1.0' && sent.lang === 'pt-BR', 'the request carries the fields, the consents, the timer and the language');
+  ok(sent.email === 'ana@acme.com.br' && sent.privacy === true && sent.t === 'tok' && sent.version === '26.1.0' && sent.lang === 'pt-BR', 'the request carries the fields, the consents, the timer and the language');
   ok(s2.byId['dl-ready'].hidden === false && s2.form.hidden === true && s2.byId['dl-link'].href === 'https://files.test/get/xyz', 'success: the ready panel with the link');
   s2.ctx.timer(); ok(s2.location.href === 'https://files.test/get/xyz', 'the download starts by itself');
   ok(s2.byId['dl-submit'].disabled === false, 'the button is enabled again');

@@ -356,14 +356,13 @@ def build_download(lang, ui, rel, legal):
     form = ('<form id="dl-form" class="dl-form" novalidate data-api="%s" data-version="%s" data-lang="%s" hidden>'
             '<div class="grid2">%s%s</div>%s%s%s'
             '<div class="check"><input id="f-privacy" name="privacy" type="checkbox" required><label for="f-privacy">%s</label></div><div class="ferr" data-err="privacy" role="alert"></div>'
-            '<div class="check"><input id="f-contact_ok" name="contact_ok" type="checkbox"><label for="f-contact_ok">%s</label></div>'
-            '<input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
+                        '<input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
             '<div class="ferr" id="dl-error" role="alert"></div>'
             '<button class="btn" id="dl-submit" type="submit">%s</button></form>'
             % (esc(API_BASE), esc(rel['version']), lang,
                field('first_name', dl['first_name'], autocomplete='given-name'), field('last_name', dl['last_name'], autocomplete='family-name'),
                field('company', dl['company'], autocomplete='organization'), field('email', dl['email'], 'email', hint=dl['email_hint'], autocomplete='email'),
-               field('phone', dl['phone'], 'tel', autocomplete='tel'), accept, esc(dl['contact_ok']), esc(dl['submit'])))
+               field('phone', dl['phone'], 'tel', req=False, autocomplete='tel'), accept, esc(dl['submit'])))
     body = ('<main id="main" class="wrap dl"><div class="dl-card"><h1>%s <span class="ver">%s</span></h1><p class="lead">%s</p>'
             '<div id="dl-file" class="dl-file" hidden></div><noscript><p class="note">%s</p></noscript>%s'
             '<div id="dl-ready" class="dl-ready" hidden><h2>%s</h2><p>%s</p><p><a id="dl-link" class="btn" href="#">%s</a></p><p class="hint">%s</p></div>'

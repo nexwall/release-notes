@@ -76,7 +76,7 @@
    "company": "Company",
    "email": "Email address",
    "email_hint": "We may contact you about your download.",
-   "phone": "Corporate phone / WhatsApp",
+   "phone": "Phone / WhatsApp (optional)",
    "phone_hint": "",
    "contact_ok": "I want to receive news about Nexwall (optional).",
    "submit": "Download",
@@ -101,7 +101,7 @@
    "unavailable": "This release is not available for download yet.",
    "js_needed": "This page needs JavaScript to send the form.",
    "terms_title": "Terms of use and privacy notice",
-   "questions": "Questions about the download or your data: {email}.",
+   "questions": "Questions about licenses or the download: {email}.",
    "err_phone_required": "Enter a phone or WhatsApp number we can reach."
   }
  },
@@ -182,7 +182,7 @@
    "company": "Empresa",
    "email": "Correo electrónico",
    "email_hint": "Podemos contactarle sobre su descarga.",
-   "phone": "Teléfono corporativo / WhatsApp",
+   "phone": "Teléfono / WhatsApp (opcional)",
    "phone_hint": "",
    "contact_ok": "Quiero recibir novedades de Nexwall (opcional).",
    "submit": "Descargar",
@@ -207,7 +207,7 @@
    "unavailable": "Esta versión todavía no está disponible para descarga.",
    "js_needed": "Esta página necesita JavaScript para enviar el formulario.",
    "terms_title": "Términos de uso y aviso de privacidad",
-   "questions": "Dudas sobre la descarga o sus datos: {email}.",
+   "questions": "Dudas sobre licencias o la descarga: {email}.",
    "err_phone_required": "Indique un teléfono o WhatsApp de contacto."
   }
  },
@@ -288,7 +288,7 @@
    "company": "Empresa",
    "email": "E-mail",
    "email_hint": "Podemos falar com você sobre o download.",
-   "phone": "Telefone corporativo / WhatsApp",
+   "phone": "Telefone / WhatsApp (opcional)",
    "phone_hint": "",
    "contact_ok": "Quero receber novidades da Nexwall (opcional).",
    "submit": "Baixar",
@@ -313,7 +313,7 @@
    "unavailable": "Esta versão ainda não está disponível para download.",
    "js_needed": "Esta página precisa de JavaScript para enviar o formulário.",
    "terms_title": "Termos de uso e aviso de privacidade",
-   "questions": "Dúvidas sobre o download ou sobre os seus dados: {email}.",
+   "questions": "Dúvidas sobre licenças ou o download: {email}.",
    "err_phone_required": "Informe um telefone ou WhatsApp para contato."
   }
  }

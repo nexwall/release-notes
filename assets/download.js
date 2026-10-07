@@ -43,7 +43,7 @@
     clearErrs();
     var v = function (n) { return (form.elements[n].value || '').replace(/\s+/g, ' ').trim(); };
     var bad = false;
-    ['first_name', 'last_name', 'company', 'email', 'phone'].forEach(function (n) { if (!v(n)) { setErr(n, 'required'); bad = true; } });
+    ['first_name', 'last_name', 'company', 'email'].forEach(function (n) { if (!v(n)) { setErr(n, 'required'); bad = true; } });
     if (v('email') && !EMAIL.test(v('email'))) { setErr('email', 'invalid'); bad = true; }
     if (v('phone') && !/^[0-9+()\-. ]{6,30}$/.test(v('phone'))) { setErr('phone', 'invalid'); bad = true; }
     if (!form.elements.privacy.checked) { setErr('privacy', 'privacy'); bad = true; }
@@ -52,7 +52,7 @@
     fetch(api + '/request', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ version: version, first_name: v('first_name'), last_name: v('last_name'), company: v('company'), email: v('email'), phone: v('phone'),
-        contact_ok: form.elements.contact_ok.checked, privacy: form.elements.privacy.checked, lang: lang, website: form.elements.website.value, t: token })
+        privacy: form.elements.privacy.checked, lang: lang, website: form.elements.website.value, t: token })
     }).then(function (r) { return r.json().then(function (j) { return { status: r.status, j: j }; }); })
       .then(function (x) {
         if (x.j.ok) {
