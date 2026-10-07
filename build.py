@@ -337,7 +337,8 @@ def legal_sections(legal, lang, kind):
 
 def build_legal(lang, ui, legal):
     for kind in ('terms', 'privacy'):
-        body = '<main id="main" class="wrap legal">%s<p><a href="../../">%s</a></p></main>' % (legal_sections(legal, lang, kind), esc(ui['dl']['back']))
+        extra = '<p>%s</p>' % esc(legal[lang]['export']) if kind == 'terms' else ''
+        body = '<main id="main" class="wrap legal">%s%s<p><a href="../../">%s</a></p></main>' % (legal_sections(legal, lang, kind), extra, esc(ui['dl']['back']))
         write('%s/legal/%s/index.html' % (lang, kind), shell(lang, ui, legal[lang][kind]['title'] + ' | Nexwall', body, 3, 'legal/%s/' % kind))
 
 
@@ -362,17 +363,15 @@ def build_download(lang, ui, rel, legal):
             % (esc(API_BASE), esc(rel['version']), lang,
                field('first_name', dl['first_name'], autocomplete='given-name'), field('last_name', dl['last_name'], autocomplete='family-name'),
                field('company', dl['company'], autocomplete='organization'), field('email', dl['email'], 'email', hint=dl['email_hint'], autocomplete='email'),
-               field('phone', dl['phone'], 'tel', req=False, hint=dl['phone_hint'], autocomplete='tel'), accept, esc(dl['contact_ok']), esc(dl['submit'])))
-    terms = legal_sections(legal, lang, 'terms') + '<p>%s</p>' % esc(lg['export'])
-    body = ('<main id="main" class="wrap dl"><div class="dl-card"><h1>%s</h1><p class="lead">%s</p>'
+               field('phone', dl['phone'], 'tel', autocomplete='tel'), accept, esc(dl['contact_ok']), esc(dl['submit'])))
+    body = ('<main id="main" class="wrap dl"><div class="dl-card"><h1>%s <span class="ver">%s</span></h1><p class="lead">%s</p>'
             '<div id="dl-file" class="dl-file" hidden></div><noscript><p class="note">%s</p></noscript>%s'
             '<div id="dl-ready" class="dl-ready" hidden><h2>%s</h2><p>%s</p><p><a id="dl-link" class="btn" href="#">%s</a></p><p class="hint">%s</p></div>'
             '<div id="dl-unavailable" class="note" hidden>%s</div>'
-            '<p class="hint">%s</p><p><a href="../../%s/">%s</a></p></div>'
-            '<details class="dl-terms"><summary>%s</summary><div class="legal">%s</div></details>'
+            '<p class="hint">%s</p></div>'
             '<script type="application/json" id="dl-i18n">%s</script></main><script src="../../../assets/download.js"></script>'
-            % (esc(dl['title']), esc(dl['lead']), esc(dl['js_needed']), form, esc(dl['ready_title']), esc(dl['ready_text']), esc(dl['ready_button']), esc(dl['verify']),
-               esc(dl['unavailable']), esc(fill(dl['questions'], lang)), esc(rel['version']), esc(dl['back']), esc(dl['terms_title']), terms, i18n))
+            % (esc(dl['title']), esc(rel['version']), esc(dl['lead']), esc(dl['js_needed']), form, esc(dl['ready_title']), esc(dl['ready_text']), esc(dl['ready_button']), esc(dl['verify']),
+               esc(dl['unavailable']), esc(fill(dl['questions'], lang)), i18n))
     write('%s/download/%s/index.html' % (lang, rel['version']), shell(lang, ui, '%s | Nexwall' % dl['title'], body, 3, 'download/%s/' % rel['version']))
 
 

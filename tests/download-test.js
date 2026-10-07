@@ -37,14 +37,14 @@ const REL = { ok: true, t: 'tok', release: { version: '26.1.0', files: [{ name: 
 
   // init ok: the form and the file details show
   s = run([{ status: 200, body: REL }]); await tick(); await tick();
-  ok(s.form.hidden === false && s.byId['dl-file'].hidden === false && s.byId['dl-file'].children.length === 3, 'the form and the file name, size and SHA-256 show');
+  ok(s.form.hidden === false && s.byId['dl-file'].hidden === false && s.byId['dl-file'].children.length === 2, 'the form and the file name, size and SHA-256 show');
   ok(s.calls[0].url === 'https://api.test/api/downloads/init?version=26.1.0', 'init asks for the version');
 
   // client side validation: nothing is sent
   const ev = { preventDefault() {} };
   s.form.listeners.submit(ev); await tick();
-  ok(s.calls.length === 1 && s.err.first_name.textContent === T.err_required && s.err.privacy.textContent === T.err_privacy, 'empty form: required messages, no request');
-  Object.assign(s.elements.first_name, { value: 'Ana' }); s.elements.last_name.value = 'Souza'; s.elements.company.value = 'Acme'; s.elements.email.value = 'not-mail'; s.elements.privacy.checked = true;
+  ok(s.calls.length === 1 && s.err.first_name.textContent === T.err_required && s.err.phone.textContent === T.err_required && s.err.privacy.textContent === T.err_privacy, 'empty form: required messages (the phone too), no request');
+  Object.assign(s.elements.first_name, { value: 'Ana' }); s.elements.last_name.value = 'Souza'; s.elements.company.value = 'Acme'; s.elements.email.value = 'not-mail'; s.elements.phone.value = '+55 11 99999-0000'; s.elements.privacy.checked = true;
   s.form.listeners.submit(ev); await tick();
   ok(s.calls.length === 1 && s.err.email.textContent === T.err_invalid, 'bad email: invalid message, no request');
 
@@ -52,7 +52,7 @@ const REL = { ok: true, t: 'tok', release: { version: '26.1.0', files: [{ name: 
   s.elements.email.value = 'ana@acme.com.br'; s.elements.phone.value = ''; s.elements.contact_ok.checked = true;
   s.calls.length = 0;
   const s2 = run([{ status: 200, body: REL }, { status: 200, body: { ok: true, url: 'https://files.test/get/xyz', file: REL.release.files[0] } }]); await tick(); await tick();
-  Object.assign(s2.elements.first_name, { value: 'Ana' }); s2.elements.last_name.value = 'Souza'; s2.elements.company.value = 'Acme'; s2.elements.email.value = 'ana@acme.com.br';
+  Object.assign(s2.elements.first_name, { value: 'Ana' }); s2.elements.last_name.value = 'Souza'; s2.elements.company.value = 'Acme'; s2.elements.email.value = 'ana@acme.com.br'; s2.elements.phone.value = '+55 11 99999-0000';
   s2.elements.privacy.checked = true; s2.elements.contact_ok.checked = true;
   s2.form.listeners.submit(ev); await tick(); await tick();
   const sent = JSON.parse(s2.calls[1].opt.body);
@@ -63,11 +63,11 @@ const REL = { ok: true, t: 'tok', release: { version: '26.1.0', files: [{ name: 
 
   // server errors
   const s3 = run([{ status: 200, body: REL }, { status: 429, body: { ok: false, error: 'rate_limited' } }]); await tick(); await tick();
-  Object.assign(s3.elements.first_name, { value: 'A' }); s3.elements.last_name.value = 'B'; s3.elements.company.value = 'C'; s3.elements.email.value = 'a@b.co'; s3.elements.privacy.checked = true;
+  Object.assign(s3.elements.first_name, { value: 'A' }); s3.elements.last_name.value = 'B'; s3.elements.company.value = 'C'; s3.elements.email.value = 'a@b.co'; s3.elements.phone.value = '11 3333-4444'; s3.elements.privacy.checked = true;
   s3.form.listeners.submit(ev); await tick(); await tick();
   ok(s3.byId['dl-error'].textContent === T.err_rate_limited && s3.byId['dl-ready'].hidden === true, 'rate limit: its message, no download');
   const s4 = run([{ status: 200, body: REL }, { status: 422, body: { ok: false, error: 'validation', fields: { email: 'invalid', privacy: 'required' } } }]); await tick(); await tick();
-  Object.assign(s4.elements.first_name, { value: 'A' }); s4.elements.last_name.value = 'B'; s4.elements.company.value = 'C'; s4.elements.email.value = 'a@b.co'; s4.elements.privacy.checked = true;
+  Object.assign(s4.elements.first_name, { value: 'A' }); s4.elements.last_name.value = 'B'; s4.elements.company.value = 'C'; s4.elements.email.value = 'a@b.co'; s4.elements.phone.value = '11 3333-4444'; s4.elements.privacy.checked = true;
   s4.form.listeners.submit(ev); await tick(); await tick();
   ok(s4.err.email.textContent === T.err_invalid && s4.err.privacy.textContent === T.err_privacy, 'field errors of the server show next to the fields');
 

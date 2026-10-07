@@ -47,11 +47,11 @@
    ],
    [
     "Quais dados coletamos",
-    "Quando você pede um download coletamos: nome, sobrenome, empresa e e-mail (obrigatórios); telefone corporativo ou WhatsApp (opcional); a sua escolha sobre receber contato; a versão e o arquivo pedidos; a data e a hora do pedido e dos downloads; o endereço IP e o tipo de navegador (registros de acesso). Não coletamos dados pessoais sensíveis. Esta página não usa cookies de rastreamento nem de publicidade."
+    "Quando você pede um download coletamos: nome, sobrenome, empresa, e-mail e telefone corporativo ou WhatsApp (obrigatórios); a sua escolha sobre receber contato; a versão e o arquivo pedidos; a data e a hora do pedido e dos downloads; o endereço IP e o tipo de navegador (registros de acesso). Não coletamos dados pessoais sensíveis. Esta página não usa cookies de rastreamento nem de publicidade."
    ],
    [
     "Para que usamos e em que base legal",
-    "1. Entregar o download e um link temporário, a seu pedido: execução de procedimentos preliminares a pedido do titular (art. 7º, V). 2. Falar com você se houver problema com o download ou dúvida de conformidade de exportação ou de licenciamento: legítimo interesse (art. 7º, IX) e cumprimento de obrigação legal ou regulatória (art. 7º, II). 3. Proteger o serviço contra abusos e fraudes, com o endereço IP e o tipo de navegador: legítimo interesse (art. 7º, IX). 4. Guardar os registros de acesso à aplicação: cumprimento de obrigação legal (Marco Civil da Internet, art. 15). 5. Entrar em contato por e-mail, telefone ou WhatsApp sobre produtos e novidades da Nexwall: somente com o seu consentimento (art. 7º, I), que é opcional, dado em uma caixa separada e que você pode retirar a qualquer momento. Não aceitar o contato comercial não impede o download."
+    "1. Entregar o download e um link temporário, a seu pedido: execução de procedimentos preliminares a pedido do titular (art. 7º, V). 2. Falar com você, por e-mail ou telefone, se houver problema com o download ou dúvida de conformidade de exportação ou de licenciamento: legítimo interesse (art. 7º, IX) e cumprimento de obrigação legal ou regulatória (art. 7º, II). 3. Proteger o serviço contra abusos e fraudes, com o endereço IP e o tipo de navegador: legítimo interesse (art. 7º, IX). 4. Guardar os registros de acesso à aplicação: cumprimento de obrigação legal (Marco Civil da Internet, art. 15). 5. Entrar em contato por e-mail, telefone ou WhatsApp sobre produtos e novidades da Nexwall: somente com o seu consentimento (art. 7º, I), que é opcional, dado em uma caixa separada e que você pode retirar a qualquer momento. Não aceitar o contato comercial não impede o download."
    ],
    [
     "Com quem compartilhamos",
@@ -84,7 +84,7 @@
   ]
  },
  "accept": "Aceito os {terms} e reconheço o {privacy}.",
- "terms_link": "Termos de uso do usuário final",
+ "terms_link": "Termos de uso",
  "privacy_link": "Aviso de privacidade",
  "export": "Este software inclui criptografia. Você é responsável por cumprir as leis de exportação, importação e sanções que se aplicam a você."
 }

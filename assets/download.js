@@ -16,11 +16,10 @@
   }
   function fileInfo(f) {
     fileBox.textContent = '';
-    [[T.file, f.name], [T.size, human(f.size)], [T.sha256, f.sha256]].forEach(function (r) {
-      if (!r[1]) return;
-      var d = document.createElement('div'), b = document.createElement('strong'), c = document.createElement('code');
-      b.textContent = r[0] + ': '; c.textContent = r[1]; d.appendChild(b); d.appendChild(c); fileBox.appendChild(d);
-    });
+    var line = document.createElement('div'), name = document.createElement('code'), hash = document.createElement('div');
+    name.textContent = f.name + (f.size ? ' (' + human(f.size) + ')' : '');
+    line.appendChild(name); fileBox.appendChild(line);
+    if (f.sha256) { hash.className = 'hash-line'; hash.textContent = T.sha256 + ' ' + f.sha256; fileBox.appendChild(hash); }
     fileBox.hidden = false;
   }
   function setErr(name, code) {
@@ -44,8 +43,9 @@
     clearErrs();
     var v = function (n) { return (form.elements[n].value || '').replace(/\s+/g, ' ').trim(); };
     var bad = false;
-    ['first_name', 'last_name', 'company', 'email'].forEach(function (n) { if (!v(n)) { setErr(n, 'required'); bad = true; } });
+    ['first_name', 'last_name', 'company', 'email', 'phone'].forEach(function (n) { if (!v(n)) { setErr(n, 'required'); bad = true; } });
     if (v('email') && !EMAIL.test(v('email'))) { setErr('email', 'invalid'); bad = true; }
+    if (v('phone') && !/^[0-9+()\-. ]{6,30}$/.test(v('phone'))) { setErr('phone', 'invalid'); bad = true; }
     if (!form.elements.privacy.checked) { setErr('privacy', 'privacy'); bad = true; }
     if (bad) return;
     submit.disabled = true; var label = submit.textContent; submit.textContent = T.sending;

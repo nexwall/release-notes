@@ -69,17 +69,17 @@
   "all_versions": "All versions",
   "no_results": "Nothing matches.",
   "dl": {
-   "title": "End User Terms of Use & Download",
-   "lead": "Complete the form and accept the End User Terms of Use to continue with your download.",
+   "title": "Download Nexwall Firewall",
+   "lead": "Fill in your details to start the download.",
    "first_name": "First name",
    "last_name": "Last name",
    "company": "Company",
    "email": "Email address",
-   "email_hint": "Please supply a valid email in case we need to contact you about your download.",
-   "phone": "Corporate phone / WhatsApp (optional)",
-   "phone_hint": "Only if you want to be contacted by phone or WhatsApp.",
-   "contact_ok": "You may contact me by email, phone or WhatsApp about Nexwall products and updates (optional).",
-   "submit": "Continue to download",
+   "email_hint": "We may contact you about your download.",
+   "phone": "Corporate phone / WhatsApp",
+   "phone_hint": "",
+   "contact_ok": "I want to receive news about Nexwall (optional).",
+   "submit": "Download",
    "sending": "Please wait…",
    "file": "File",
    "size": "Size",
@@ -100,8 +100,9 @@
    "back": "Back to the release notes",
    "unavailable": "This release is not available for download yet.",
    "js_needed": "This page needs JavaScript to send the form.",
-   "terms_title": "End User Terms of Use & Privacy Notice",
-   "questions": "Questions about the download or your data: {email}."
+   "terms_title": "Terms of use and privacy notice",
+   "questions": "Questions about the download or your data: {email}.",
+   "err_phone_required": "Enter a phone or WhatsApp number we can reach."
   }
  },
  "es": {
@@ -174,17 +175,17 @@
   "all_versions": "Todas las versiones",
   "no_results": "Nada coincide.",
   "dl": {
-   "title": "Términos de uso y descarga",
-   "lead": "Complete el formulario y acepte los términos de uso para continuar con su descarga.",
+   "title": "Descargar Nexwall Firewall",
+   "lead": "Complete sus datos para iniciar la descarga.",
    "first_name": "Nombre",
    "last_name": "Apellido",
    "company": "Empresa",
    "email": "Correo electrónico",
-   "email_hint": "Indique un correo válido por si necesitamos contactarle sobre su descarga.",
-   "phone": "Teléfono corporativo / WhatsApp (opcional)",
-   "phone_hint": "Solo si desea ser contactado por teléfono o WhatsApp.",
-   "contact_ok": "Pueden contactarme por correo, teléfono o WhatsApp sobre productos y novedades de Nexwall (opcional).",
-   "submit": "Continuar con la descarga",
+   "email_hint": "Podemos contactarle sobre su descarga.",
+   "phone": "Teléfono corporativo / WhatsApp",
+   "phone_hint": "",
+   "contact_ok": "Quiero recibir novedades de Nexwall (opcional).",
+   "submit": "Descargar",
    "sending": "Espere…",
    "file": "Archivo",
    "size": "Tamaño",
@@ -206,7 +207,8 @@
    "unavailable": "Esta versión todavía no está disponible para descarga.",
    "js_needed": "Esta página necesita JavaScript para enviar el formulario.",
    "terms_title": "Términos de uso y aviso de privacidad",
-   "questions": "Dudas sobre la descarga o sus datos: {email}."
+   "questions": "Dudas sobre la descarga o sus datos: {email}.",
+   "err_phone_required": "Indique un teléfono o WhatsApp de contacto."
   }
  },
  "pt-BR": {
@@ -279,17 +281,17 @@
   "all_versions": "Todas as versões",
   "no_results": "Nada corresponde.",
   "dl": {
-   "title": "Termos de uso e download",
-   "lead": "Preencha o formulário e aceite os termos de uso para continuar com o download.",
+   "title": "Baixar o Nexwall Firewall",
+   "lead": "Preencha os seus dados para iniciar o download.",
    "first_name": "Nome",
    "last_name": "Sobrenome",
    "company": "Empresa",
    "email": "E-mail",
-   "email_hint": "Informe um e-mail válido caso precisemos falar com você sobre o seu download.",
-   "phone": "Telefone corporativo / WhatsApp (opcional)",
-   "phone_hint": "Somente se quiser ser contatado por telefone ou WhatsApp.",
-   "contact_ok": "Podem me contatar por e-mail, telefone ou WhatsApp sobre produtos e novidades da Nexwall (opcional).",
-   "submit": "Continuar para o download",
+   "email_hint": "Podemos falar com você sobre o download.",
+   "phone": "Telefone corporativo / WhatsApp",
+   "phone_hint": "",
+   "contact_ok": "Quero receber novidades da Nexwall (opcional).",
+   "submit": "Baixar",
    "sending": "Aguarde…",
    "file": "Arquivo",
    "size": "Tamanho",
@@ -311,7 +313,8 @@
    "unavailable": "Esta versão ainda não está disponível para download.",
    "js_needed": "Esta página precisa de JavaScript para enviar o formulário.",
    "terms_title": "Termos de uso e aviso de privacidade",
-   "questions": "Dúvidas sobre o download ou sobre os seus dados: {email}."
+   "questions": "Dúvidas sobre o download ou sobre os seus dados: {email}.",
+   "err_phone_required": "Informe um telefone ou WhatsApp para contato."
   }
  }
 }

@@ -47,11 +47,11 @@
    ],
    [
     "What we collect",
-    "When you ask for a download we collect: first name, last name, company and email address (required); corporate phone or WhatsApp number (optional); your choice about being contacted; the version and file you asked for; the date and time of the request and of the downloads; the IP address and the type of browser (access logs). We do not collect sensitive personal data. This page uses no tracking or advertising cookies."
+    "When you ask for a download we collect: first name, last name, company, email address and corporate phone or WhatsApp number (required); your choice about being contacted; the version and file you asked for; the date and time of the request and of the downloads; the IP address and the type of browser (access logs). We do not collect sensitive personal data. This page uses no tracking or advertising cookies."
    ],
    [
     "What we use it for and the legal basis",
-    "1. To give you the download and a time-limited link, at your request: preliminary procedures at the request of the data subject (article 7, V). 2. To contact you if there is a problem with the download or an export compliance or licensing question: legitimate interest (article 7, IX) and compliance with a legal or regulatory obligation (article 7, II). 3. To protect the service from abuse and fraud, using the IP address and the browser type: legitimate interest (article 7, IX). 4. To keep the application access logs: compliance with a legal obligation (Marco Civil da Internet, article 15). 5. To contact you by email, phone or WhatsApp about Nexwall products and news: only with your consent (article 7, I), which is optional, given in a separate box and can be withdrawn at any time. Not accepting commercial contact does not prevent the download."
+    "1. To give you the download and a time-limited link, at your request: preliminary procedures at the request of the data subject (article 7, V). 2. To contact you, by email or phone, if there is a problem with the download or an export compliance or licensing question: legitimate interest (article 7, IX) and compliance with a legal or regulatory obligation (article 7, II). 3. To protect the service from abuse and fraud, using the IP address and the browser type: legitimate interest (article 7, IX). 4. To keep the application access logs: compliance with a legal obligation (Marco Civil da Internet, article 15). 5. To contact you by email, phone or WhatsApp about Nexwall products and news: only with your consent (article 7, I), which is optional, given in a separate box and can be withdrawn at any time. Not accepting commercial contact does not prevent the download."
    ],
    [
     "Who we share it with",
@@ -84,7 +84,7 @@
   ]
  },
  "accept": "I accept the {terms} and acknowledge the {privacy}.",
- "terms_link": "End User Terms of Use",
+ "terms_link": "Terms of Use",
  "privacy_link": "Privacy Notice",
  "export": "This software includes cryptography. You are responsible for complying with the export, import and sanctions laws that apply to you."
 }
