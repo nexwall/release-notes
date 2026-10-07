@@ -49,3 +49,7 @@ Repository settings, Pages, Source: GitHub Actions. To use a custom domain add a
 domain in the Pages settings.
 
 If the address answers 404 or shows this README instead of the site: Pages must use **Source: GitHub Actions**, then run the workflow "Publish release notes" (Actions tab, Run workflow) or push a commit.
+
+## Download form
+Every release has a page `<lang>/download/<version>/` with the form of the downloads service (`nexwall-downloads`, API on `updates.nexwall.com.br`); the Downloads table of a release links to it. Build setting: `DL_API` (default `https://updates.nexwall.com.br/api/downloads`).
+The legal texts are in `content/legal/<lang>.json` and the data of the company in `content/legal/company.json` (legal name, CNPJ, address, encarregado, forum): fill it in, the build warns while it is incomplete. Test of the form script: `node tests/download-test.js`.
