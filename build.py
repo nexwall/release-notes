@@ -159,10 +159,10 @@ def release_card(lang, ui, rel, note, depth):
 def features_html(lang):
     f = load('content', 'features.json')[lang]
     li = lambda xs: ''.join('<li>%s</li>' % esc(x) for x in xs)
-    return ('<section class="wrap feat"><h2>%s</h2><div class="feat-cols">'
+    return ('<section class="wrap feat"><div class="feat-cols">'
             '<div class="feat-col feat-new"><h3>%s</h3><ul>%s</ul></div>'
             '<div class="feat-col"><h3>%s</h3><ul>%s</ul></div></div></section>'
-            % (esc(f['title']), esc(f['new_title']), li(f['new']), esc(f['base_title']), li(f['base'])))
+            % (esc(f['new_title']), li(f['new']), esc(f['base_title']), li(f['base'])))
 
 
 def build_home(lang, ui, releases, notes):
