@@ -207,3 +207,5 @@ tr[hidden] { display: none; }
 .feat-col ul { list-style: none; margin: 0; padding: 0; }
 .feat-col li { padding: .2rem 0 .2rem 1.1rem; position: relative; }
 .feat-col li::before { content: "-"; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
+
+.latest-date { margin-left: .8rem; color: var(--muted); }

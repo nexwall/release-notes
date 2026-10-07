@@ -77,6 +77,21 @@ def area_name(areas, lang, key):
 
 
 LATEST = ''
+MONTHS = {
+    'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    'es': ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+    'pt-BR': ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+}
+
+
+def nice_date(lang, iso):
+    """2026-10-07 -> 'October 7, 2026' / '7 de octubre de 2026' / '7 de outubro de 2026'."""
+    try:
+        y, m, d = (int(x) for x in iso.split('-'))
+        name = MONTHS[lang][m - 1]
+    except (ValueError, KeyError, IndexError):
+        return iso
+    return '%s %d, %d' % (name, d, y) if lang == 'en' else '%d de %s de %d' % (d, name, y)
 GLOBE = ('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" '
          'stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>')
 
@@ -136,9 +151,9 @@ def release_card(lang, ui, rel, note, depth):
   <div class="card-top"><span class="ver">{ver}</span>{badge}</div>
   <h3>{title}</h3>
   <p>{summary}</p>
-  <div class="card-meta"><span>{date_label}: <time datetime="{date}">{date}</time></span></div>
+  <div class="card-meta"><span>{date_label}: <time datetime="{date}">{nice}</time></span></div>
 </a>'''.format(base=up(depth), lang=lang, ver=esc(rel['version']), badge=status_badge(ui, rel['status']), title=esc(note['title']),
-               summary=esc(note['summary']), date_label=esc(ui['release_date']), date=esc(rel['date']))
+               summary=esc(note['summary']), date_label=esc(ui['release_date']), date=esc(rel['date']), nice=esc(nice_date(lang, rel['date'])))
 
 
 def features_html(lang):
@@ -158,11 +173,11 @@ def build_home(lang, ui, releases, notes):
   <p class="eyebrow">{eyebrow}</p>
   <h1>{h1}</h1>
   <p class="lead">{lead}</p>
-  <p><a class="btn" href="{latest}/">{latest_label}: {latest}</a></p>
+  <p><a class="btn" href="{latest}/">{latest_label}: {latest}</a> <span class="latest-date"><time datetime="{latest_date}">{latest_nice}</time></span></p>
 </div></section>
 {features}
 <section class="wrap"><h2>{all}</h2><div class="grid">{cards}</div></section>
-</main>'''.format(eyebrow=esc(ui['eyebrow']), h1=esc(ui['home_title']), lead=esc(ui['home_lead']), latest=esc(latest['version']),
+</main>'''.format(eyebrow=esc(ui['eyebrow']), h1=esc(ui['home_title']), lead=esc(ui['home_lead']), latest=esc(latest['version']), latest_date=esc(latest['date']), latest_nice=esc(nice_date(lang, latest['date'])),
                   latest_label=esc(ui['latest']), all=esc(ui['all_releases']), cards=cards, features=features_html(lang))
     write('%s/index.html' % lang, shell(lang, ui, '%s | Nexwall' % ui['home_title'], body, 1, ''))
 
@@ -243,7 +258,7 @@ def build_release(lang, ui, rel, note, releases):
   <p class="crumbs"><a href="../">{all}</a> / {ver}</p>
   <h1>{title}</h1>
   <p class="lead">{summary}</p>
-  <p class="meta">{badge} <span>{date_label}: <time datetime="{date}">{date}</time></span> {selector}</p>
+  <p class="meta">{badge} <span>{date_label}: <time datetime="{date}">{nice}</time></span> {selector}</p>
 </div></div>
 <div class="wrap layout">
   <aside class="toc" aria-label="{on_page}"><p class="toc-title">{on_page}</p><ol>{toc}</ol></aside>
@@ -252,7 +267,7 @@ def build_release(lang, ui, rel, note, releases):
     {parts}
   </main>
 </div>'''.format(all=esc(ui['all_releases']), ver=esc(ver), title=esc(note['title']), summary=esc(note['summary']), badge=status_badge(ui, rel['status']),
-                 date_label=esc(ui['release_date']), date=esc(rel['date']), selector=selector, on_page=esc(ui['on_this_page']), toc=toc_html,
+                 date_label=esc(ui['release_date']), date=esc(rel['date']), nice=esc(nice_date(lang, rel['date'])), selector=selector, on_page=esc(ui['on_this_page']), toc=toc_html,
                  filters=filters, parts=''.join(parts))
     write('%s/%s/index.html' % (lang, ver), shell(lang, ui, '%s | Nexwall' % note['title'], body, 2, '%s/' % ver))
 
