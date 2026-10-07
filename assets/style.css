@@ -192,3 +192,6 @@ tr[hidden] { display: none; }
 .legal h2 { font-size: 1.05rem; margin: 1.4rem 0 .3rem; }
 .legal p { line-height: 1.6; }
 @media (max-width: 560px) { .dl-form .grid2 { grid-template-columns: 1fr; } }
+
+.foot-links a { color: inherit; }
+.foot-links a:hover { text-decoration: underline; }

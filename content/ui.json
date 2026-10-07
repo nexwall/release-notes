@@ -103,7 +103,10 @@
    "terms_title": "Terms of use and privacy notice",
    "questions": "Questions about licenses or the download: {email}.",
    "err_phone_required": "Enter a phone or WhatsApp number we can reach."
-  }
+  },
+  "main_site": "Nexwall website",
+  "terms_link": "Terms of Use",
+  "privacy_link": "Privacy Notice"
  },
  "es": {
   "site": "Notas de versión",
@@ -209,7 +212,10 @@
    "terms_title": "Términos de uso y aviso de privacidad",
    "questions": "Dudas sobre licencias o la descarga: {email}.",
    "err_phone_required": "Indique un teléfono o WhatsApp de contacto."
-  }
+  },
+  "main_site": "Sitio de Nexwall",
+  "terms_link": "Términos de uso",
+  "privacy_link": "Aviso de privacidad"
  },
  "pt-BR": {
   "site": "Notas de versão",
@@ -315,6 +321,9 @@
    "terms_title": "Termos de uso e aviso de privacidade",
    "questions": "Dúvidas sobre licenças ou o download: {email}.",
    "err_phone_required": "Informe um telefone ou WhatsApp para contato."
-  }
+  },
+  "main_site": "Site da Nexwall",
+  "terms_link": "Termos de uso",
+  "privacy_link": "Aviso de privacidade"
  }
 }

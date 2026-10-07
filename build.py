@@ -112,13 +112,13 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
   </div>
 </header>
 {body}
-<footer class="foot"><div class="foot-in"><span>{footer}</span><span>&copy; Nexwall</span></div></footer>
+<footer class="foot"><div class="foot-in"><span>{footer}</span><span class="foot-links"><a href="https://nexwall.com.br" rel="noopener">{main_site}</a> &middot; <a href="{base}{lang}/legal/terms/">{terms}</a> &middot; <a href="{base}{lang}/legal/privacy/">{privacy}</a> &middot; &copy; Nexwall</span></div></footer>
 <script src="{base}assets/site.js"></script>
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
            logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
-           body=body, footer=esc(ui['footer']))
+           body=body, footer=esc(ui['footer']), main_site=esc(ui['main_site']), terms=esc(ui['terms_link']), privacy=esc(ui['privacy_link']))
 
 
 def status_badge(ui, status):
