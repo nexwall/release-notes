@@ -1,0 +1,80 @@
+{
+  "en": {
+    "title": "What Nexwall includes",
+    "new_title": "New in 26.1",
+    "base_title": "Already in the firewall",
+    "new": [
+      "Web Protection: block websites by category",
+      "Inspection of encrypted (HTTPS) traffic",
+      "Antivirus for downloads",
+      "Profiles for home, school and company, websites included",
+      "SafeSearch and YouTube Restricted Mode",
+      "Traffic and applications in the Log Viewer, reports kept 35 days",
+      "Licenses as a bundle plus add-ons"
+    ],
+    "base": [
+      "Network Protection (IPS) against attacks",
+      "Application Control (DPI) with profiles",
+      "Threat Shield feeds: malicious IPs and domains blocked",
+      "DNS filtering",
+      "IP and country (geo) blocking",
+      "Log Viewer and Traffic Analytics",
+      "Guided setup wizard, secure from the first start",
+      "Trusted web address with its own certificate",
+      "Signed updates and licensing by module",
+      "Fast path and performance settings"
+    ]
+  },
+  "es": {
+    "title": "Qué incluye Nexwall",
+    "new_title": "Novedades de 26.1",
+    "base_title": "Ya incluido en el firewall",
+    "new": [
+      "Web Protection: bloqueo de sitios por categoría",
+      "Inspección del tráfico cifrado (HTTPS)",
+      "Antivirus para descargas",
+      "Perfiles para hogar, escuela y empresa, con los sitios web incluidos",
+      "SafeSearch y Modo restringido de YouTube",
+      "Tráfico y aplicaciones en el Visor de logs, informes de 35 días",
+      "Licencias en paquete más complementos"
+    ],
+    "base": [
+      "Network Protection (IPS) contra ataques",
+      "Application Control (DPI) con perfiles",
+      "Threat Shield: IPs y dominios maliciosos bloqueados",
+      "Filtrado DNS",
+      "Bloqueo por IP y por país (geo)",
+      "Visor de logs y Traffic Analytics",
+      "Asistente de configuración, seguro desde el primer inicio",
+      "Dirección web de confianza con certificado propio",
+      "Actualizaciones firmadas y licencias por módulo",
+      "Ruta rápida y ajustes de rendimiento"
+    ]
+  },
+  "pt-BR": {
+    "title": "O que o Nexwall inclui",
+    "new_title": "Novidades da 26.1",
+    "base_title": "Já incluído no firewall",
+    "new": [
+      "Web Protection: bloqueio de sites por categoria",
+      "Inspeção do tráfego criptografado (HTTPS)",
+      "Antivírus para downloads",
+      "Perfis para casa, escola e empresa, com sites incluídos",
+      "SafeSearch e Modo restrito do YouTube",
+      "Tráfego e aplicativos no Visualizador de logs, relatórios por 35 dias",
+      "Licenças em pacote mais complementos"
+    ],
+    "base": [
+      "Network Protection (IPS) contra ataques",
+      "Application Control (DPI) com perfis",
+      "Threat Shield: IPs e domínios maliciosos bloqueados",
+      "Filtragem DNS",
+      "Bloqueio por IP e por país (geo)",
+      "Visualizador de logs e Traffic Analytics",
+      "Assistente de configuração, seguro desde o primeiro início",
+      "Endereço web confiável com certificado próprio",
+      "Atualizações assinadas e licenças por módulo",
+      "Fast path e ajustes de desempenho"
+    ]
+  }
+}

@@ -198,3 +198,12 @@ tr[hidden] { display: none; }
 
 .btn-sm { padding: .35rem .8rem; font-size: .9rem; border-radius: 8px; }
 .lang summary { display: flex; align-items: center; padding: .4rem .55rem; }
+
+.feat { padding-top: 2rem; }
+.feat-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.feat-col { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
+.feat-new { border-color: var(--brand); background: var(--brand-soft); }
+.feat-col h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.feat-col ul { list-style: none; margin: 0; padding: 0; }
+.feat-col li { padding: .2rem 0 .2rem 1.1rem; position: relative; }
+.feat-col li::before { content: "-"; position: absolute; left: 0; color: var(--brand); font-weight: 700; }

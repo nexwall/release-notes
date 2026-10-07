@@ -141,6 +141,15 @@ def release_card(lang, ui, rel, note, depth):
                summary=esc(note['summary']), date_label=esc(ui['release_date']), date=esc(rel['date']))
 
 
+def features_html(lang):
+    f = load('content', 'features.json')[lang]
+    li = lambda xs: ''.join('<li>%s</li>' % esc(x) for x in xs)
+    return ('<section class="wrap feat"><h2>%s</h2><div class="feat-cols">'
+            '<div class="feat-col feat-new"><h3>%s</h3><ul>%s</ul></div>'
+            '<div class="feat-col"><h3>%s</h3><ul>%s</ul></div></div></section>'
+            % (esc(f['title']), esc(f['new_title']), li(f['new']), esc(f['base_title']), li(f['base'])))
+
+
 def build_home(lang, ui, releases, notes):
     latest = releases[0]
     cards = ''.join(release_card(lang, ui, r, notes[r['version']], 1) for r in releases)
@@ -151,9 +160,10 @@ def build_home(lang, ui, releases, notes):
   <p class="lead">{lead}</p>
   <p><a class="btn" href="{latest}/">{latest_label}: {latest}</a></p>
 </div></section>
+{features}
 <section class="wrap"><h2>{all}</h2><div class="grid">{cards}</div></section>
 </main>'''.format(eyebrow=esc(ui['eyebrow']), h1=esc(ui['home_title']), lead=esc(ui['home_lead']), latest=esc(latest['version']),
-                  latest_label=esc(ui['latest']), all=esc(ui['all_releases']), cards=cards)
+                  latest_label=esc(ui['latest']), all=esc(ui['all_releases']), cards=cards, features=features_html(lang))
     write('%s/index.html' % lang, shell(lang, ui, '%s | Nexwall' % ui['home_title'], body, 1, ''))
 
 
