@@ -164,3 +164,28 @@ tr[hidden] { display: none; }
 .logo-mark { flex: none; display: block; }
 .logo-word { font-weight: 800; font-size: 1.15rem; letter-spacing: .16em; line-height: 1; color: var(--text); text-transform: uppercase; }
 .logo-word span { color: hsl(216, 92%, 58%); }
+
+/* ---- download form and legal pages ---- */
+.dl, .legal { padding: 2rem 0 3rem; max-width: 760px; }
+.dl-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.6rem; box-shadow: var(--shadow); }
+.dl-card h1 { margin-top: 0; font-size: 1.5rem; }
+.dl-card .lead { color: var(--muted); }
+.dl-form .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.2rem; }
+.dl-form .f label { display: block; font-weight: 600; font-size: .92rem; margin-bottom: .3rem; }
+.dl-form input[type=text], .dl-form input[type=email], .dl-form input[type=tel] { width: 100%; box-sizing: border-box; padding: .6rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
+.dl-form input:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.dl-form .check { display: flex; gap: .6rem; align-items: flex-start; margin-top: 1rem; font-size: .93rem; }
+.dl-form .check input { margin-top: .25rem; }
+.dl-form .hint { margin-top: .2rem; font-size: .8rem; }
+.ferr { color: var(--known); font-size: .85rem; min-height: 1px; margin-top: .15rem; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.dl-form .btn { margin-top: 1.2rem; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.dl-form .btn[disabled] { opacity: .6; cursor: wait; }
+.dl-file { margin: 1rem 0; padding: .8rem 1rem; background: var(--code-bg); border-radius: 8px; font-size: .88rem; word-break: break-all; }
+.dl-ready h2 { margin-top: 0; }
+.dl-terms { margin-top: 1.4rem; font-size: .9rem; }
+.dl-terms summary { cursor: pointer; font-weight: 600; }
+.legal h1 { font-size: 1.6rem; }
+.legal h2 { font-size: 1.05rem; margin: 1.4rem 0 .3rem; }
+.legal p { line-height: 1.6; }
+@media (max-width: 560px) { .dl-form .grid2 { grid-template-columns: 1fr; } }

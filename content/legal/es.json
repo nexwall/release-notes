@@ -1,0 +1,90 @@
+{
+ "terms": {
+  "title": "Términos de uso para el usuario final",
+  "updated": "Versión 2026-10",
+  "sections": [
+   [
+    "Software",
+    "Nexwall Firewall es un conjunto de componentes libres y de código abierto y de componentes de Nexwall. Los componentes de código abierto (por ejemplo OpenWrt, el kernel de Linux, nftables, Snort, dnsmasq, ClamAV, Squid) se licencian con sus propias licencias, que se aplican a esos componentes y figuran en los avisos de la imagen. Los componentes de Nexwall que no son de código abierto (por ejemplo la interfaz web, el componente de licencias y los servicios de protección web) se licencian a usted según estos términos."
+   ],
+   [
+    "Sus derechos",
+    "Usted recibe un derecho no exclusivo e intransferible de instalar y usar el software en su propia red empresarial o doméstica, o en las redes de sus clientes si es socio de Nexwall. No puede eliminar los avisos de licencia, eludir o desactivar las comprobaciones de licencia ni aplicar ingeniería inversa a los componentes de Nexwall, salvo donde la ley lo permita a pesar de esta restricción."
+   ],
+   [
+    "Prueba y suscripciones",
+    "La imagen incluye un periodo de prueba. Después, las funciones con licencia necesitan una suscripción que obtiene de Nexwall o de un socio de Nexwall. Las funciones sin licencia siguen funcionando como describe el producto, con los límites indicados en las notas de la versión."
+   ],
+   [
+    "Versiones candidatas",
+    "Las versiones marcadas como candidatas son para evaluación y pruebas. Se entregan tal cual, sin garantía, y no están pensadas para redes de producción sin un acuerdo con Nexwall."
+   ],
+   [
+    "Exportación, importación y sanciones",
+    "El software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen, y confirma que no es una parte a la que esté prohibido entregar el software y que no lo usará para desarrollar ni usar armas."
+   ],
+   [
+    "Responsabilidad",
+    "En la medida que la ley lo permita, Nexwall no responde por pérdidas indirectas o consecuentes, y su responsabilidad total por el software que usted descarga gratuitamente se limita al importe que pagó por él, que es cero."
+   ],
+   [
+    "Ley y foro",
+    "Estos términos se rigen por las leyes de Brasil y el foro es {forum}. Nada en ellos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le asegura."
+   ],
+   [
+    "Contacto",
+    "Dudas sobre estos términos o sobre su uso del software: {email}."
+   ]
+  ]
+ },
+ "privacy": {
+  "title": "Aviso de privacidad",
+  "updated": "Versión 2026-10 · Ley General de Protección de Datos de Brasil (LGPD, Ley 13.709/2018)",
+  "sections": [
+   [
+    "Quién es el responsable",
+    "El responsable de los datos personales tratados en esta página es {controller}. El encargado de protección de datos (encarregado, artículo 41 de la LGPD) {dpo}. Use este contacto para cualquier solicitud o duda sobre sus datos."
+   ],
+   [
+    "Qué recopilamos",
+    "Cuando pide una descarga recopilamos: nombre, apellido, empresa y correo electrónico (obligatorios); teléfono corporativo o WhatsApp (opcional); su elección sobre ser contactado; la versión y el archivo pedidos; la fecha y hora de la solicitud y de las descargas; la dirección IP y el tipo de navegador (registros de acceso). No recopilamos datos personales sensibles. Esta página no usa cookies de seguimiento ni de publicidad."
+   ],
+   [
+    "Para qué lo usamos y base legal",
+    "1. Darle la descarga y un enlace temporal, a su solicitud: procedimientos preliminares a petición del titular (artículo 7, V). 2. Contactarle si hay un problema con la descarga o una consulta de cumplimiento de exportación o de licencias: interés legítimo (artículo 7, IX) y cumplimiento de una obligación legal o regulatoria (artículo 7, II). 3. Proteger el servicio contra abusos y fraudes, con la dirección IP y el tipo de navegador: interés legítimo (artículo 7, IX). 4. Conservar los registros de acceso a la aplicación: cumplimiento de una obligación legal (Marco Civil da Internet, artículo 15). 5. Contactarle por correo, teléfono o WhatsApp sobre productos y novedades de Nexwall: solo con su consentimiento (artículo 7, I), que es opcional, se da en una casilla aparte y puede retirarse en cualquier momento. No aceptar el contacto comercial no impide la descarga."
+   ],
+   [
+    "Con quién lo compartimos",
+    "Solo con el personal de Nexwall que necesita los datos y con encargados que los tratan en nuestro nombre y según nuestras instrucciones (por ejemplo el alojamiento del servicio). No vendemos datos personales. Podemos compartirlos con autoridades cuando la ley lo exija."
+   ],
+   [
+    "Dónde están los datos",
+    "Los datos se guardan en servidores ubicados en Brasil. Si alguna vez se transfieren a otro país, solo ocurrirá en los casos del artículo 33 de la LGPD y se le informará."
+   ],
+   [
+    "Cuánto tiempo los guardamos",
+    "Los datos del formulario se guardan 24 meses desde su última solicitud de descarga, o hasta que nos pida borrarlos. Los registros de acceso (dirección IP, fecha y hora) se guardan 6 meses, como exige el artículo 15 del Marco Civil da Internet. Podemos guardar datos más tiempo para cumplir una obligación legal, ejercer derechos en un proceso o, anonimizados, para estadísticas (artículo 16 de la LGPD)."
+   ],
+   [
+    "Sus derechos",
+    "Según el artículo 18 de la LGPD puede, en cualquier momento y mediante solicitud al encargado: confirmar que tratamos sus datos; acceder a ellos; corregir datos incompletos, inexactos o desactualizados; pedir la anonimización, el bloqueo o la eliminación de datos innecesarios o tratados en contra de la ley; pedir la portabilidad; pedir la eliminación de los datos tratados con su consentimiento; saber con quién los compartimos; saber que puede negar el consentimiento y sus consecuencias; y retirar el consentimiento. Respondemos en 15 días (artículo 19). También puede reclamar ante la Autoridad Nacional de Protección de Datos de Brasil (ANPD)."
+   ],
+   [
+    "Seguridad",
+    "La página usa conexión cifrada, el acceso a los datos se limita a personas autorizadas y se protege con contraseña, y los enlaces de descarga caducan a las 24 horas."
+   ],
+   [
+    "Niños y adolescentes",
+    "El servicio está pensado para profesionales y empresas. No recopilamos intencionalmente datos de niños ni adolescentes."
+   ],
+   [
+    "Cambios en este aviso",
+    "Si cambiamos este aviso publicaremos aquí la nueva versión con su fecha. Los cambios que afecten a la finalidad o al consentimiento se le comunicarán antes."
+   ]
+  ]
+ },
+ "accept": "Acepto los {terms} y reconozco el {privacy}.",
+ "terms_link": "Términos de uso para el usuario final",
+ "privacy_link": "Aviso de privacidad",
+ "export": "Este software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen."
+}

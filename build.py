@@ -165,13 +165,14 @@ def render_item(ui, item):
 </article>'''.format(tag=esc(tag), tag_label=esc(ui['tag_' + tag]), title=esc(item['title']), body=paragraphs(item['body']), bullets=bullets, note=note)
 
 
-def render_downloads(ui, rel):
+def render_downloads(ui, rel, lang='en'):
     rows = rel.get('downloads') or []
     if not rows:
         return '<p class="note">%s</p>' % esc(ui['downloads_pending'])
     out = ['<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>' % (esc(ui['file']), esc(ui['size']), esc(ui['checksum']))]
     for d in rows:
-        name_html = ('<a href="%s"><code>%s</code></a>' % (esc(d['url']), esc(d['name']))) if d.get('url') else '<code>%s</code>' % esc(d['name'])
+        # the file is behind the form (terms of use and a few details); the checksum stays visible for verification
+        name_html = '<a href="../download/%s/"><code>%s</code></a>' % (esc(rel['version']), esc(d['name']))
         out.append('<tr><td>' + name_html + '</td><td>%s</td><td><code class="hash" id="h-%s">%s</code> <button type="button" class="copy" data-copy="h-%s" data-done="%s">%s</button></td></tr>'
                    % (esc(d['size']), esc(d['name']), esc(d['sha256']), esc(d['name']), esc(ui['copied']), esc(ui['copy'])))
     out.append('</tbody></table></div>')
@@ -214,7 +215,7 @@ def build_release(lang, ui, rel, note, releases):
     section('requirements', ui['requirements'], req)
     upg = '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(r) for r in note['upgrade'])
     section('upgrade', ui['upgrade'], upg)
-    section('downloads', ui['downloads'], render_downloads(ui, rel))
+    section('downloads', ui['downloads'], render_downloads(ui, rel, lang))
     section('open-source', ui['open_source'], paragraphs(note['open_source']))
 
     toc_html = ''.join('<li><a href="#%s">%s</a></li>' % (sid, esc(t)) for sid, t in toc)
@@ -298,12 +299,93 @@ def build_compat_page(lang, ui):
     write('%s/compatibility/index.html' % lang, shell(lang, ui, '%s | Nexwall' % c['title'], body, 2, 'compatibility/'))
 
 
+API_BASE = os.environ.get('DL_API', 'https://updates.nexwall.com.br/api/downloads')
+
+
+def company_info():
+    try:
+        return load('content', 'legal', 'company.json')
+    except OSError:
+        return {}
+
+
+def fill(text, lang):
+    """{controller}, {dpo}, {email} and {forum} of the legal texts, from content/legal/company.json (what is not filled stays generic)."""
+    c = company_info()
+    generic = {'en': ('Nexwall', 'can be contacted through the channel published at https://nexwall.com.br', 'the courts of the domicile of the user', 'the channel published at https://nexwall.com.br'),
+               'es': ('Nexwall', 'puede ser contactado por el canal publicado en https://nexwall.com.br', 'los tribunales del domicilio del usuario', 'el canal publicado en https://nexwall.com.br'),
+               'pt-BR': ('a Nexwall', 'pode ser contatado pelo canal publicado em https://nexwall.com.br', 'o foro do domicílio do usuário', 'o canal publicado em https://nexwall.com.br')}[lang]
+    named = {'en': 'is %s (%s)', 'es': 'es %s (%s)', 'pt-BR': 'é %s (%s)'}[lang]
+    mail_only = {'en': 'can be contacted at %s', 'es': 'puede ser contactado en %s', 'pt-BR': 'pode ser contatado em %s'}[lang]
+    controller = generic[0]
+    if c.get('legal_name'):
+        controller = c['legal_name'] + (', CNPJ %s' % c['cnpj'] if c.get('cnpj') else '') + (', %s' % c['address'] if c.get('address') else '')
+    dpo, email = generic[1], generic[3]
+    if c.get('dpo_email'):
+        email = c['dpo_email']
+        dpo = named % (c['dpo_name'], c['dpo_email']) if c.get('dpo_name') else mail_only % c['dpo_email']
+    return text.replace('{controller}', controller).replace('{dpo}', dpo).replace('{email}', email).replace('{forum}', c.get('forum') or generic[2])
+
+
+def legal_sections(legal, lang, kind):
+    d = legal[lang][kind]
+    out = ['<h1>%s</h1><p class="hint">%s</p>' % (esc(d['title']), esc(d['updated']))]
+    for title, text in d['sections']:
+        out.append('<h2>%s</h2>%s' % (esc(title), paragraphs(fill(text, lang))))
+    return ''.join(out)
+
+
+def build_legal(lang, ui, legal):
+    for kind in ('terms', 'privacy'):
+        body = '<main id="main" class="wrap legal">%s<p><a href="../../">%s</a></p></main>' % (legal_sections(legal, lang, kind), esc(ui['dl']['back']))
+        write('%s/legal/%s/index.html' % (lang, kind), shell(lang, ui, legal[lang][kind]['title'] + ' | Nexwall', body, 3, 'legal/%s/' % kind))
+
+
+def build_download(lang, ui, rel, legal):
+    dl = ui['dl']
+    lg = legal[lang]
+    accept = esc(lg['accept']).replace('{terms}', '<a href="../../legal/terms/" target="_blank" rel="noopener">%s</a>' % esc(lg['terms_link'])) \
+        .replace('{privacy}', '<a href="../../legal/privacy/" target="_blank" rel="noopener">%s</a>' % esc(lg['privacy_link']))
+    i18n = json.dumps({k: v for k, v in dl.items()}, ensure_ascii=False).replace('</', '<\\/')
+
+    def field(name, label, typ='text', req=True, hint='', autocomplete=''):
+        return ('<div class="f"><label for="f-%s">%s%s</label><input id="f-%s" name="%s" type="%s"%s%s maxlength="%d"><div class="hint">%s</div><div class="ferr" data-err="%s" role="alert"></div></div>'
+                % (name, esc(label), ' <span aria-hidden="true">*</span>' if req else '', name, name, typ, ' required' if req else '',
+                   ' autocomplete="%s"' % autocomplete if autocomplete else '', 254 if typ == 'email' else 100, esc(hint), name))
+    form = ('<form id="dl-form" class="dl-form" novalidate data-api="%s" data-version="%s" data-lang="%s" hidden>'
+            '<div class="grid2">%s%s</div>%s%s%s'
+            '<div class="check"><input id="f-privacy" name="privacy" type="checkbox" required><label for="f-privacy">%s</label></div><div class="ferr" data-err="privacy" role="alert"></div>'
+            '<div class="check"><input id="f-contact_ok" name="contact_ok" type="checkbox"><label for="f-contact_ok">%s</label></div>'
+            '<input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
+            '<div class="ferr" id="dl-error" role="alert"></div>'
+            '<button class="btn" id="dl-submit" type="submit">%s</button></form>'
+            % (esc(API_BASE), esc(rel['version']), lang,
+               field('first_name', dl['first_name'], autocomplete='given-name'), field('last_name', dl['last_name'], autocomplete='family-name'),
+               field('company', dl['company'], autocomplete='organization'), field('email', dl['email'], 'email', hint=dl['email_hint'], autocomplete='email'),
+               field('phone', dl['phone'], 'tel', req=False, hint=dl['phone_hint'], autocomplete='tel'), accept, esc(dl['contact_ok']), esc(dl['submit'])))
+    terms = legal_sections(legal, lang, 'terms') + '<p>%s</p>' % esc(lg['export'])
+    body = ('<main id="main" class="wrap dl"><div class="dl-card"><h1>%s</h1><p class="lead">%s</p>'
+            '<div id="dl-file" class="dl-file" hidden></div><noscript><p class="note">%s</p></noscript>%s'
+            '<div id="dl-ready" class="dl-ready" hidden><h2>%s</h2><p>%s</p><p><a id="dl-link" class="btn" href="#">%s</a></p><p class="hint">%s</p></div>'
+            '<div id="dl-unavailable" class="note" hidden>%s</div>'
+            '<p class="hint">%s</p><p><a href="../../%s/">%s</a></p></div>'
+            '<details class="dl-terms"><summary>%s</summary><div class="legal">%s</div></details>'
+            '<script type="application/json" id="dl-i18n">%s</script></main><script src="../../../assets/download.js"></script>'
+            % (esc(dl['title']), esc(dl['lead']), esc(dl['js_needed']), form, esc(dl['ready_title']), esc(dl['ready_text']), esc(dl['ready_button']), esc(dl['verify']),
+               esc(dl['unavailable']), esc(fill(dl['questions'], lang)), esc(rel['version']), esc(dl['back']), esc(dl['terms_title']), terms, i18n))
+    write('%s/download/%s/index.html' % (lang, rel['version']), shell(lang, ui, '%s | Nexwall' % dl['title'], body, 3, 'download/%s/' % rel['version']))
+
+
 def main():
     global ISSUES, COMPAT
     ISSUES = load('content', 'issues.json')
     COMPAT = load('content', 'compatibility.json')
     uis = load('content', 'ui.json')
     releases = load('content', 'releases.json')
+    legal = {l: load('content', 'legal', '%s.json' % l) for l, _ in LANGS}
+    c = company_info()
+    if not (c.get('legal_name') and c.get('dpo_email')):
+        print('WARNING: content/legal/company.json is incomplete (legal_name, cnpj, address, dpo_name, dpo_email, forum): the legal pages name Nexwall in general terms', file=sys.stderr)
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(OUT, 'assets'))
@@ -319,9 +401,13 @@ def main():
         build_resolved_page(lang, ui, releases)
         build_known_page(lang, ui, releases)
         build_compat_page(lang, ui)
+        build_legal(lang, ui, legal)
+        urls += ['%s/legal/terms/' % lang, '%s/legal/privacy/' % lang]
         urls += ['%s/resolved-issues/' % lang, '%s/known-issues/' % lang, '%s/compatibility/' % lang]
         for rel in releases:
             build_release(lang, ui, rel, notes[rel['version']], releases)
+            build_download(lang, ui, rel, legal)
+            urls.append('%s/download/%s/' % (lang, rel['version']))
             urls.append('%s/%s/' % (lang, rel['version']))
     write('index.html', '''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">

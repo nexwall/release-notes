@@ -1,0 +1,90 @@
+{
+ "terms": {
+  "title": "Termos de uso do usuário final",
+  "updated": "Versão 2026-10",
+  "sections": [
+   [
+    "Software",
+    "O Nexwall Firewall é um conjunto de componentes livres e de código aberto e de componentes da Nexwall. Os componentes de código aberto (por exemplo OpenWrt, o kernel do Linux, nftables, Snort, dnsmasq, ClamAV, Squid) são licenciados com as suas próprias licenças, que se aplicam a esses componentes e constam nos avisos da imagem. Os componentes da Nexwall que não são de código aberto (por exemplo a interface web, o componente de licenças e os serviços de proteção web) são licenciados a você conforme estes termos."
+   ],
+   [
+    "Seus direitos",
+    "Você recebe um direito não exclusivo e intransferível de instalar e usar o software na sua própria rede empresarial ou doméstica, ou nas redes dos seus clientes se for parceiro da Nexwall. Você não pode remover os avisos de licença, contornar ou desativar as verificações de licença nem fazer engenharia reversa dos componentes da Nexwall, exceto onde a lei permitir apesar desta restrição."
+   ],
+   [
+    "Teste e assinaturas",
+    "A imagem inclui um período de teste. Depois dele, os recursos licenciados precisam de uma assinatura obtida da Nexwall ou de um parceiro da Nexwall. Os recursos sem licença continuam funcionando como o produto descreve, com os limites indicados nas notas da versão."
+   ],
+   [
+    "Versões candidatas",
+    "As versões marcadas como candidatas são para avaliação e testes. São fornecidas como estão, sem garantia, e não se destinam a redes de produção sem um acordo com a Nexwall."
+   ],
+   [
+    "Exportação, importação e sanções",
+    "O software inclui criptografia. Você é responsável por cumprir as leis de exportação, importação e sanções que se aplicam a você, e confirma que não é uma parte proibida de receber o software e que não o usará para desenvolver ou usar armas."
+   ],
+   [
+    "Responsabilidade",
+    "Na medida em que a lei permitir, a Nexwall não responde por perdas indiretas ou consequentes, e a sua responsabilidade total pelo software que você baixa gratuitamente fica limitada ao valor que você pagou por ele, que é zero."
+   ],
+   [
+    "Lei e foro",
+    "Estes termos são regidos pelas leis do Brasil e o foro é {forum}. Nada neles limita os direitos que as licenças de código aberto lhe dão sobre os componentes de código aberto, nem os direitos que a lei brasileira lhe assegura."
+   ],
+   [
+    "Contato",
+    "Dúvidas sobre estes termos ou sobre o seu uso do software: {email}."
+   ]
+  ]
+ },
+ "privacy": {
+  "title": "Aviso de privacidade",
+  "updated": "Versão 2026-10 · Lei Geral de Proteção de Dados (Lei nº 13.709/2018)",
+  "sections": [
+   [
+    "Quem é o controlador",
+    "O controlador dos dados pessoais tratados nesta página é {controller}. O encarregado pelo tratamento de dados pessoais (art. 41 da LGPD) {dpo}. Use esse contato para qualquer pedido ou dúvida sobre os seus dados."
+   ],
+   [
+    "Quais dados coletamos",
+    "Quando você pede um download coletamos: nome, sobrenome, empresa e e-mail (obrigatórios); telefone corporativo ou WhatsApp (opcional); a sua escolha sobre receber contato; a versão e o arquivo pedidos; a data e a hora do pedido e dos downloads; o endereço IP e o tipo de navegador (registros de acesso). Não coletamos dados pessoais sensíveis. Esta página não usa cookies de rastreamento nem de publicidade."
+   ],
+   [
+    "Para que usamos e em que base legal",
+    "1. Entregar o download e um link temporário, a seu pedido: execução de procedimentos preliminares a pedido do titular (art. 7º, V). 2. Falar com você se houver problema com o download ou dúvida de conformidade de exportação ou de licenciamento: legítimo interesse (art. 7º, IX) e cumprimento de obrigação legal ou regulatória (art. 7º, II). 3. Proteger o serviço contra abusos e fraudes, com o endereço IP e o tipo de navegador: legítimo interesse (art. 7º, IX). 4. Guardar os registros de acesso à aplicação: cumprimento de obrigação legal (Marco Civil da Internet, art. 15). 5. Entrar em contato por e-mail, telefone ou WhatsApp sobre produtos e novidades da Nexwall: somente com o seu consentimento (art. 7º, I), que é opcional, dado em uma caixa separada e que você pode retirar a qualquer momento. Não aceitar o contato comercial não impede o download."
+   ],
+   [
+    "Com quem compartilhamos",
+    "Apenas com a equipe da Nexwall que precisa dos dados e com operadores que os tratam em nosso nome e conforme as nossas instruções (por exemplo a hospedagem do serviço). Não vendemos dados pessoais. Podemos compartilhá-los com autoridades quando a lei exigir."
+   ],
+   [
+    "Onde ficam os dados",
+    "Os dados ficam em servidores localizados no Brasil. Se algum dia forem transferidos para outro país, isso só ocorrerá nas hipóteses do art. 33 da LGPD e com informação a você."
+   ],
+   [
+    "Por quanto tempo guardamos",
+    "Os dados do formulário ficam por 24 meses contados do seu último pedido de download, ou até você pedir a exclusão. Os registros de acesso (endereço IP, data e hora) ficam por 6 meses, como determina o art. 15 do Marco Civil da Internet. Podemos guardar dados por mais tempo para cumprir obrigação legal, exercer direitos em processo ou, de forma anonimizada, para estatísticas (art. 16 da LGPD)."
+   ],
+   [
+    "Seus direitos",
+    "Nos termos do art. 18 da LGPD você pode, a qualquer momento e mediante requisição ao encarregado: confirmar que tratamos os seus dados; ter acesso a eles; corrigir dados incompletos, inexatos ou desatualizados; pedir anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade; pedir a portabilidade; pedir a eliminação dos dados tratados com o seu consentimento; saber com quem os compartilhamos; saber que pode não dar consentimento e quais as consequências; e revogar o consentimento. Respondemos em até 15 dias (art. 19). Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD)."
+   ],
+   [
+    "Segurança",
+    "A página usa conexão criptografada, o acesso aos dados é restrito a pessoas autorizadas e protegido por senha, e os links de download expiram em 24 horas."
+   ],
+   [
+    "Crianças e adolescentes",
+    "O serviço é destinado a profissionais e empresas. Não coletamos intencionalmente dados de crianças e adolescentes."
+   ],
+   [
+    "Mudanças neste aviso",
+    "Se mudarmos este aviso, publicaremos a nova versão aqui com a data. Mudanças que afetem a finalidade ou o consentimento serão informadas a você antes."
+   ]
+  ]
+ },
+ "accept": "Aceito os {terms} e reconheço o {privacy}.",
+ "terms_link": "Termos de uso do usuário final",
+ "privacy_link": "Aviso de privacidade",
+ "export": "Este software inclui criptografia. Você é responsável por cumprir as leis de exportação, importação e sanções que se aplicam a você."
+}

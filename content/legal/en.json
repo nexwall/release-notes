@@ -1,0 +1,90 @@
+{
+ "terms": {
+  "title": "End User Terms of Use",
+  "updated": "Version 2026-10",
+  "sections": [
+   [
+    "Software",
+    "Nexwall Firewall is a set of free and open source components and of Nexwall components. The open source components (for example OpenWrt, the Linux kernel, nftables, Snort, dnsmasq, ClamAV, Squid) are licensed under their own licenses, which apply to those components and are listed in the notices of the image. The Nexwall components that are not open source (for example the web interface, the license component and the Web Protection services) are licensed to you under these terms."
+   ],
+   [
+    "Your rights",
+    "You receive a non-exclusive, non-transferable right to install and use the software for your own business or home network, or for the networks of your customers if you are a Nexwall partner. You may not remove license notices, circumvent or disable license checks, or reverse engineer the Nexwall components except where the law allows it regardless of this restriction."
+   ],
+   [
+    "Trial and subscriptions",
+    "The image includes a trial period. After it, the licensed features need a subscription that you obtain from Nexwall or from a Nexwall partner. Features that are not licensed keep working as the product describes, with the limits stated in the release notes."
+   ],
+   [
+    "Release candidates",
+    "Versions marked as release candidates are for evaluation and testing. They are provided as they are, without warranty, and are not meant for production networks without an agreement with Nexwall."
+   ],
+   [
+    "Export, import and sanctions",
+    "The software includes cryptography. You are responsible for complying with the export, import and sanctions laws that apply to you, and you confirm that you are not a party prohibited from receiving the software, and that you will not use it for the development or use of weapons."
+   ],
+   [
+    "Liability",
+    "To the extent the law permits, Nexwall is not liable for indirect or consequential losses, and its total liability for the software that you download free of charge is limited to the amount that you paid for it, which is zero."
+   ],
+   [
+    "Law and forum",
+    "These terms are governed by the laws of Brazil and the forum is {forum}. Nothing in them limits the rights that the open source licenses give you for the open source components, or the rights that Brazilian law gives you."
+   ],
+   [
+    "Contact",
+    "Questions about these terms or about your use of the software: {email}."
+   ]
+  ]
+ },
+ "privacy": {
+  "title": "Privacy Notice",
+  "updated": "Version 2026-10 · Brazilian General Data Protection Law (LGPD, Law 13.709/2018)",
+  "sections": [
+   [
+    "Who is the controller",
+    "The controller of the personal data processed on this page is {controller}. The data protection officer (encarregado, article 41 of the LGPD) {dpo}. Use this contact for any request or question about your data."
+   ],
+   [
+    "What we collect",
+    "When you ask for a download we collect: first name, last name, company and email address (required); corporate phone or WhatsApp number (optional); your choice about being contacted; the version and file you asked for; the date and time of the request and of the downloads; the IP address and the type of browser (access logs). We do not collect sensitive personal data. This page uses no tracking or advertising cookies."
+   ],
+   [
+    "What we use it for and the legal basis",
+    "1. To give you the download and a time-limited link, at your request: preliminary procedures at the request of the data subject (article 7, V). 2. To contact you if there is a problem with the download or an export compliance or licensing question: legitimate interest (article 7, IX) and compliance with a legal or regulatory obligation (article 7, II). 3. To protect the service from abuse and fraud, using the IP address and the browser type: legitimate interest (article 7, IX). 4. To keep the application access logs: compliance with a legal obligation (Marco Civil da Internet, article 15). 5. To contact you by email, phone or WhatsApp about Nexwall products and news: only with your consent (article 7, I), which is optional, given in a separate box and can be withdrawn at any time. Not accepting commercial contact does not prevent the download."
+   ],
+   [
+    "Who we share it with",
+    "Only with Nexwall staff who need the data and with processors that handle it on our behalf and under our instructions (for example the hosting of the service). We do not sell personal data. We may share it with authorities when the law requires it."
+   ],
+   [
+    "Where the data is",
+    "The data is kept on servers located in Brazil. If it is ever transferred to another country, this will happen only in the cases of article 33 of the LGPD and you will be informed."
+   ],
+   [
+    "How long we keep it",
+    "The form data is kept for 24 months from your last download request, or until you ask us to delete it. Access logs (IP address, date and time) are kept for 6 months, as article 15 of the Marco Civil da Internet requires. We may keep data longer to comply with a legal obligation, to exercise rights in proceedings or, anonymised, for statistics (article 16 of the LGPD)."
+   ],
+   [
+    "Your rights",
+    "Under article 18 of the LGPD you can, at any time and by a request to the data protection officer: confirm that we process your data; access it; correct incomplete, inaccurate or outdated data; ask for anonymisation, blocking or deletion of unnecessary data or data processed in breach of the law; ask for portability; ask for deletion of data processed with your consent; know who we share it with; know that you may refuse consent and what follows; and withdraw consent. We answer within 15 days (article 19). You can also complain to the Brazilian data protection authority (ANPD)."
+   ],
+   [
+    "Security",
+    "The page uses an encrypted connection, access to the data is limited to authorised people and protected by a password, and download links expire after 24 hours."
+   ],
+   [
+    "Children and teenagers",
+    "The service is meant for professionals and companies. We do not knowingly collect data from children and teenagers."
+   ],
+   [
+    "Changes to this notice",
+    "If we change this notice we publish the new version here with its date. Changes that affect the purpose or the consent will be communicated to you beforehand."
+   ]
+  ]
+ },
+ "accept": "I accept the {terms} and acknowledge the {privacy}.",
+ "terms_link": "End User Terms of Use",
+ "privacy_link": "Privacy Notice",
+ "export": "This software includes cryptography. You are responsible for complying with the export, import and sanctions laws that apply to you."
+}
