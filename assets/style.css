@@ -195,3 +195,6 @@ tr[hidden] { display: none; }
 
 .foot-links a { color: inherit; }
 .foot-links a:hover { text-decoration: underline; }
+
+.btn-sm { padding: .35rem .8rem; font-size: .9rem; border-radius: 8px; }
+.lang summary { display: flex; align-items: center; padding: .4rem .55rem; }

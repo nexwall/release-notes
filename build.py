@@ -76,12 +76,18 @@ def area_name(areas, lang, key):
     return areas.get(key, {}).get(lang, key)
 
 
+LATEST = ''
+GLOBE = ('<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" '
+         'stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>')
+
+
 def shell(lang, ui, title, body, depth, here, nav_extra=''):
     """here: path of this page below the language folder ('' for the language home, '26.0.0-rc1/' for a release)."""
     base = up(depth)
     langs = ''.join(
         '<a href="%s%s/%s" hreflang="%s"%s>%s</a>' % (base, code, here, code, ' aria-current="true"' if code == lang else '', esc(name))
         for code, name in LANGS)
+    dl_btn = ('<a class="btn btn-sm" href="%s%s/download/%s/">%s</a>' % (base, lang, LATEST, esc(ui['download']))) if LATEST else ''
     return '''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -97,7 +103,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 <a class="skip" href="#main">{skip}</a>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="{base}{lang}/" aria-label="Nexwall">{logo}</a>
+    <a class="brand" href="https://nexwall.com.br" aria-label="Nexwall">{logo}</a>
     <nav class="top-nav" aria-label="{site}">
       <a href="{base}{lang}/">{all}</a>
       <a href="{base}{lang}/resolved-issues/">{nav_resolved}</a>
@@ -106,7 +112,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
       {nav_extra}
     </nav>
     <div class="top-tools">
-      <details class="lang"><summary>{language}</summary><div class="menu">{langs}</div></details>
+      {dl_btn}<details class="lang"><summary aria-label="{language}" title="{language}">{globe}</summary><div class="menu">{langs}</div></details>
       <button class="icon-btn" id="theme" type="button" aria-label="{theme}" title="{theme}">&#9680;</button>
     </div>
   </div>
@@ -117,7 +123,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
-           logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), langs=langs, theme=esc(ui['theme']),
+           logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), globe=GLOBE, dl_btn=dl_btn, langs=langs, theme=esc(ui['theme']),
            body=body, footer=esc(ui['footer']), main_site=esc(ui['main_site']), terms=esc(ui['terms_link']), privacy=esc(ui['privacy_link']))
 
 
@@ -380,6 +386,8 @@ def main():
     COMPAT = load('content', 'compatibility.json')
     uis = load('content', 'ui.json')
     releases = load('content', 'releases.json')
+    global LATEST
+    LATEST = next((r['version'] for r in releases if r.get('status') == 'stable'), '')
     legal = {l: load('content', 'legal', '%s.json' % l) for l, _ in LANGS}
     c = company_info()
     if not (c.get('legal_name') and c.get('dpo_email')):
