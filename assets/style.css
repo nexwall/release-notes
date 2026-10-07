@@ -209,3 +209,7 @@ tr[hidden] { display: none; }
 .feat-col li::before { content: "-"; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
 
 .latest-date { margin-left: .8rem; color: var(--muted); }
+
+/* features: plain lists, no boxes */
+.feat-col, .feat-new { background: none; border: 0; border-radius: 0; padding: 0; }
+.feat-new h3 { color: var(--brand); }
