@@ -127,7 +127,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
       {nav_extra}
     </nav>
     <div class="top-tools">
-      {dl_btn}<details class="lang"><summary aria-label="{language}" title="{language}">{globe}</summary><div class="menu">{langs}</div></details>
+      <a class="docs-link" href="https://docs.nexwall.com.br" rel="noopener">{docs}</a>{dl_btn}<details class="lang"><summary aria-label="{language}" title="{language}">{globe}</summary><div class="menu">{langs}</div></details>
       <button class="icon-btn" id="theme" type="button" aria-label="{theme}" title="{theme}">&#9680;</button>
     </div>
   </div>
@@ -138,7 +138,7 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
-           logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), globe=GLOBE, dl_btn=dl_btn, langs=langs, theme=esc(ui['theme']),
+           logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), globe=GLOBE, dl_btn=dl_btn, docs=esc(ui['docs_link']), langs=langs, theme=esc(ui['theme']),
            body=body, footer=esc(ui['footer']), main_site=esc(ui['main_site']), terms=esc(ui['terms_link']), privacy=esc(ui['privacy_link']))
 
 

@@ -107,7 +107,8 @@
     "main_site": "Nexwall website",
     "terms_link": "Terms of Use",
     "privacy_link": "Privacy Notice",
-    "download": "Download"
+    "download": "Download",
+    "docs_link": "Documentation"
   },
   "es": {
     "site": "Notas de versión",
@@ -217,7 +218,8 @@
     "main_site": "Sitio de Nexwall",
     "terms_link": "Términos de uso",
     "privacy_link": "Aviso de privacidad",
-    "download": "Descargar"
+    "download": "Descargar",
+    "docs_link": "Documentación"
   },
   "pt-BR": {
     "site": "Notas de versão",
@@ -327,6 +329,7 @@
     "main_site": "Site da Nexwall",
     "terms_link": "Termos de uso",
     "privacy_link": "Aviso de privacidade",
-    "download": "Baixar"
+    "download": "Baixar",
+    "docs_link": "Documentação"
   }
 }
