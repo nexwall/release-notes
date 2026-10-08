@@ -124,10 +124,11 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
       <a href="{base}{lang}/resolved-issues/">{nav_resolved}</a>
       <a href="{base}{lang}/known-issues/">{nav_known}</a>
       <a href="{base}{lang}/compatibility/">{nav_compat}</a>
+      <a href="https://docs.nexwall.com.br" rel="noopener">{docs}</a>
       {nav_extra}
     </nav>
     <div class="top-tools">
-      <a class="docs-link" href="https://docs.nexwall.com.br" rel="noopener">{docs}</a>{dl_btn}<details class="lang"><summary aria-label="{language}" title="{language}">{globe}</summary><div class="menu">{langs}</div></details>
+      {dl_btn}<details class="lang"><summary aria-label="{language}" title="{language}">{globe}</summary><div class="menu">{langs}</div></details>
       <button class="icon-btn" id="theme" type="button" aria-label="{theme}" title="{theme}">&#9680;</button>
     </div>
   </div>
