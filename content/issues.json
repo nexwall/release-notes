@@ -698,6 +698,168 @@
     "es": "",
     "pt-BR": ""
    }
+  },
+  {
+   "id": "NXW-1024",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "web-protection",
+   "title": {
+    "en": "YouTube and SafeSearch restricted modes were reset by Application Control",
+    "es": "Los modos restringidos de YouTube y SafeSearch eran reiniciados por el Control de aplicaciones",
+    "pt-BR": "Os modos restritos do YouTube e do SafeSearch eram reiniciados pelo Controle de aplicações"
+   },
+   "body": {
+    "en": "The connections to the addresses of YouTube Restricted Mode and SafeSearch were classified as YouTube or Google and reset by the rules of Application Control, so YouTube showed \"offline\". The addresses are now kept out of the analysis engine.",
+    "es": "Las conexiones a las direcciones del Modo restringido de YouTube y de SafeSearch se clasificaban como YouTube o Google y el Control de aplicaciones las reiniciaba, por eso YouTube mostraba \"sin conexión\". Las direcciones ahora quedan fuera del motor de análisis.",
+    "pt-BR": "As conexões para os endereços do Modo restrito do YouTube e do SafeSearch eram classificadas como YouTube ou Google e reiniciadas pelas regras do Controle de aplicações, por isso o YouTube mostrava \"offline\". Os endereços agora ficam fora do motor de análise."
+   }
+  },
+  {
+   "id": "NXW-1025",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "web-protection",
+   "title": {
+    "en": "Google and Bing did not open with SafeSearch on",
+    "es": "Google y Bing no se abrían con SafeSearch activado",
+    "pt-BR": "Google e Bing não abriam com o SafeSearch ligado"
+   },
+   "body": {
+    "en": "The extra DNS resolver answered with the alias alone when its target was not cached, and some devices reported DNS_PROBE_FINISHED_NXDOMAIN. It now answers with plain addresses that are refreshed twice a minute.",
+    "es": "El resolvedor DNS adicional respondía solo con el alias cuando su destino no estaba en caché, y algunos dispositivos informaban DNS_PROBE_FINISHED_NXDOMAIN. Ahora responde con direcciones simples que se actualizan dos veces por minuto.",
+    "pt-BR": "O resolvedor DNS adicional respondia só com o alias quando o destino não estava em cache, e alguns dispositivos informavam DNS_PROBE_FINISHED_NXDOMAIN. Agora ele responde com endereços simples atualizados duas vezes por minuto."
+   }
+  },
+  {
+   "id": "NXW-1026",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "logging",
+   "title": {
+    "en": "The Log Viewer failed on the firewall and Application Control tabs",
+    "es": "El Visor de registros fallaba en las pestañas de firewall y Control de aplicaciones",
+    "pt-BR": "O Visualizador de logs falhava nas abas de firewall e Controle de aplicações"
+   },
+   "body": {
+    "en": "The search showed \"HTTP 400, cannot parse extract_regexp pattern\". The pattern is now sent in a form the log database accepts.",
+    "es": "La búsqueda mostraba \"HTTP 400, cannot parse extract_regexp pattern\". El patrón ahora se envía en una forma que la base de registros acepta.",
+    "pt-BR": "A busca mostrava \"HTTP 400, cannot parse extract_regexp pattern\". O padrão agora é enviado em uma forma que o banco de logs aceita."
+   }
+  },
+  {
+   "id": "NXW-1027",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "logging",
+   "title": {
+    "en": "Alerts of the intrusion prevention engine and proxy requests did not reach the Log Viewer",
+    "es": "Las alertas del motor de prevención de intrusiones y las solicitudes del proxy no llegaban al Visor de registros",
+    "pt-BR": "Os alertas do motor de prevenção de intrusões e as requisições do proxy não chegavam ao Visualizador de logs"
+   },
+   "body": {
+    "en": "The extra log inputs were installed but not listed in the log service configuration, so they were never read. Enabling the Log Viewer now adds them.",
+    "es": "Las entradas de registro adicionales estaban instaladas pero no figuraban en la configuración del servicio de registros, por eso nunca se leían. Activar el Visor de registros ahora las agrega.",
+    "pt-BR": "As entradas de log adicionais estavam instaladas mas não listadas na configuração do serviço de logs, por isso nunca eram lidas. Ativar o Visualizador de logs agora as adiciona."
+   }
+  },
+  {
+   "id": "NXW-1028",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "web-protection",
+   "title": {
+    "en": "The Certificate Maker showed as stopped in the Web Protection monitor",
+    "es": "El generador de certificados aparecía detenido en el monitor de Web Protection",
+    "pt-BR": "O gerador de certificados aparecia parado no monitor do Web Protection"
+   },
+   "body": {
+    "en": "The monitor looked for the process by its full name, which the system cuts at 15 characters. It now finds it.",
+    "es": "El monitor buscaba el proceso por su nombre completo, que el sistema corta a 15 caracteres. Ahora lo encuentra.",
+    "pt-BR": "O monitor procurava o processo pelo nome completo, que o sistema corta em 15 caracteres. Agora ele o encontra."
+   }
+  },
+  {
+   "id": "NXW-1029",
+   "type": "fixed",
+   "version": "26.1.1",
+   "area": "networking",
+   "title": {
+    "en": "A firewall started without the setup wizard had no WAN on virtual machines",
+    "es": "Un firewall iniciado sin el asistente de configuración no tenía WAN en máquinas virtuales",
+    "pt-BR": "Um firewall iniciado sem o assistente de configuração não tinha WAN em máquinas virtuais"
+   },
+   "body": {
+    "en": "The default WAN (eth1, DHCP) was decided before the network card drivers were loaded, so a virtual machine did not see the second card. It is now added later in the same start for units that were never configured.",
+    "es": "El WAN por defecto (eth1, DHCP) se decidía antes de cargar los controladores de las tarjetas de red, así que una máquina virtual no veía la segunda tarjeta. Ahora se agrega más adelante en el mismo arranque en las unidades que nunca se configuraron.",
+    "pt-BR": "O WAN padrão (eth1, DHCP) era decidido antes de os drivers das placas de rede serem carregados, então uma máquina virtual não via a segunda placa. Agora ele é adicionado mais adiante no mesmo início nas unidades que nunca foram configuradas."
+   }
+  },
+  {
+   "id": "NXW-2013",
+   "type": "known",
+   "introduced": "26.1.1",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "The block page on an encrypted website needs the firewall certificate on the device",
+    "es": "La página de bloqueo en un sitio cifrado necesita el certificado del firewall en el dispositivo",
+    "pt-BR": "A página de bloqueio em um site criptografado precisa do certificado do firewall no dispositivo"
+   },
+   "body": {
+    "en": "A device that has not installed the inspection certificate sees a certificate warning, not the block page, when it opens a blocked https site. The site is still blocked. Plain http sites show the page without the certificate.",
+    "es": "Un dispositivo que no instaló el certificado de inspección ve una advertencia de certificado, no la página de bloqueo, al abrir un sitio https bloqueado. El sitio sigue bloqueado. Los sitios http sin cifrado muestran la página sin el certificado.",
+    "pt-BR": "Um dispositivo que não instalou o certificado de inspeção vê um aviso de certificado, e não a página de bloqueio, ao abrir um site https bloqueado. O site continua bloqueado. Sites http sem criptografia mostram a página sem o certificado."
+   },
+   "workaround": {
+    "en": "Install the certificate on the devices (Web Protection, Inspection), or use a rule without a block page: the connection is then reset.",
+    "es": "Instale el certificado en los dispositivos (Web Protection, Inspección) o use una regla sin página de bloqueo: la conexión se reinicia.",
+    "pt-BR": "Instale o certificado nos dispositivos (Web Protection, Inspeção) ou use uma regra sem página de bloqueio: a conexão é reiniciada."
+   }
+  },
+  {
+   "id": "NXW-2014",
+   "type": "known",
+   "introduced": "26.1.1",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "The content filter reads words, not pictures",
+    "es": "El filtro de contenido lee palabras, no imágenes",
+    "pt-BR": "O filtro de conteúdo lê palavras, não imagens"
+   },
+   "body": {
+    "en": "Images and video are not judged, the text of social networks arrives as data and not as a page, and pages sent in an encoding other than plain or gzip are not read. A word list can also make mistakes in both directions; the mode that only records, and the threshold, exist for that.",
+    "es": "Las imágenes y el video no se juzgan, el texto de las redes sociales llega como datos y no como página, y las páginas enviadas en una codificación distinta de simple o gzip no se leen. Una lista de palabras también puede equivocarse en ambos sentidos; para eso existen el modo que solo registra y el umbral.",
+    "pt-BR": "Imagens e vídeo não são julgados, o texto das redes sociais chega como dados e não como página, e páginas enviadas em uma codificação diferente de simples ou gzip não são lidas. Uma lista de palavras também pode errar nos dois sentidos; o modo que só registra e o limite existem para isso."
+   },
+   "workaround": {
+    "en": "Start with the mode that only records, look at the events, then block. Use categories, SafeSearch and YouTube Restricted Mode for social networks.",
+    "es": "Empiece con el modo que solo registra, mire los eventos y luego bloquee. Use categorías, SafeSearch y el Modo restringido de YouTube para las redes sociales.",
+    "pt-BR": "Comece com o modo que só registra, veja os eventos e depois bloqueie. Use categorias, SafeSearch e o Modo restrito do YouTube para as redes sociais."
+   }
+  },
+  {
+   "id": "NXW-2015",
+   "type": "known",
+   "introduced": "26.1.1",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "A very small answer of a blocked site can arrive before the connection is reset",
+    "es": "Una respuesta muy pequeña de un sitio bloqueado puede llegar antes de que se reinicie la conexión",
+    "pt-BR": "Uma resposta muito pequena de um site bloqueado pode chegar antes de a conexão ser reiniciada"
+   },
+   "body": {
+    "en": "On a port that the web proxy does not handle, or while the proxy is stopped, the traffic engine decides after the first packets of a connection, so a tiny answer such as a redirect can reach the device before the reset. The rest of the connection is blocked.",
+    "es": "En un puerto que el proxy web no trata, o mientras el proxy está detenido, el motor de tráfico decide después de los primeros paquetes de una conexión, así que una respuesta mínima, como una redirección, puede llegar al dispositivo antes del reinicio. El resto de la conexión se bloquea.",
+    "pt-BR": "Em uma porta que o proxy web não trata, ou enquanto o proxy está parado, o motor de tráfego decide depois dos primeiros pacotes de uma conexão, então uma resposta mínima, como um redirecionamento, pode chegar ao dispositivo antes do reinício. O restante da conexão é bloqueado."
+   },
+   "workaround": {
+    "en": "Block the ports you do not need with firewall rules.",
+    "es": "Bloquee con reglas del firewall los puertos que no necesite.",
+    "pt-BR": "Bloqueie com regras do firewall as portas de que não precisa."
+   }
   }
  ]
 }

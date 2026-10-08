@@ -1,0 +1,222 @@
+{
+  "title": "Nexwall Firewall 26.1.1",
+  "summary": "Block pages for blocked websites, a content filter with School, Private and Work profiles, files tested in a sandbox, Threat Analytics and Traffic Analytics, a redesigned interface (2.0), longer plots with packet loss, and a WAN that is there at the first start.",
+  "overview": "Nexwall Firewall 26.1.1 builds on Web Protection. A website that is blocked by category can now show a page that says why, pages can be judged by their content with ready profiles for school, home and company, and files that pass the antivirus can be tested in the Nexwall sandbox before they are delivered. The interface is redesigned (version 2.0): Threat Analytics and Traffic Analytics follow the Dashboard, the plots of the WAN uplinks and Performance pages show packet loss over windows of up to 30 days without losing the peaks, and the Log Viewer lists all the web traffic. A firewall started without the wizard has its WAN and the safe defaults of the Standard profile.",
+  "at_a_glance": [
+    {
+      "label": "Version",
+      "value": "26.1.1"
+    },
+    {
+      "label": "Status",
+      "value": "Draft: image not built yet"
+    },
+    {
+      "label": "Platform",
+      "value": "x86-64, UEFI boot"
+    },
+    {
+      "label": "Base system",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Interface languages",
+      "value": "English, Spanish, Brazilian Portuguese"
+    },
+    {
+      "label": "Licensed features",
+      "value": "Trial included"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "What is new",
+      "intro": "The features below are new in this release.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Block page for blocked websites",
+          "body": "When a rule with \"Show a block page\" blocks a website category, the person sees a page in Portuguese, Spanish or English (the language of the browser) with the category, the rule and a reference code, instead of a connection error. The page is offered for the categories the web proxy can open (together up to 500,000 domains, the smallest lists first); large lists such as adult content keep the plain block, so nothing is ever opened up. If the check that serves the page is down, the request fails: it is never let through. The reference code is also written to the log."
+        },
+        {
+          "tag": "new",
+          "title": "Content filter: School, Private and Work",
+          "body": "The pages that pass through the web proxy are read and given a score from 0 to 100 for adult content, violence, drugs, gambling, hate speech and self-harm. A page whose score reaches the threshold of the profile is replaced by a block page that shows the subject and the score, or is only recorded, as you choose. Three profiles come ready (School is strict, Private is moderate, Work is light) and are set by the Standard, School and Restricted choices of the setup wizard; the Content filter tab of Web Protection shows them and lets you change the threshold, the subjects and where pages are read. Pages that talk about a subject for study, health or news, and pages that offer help, score lower. It reads words, not pictures, and only pages the proxy can open (websites without encryption and the categories it decrypts)."
+        },
+        {
+          "tag": "new",
+          "title": "Intelligent Threat Block: files tested in a sandbox",
+          "body": "A file that passes the antivirus can be sent to the Nexwall sandbox, a safe machine where it is opened and watched. With the hold option the download waits for the verdict (between 15 and 300 seconds, you choose) and a file judged malicious is blocked with a page that explains why; a verdict already known is answered at once. Each firewall has its own limits: 60 files an hour, 500 files and 500 MB a day, 20 MB per file and 2 at the same time (a trial gets half). It works while the license of the firewall includes it, and the settings, the status and the verdicts are in Web Protection and in Threat Analytics."
+        },
+        {
+          "tag": "new",
+          "title": "Threat Analytics and Traffic Analytics",
+          "body": "The menu now has two analytics pages after the Dashboard. Threat Analytics tells what was stopped: the story from block, antivirus and sandbox to the advanced layers, the devices at risk, the web categories, the top sources and reasons and a table of events, kept for 35 days, with an executive report in PDF that is free in every plan. Traffic Analytics tells where the traffic goes: total, busiest hour, top application and device, traffic by hour and ranked lists of devices, applications, remote hosts and protocols that you can follow with a click, for today, 7 or 30 days. The Monitor no longer has the Daily traffic tab."
+        },
+        {
+          "tag": "new",
+          "title": "A redesigned interface (2.0)",
+          "body": "The Dashboard shows the protection of the firewall in one view (the layers that are working, threats of the day, web categories) and the traffic of today, 7 or 30 days. The Web Protection settings have an engine monitor (processor and memory of the proxy, the certificate maker, the scanner, connections) in two columns, a read-only list of the addresses the firewall keeps out of the inspection for SafeSearch and YouTube, and rules are deleted from a three-dots menu so that it is harder to do by mistake. The Licensing page shows the additional subscriptions in a second column."
+        },
+        {
+          "tag": "new",
+          "title": "Packet loss and longer windows on the WAN uplinks and Performance pages",
+          "body": "The plots show packet loss instead of the delivery rate, and the WAN uplinks and Performance pages offer 1 hour (the default), 6, 12 and 24 hours, 7 and 30 days. Every plot is a card with the current, peak and average value of each series above the line, and the lines are smoothed without rounding off the peaks: for long windows each point is the highest value of its step (the lowest for free memory), so a short spike of CPU, memory, load or packet loss is still visible. The history is kept for 7 days, or a year when the firewall has a data disk."
+        },
+        {
+          "tag": "new",
+          "title": "Log Viewer: Web Protection tab",
+          "body": "A new tab lists all the web traffic the proxy handled, allowed or blocked, with block pages, files stopped by the antivirus or the sandbox, content blocks and requests the proxy refused; a check adds the messages of the services. Alerts of the intrusion prevention engine and the proxy requests are now sent to the Log Viewer."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Improvements and changes",
+      "intro": "",
+      "items": [
+        {
+          "tag": "improved",
+          "title": "Safe by default also for the web",
+          "body": "A firewall that nobody has configured now starts with the Standard profile applied to the web as well: the website categories of the profile, the Work content filter and, when the license and the storage allow it, the antivirus. The setup wizard can change every choice afterwards."
+        },
+        {
+          "tag": "improved",
+          "title": "The WAN is there at the first start",
+          "body": "A firewall started without running the setup wizard now has its WAN on the second network card (eth1), asking for an address by DHCP, in the wan zone. On virtual machines the card was not yet visible when the default was decided, so the WAN was missing; a second step later in the same start fixes it for units that were never configured."
+        },
+        {
+          "tag": "improved",
+          "title": "YouTube and SafeSearch restrictions work together with Application Control",
+          "body": "The addresses that SafeSearch and YouTube Restricted Mode use are kept out of the analysis engine and of the inspection, and the DNS answers them with plain addresses, so Google, Bing and YouTube open in their restricted modes even when Application Control blocks streaming or social networks for the same devices."
+        },
+        {
+          "tag": "improved",
+          "title": "The Logs page fills the window",
+          "body": "The system log uses the whole width and height of the page, with the search, the number of rows and the options in one row above it."
+        }
+      ]
+    }
+  ],
+  "components": {
+    "intro": "The versions below make up the image. Most of them are pinned by checksum, so the image always contains exactly these versions. The signature bundle, the application catalog and the threat lists are not part of the image: they are downloaded and refreshed daily.",
+    "rows": [
+      {
+        "name": "Image",
+        "version": "26.1.1",
+        "note": "x86-64, UEFI, compressed disk image"
+      },
+      {
+        "name": "Firmware sources",
+        "version": "main (set when the image is built)",
+        "note": "Commit of the public firewall repository the image is built from; the release tag follows"
+      },
+      {
+        "name": "Base system",
+        "version": "OpenWrt 25.12.5",
+        "note": "Linux kernel 6.12, nftables 1.1"
+      },
+      {
+        "name": "Web interface",
+        "version": "2.0.0",
+        "note": "English, Spanish, Brazilian Portuguese"
+      },
+      {
+        "name": "License component",
+        "version": "1.7.1",
+        "note": "Updates itself from the signed feed; knows the new license modules"
+      },
+      {
+        "name": "Web Protection",
+        "version": "0.9.0",
+        "note": "Categories, profiles, block page, content filter, sandbox client, inspection, antivirus control, SafeSearch and YouTube options"
+      },
+      {
+        "name": "Web Protection services",
+        "version": "1.5.0",
+        "note": "Scanning service, proxy connector, block page, content filter and guard, licensed"
+      },
+      {
+        "name": "Web proxy",
+        "version": "Squid 7.1",
+        "note": "Inspection of encrypted traffic, one certificate authority per firewall"
+      },
+      {
+        "name": "Antivirus",
+        "version": "ClamAV 1.4.3, YARA 4.5.0",
+        "note": "Signatures downloaded by the firewall; YARA rules from the license server"
+      },
+      {
+        "name": "Website categories",
+        "version": "2026.10.06.1",
+        "note": "59 categories, 5.4 million domains (UT1, CC BY-SA 4.0); refreshed weekly"
+      },
+      {
+        "name": "YARA rules",
+        "version": "2026.10.06.1",
+        "note": "3,435 rules from open collections and Nexwall; refreshed weekly"
+      },
+      {
+        "name": "Traffic classification engine",
+        "version": "5.2.8 (release 6)",
+        "note": "Netify Agent with Nexwall plugins"
+      },
+      {
+        "name": "Traffic engine plugins",
+        "version": "1.0.1",
+        "note": "Five plugins, built for engine release 6"
+      },
+      {
+        "name": "Intrusion prevention engine",
+        "version": "Snort 3.10.0.0",
+        "note": "With the Nexwall gate plugin 1.0.1"
+      },
+      {
+        "name": "Intrusion signatures",
+        "version": "daily bundle",
+        "note": "Community, converted open rules and Nexwall Labs; 2026.10.02.1 at release"
+      },
+      {
+        "name": "Application catalog",
+        "version": "daily bundle",
+        "note": "2026.10.02.1 at release"
+      },
+      {
+        "name": "Threat lists",
+        "version": "2026.10.02.3",
+        "note": "12 DNS categories, 2 IP lists, country lists; rebuilt daily"
+      }
+    ]
+  },
+  "timeline": {
+    "intro": "How this release came together, from the first image to the release candidate.",
+    "entries": [
+      {
+        "date": "2026-10-07 to 08",
+        "title": "From 26.1.0 to 26.1.1",
+        "text": "Block page for categories, content filter, sandbox client and gateway, Threat Analytics and Traffic Analytics, the redesigned dashboard and plots, the Log Viewer Web Protection tab, packet loss with windows up to 30 days, the default WAN fix, and the fixes listed under Resolved issues."
+      }
+    ]
+  },
+  "requirements": [
+    "x86-64 processor, UEFI firmware with Secure Boot off.",
+    "At least two network interfaces (one for the internal network, one for the internet).",
+    "2 GB of memory without Web Protection; 4 GB or more with the antivirus and the inspection of encrypted traffic, and with the adult, advertising and extended malware lists.",
+    "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at the first start. Smaller disks work, without the antivirus signatures store, the swap file and the space kept for a second system copy.",
+    "Internet access to updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, categories, rules, threat feeds and registration, and to the ClamAV mirrors for the antivirus signatures."
+  ],
+  "upgrade": [
+    "The release is an installable disk image for virtual machines and appliances. Check its SHA-256 first.",
+    "After the first start the internal interface answers on 192.168.1.1. Change the administrator password on the first login.",
+    "To check the file on Linux run sha256sum on it; on Windows run Get-FileHash with -Algorithm SHA256 in PowerShell. The result must equal the SHA-256 in the Downloads table.",
+    "The administration guide is at https://docs.nexwall.com.br.",
+    "Firewalls running 26.0.0-rc4 or earlier are not upgraded in place by this release: the disk layout changed (system partition 1 GB, boot partition 64 MB). Install the image on a test machine or a new disk and compare. Restoring a configuration backup taken on an earlier build was not tested.",
+    "To inspect encrypted traffic, install the firewall's inspection certificate on the devices (Web Protection, Inspection). Without it browsers show a warning for inspected sites.",
+    "The antivirus needs the data storage and downloads its signatures after it is switched on; this takes a few minutes. Choosing a profile in the setup wizard switches it on when the firewall is licensed and has storage.",
+    "The licenses of a reseller are applied to firewalls from a pool and can be moved to another firewall; a change reaches the firewall at its next license check (about once a day).",
+    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
+    "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
+  ],
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+}
