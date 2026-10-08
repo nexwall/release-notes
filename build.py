@@ -422,6 +422,24 @@ def main():
     shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(OUT, 'assets'))
     if os.path.isfile(os.path.join(ROOT, 'CNAME')):
         shutil.copy(os.path.join(ROOT, 'CNAME'), os.path.join(OUT, 'CNAME'))
+    if LATEST:
+        # stable address for other sites (docs): picks the language and the latest stable version
+        write('download/index.html', """<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download | Nexwall</title><meta name="robots" content="noindex">
+<script>
+(function () {
+  var map = {en: 'en', es: 'es', pt: 'pt-BR'};
+  var l = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  var saved = null;
+  try { saved = localStorage.getItem('nx-lang'); } catch (e) {}
+  var q = new URLSearchParams(location.search).get('lang');
+  var lang = ['en', 'es', 'pt-BR'].indexOf(q) >= 0 ? q : (saved ? saved.split('/').join('') : (map[l] || 'en'));
+  location.replace('../' + lang + '/download/%s/');
+})();
+</script></head>
+<body><p><a href="../en/download/%s/">Download Nexwall Firewall %s</a></p></body></html>
+""" % (LATEST, LATEST, LATEST))
     write('.nojekyll', '')
     urls = []
     for lang, _ in LANGS:
