@@ -57,7 +57,7 @@
         {
           "tag": "new",
           "title": "Una interfaz rediseñada (2.0)",
-          "body": "El Panel muestra la protección del firewall en una sola vista (las capas que funcionan, las amenazas del día, las categorías web) y el tráfico de hoy, 7 o 30 días. Los ajustes de Web Protection tienen un monitor del motor (procesador y memoria del proxy, el generador de certificados, el escáner, conexiones) en dos columnas, una lista de solo lectura de las direcciones que el firewall deja fuera de la inspección para SafeSearch y YouTube, y las reglas se eliminan desde un menú de tres puntos para que sea más difícil hacerlo por error. La página de Licencias muestra las suscripciones adicionales en una segunda columna."
+          "body": "El Panel muestra la protección del firewall en una sola vista (las capas que funcionan, las amenazas del día, las categorías web) y el tráfico de hoy, 7 o 30 días. Los ajustes de Web Protection tienen un monitor del motor (procesador y memoria del proxy, el generador de certificados, el escáner, conexiones) en dos columnas, una lista de solo lectura de las direcciones que el firewall deja fuera de la inspección para SafeSearch y YouTube, y las reglas se eliminan desde un menú de tres puntos para que sea más difícil hacerlo por error. La página de Licencias muestra las suscripciones adicionales en una segunda columna. Las pestañas del Monitor siguen el mismo diseño: Principales consumidores son tarjetas ordenadas con el dispositivo, la aplicación y el protocolo más activos, la pestaña VPN tiene tarjetas con icono y barras por hora, y trece páginas (Reglas de Firewall, NAT, DNS y DHCP, Portal Cautivo, SD-WAN, Enrutamiento, Control de aplicaciones, Protección de red, Protección web, Copia de Seguridad y Recuperación, Sistema, OpenVPN Sitio a Sitio y WireGuard) abren ahora con una breve descripción de para qué sirven."
         },
         {
           "tag": "new",
@@ -68,6 +68,11 @@
           "tag": "new",
           "title": "Visor de registros: pestaña Web Protection",
           "body": "Una pestaña nueva lista todo el tráfico web que el proxy trató, permitido o bloqueado, con páginas de bloqueo, archivos detenidos por el antivirus o el sandbox, bloqueos de contenido y solicitudes que el proxy rechazó; una casilla agrega los mensajes de los servicios. Las alertas del motor de prevención de intrusiones y las solicitudes del proxy ahora se envían al Visor de registros."
+        },
+        {
+          "tag": "new",
+          "title": "ISO de instalación",
+          "body": "Además de la imagen de disco, la versión viene como una ISO de instalación: grábela en una memoria USB (por ejemplo con Rufus) y arranque el equipo desde ella. El instalador comprueba su imagen, ofrece solo discos internos (nunca la memoria USB), le pide escribir INSTALL antes de borrar un disco, escribe la imagen y la vuelve a leer del disco para compararla. El equipo debe arrancar en modo UEFI."
         }
       ]
     },

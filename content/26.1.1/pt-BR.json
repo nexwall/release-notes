@@ -57,7 +57,7 @@
         {
           "tag": "new",
           "title": "Uma interface redesenhada (2.0)",
-          "body": "O Painel mostra a proteção do firewall em uma só visão (as camadas que estão funcionando, as ameaças do dia, as categorias web) e o tráfego de hoje, 7 ou 30 dias. As configurações do Web Protection têm um monitor do motor (processador e memória do proxy, o gerador de certificados, o scanner, conexões) em duas colunas, uma lista somente leitura dos endereços que o firewall deixa fora da inspeção para SafeSearch e YouTube, e as regras são excluídas por um menu de três pontos para ser mais difícil fazer isso por engano. A página de Licenciamento mostra as assinaturas adicionais em uma segunda coluna."
+          "body": "O Painel mostra a proteção do firewall em uma só visão (as camadas que estão funcionando, as ameaças do dia, as categorias web) e o tráfego de hoje, 7 ou 30 dias. As configurações do Web Protection têm um monitor do motor (processador e memória do proxy, o gerador de certificados, o scanner, conexões) em duas colunas, uma lista somente leitura dos endereços que o firewall deixa fora da inspeção para SafeSearch e YouTube, e as regras são excluídas por um menu de três pontos para ser mais difícil fazer isso por engano. A página de Licenciamento mostra as assinaturas adicionais em uma segunda coluna. As abas do Monitoramento seguem o mesmo design: Maiores consumidores são cartões ordenados com o dispositivo, a aplicação e o protocolo mais ativos, a aba VPN tem cartões com ícone e barras por hora, e treze páginas (Regras de Firewall, NAT, DNS e DHCP, Portal Cativo, SD-WAN, Roteamento, Controle de aplicações, Proteção de rede, Proteção web, Backup e Recuperação, Sistema, OpenVPN Site a Site e WireGuard) agora abrem com uma breve descrição do que servem."
         },
         {
           "tag": "new",
@@ -68,6 +68,11 @@
           "tag": "new",
           "title": "Visualizador de logs: aba Web Protection",
           "body": "Uma nova aba lista todo o tráfego web que o proxy tratou, permitido ou bloqueado, com páginas de bloqueio, arquivos barrados pelo antivírus ou pelo sandbox, bloqueios de conteúdo e requisições que o proxy recusou; uma caixa de seleção acrescenta as mensagens dos serviços. Os alertas do motor de prevenção de intrusões e as requisições do proxy agora são enviados ao Visualizador de logs."
+        },
+        {
+          "tag": "new",
+          "title": "ISO de instalação",
+          "body": "Além da imagem de disco, a versão vem como uma ISO de instalação: grave-a em um pendrive USB (por exemplo com o Rufus) e inicie o equipamento por ele. O instalador verifica a sua imagem, oferece apenas discos internos (nunca o pendrive), pede para digitar INSTALL antes de apagar um disco, grava a imagem e a lê de volta do disco para compará-la. O equipamento deve iniciar em modo UEFI."
         }
       ]
     },

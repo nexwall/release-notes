@@ -57,7 +57,7 @@
         {
           "tag": "new",
           "title": "A redesigned interface (2.0)",
-          "body": "The Dashboard shows the protection of the firewall in one view (the layers that are working, threats of the day, web categories) and the traffic of today, 7 or 30 days. The Web Protection settings have an engine monitor (processor and memory of the proxy, the certificate maker, the scanner, connections) in two columns, a read-only list of the addresses the firewall keeps out of the inspection for SafeSearch and YouTube, and rules are deleted from a three-dots menu so that it is harder to do by mistake. The Licensing page shows the additional subscriptions in a second column."
+          "body": "The Dashboard shows the protection of the firewall in one view (the layers that are working, threats of the day, web categories) and the traffic of today, 7 or 30 days. The Web Protection settings have an engine monitor (processor and memory of the proxy, the certificate maker, the scanner, connections) in two columns, a read-only list of the addresses the firewall keeps out of the inspection for SafeSearch and YouTube, and rules are deleted from a three-dots menu so that it is harder to do by mistake. The Licensing page shows the additional subscriptions in a second column. The Monitor tabs follow the same design: Top talkers are ranked cards with the busiest device, application and protocol, the VPN tab has cards with an icon and hourly bars, and thirteen pages (Firewall Rules, NAT, DNS & DHCP, Captive Portal, SD-WAN, Routing, Application Control, Network Protection, Web Protection, Backup & Recovery, System, OpenVPN Site-to-Site and WireGuard) now open with a short description of what they are for."
         },
         {
           "tag": "new",
@@ -68,6 +68,11 @@
           "tag": "new",
           "title": "Log Viewer: Web Protection tab",
           "body": "A new tab lists all the web traffic the proxy handled, allowed or blocked, with block pages, files stopped by the antivirus or the sandbox, content blocks and requests the proxy refused; a check adds the messages of the services. Alerts of the intrusion prevention engine and the proxy requests are now sent to the Log Viewer."
+        },
+        {
+          "tag": "new",
+          "title": "Installer ISO",
+          "body": "Besides the disk image, the release comes as an installer ISO: write it to a USB stick (for example with Rufus) and start the appliance from it. The installer checks its image, offers only internal disks (never the USB stick), asks you to type INSTALL before it erases a disk, writes the image and reads it back from the disk to compare it. The appliance must start in UEFI mode."
         }
       ]
     },
