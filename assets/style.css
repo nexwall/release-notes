@@ -84,6 +84,7 @@ h3 { font-size: 1.1rem; margin: 0; }
 .status { font-size: .75rem; font-weight: 700; padding: .15rem .55rem; border-radius: 999px; }
 .status-rc { background: var(--changed-bg); color: var(--changed); }
 .status-stable { background: var(--new-bg); color: var(--new); }
+.status-superseded { background: #eef0f3; color: #5b6573; }
 .status-beta { background: var(--improved-bg); color: var(--improved); }
 
 /* release page */
