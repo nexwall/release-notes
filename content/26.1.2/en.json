@@ -9,7 +9,7 @@
     },
     {
       "label": "Status",
-      "value": "Release candidate: image built, tests in progress"
+      "value": "Stable: image and installer ISO built and tested"
     },
     {
       "label": "Platform",
@@ -169,7 +169,7 @@
       },
       {
         "name": "Firmware sources",
-        "version": "main (set when the image is built)",
+        "version": "8b3e596cc9365ff6ff3626c2abb461a13fc00677",
         "note": "Commit of the public firewall repository the image is built from; the release tag follows"
       },
       {

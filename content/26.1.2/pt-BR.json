@@ -9,7 +9,7 @@
     },
     {
       "label": "Situação",
-      "value": "Candidata a versão: imagem construída, testes em andamento"
+      "value": "Estável: imagem e ISO de instalação construídas e testadas"
     },
     {
       "label": "Plataforma",
@@ -169,7 +169,7 @@
       },
       {
         "name": "Fontes do firmware",
-        "version": "main (set when the image is built)",
+        "version": "8b3e596cc9365ff6ff3626c2abb461a13fc00677",
         "note": "Commit do repositório público do firewall do qual a imagem é construída; a etiqueta da versão vem depois"
       },
       {
