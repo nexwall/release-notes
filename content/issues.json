@@ -702,7 +702,7 @@
   {
    "id": "NXW-1024",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "web-protection",
    "title": {
     "en": "YouTube and SafeSearch restricted modes were reset by Application Control",
@@ -718,7 +718,7 @@
   {
    "id": "NXW-1025",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "web-protection",
    "title": {
     "en": "Google and Bing did not open with SafeSearch on",
@@ -734,7 +734,7 @@
   {
    "id": "NXW-1026",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "logging",
    "title": {
     "en": "The Log Viewer failed on the firewall and Application Control tabs",
@@ -750,7 +750,7 @@
   {
    "id": "NXW-1027",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "logging",
    "title": {
     "en": "Alerts of the intrusion prevention engine and proxy requests did not reach the Log Viewer",
@@ -766,7 +766,7 @@
   {
    "id": "NXW-1028",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "web-protection",
    "title": {
     "en": "The Certificate Maker showed as stopped in the Web Protection monitor",
@@ -782,7 +782,7 @@
   {
    "id": "NXW-1029",
    "type": "fixed",
-   "version": "26.1.1",
+   "version": "26.1.2",
    "area": "networking",
    "title": {
     "en": "A firewall started without the setup wizard had no WAN on virtual machines",
@@ -798,7 +798,7 @@
   {
    "id": "NXW-2013",
    "type": "known",
-   "introduced": "26.1.1",
+   "introduced": "26.1.2",
    "fixed": null,
    "area": "web-protection",
    "title": {
@@ -820,7 +820,7 @@
   {
    "id": "NXW-2014",
    "type": "known",
-   "introduced": "26.1.1",
+   "introduced": "26.1.2",
    "fixed": null,
    "area": "web-protection",
    "title": {
@@ -842,7 +842,7 @@
   {
    "id": "NXW-2015",
    "type": "known",
-   "introduced": "26.1.1",
+   "introduced": "26.1.2",
    "fixed": null,
    "area": "web-protection",
    "title": {
@@ -859,6 +859,178 @@
     "en": "Block the ports you do not need with firewall rules.",
     "es": "Bloquee con reglas del firewall los puertos que no necesite.",
     "pt-BR": "Bloqueie com regras do firewall as portas de que não precisa."
+   }
+  },
+  {
+   "id": "NXW-1030",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "engine",
+   "title": {
+    "en": "The traffic engine could stand still under load",
+    "es": "El motor de tráfico podía detenerse con carga",
+    "pt-BR": "O motor de tráfego podia travar sob carga"
+   },
+   "body": {
+    "en": "Two threads of the Nexwall plugins waited for each other, and the capture thread ended when the kernel dropped a queued packet. Both are fixed and a watchdog recovers the engine if it ever stands still.",
+    "es": "Dos hilos de los plugins de Nexwall se esperaban entre sí, y el hilo de captura terminaba cuando el kernel descartaba un paquete en cola. Ambos están corregidos y un vigilante recupera el motor si alguna vez se detiene.",
+    "pt-BR": "Duas threads dos plugins da Nexwall esperavam uma pela outra, e a thread de captura terminava quando o kernel descartava um pacote da fila. As duas estão corrigidas e um vigia recupera o motor se ele alguma vez parar."
+   }
+  },
+  {
+   "id": "NXW-1031",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "web-protection",
+   "title": {
+    "en": "Some sites did not open behind the web proxy (error 409)",
+    "es": "Algunos sitios no se abrían detrás del proxy web (error 409)",
+    "pt-BR": "Alguns sites não abriam atrás do proxy web (erro 409)"
+   },
+   "body": {
+    "en": "Sites whose DNS answers differ between the client and the proxy were refused by the proxy. They now open: the connection goes to the address the client chose.",
+    "es": "Los sitios cuyas respuestas DNS difieren entre el cliente y el proxy eran rechazados por el proxy. Ahora se abren: la conexión va a la dirección que eligió el cliente.",
+    "pt-BR": "Os sites cujas respostas DNS diferem entre o cliente e o proxy eram recusados pelo proxy. Agora abrem: a conexão vai ao endereço que o cliente escolheu."
+   }
+  },
+  {
+   "id": "NXW-1032",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "logging",
+   "title": {
+    "en": "The Firewall traffic tab showed only allowed traffic",
+    "es": "La pestaña Tráfico del firewall solo mostraba tráfico permitido",
+    "pt-BR": "A aba Tráfego do firewall mostrava só tráfego permitido"
+   },
+   "body": {
+    "en": "What the WAN rejected was not logged. The WAN zone now logs it, at most 10 lines a minute.",
+    "es": "Lo que rechazaba la WAN no se registraba. La zona WAN ahora lo registra, como máximo 10 líneas por minuto.",
+    "pt-BR": "O que a WAN recusava não era registrado. A zona WAN agora registra, no máximo 10 linhas por minuto."
+   }
+  },
+  {
+   "id": "NXW-1033",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "networking",
+   "title": {
+    "en": "A refused connection gave no answer to the client",
+    "es": "Una conexión rechazada no daba respuesta al cliente",
+    "pt-BR": "Uma conexão recusada não dava resposta ao cliente"
+   },
+   "body": {
+    "en": "The traffic engine queue swallowed the ICMP \"port unreachable\" of a rejected connection and the messages of path MTU discovery. They pass now.",
+    "es": "La cola del motor de tráfico absorbía el ICMP \"puerto inalcanzable\" de una conexión rechazada y los mensajes del descubrimiento de MTU. Ahora pasan.",
+    "pt-BR": "A fila do motor de tráfego engolia o ICMP \"porta inalcançável\" de uma conexão recusada e as mensagens da descoberta de MTU. Agora passam."
+   }
+  },
+  {
+   "id": "NXW-1034",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "web-protection",
+   "title": {
+    "en": "The web proxy could run out of open files and the antivirus switch off under load",
+    "es": "El proxy web podía quedarse sin archivos abiertos y el antivirus apagarse con carga",
+    "pt-BR": "O proxy web podia ficar sem arquivos abertos e o antivírus desligar sob carga"
+   },
+   "body": {
+    "en": "The limit of open files is now 16,384, up to 256 files are scanned at once and the scanner connection is retried after 10 seconds.",
+    "es": "El límite de archivos abiertos ahora es 16.384, se analizan hasta 256 archivos a la vez y la conexión del analizador se reintenta a los 10 segundos.",
+    "pt-BR": "O limite de arquivos abertos agora é 16.384, até 256 arquivos são varridos ao mesmo tempo e a conexão do verificador é tentada de novo após 10 segundos."
+   }
+  },
+  {
+   "id": "NXW-1035",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "networking",
+   "title": {
+    "en": "A WireGuard tunnel could pin its route to the wrong internet link",
+    "es": "Un túnel WireGuard podía fijar su ruta al enlace de internet equivocado",
+    "pt-BR": "Um túnel WireGuard podia fixar a rota no link de internet errado"
+   },
+   "body": {
+    "en": "On a firewall with two internet links the route to the peer stayed on the link that was the default when the tunnel came up, which could cut the license and the updates. Tunnels no longer pin it.",
+    "es": "En un firewall con dos enlaces de internet la ruta hacia el par se quedaba en el enlace que era el predeterminado cuando el túnel se levantó, lo que podía cortar la licencia y las actualizaciones. Los túneles ya no la fijan.",
+    "pt-BR": "Em um firewall com dois links de internet a rota para o par ficava no link que era o padrão quando o túnel subiu, o que podia cortar a licença e as atualizações. Os túneis não a fixam mais."
+   }
+  },
+  {
+   "id": "NXW-1036",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "interface",
+   "title": {
+    "en": "A page with several explanations could freeze the browser",
+    "es": "Una página con varias explicaciones podía congelar el navegador",
+    "pt-BR": "Uma página com várias explicações podia travar o navegador"
+   },
+   "body": {
+    "en": "The explanation of each tab updated the shared description in a loop. Fixed in interface 3.0.",
+    "es": "La explicación de cada pestaña actualizaba la descripción compartida en un bucle. Corregido en la interfaz 3.0.",
+    "pt-BR": "A explicação de cada aba atualizava a descrição compartilhada em um laço. Corrigido na interface 3.0."
+   }
+  },
+  {
+   "id": "NXW-1037",
+   "type": "fixed",
+   "version": "26.1.2",
+   "area": "interface",
+   "title": {
+    "en": "Opening the unit chip made it disappear",
+    "es": "Abrir el chip de la unidad lo hacía desaparecer",
+    "pt-BR": "Abrir o chip da unidade fazia ele sumir"
+   },
+   "body": {
+    "en": "The panel read the system information in the wrong shape and failed. Fixed.",
+    "es": "El panel leía la información del sistema en la forma equivocada y fallaba. Corregido.",
+    "pt-BR": "O painel lia as informações do sistema na forma errada e falhava. Corrigido."
+   }
+  },
+  {
+   "id": "NXW-2016",
+   "type": "known",
+   "introduced": "26.1.2",
+   "fixed": null,
+   "area": "web-protection",
+   "title": {
+    "en": "A blocked category is enforced by name only for connections the engine can read",
+    "es": "Una categoría bloqueada se aplica por nombre solo en las conexiones que el motor puede leer",
+    "pt-BR": "Uma categoria bloqueada é aplicada pelo nome só nas conexões que o motor consegue ler"
+   },
+   "body": {
+    "en": "A device that connects to an address it resolved elsewhere (its own DNS over HTTPS, a hard-coded address) can reach a site of a blocked category when the name is not visible: the blocking by DNS does not apply to it.",
+    "es": "Un dispositivo que se conecta a una dirección resuelta en otro lugar (su propio DNS sobre HTTPS, una dirección fija) puede llegar a un sitio de una categoría bloqueada cuando el nombre no es visible: el bloqueo por DNS no se aplica.",
+    "pt-BR": "Um dispositivo que conecta a um endereço resolvido em outro lugar (o próprio DNS sobre HTTPS, um endereço fixo) pode chegar a um site de uma categoria bloqueada quando o nome não está visível: o bloqueio por DNS não se aplica."
+   },
+   "workaround": {
+    "en": "Block DNS over HTTPS (category \"Encrypted DNS\") and make the clients use the firewall for DNS.",
+    "es": "Bloquee DNS sobre HTTPS (categoría \"DNS cifrado\") y haga que los clientes usen el firewall para DNS.",
+    "pt-BR": "Bloqueie o DNS sobre HTTPS (categoria \"DNS criptografado\") e faça os clientes usarem o firewall para DNS."
+   }
+  },
+  {
+   "id": "NXW-2017",
+   "type": "known",
+   "introduced": "26.1.2",
+   "fixed": null,
+   "area": "system",
+   "title": {
+    "en": "Tight memory on 4 GB with everything running",
+    "es": "Memoria justa con 4 GB con todo en ejecución",
+    "pt-BR": "Memória apertada com 4 GB com tudo em execução"
+   },
+   "body": {
+    "en": "With the antivirus, the inspection, the intrusion prevention and Application Control on a busy network, a 4 GB system uses its swap and the system can stop the antivirus engine for a while. The antivirus fails open and the Dashboard shows it as not running.",
+    "es": "Con el antivirus, la inspección, la prevención de intrusiones y el Control de aplicaciones en una red con mucho tráfico, un sistema de 4 GB usa su swap y el sistema puede detener el motor del antivirus durante un tiempo. El antivirus falla abierto y el Panel lo muestra como detenido.",
+    "pt-BR": "Com o antivírus, a inspeção, a prevenção de intrusões e o Controle de aplicações em uma rede com muito tráfego, um sistema de 4 GB usa o swap e o sistema pode parar o motor do antivírus por um tempo. O antivírus falha aberto e o Painel o mostra como parado."
+   },
+   "workaround": {
+    "en": "Give the firewall 8 GB when all the protections run on a busy network.",
+    "es": "Dé 8 GB al firewall cuando todas las protecciones funcionan en una red con mucho tráfico.",
+    "pt-BR": "Dê 8 GB ao firewall quando todas as proteções funcionam em uma rede com muito tráfego."
    }
   }
  ]

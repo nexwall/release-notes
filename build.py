@@ -239,6 +239,20 @@ def build_release(lang, ui, rel, note, releases):
     rows = ''.join('<tr><td>%s</td><td><code>%s</code></td><td>%s</td></tr>' % (esc(c['name']), esc(c['version']), esc(c['note'])) for c in comp['rows'])
     section('components', ui['components'], paragraphs(comp['intro']) + '<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>' % (
         esc(ui['col_component']), esc(ui['version']), esc(ui['col_notes']), rows))
+    perf = note.get('performance')
+    if perf:
+        def li(items): return '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(x) for x in items)
+        tbl = perf['table']
+        trs = ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % esc(c) for c in row) for row in tbl['rows'])
+        ths = ''.join('<th>%s</th>' % esc(h) for h in tbl['headers'])
+        inner = paragraphs(perf['intro']) + '<h3>%s</h3>' % esc(perf['setup_title']) + li(perf['setup'])
+        inner += '<h3>%s</h3><div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (esc(perf['results_title']), ths, trs)
+        inner += li(perf['reading'])
+        inner += '<h3>%s</h3>' % esc(perf['recovery_title']) + paragraphs(perf['recovery_intro']) + '<ol>%s</ol>' % ''.join('<li>%s</li>' % esc(x) for x in perf['recovery_steps'])
+        inner += '<h3>%s</h3>' % esc(perf['limits_title']) + li(perf['limits'])
+        if perf.get('tested'):
+            inner += '<h3>%s</h3>' % esc(perf['tested_title']) + li(perf['tested']) + '<h3>%s</h3>' % esc(perf['not_tested_title']) + li(perf['not_tested'])
+        section('performance', perf['title'], inner)
     tl = note['timeline']
     entries = ''.join('<li><time>%s</time><div><h3>%s</h3><p>%s</p></div></li>' % (esc(e['date']), esc(e['title']), esc(e['text'])) for e in tl['entries'])
     section('release-track', ui['timeline'], paragraphs(tl['intro']) + '<ol class="timeline">%s</ol>' % entries)
