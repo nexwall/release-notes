@@ -1,1 +1,23 @@
-{"date":"2026-10-20","ui":"3.1.0","plugins":"1.0.4","license_core":"1.9.0","atp":"0.3.0","firmware_commit":"TBD-at-build","downloads":[],"model_published":false}
+{
+"date": "2026-11-15",
+"ui": "3.1.1",
+"plugins": "1.0.4",
+"license_core": "1.9.0",
+"atp": "0.3.0",
+"firmware_commit": "4a2c55738f00c4d84c7db1bcd3b3bf63d364b4d1",
+"downloads": [
+{
+"name": "NEXWALL-Installer-26.2.1.iso",
+"url": "https://updates.nexwall.com.br/dev/26.2.1/targets/x86/64/NEXWALL-Installer-26.2.1.iso",
+"sha256": "1c389cc8bb9c6234e24557adb9f6e00ae2c8a83cbb29bee4c192a996feb9464b",
+"size": "456.1 MB (456,130,560 bytes)"
+},
+{
+"name": "nexwall-26.2.1-x86-64-generic-squashfs-combined-efi.img.gz",
+"url": "https://updates.nexwall.com.br/dev/26.2.1/targets/x86/64/nexwall-26.2.1-x86-64-generic-squashfs-combined-efi.img.gz",
+"sha256": "a6d7add4d1dd1728c5d219fb8cc34de99234fc88ebca7289206f3d0e6be77830",
+"size": "107.0 MB (106,986,911 bytes)"
+}
+],
+"model_published": true
+}

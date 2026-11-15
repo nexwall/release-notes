@@ -229,7 +229,7 @@
       },
       {
         "name": "Firmware sources",
-        "version": "TBD-at-build",
+        "version": "4a2c55738f00c4d84c7db1bcd3b3bf63d364b4d1",
         "note": "Commit of the public firewall repository the image is built from; the release tag follows"
       },
       {
@@ -239,7 +239,7 @@
       },
       {
         "name": "Web interface",
-        "version": "3.1.0",
+        "version": "3.1.1",
         "note": "English, Spanish, Brazilian Portuguese"
       },
       {
