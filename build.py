@@ -134,13 +134,13 @@ def shell(lang, ui, title, body, depth, here, nav_extra=''):
   </div>
 </header>
 {body}
-<footer class="foot"><div class="foot-in"><span>{footer}</span><span class="foot-links"><a href="https://nexwall.com.br" rel="noopener">{main_site}</a> &middot; <a href="{base}{lang}/legal/terms/">{terms}</a> &middot; <a href="{base}{lang}/legal/privacy/">{privacy}</a> &middot; &copy; Nexwall</span></div></footer>
+<footer class="foot"><div class="foot-in"><span>{footer}</span><span class="foot-links"><a href="https://nexwall.com.br" rel="noopener">{main_site}</a> &middot; <a href="{base}{lang}/legal/terms/">{terms}</a> &middot; <a href="{base}{lang}/legal/services/">{services}</a> &middot; <a href="{base}{lang}/legal/privacy/">{privacy}</a> &middot; &copy; Nexwall</span></div></footer>
 <script src="{base}assets/site.js"></script>
 </body>
 </html>
 '''.format(lang=lang, title=esc(title), desc=esc(ui['meta_description']), base=base, skip=esc(ui['skip']), site=esc(ui['site']),
            logo=LOGO, all=esc(ui['all_releases']), nav_resolved=esc(ui['nav_resolved']), nav_known=esc(ui['nav_known']), nav_compat=esc(ui['nav_compat']), nav_extra=nav_extra, language=esc(ui['language']), globe=GLOBE, dl_btn=dl_btn, docs=esc(ui['docs_link']), langs=langs, theme=esc(ui['theme']),
-           body=body, footer=esc(ui['footer']), main_site=esc(ui['main_site']), terms=esc(ui['terms_link']), privacy=esc(ui['privacy_link']))
+           body=body, footer=esc(ui['footer']), main_site=esc(ui['main_site']), terms=esc(ui['terms_link']), privacy=esc(ui['privacy_link']), services=esc(ui['services_link']))
 
 
 def status_badge(ui, status):
@@ -382,7 +382,7 @@ def legal_sections(legal, lang, kind):
 
 
 def build_legal(lang, ui, legal):
-    for kind in ('terms', 'privacy'):
+    for kind in ('terms', 'services', 'privacy'):
         extra = '<p>%s</p>' % esc(legal[lang]['export']) if kind == 'terms' else ''
         body = '<main id="main" class="wrap legal">%s%s<p><a href="../../">%s</a></p></main>' % (legal_sections(legal, lang, kind), extra, esc(ui['dl']['back']))
         write('%s/legal/%s/index.html' % (lang, kind), shell(lang, ui, legal[lang][kind]['title'] + ' | Nexwall', body, 3, 'legal/%s/' % kind))
@@ -466,7 +466,7 @@ def main():
         build_known_page(lang, ui, releases)
         build_compat_page(lang, ui)
         build_legal(lang, ui, legal)
-        urls += ['%s/legal/terms/' % lang, '%s/legal/privacy/' % lang]
+        urls += ['%s/legal/terms/' % lang, '%s/legal/services/' % lang, '%s/legal/privacy/' % lang]
         urls += ['%s/resolved-issues/' % lang, '%s/known-issues/' % lang, '%s/compatibility/' % lang]
         for rel in releases:
             build_release(lang, ui, rel, notes[rel['version']], releases)

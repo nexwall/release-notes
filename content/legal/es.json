@@ -1,39 +1,75 @@
 {
   "terms": {
     "title": "Términos de uso para el usuario final",
-    "updated": "Versión 2026-10",
+    "updated": "Versión 2026-11",
     "sections": [
       [
         "Software",
-        "Nexwall Firewall es un conjunto de componentes libres y de código abierto y de componentes de Nexwall. Los componentes de código abierto (por ejemplo OpenWrt, el kernel de Linux, nftables, Snort, dnsmasq, ClamAV, Squid) se licencian con sus propias licencias, que se aplican a esos componentes y figuran en los avisos de la imagen. Los componentes de Nexwall que no son de código abierto (por ejemplo la interfaz web, el componente de licencias y los servicios de protección web) se licencian a usted según estos términos."
+        "Nexwall Firewall es un conjunto de componentes libres y de código abierto y de componentes de Nexwall. Los componentes de código abierto (por ejemplo OpenWrt, el kernel Linux, nftables, Snort, dnsmasq, ClamAV, Squid) se licencian bajo sus propias licencias, que se aplican a esos componentes y figuran en los avisos de la imagen. Los componentes de Nexwall que no son de código abierto (por ejemplo la interfaz web, el componente de licencias y los servicios de Web Protection) se le licencian a usted según estos términos."
       ],
       [
-        "Sus derechos",
-        "Usted recibe un derecho no exclusivo e intransferible de instalar y usar el software en su propia red empresarial o doméstica, o en las redes de sus clientes si es socio de Nexwall. No puede eliminar los avisos de licencia, eludir o desactivar las comprobaciones de licencia ni aplicar ingeniería inversa a los componentes de Nexwall, salvo donde la ley lo permita a pesar de esta restricción."
+        "Sus derechos y los límites de la licencia",
+        "Usted recibe un derecho no exclusivo e intransferible de instalar y usar el software en la red de su empresa o de su casa, o en las redes de sus clientes si es socio (partner) de Nexwall. No puede quitar avisos de licencia, eludir, desactivar o manipular la verificación de licencia, el conteo de uso o las actualizaciones, revender ni sublicenciar los componentes de Nexwall, usarlos para crear un producto competidor, ni hacer ingeniería inversa de ellos, salvo cuando la ley lo permita con independencia de esta restricción. El uso se limita a lo que permitan su licencia, suscripción o período de prueba."
       ],
       [
-        "Prueba y suscripciones",
-        "La imagen incluye un periodo de prueba. Después, las funciones con licencia necesitan una suscripción que obtiene de Nexwall o de un socio de Nexwall. Las funciones sin licencia siguen funcionando como describe el producto, con los límites indicados en las notas de la versión."
+        "Prueba, suscripciones y módulos",
+        "La imagen incluye un período de prueba. Después, las funciones y módulos licenciados requieren una suscripción que usted obtiene de Nexwall o de un socio de Nexwall, a la que se aplica el Acuerdo de Servicios. Las funciones sin licencia siguen funcionando como describe el producto, con los límites indicados en las notas de versión."
       ],
       [
-        "Versiones candidatas",
-        "Las versiones marcadas como candidatas son para evaluación y pruebas. Se entregan tal cual, sin garantía, y no están pensadas para redes de producción sin un acuerdo con Nexwall."
+        "Versiones candidatas y de prueba",
+        "Las versiones marcadas como candidatas (release candidates) o de prueba son para evaluación y pruebas. Se proporcionan tal como están, sin garantía y sin soporte, y no están destinadas a redes de producción sin un acuerdo con Nexwall."
       ],
       [
-        "Exportación, importación y sanciones",
-        "El software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen, y confirma que no es una parte a la que esté prohibido entregar el software y que no lo usará para desarrollar ni usar armas."
+        "Sus responsabilidades",
+        "Usted decide cómo se configura y se usa el software y es responsable de: las reglas, perfiles y políticas que cree; la protección de contraseñas, claves y certificados; las copias de seguridad de su configuración y de sus datos; probar los cambios y las actualizaciones antes de usarlos en una red de producción; el uso lícito del software, incluido tener el derecho y el consentimiento necesarios para inspeccionar el tráfico, el tráfico cifrado (HTTPS) y los archivos de los usuarios de su red; y los servicios de terceros que conecte a él. El software no está diseñado para usos en los que un fallo pueda causar muerte, lesiones o daños graves (por ejemplo sistemas médicos, de aviación o nucleares); si lo usa así, lo hace bajo su propio riesgo."
+      ],
+      [
+        "La protección de seguridad tiene límites",
+        "Ningún producto de seguridad detecta o bloquea todas las amenazas o todos los ataques. Nexwall no promete que el software o los servicios sean ininterrumpidos, estén libres de errores, sean totalmente seguros o se ajusten a sus necesidades particulares, ni que encuentren, detengan o eviten toda amenaza, intrusión, malware, pérdida de datos o uso indebido. Pueden bloquear algo inofensivo (falso positivo) o dejar pasar algo dañino (falso negativo). La Protección Avanzada y Colectiva (IA) da puntuaciones probabilísticas y consultivas, se entrena en laboratorio y no es garantía de detección, incluso de amenazas desconocidas (zero-day). Las listas de amenazas y las categorías provienen en parte de terceros y de fuentes abiertas que Nexwall no controla. La seguridad es una responsabilidad compartida y usted debe mantener sus propias capas de protección."
+      ],
+      [
+        "Propiedad y sugerencias",
+        "El software, los servicios, los datos y los materiales de Nexwall, y sus mejoras, pertenecen a Nexwall y a sus licenciantes; usted recibe solo los derechos aquí indicados. Usted conserva la propiedad de sus propios datos y de su configuración. Si envía sugerencias o comentarios, Nexwall podrá usarlos libremente y sin pago."
+      ],
+      [
+        "Actualizaciones y cambios",
+        "Nexwall puede actualizar, cambiar, reemplazar o descontinuar funciones, módulos, listas, modelos y versiones, y publica el ciclo de vida de cada versión. Las actualizaciones están firmadas y algunas se instalan automáticamente según lo que usted configure. Nexwall puede cambiar estos términos publicando la nueva versión; si el cambio es relevante y le afecta, Nexwall le avisará con antelación cuando sea posible. Si sigue usando el software cuando el cambio entre en vigor, lo acepta; si no lo acepta, deje de usar el software."
+      ],
+      [
+        "Verificación de licencia y uso",
+        "El software se comunica con el servicio de licencias de Nexwall para verificar y renovar la licencia y recibir actualizaciones, y puede informar datos técnicos de uso (por ejemplo la versión, los módulos licenciados y el número de dispositivos o usuarios) para verificar la licencia. Usar más de lo que incluye la licencia no es motivo para que la protección se detenga; Nexwall puede pedirle que ajuste la licencia. El Aviso de Privacidad explica qué se trata."
+      ],
+      [
+        "Software proporcionado tal como está (sin garantía)",
+        "En la máxima medida permitida por la ley, el software, las licencias, los módulos y los servicios se proporcionan \"tal como están\" (\"as is\") y \"según disponibilidad\", los haya pagado usted o los reciba gratis, y Nexwall, sus socios y proveedores no dan garantía de ningún tipo, expresa o implícita, incluida la de comerciabilidad, la de idoneidad para un fin determinado, la de no infracción, la de exactitud, la de disponibilidad o la de resultados. Las garantías que la ley no permite excluir no se excluyen."
       ],
       [
         "Responsabilidad",
-        "En la medida que la ley lo permita, Nexwall no responde por pérdidas indirectas o consecuentes, y su responsabilidad total por el software que usted descarga gratuitamente se limita al importe que pagó por él, que es cero."
+        "En la máxima medida permitida por la ley, y haya pagado usted por el software, por una licencia, por un módulo o por un servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive del software, de las licencias, de los módulos, de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Cuando la ley no permita la exclusión total, la responsabilidad total de Nexwall se limita, en la máxima medida permitida por la ley, al importe que usted pagó por la licencia o suscripción afectada en los 12 meses anteriores al hecho, y es cero para todo lo que haya recibido gratis. Nada en estos términos limita la responsabilidad que la ley no permite limitar, como la responsabilidad por dolo o culpa grave, ni los derechos que la ley le da como consumidor. Estos términos reparten el riesgo entre usted y Nexwall, y el precio de las licencias refleja ese reparto."
       ],
       [
-        "Ley y foro",
-        "Estos términos se rigen por las leyes de Brasil y el foro es {forum}. Nada en ellos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le asegura."
+        "Su indemnización",
+        "Usted defenderá y mantendrá indemne a Nexwall frente a reclamaciones de terceros, y a las pérdidas, costos y honorarios que resulten, que surjan de su uso ilícito del software, del tráfico, los archivos y los datos que inspeccione o trate con él sin el derecho o el consentimiento que necesita, del incumplimiento de estos términos, o de las redes de sus propios clientes si es socio."
+      ],
+      [
+        "Vigencia, suspensión y terminación",
+        "Estos términos duran mientras usted use el software. Puede dejar de usarlo en cualquier momento. Nexwall puede suspender o terminar las licencias y los servicios si usted incumple estos términos o la licencia, si no se hace un pago debido, si el uso crea un riesgo de seguridad o una responsabilidad para Nexwall o para otros clientes, o si la ley lo exige. Los componentes de código abierto siguen bajo sus licencias. Al terminar la licencia debe dejar de usar los componentes de Nexwall y borrar las copias que tenga."
+      ],
+      [
+        "Exportación, importación y sanciones",
+        "El software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen, confirma que no es una parte a la que esté prohibido entregar el software y que no lo usará para el desarrollo o el uso de armas."
+      ],
+      [
+        "Disposiciones generales",
+        "Si una parte de estos términos no es válida, el resto sigue en vigor. No ejercer un derecho no significa renunciar a él. Usted no puede transferir estos términos sin el consentimiento escrito de Nexwall, y Nexwall puede transferirlos en una reorganización o venta de su negocio. Estos términos, el Acuerdo de Servicios, el Aviso de Privacidad y las licencias de los componentes de código abierto forman todo el acuerdo sobre el software. Las comunicaciones hacia usted pueden hacerse por correo electrónico, en el software o en los sitios de Nexwall. En caso de duda, la versión en portugués prevalece sobre las traducciones."
+      ],
+      [
+        "Ley aplicable y foro",
+        "Estos términos se rigen por las leyes de Brasil (incluidos el Código Civil, la Ley del Software, Ley 9.609/1998, y la Ley General de Protección de Datos, Ley 13.709/2018) y el foro es {forum}. Si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. Nada en estos términos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le da y que no pueden renunciarse."
       ],
       [
         "Contacto",
-        "Dudas sobre licencias o estos términos: {email}."
+        "Preguntas sobre licencias o sobre estos términos: {email}."
       ]
     ]
   },
@@ -90,5 +126,80 @@
   "accept": "Acepto los {terms} y el {privacy}, y acepto que Nexwall me contacte sobre soporte y licencias.",
   "terms_link": "Términos de uso",
   "privacy_link": "Aviso de privacidad",
-  "export": "Este software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen."
+  "export": "Este software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen.",
+  "services": {
+    "title": "Acuerdo de Servicios",
+    "updated": "Versión 2026-11",
+    "sections": [
+      [
+        "Objeto y aceptación",
+        "Este acuerdo se celebra entre usted (el cliente) y {controller} (\"Nexwall\") y se aplica a las suscripciones y a los servicios en línea de Nexwall Firewall: el servicio de licencias, las listas de actualización firmadas (categorías de aplicaciones, reglas de prevención de intrusiones, listas de DNS, de IP y de países, listas de amenazas), los servicios de Web Protection (categorías de sitios, firmas de antivirus, reglas YARA y sandbox), los modelos y el servicio de indicadores de la Protección Avanzada y Colectiva (IA), las actualizaciones de software y el soporte. Se lee junto con los Términos de Uso del Usuario Final y con el Aviso de Privacidad. Usted lo acepta al activar una licencia o suscripción, al usar los servicios o al aceptarlo en una propuesta o pedido. Si compra a través de un socio de Nexwall, el socio fija con usted el precio y el pago y este acuerdo se aplica a los servicios."
+      ],
+      [
+        "Suscripciones, cantidades y módulos",
+        "La suscripción indica los módulos, el número de dispositivos, usuarios o firewalls (el derecho de uso) y el plazo. Usted solo puede usar los servicios dentro del derecho de uso y para la seguridad de la información de su propia organización, o de sus clientes si es socio. Si usa más que el derecho de uso, Nexwall puede pedirle que ajuste la suscripción y pague el uso adicional; la protección que está funcionando no se interrumpe por ese motivo."
+      ],
+      [
+        "Precios, pago e impuestos",
+        "Los precios son los de la propuesta, el pedido o la tarifa vigente en la fecha de compra. Las compras hechas directamente a Nexwall se pagan hasta la fecha de la factura, o en 30 días si esta no indica otra. En caso de mora, la ley permite una multa del 2% e intereses del 1% mensual, más corrección monetaria. Los precios no incluyen impuestos, que usted debe pagar cuando la ley así lo disponga. Las compras hechas a través de un socio se pagan al socio."
+      ],
+      [
+        "Vigencia, renovación y cancelación",
+        "La suscripción dura el plazo del pedido. Se renueva por igual período, salvo que usted o Nexwall avisen de que no habrá renovación, en la forma y el plazo que indique el pedido o el sitio. Los importes ya pagados no se reembolsan, salvo cuando la ley lo exija o este acuerdo lo prevea. Si usted es consumidor y compró a distancia, tiene derecho de arrepentimiento dentro de los 7 días de la compra, según el artículo 49 del Código de Defensa del Consumidor."
+      ],
+      [
+        "Disponibilidad y soporte",
+        "Nexwall se esfuerza por mantener los servicios disponibles, pero no garantiza ningún nivel de disponibilidad, velocidad o tiempo de respuesta, salvo lo que se acuerde por escrito en un pedido. Los servicios pueden interrumpirse por mantenimiento, actualizaciones, emergencias, fallos de terceros o hechos fuera del control de Nexwall. Cuando no se pueda alcanzar un servicio, el firewall sigue funcionando con los últimos datos que recibió. El soporte se presta según el plan o el pedido y, para productos ofrecidos gratis, solo mediante la documentación pública."
+      ],
+      [
+        "Cambios en los servicios",
+        "Nexwall puede mejorar, cambiar, reemplazar o retirar servicios, listas, categorías, modelos e indicadores, a medida que cambian las amenazas y la tecnología. Si un cambio reduce de forma relevante un servicio de pago durante el plazo, usted puede terminar la suscripción y recibir el reembolso de la parte no usada."
+      ],
+      [
+        "Sus datos y los informes compartidos",
+        "El Aviso de Privacidad explica los datos que tratan los servicios. Nexwall no recibe el contenido de su tráfico. La Protección Avanzada y Colectiva (IA) puede enviar informes sobre direcciones externas y dominios sospechosos; el interruptor viene activado por defecto y usted puede desactivarlo en cualquier momento en esa página. Un indicador comunicado por al menos 3 firewalls distintos en 14 días se publica a todos los firewalls, y uno comunicado por un solo firewall solo se publica cuando el equipo de Nexwall lo confirma; los indicadores caducan a los 14 días sin nuevos informes. Un indicador publicado no lo identifica a usted. Usted acepta que Nexwall use esos informes, y datos técnicos y de amenazas anonimizados, para proteger a todos los clientes y mejorar sus productos."
+      ],
+      [
+        "Uso aceptable",
+        "Usted no puede usar los servicios para atacarlos o sobrecargarlos, ni a otros sistemas, para eludir la licencia o el conteo de uso, para copiar o republicar las listas, categorías, reglas o modelos fuera del producto, para enviar informes falsos o automatizados al servicio de indicadores compartidos, ni para ofrecer los servicios a terceros, salvo que sea socio bajo un contrato de socios."
+      ],
+      [
+        "Fuentes de terceros",
+        "Parte de las listas, firmas, reglas y categorías proviene de fuentes abiertas y de terceros, y los servicios pueden depender de proveedores de alojamiento, red y nube. Nexwall no los controla y no responde por su contenido, exactitud o disponibilidad."
+      ],
+      [
+        "Servicios proporcionados tal como están (sin garantía)",
+        "En la máxima medida permitida por la ley, los servicios se proporcionan \"tal como están\" (\"as is\") y \"según disponibilidad\", de pago o gratuitos, y Nexwall no da garantía de ningún tipo, expresa o implícita, incluida la de comerciabilidad, la de idoneidad para un fin determinado, la de no infracción, la de exactitud, la de continuidad o la de resultados. Nexwall no promete que los servicios detecten, detengan o eviten toda amenaza, que estén libres de falsos positivos o falsos negativos, ni que cumplan sus requisitos. Las garantías que la ley no permite excluir no se excluyen."
+      ],
+      [
+        "Responsabilidad",
+        "En la máxima medida permitida por la ley, y haya pagado usted por la suscripción, la licencia, el módulo o el servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Cuando la ley no permita la exclusión total, la responsabilidad total de Nexwall se limita, en la máxima medida permitida por la ley, al importe que usted pagó por la suscripción afectada en los 12 meses anteriores al hecho, y es cero para todo lo que haya recibido gratis. Nada en este acuerdo limita la responsabilidad que la ley no permite limitar, como la responsabilidad por dolo o culpa grave, ni los derechos que la ley le da como consumidor."
+      ],
+      [
+        "Su indemnización",
+        "Usted defenderá y mantendrá indemne a Nexwall frente a reclamaciones de terceros, y a las pérdidas, costos y honorarios que resulten, que surjan de su uso ilícito de los servicios, de los datos y el tráfico que trate con ellos sin el derecho o el consentimiento que necesita, o del incumplimiento de este acuerdo."
+      ],
+      [
+        "Suspensión y terminación",
+        "Cualquiera de las partes puede terminar este acuerdo si la otra lo incumple de forma relevante y no subsana el incumplimiento en 30 días desde el aviso. Nexwall puede suspender los servicios de inmediato, con aviso cuando sea posible, si hay una amenaza grave de seguridad, si el uso es ilícito o abusivo, si no se hace un pago debido o si la ley lo exige. Al terminar el acuerdo los servicios cesan, usted debe dejar de usar los datos y materiales de los servicios y los importes debidos hasta entonces siguen debiéndose. Las cláusulas que por su naturaleza deben continuar (propiedad, ausencia de garantía, responsabilidad, indemnización, confidencialidad, ley y foro) continúan."
+      ],
+      [
+        "Confidencialidad",
+        "Cada parte debe mantener en secreto la información no pública de la otra que reciba y usarla solo para este acuerdo, salvo lo que sea público, lo que ya conocía, lo que recibió lícitamente de otros o desarrolló por sí misma, o lo que la ley o una autoridad le exija divulgar. Esto dura 5 años tras el fin del acuerdo."
+      ],
+      [
+        "Datos personales",
+        "Cada parte cumple la Ley General de Protección de Datos (LGPD, Ley 13.709/2018) en los datos que trata. Nexwall actúa como responsable (controlador) de los datos de la licencia, de la cuenta y de los informes que recibe, como explica el Aviso de Privacidad. Usted es el responsable de los datos de los usuarios de su red que el firewall trata en sus instalaciones."
+      ],
+      [
+        "Cambios en este acuerdo",
+        "Nexwall puede cambiar este acuerdo publicando la nueva versión y, si el cambio es relevante, avisándole con antelación cuando sea posible. El cambio se aplica a la próxima renovación o, si entra en vigor durante el plazo, usted puede terminar la suscripción en 30 días y recibir el reembolso de la parte no usada. Si sigue usando los servicios después, acepta el cambio."
+      ],
+      [
+        "Disposiciones generales, ley y foro",
+        "Si una parte de este acuerdo no es válida, el resto sigue en vigor. Usted no puede transferirlo sin el consentimiento escrito de Nexwall. Ninguna de las partes responde por retrasos causados por hechos fuera de su control, pero esto no exime del pago. Este acuerdo se rige por las leyes de Brasil y el foro es {forum}; si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. En caso de duda, la versión en portugués prevalece sobre las traducciones. Contacto: {email}."
+      ]
+    ]
+  },
+  "services_link": "Acuerdo de Servicios"
 }

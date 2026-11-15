@@ -109,7 +109,8 @@
     "terms_link": "Terms of Use",
     "privacy_link": "Privacy Notice",
     "download": "Download",
-    "docs_link": "Documentation"
+    "docs_link": "Documentation",
+    "services_link": "Services Agreement"
   },
   "es": {
     "site": "Notas de versión",
@@ -221,7 +222,8 @@
     "terms_link": "Términos de uso",
     "privacy_link": "Aviso de privacidad",
     "download": "Descargar",
-    "docs_link": "Documentación"
+    "docs_link": "Documentación",
+    "services_link": "Acuerdo de Servicios"
   },
   "pt-BR": {
     "site": "Notas de versão",
@@ -333,6 +335,7 @@
     "terms_link": "Termos de uso",
     "privacy_link": "Aviso de privacidade",
     "download": "Baixar",
-    "docs_link": "Documentação"
+    "docs_link": "Documentação",
+    "services_link": "Contrato de Serviços"
   }
 }
