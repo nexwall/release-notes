@@ -45,7 +45,27 @@
       ],
       [
         "Responsabilidad",
-        "En la máxima medida permitida por la ley, y haya pagado usted por el software, por una licencia, por un módulo o por un servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive del software, de las licencias, de los módulos, de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Nada en estos términos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le da y que no pueden renunciarse."
+        "En la máxima medida permitida por la ley, y haya pagado usted por el software, por una licencia, por un módulo o por un servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive del software, de las licencias, de los módulos, de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Cuando la ley no permita la exclusión total, la responsabilidad total de Nexwall se limita, en la máxima medida permitida por la ley, al importe que usted pagó por la licencia o suscripción afectada en los 3 meses anteriores al hecho, y es cero para todo lo que haya recibido gratis. Nada en estos términos limita la responsabilidad que la ley no permite limitar, como la responsabilidad por dolo o culpa grave, ni los derechos que la ley le da como consumidor. Estos términos reparten el riesgo entre usted y Nexwall, y el precio de las licencias refleja ese reparto."
+      ],
+      [
+        "Su indemnización",
+        "Usted defenderá y mantendrá indemne a Nexwall frente a reclamaciones de terceros, y a las pérdidas, costos y honorarios que resulten, que surjan de su uso ilícito del software, del tráfico, los archivos y los datos que inspeccione o trate con él sin el derecho o el consentimiento que necesita, del incumplimiento de estos términos, o de las redes de sus propios clientes si es socio."
+      ],
+      [
+        "Vigencia, suspensión y terminación",
+        "Estos términos duran mientras usted use el software. Puede dejar de usarlo en cualquier momento. Nexwall puede suspender o terminar las licencias y los servicios si usted incumple estos términos o la licencia, si no se hace un pago debido, si el uso crea un riesgo de seguridad o una responsabilidad para Nexwall o para otros clientes, o si la ley lo exige. Los componentes de código abierto siguen bajo sus licencias. Al terminar la licencia debe dejar de usar los componentes de Nexwall y borrar las copias que tenga."
+      ],
+      [
+        "Exportación, importación y sanciones",
+        "El software incluye criptografía. Usted es responsable de cumplir las leyes de exportación, importación y sanciones que le apliquen, confirma que no es una parte a la que esté prohibido entregar el software y que no lo usará para el desarrollo o el uso de armas."
+      ],
+      [
+        "Disposiciones generales",
+        "Si una parte de estos términos no es válida, el resto sigue en vigor. No ejercer un derecho no significa renunciar a él. Usted no puede transferir estos términos sin el consentimiento escrito de Nexwall, y Nexwall puede transferirlos en una reorganización o venta de su negocio. Estos términos, el Acuerdo de Servicios, el Aviso de Privacidad y las licencias de los componentes de código abierto forman todo el acuerdo sobre el software. Las comunicaciones hacia usted pueden hacerse por correo electrónico, en el software o en los sitios de Nexwall. En caso de duda, la versión en portugués prevalece sobre las traducciones."
+      ],
+      [
+        "Ley aplicable y foro",
+        "Estos términos se rigen por las leyes de Brasil (incluidos el Código Civil, la Ley del Software, Ley 9.609/1998, y la Ley General de Protección de Datos, Ley 13.709/2018) y el foro es {forum}. Si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. Nada en estos términos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le da y que no pueden renunciarse."
       ],
       [
         "Contacto",
