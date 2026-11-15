@@ -173,11 +173,35 @@
       ],
       [
         "Responsabilidad",
-        "En la máxima medida permitida por la ley, y haya pagado usted por la suscripción, la licencia, el módulo o el servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Cuando la ley no permita la exclusión total, la responsabilidad total de Nexwall se limita, en la máxima medida permitida por la ley, al importe que usted pagó por la suscripción afectada en los 3 meses anteriores al hecho, y es cero para todo lo que haya recibido gratis. Nada en este acuerdo limita la responsabilidad que la ley no permite limitar, como la responsabilidad por dolo o culpa grave, ni los derechos que la ley le da como consumidor."
+        "En la máxima medida permitida por la ley, y haya pagado usted por la suscripción, la licencia, el módulo o el servicio o los reciba gratis, Nexwall, sus socios, proveedores, licenciantes y colaboradores no responden por ninguna pérdida o daño, de cualquier naturaleza, que derive de los servicios o de su uso o de la imposibilidad de usarlos, o que se relacione con ellos, directo o indirecto, incluido lucro cesante, pérdida de ingresos, de negocios, de datos o de reputación, interrupción de la actividad, costo de reemplazo, incidente de seguridad, amenaza no detectada o uso legítimo bloqueado, bajo cualquier teoría jurídica (contrato, responsabilidad extracontractual, negligencia u otra) y aunque se haya avisado a Nexwall de la posibilidad de la pérdida. Cuando la ley no permita la exclusión total, la responsabilidad total de Nexwall se limita, en la máxima medida permitida por la ley, al importe que usted pagó por la suscripción afectada en los 3 meses anteriores al hecho, y es cero para todo lo que haya recibido gratis. Nada en este acuerdo limita la responsabilidad que la ley no permite limitar, como la responsabilidad por dolo o culpa grave, ni los derechos que la ley le da como consumidor. El límite de esta cláusula es un único límite para todas las reclamaciones en conjunto, y no uno por cada reclamación."
       ],
       [
         "Su indemnización",
         "Usted defenderá y mantendrá indemne a Nexwall frente a reclamaciones de terceros, y a las pérdidas, costos y honorarios que resulten, que surjan de su uso ilícito de los servicios, de los datos y el tráfico que trate con ellos sin el derecho o el consentimiento que necesita, o del incumplimiento de este acuerdo."
+      ],
+      [
+        "Aceptación y registros",
+        "Usted acepta este acuerdo por medios electrónicos, al aceptarlo en el portal de licencias o en el firewall, al activar una licencia o al usar los servicios, y la aceptación electrónica tiene el mismo valor que una firma. Los registros de Nexwall (fecha de aceptación, identidad de la licencia y del firewall, registros de los servicios de licencia y actualización) son prueba válida entre las partes, salvo prueba en contrario. Ninguna declaración de un vendedor, socio, anuncio o documento que no figure en este acuerdo o en el pedido firmado es promesa o garantía de Nexwall."
+      ],
+      [
+        "Sus deberes de seguridad",
+        "Usted es responsable de la seguridad de su propia red y de sus sistemas, incluido: mantener el firewall y sus componentes actualizados con las actualizaciones de seguridad que publica Nexwall, en un plazo razonable y después de probarlas; configurar los módulos de protección; mantener las interfaces de administración fuera de internet y protegidas con contraseñas fuertes y, cuando exista, autenticación de dos factores; mantener copias de seguridad separadas de los sistemas que protegen y probar su restauración; y tener su propio plan de respuesta a incidentes. Nexwall no responde por pérdidas que se deban a no hacerlo, a su configuración, a software, dispositivos o servicios que usted o terceros operen, o al acceso que usted dé a otras personas. Usted debe avisar a Nexwall sin demora de cualquier incidente que pueda involucrar a los servicios y actuar para reducir la pérdida; Nexwall no responde por la parte de la pérdida que usted pudo evitar."
+      ],
+      [
+        "Remedio exclusivo",
+        "Si un servicio de pago no funciona sustancialmente como describe la documentación, usted debe avisar a Nexwall por escrito y darle un plazo razonable para corregirlo. El remedio que usted tiene frente a Nexwall por ese fallo es que Nexwall corrija o reemplace el servicio o, si no puede hacerlo en un plazo razonable, termine la suscripción afectada y devuelva la parte de los importes que usted pagó por el tiempo en que no pudo usarlo, dentro del límite de la cláusula de responsabilidad. Este remedio se aplica en la medida en que la ley lo permita."
+      ],
+      [
+        "Socios",
+        "Si usted es socio de Nexwall, actúa por su cuenta y responsabilidad con sus clientes. Usted es responsable del asesoramiento, la instalación, la configuración y el soporte que les da, no puede prometer ni garantizar nada en nombre de Nexwall y debe incluir en sus propios contratos con sus clientes cláusulas que protejan a Nexwall al menos tanto como este acuerdo (incluida la exclusión y el límite de responsabilidad). Usted defenderá y mantendrá indemne a Nexwall frente a reclamaciones de sus clientes que deriven de sus actos o de la falta de esas cláusulas."
+      ],
+      [
+        "Hechos fuera de nuestro control",
+        "Nexwall no responde por fallos o retrasos causados por hechos fuera de su control razonable, incluidos actos de autoridades, fallos de internet, de energía, de telecomunicaciones o de proveedores de nube y alojamiento, ataques a sus sistemas o a los de terceros, guerra, huelgas, hechos de la naturaleza y pandemias (caso fortuito o fuerza mayor, Código Civil brasileño, art. 393)."
+      ],
+      [
+        "Cumplimiento",
+        "Cada parte cumple las leyes que le aplican, incluidas las leyes anticorrupción (Ley 12.846/2013) y las de exportación y sanciones, y usted no usará los servicios para actividades ilícitas. Nexwall puede informar a las autoridades lo que la ley exija."
       ],
       [
         "Suspensión y terminación",

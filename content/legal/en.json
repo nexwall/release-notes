@@ -173,11 +173,35 @@
       ],
       [
         "Liability",
-        "To the maximum extent permitted by law, and whether you paid for the subscription, the license, the module or the service or received it free of charge, Nexwall, its partners, suppliers, licensors and staff are not liable for any loss or damage of any kind that arises from or is related to the services or their use or inability to use, direct or indirect, including loss of profit, revenue, business, data or goodwill, interruption of business, the cost of replacement, a security incident, or a threat that was not detected or a legitimate use that was blocked, under any legal theory (contract, tort, negligence or any other) and even if Nexwall was told that the loss was possible. Where the law does not allow a full exclusion, the total liability of Nexwall is limited, to the maximum extent permitted by law, to the amount you paid for the affected subscription in the 3 months before the event, and it is zero for anything you received free of charge. Nothing in this agreement limits liability that the law does not allow to be limited, such as liability for willful misconduct (dolo) or gross negligence, or the rights that the law gives to you as a consumer."
+        "To the maximum extent permitted by law, and whether you paid for the subscription, the license, the module or the service or received it free of charge, Nexwall, its partners, suppliers, licensors and staff are not liable for any loss or damage of any kind that arises from or is related to the services or their use or inability to use, direct or indirect, including loss of profit, revenue, business, data or goodwill, interruption of business, the cost of replacement, a security incident, or a threat that was not detected or a legitimate use that was blocked, under any legal theory (contract, tort, negligence or any other) and even if Nexwall was told that the loss was possible. Where the law does not allow a full exclusion, the total liability of Nexwall is limited, to the maximum extent permitted by law, to the amount you paid for the affected subscription in the 3 months before the event, and it is zero for anything you received free of charge. Nothing in this agreement limits liability that the law does not allow to be limited, such as liability for willful misconduct (dolo) or gross negligence, or the rights that the law gives to you as a consumer. The limit in this clause is one single limit for all claims together, not one for each claim."
       ],
       [
         "Your indemnity",
         "You will defend and hold Nexwall harmless against claims of third parties, and the resulting losses, costs and fees, that arise from your unlawful use of the services, from the data and traffic that you process with them without the right or the consent that you need, or from your breach of this agreement."
+      ],
+      [
+        "Acceptance and records",
+        "You accept this agreement electronically, by accepting it in the license portal or the firewall, by activating a license or by using the services, and the electronic acceptance has the same value as a signature. The records of Nexwall (acceptance date, license and firewall identity, logs of the license and update services) are valid evidence between the parties, and you may show proof to the contrary. No statement of a salesperson, partner, advertisement or document that is not in this agreement or in the signed order is a promise or warranty of Nexwall."
+      ],
+      [
+        "Your security duties",
+        "You are responsible for the security of your own network and systems, including: keeping the firewall and its components updated with the security updates that Nexwall publishes, within a reasonable time and after testing them; configuring the protection modules; keeping the management interfaces away from the internet and protected by strong passwords and, when available, two-factor authentication; keeping backups that are separate from the systems they protect and testing their restore; and having your own incident plan. Nexwall is not responsible for losses that come from not doing so, from your configuration, from software, devices or services that you or third parties operate, or from access that you gave to others. You must tell Nexwall without delay of any incident that may involve the services, and must act to reduce the loss; Nexwall is not responsible for the part of a loss that you could have avoided."
+      ],
+      [
+        "Exclusive remedy",
+        "If a paid service does not work substantially as the documentation describes, you must tell Nexwall in writing and give it a reasonable time to repair it. The remedy that you have against Nexwall for that failure is that Nexwall repairs or replaces the service, or, if it cannot do so within a reasonable time, ends the affected subscription and refunds the part of the fees that you paid for the time you could not use it, within the limit of the liability clause. This remedy applies to the extent the law permits."
+      ],
+      [
+        "Partners",
+        "If you are a Nexwall partner, you act on your own account and responsibility with your customers. You are responsible for the advice, installation, configuration and support that you give them, you may not promise or warrant anything in the name of Nexwall, and you must include in your own contracts with your customers terms that protect Nexwall at least as much as this agreement (including the exclusion and limit of liability). You will defend and hold Nexwall harmless against claims of your customers that arise from your acts or from the lack of those terms."
+      ],
+      [
+        "Events outside our control",
+        "Nexwall is not responsible for failure or delay caused by events outside its reasonable control, including acts of authorities, failures of the internet, of energy, of telecommunication or of cloud and hosting providers, attacks on its or third-party systems, war, strikes, natural events and pandemics (force majeure, Civil Code, art. 393)."
+      ],
+      [
+        "Compliance",
+        "Each party complies with the laws that apply to it, including the anticorruption laws (Law 12.846/2013) and the export and sanctions laws, and you will not use the services for unlawful activity. Nexwall may report to the authorities what the law requires."
       ],
       [
         "Suspension and termination",
