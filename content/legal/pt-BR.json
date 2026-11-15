@@ -53,7 +53,7 @@
       ],
       [
         "Vigência, suspensão e rescisão",
-        "Estes termos valem enquanto você usar o software. Você pode parar de usá-lo a qualquer momento. A Nexwall pode suspender ou encerrar as licenças e os serviços se você descumprir estes termos ou a licença, se um pagamento devido não for feito, se o uso criar risco de segurança ou responsabilidade para a Nexwall ou para outros clientes, ou se a lei exigir. Os componentes de código aberto continuam sob as suas licenças. Quando a licença terminar, você deve deixar de usar os componentes da Nexwall e apagar as cópias que tiver."
+        "Estes termos valem enquanto você usar o software. Você pode parar de usá-lo a qualquer momento. A Nexwall pode suspender ou encerrar as licenças e os serviços se você descumprir estes termos ou a licença, se um pagamento devido não for feito, se o uso criar risco de segurança ou responsabilidade para a Nexwall ou para outros clientes, ou se a lei exigir. Os componentes de código aberto continuam sob as suas licenças. Quando a licença terminar, você deve deixar de usar os componentes da Nexwall e apagar as cópias que tiver. A Nexwall também pode encerrar as licenças e os serviços por qualquer motivo, mediante aviso a você com pelo menos 30 dias de antecedência e, nesse caso, devolve a parte de qualquer valor pago antecipadamente que corresponda ao período posterior ao término."
       ],
       [
         "Exportação, importação e sanções",
@@ -65,7 +65,7 @@
       ],
       [
         "Lei aplicável e foro",
-        "Estes termos são regidos pelas leis do Brasil (inclusive o Código Civil, a Lei do Software, Lei 9.609/1998, e a Lei Geral de Proteção de Dados, Lei 13.709/2018) e o foro é {forum}. Se você for consumidor, vale o foro do seu domicílio e o Código de Defesa do Consumidor se aplica a você no que ele exigir. Nada nestes termos limita os direitos que as licenças de código aberto dão a você sobre os componentes de código aberto, nem os direitos que a lei brasileira dá a você e que não podem ser renunciados."
+        "Estes termos são regidos pelas leis do Brasil (inclusive o Código Civil, a Lei do Software, Lei 9.609/1998, e a Lei Geral de Proteção de Dados, Lei 13.709/2018) e o foro é {forum}. Se você for consumidor, vale o foro do seu domicílio e o Código de Defesa do Consumidor se aplica a você no que ele exigir. Nada nestes termos limita os direitos que as licenças de código aberto dão a você sobre os componentes de código aberto, nem os direitos que a lei brasileira dá a você e que não podem ser renunciados. Antes de iniciar qualquer processo judicial ou arbitral, as partes devem enviar uma à outra um aviso por escrito descrevendo o problema e dar 30 dias para tentar resolvê-lo de boa-fé; isso não impede medidas urgentes nem o exercício de direito que a lei não permita restringir."
       ],
       [
         "Contato",
@@ -181,7 +181,7 @@
       ],
       [
         "Suspensão e rescisão",
-        "Qualquer das partes pode rescindir este contrato se a outra o descumprir de forma relevante e não sanar o descumprimento em 30 dias do aviso. A Nexwall pode suspender os serviços de imediato, com aviso quando for possível, se houver uma ameaça grave de segurança, se o uso for ilícito ou abusivo, se um pagamento devido não for feito ou se a lei exigir. Quando o contrato terminar, os serviços cessam, você deve deixar de usar os dados e materiais dos serviços e os valores devidos até então continuam devidos. As cláusulas que por sua natureza devem continuar (propriedade, ausência de garantia, responsabilidade, indenização, confidencialidade, lei e foro) continuam."
+        "Qualquer das partes pode rescindir este contrato se a outra o descumprir de forma relevante e não sanar o descumprimento em 30 dias do aviso. A Nexwall pode suspender os serviços de imediato, com aviso quando for possível, se houver uma ameaça grave de segurança, se o uso for ilícito ou abusivo, se um pagamento devido não for feito ou se a lei exigir. Quando o contrato terminar, os serviços cessam, você deve deixar de usar os dados e materiais dos serviços e os valores devidos até então continuam devidos. As cláusulas que por sua natureza devem continuar (propriedade, ausência de garantia, responsabilidade, indenização, confidencialidade, lei e foro) continuam. A Nexwall também pode encerrar este contrato por qualquer motivo, mediante aviso a você com pelo menos 30 dias de antecedência e, nesse caso, devolve a parte dos valores pagos antecipadamente que corresponda ao período posterior ao término."
       ],
       [
         "Confidencialidade",
@@ -197,7 +197,7 @@
       ],
       [
         "Disposições gerais, lei e foro",
-        "Se uma parte deste contrato não for válida, o restante continua em vigor. Você não pode transferi-lo sem o consentimento por escrito da Nexwall. Nenhuma das partes responde por atraso causado por eventos fora do seu controle, mas isso não dispensa o pagamento. Este contrato é regido pelas leis do Brasil e o foro é {forum}; se você for consumidor, vale o foro do seu domicílio e o Código de Defesa do Consumidor se aplica a você no que ele exigir. Em caso de dúvida, a versão em português prevalece sobre as traduções. Contato: {email}."
+        "Se uma parte deste contrato não for válida, o restante continua em vigor. Você não pode transferi-lo sem o consentimento por escrito da Nexwall. Nenhuma das partes responde por atraso causado por eventos fora do seu controle, mas isso não dispensa o pagamento. Este contrato é regido pelas leis do Brasil e o foro é {forum}; se você for consumidor, vale o foro do seu domicílio e o Código de Defesa do Consumidor se aplica a você no que ele exigir. Em caso de dúvida, a versão em português prevalece sobre as traduções. Contato: {email}. Antes de iniciar qualquer processo judicial ou arbitral, as partes devem enviar uma à outra um aviso por escrito descrevendo o problema e dar 30 dias para tentar resolvê-lo de boa-fé; isso não impede medidas urgentes nem o exercício de direito que a lei não permita restringir."
       ]
     ]
   },

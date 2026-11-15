@@ -53,7 +53,7 @@
       ],
       [
         "Term, suspension and termination",
-        "These terms last as long as you use the software. You can stop at any time. Nexwall may suspend or end the licenses and services if you breach these terms or the license, if a payment due is not made, if the use creates a security risk or liability for Nexwall or other customers, or if the law requires it. The open source components stay under their licenses. When the license ends you must stop using the Nexwall components and delete the copies that you hold."
+        "These terms last as long as you use the software. You can stop at any time. Nexwall may suspend or end the licenses and services if you breach these terms or the license, if a payment due is not made, if the use creates a security risk or liability for Nexwall or other customers, or if the law requires it. The open source components stay under their licenses. When the license ends you must stop using the Nexwall components and delete the copies that you hold. Nexwall may also end the licenses and services for any reason, by notice to you of at least 30 days, and in that case it refunds the part of any prepaid fee that covers the time after the end."
       ],
       [
         "Export, import and sanctions",
@@ -65,7 +65,7 @@
       ],
       [
         "Law and forum",
-        "These terms are governed by the laws of Brazil (including the Civil Code, the Software Law, Law 9.609/1998, and the General Data Protection Law, Law 13.709/2018) and the forum is {forum}. If you are a consumer, the forum of your domicile applies and the Consumer Defense Code applies to you in what it requires. Nothing in these terms limits the rights that the open source licenses give you for the open source components, or the rights that Brazilian law gives you and that cannot be waived."
+        "These terms are governed by the laws of Brazil (including the Civil Code, the Software Law, Law 9.609/1998, and the General Data Protection Law, Law 13.709/2018) and the forum is {forum}. If you are a consumer, the forum of your domicile applies and the Consumer Defense Code applies to you in what it requires. Nothing in these terms limits the rights that the open source licenses give you for the open source components, or the rights that Brazilian law gives you and that cannot be waived. Before starting any court or arbitration proceeding, the parties must send each other a written notice describing the problem and give 30 days to try to solve it in good faith; this does not prevent urgent measures or the exercise of any right that the law does not allow to be restricted."
       ],
       [
         "Contact",
@@ -181,7 +181,7 @@
       ],
       [
         "Suspension and termination",
-        "Either party may end this agreement if the other breaches it materially and does not repair the breach within 30 days of the notice. Nexwall may suspend the services at once, when practical with notice, if there is a serious security threat, if the use is unlawful or abusive, if a payment due is not made or if the law requires it. When the agreement ends the services stop, you must stop using the data and materials of the services, and the fees due until then remain due. The clauses that by their nature must continue (ownership, disclaimer, liability, indemnity, confidentiality, law and forum) continue."
+        "Either party may end this agreement if the other breaches it materially and does not repair the breach within 30 days of the notice. Nexwall may suspend the services at once, when practical with notice, if there is a serious security threat, if the use is unlawful or abusive, if a payment due is not made or if the law requires it. When the agreement ends the services stop, you must stop using the data and materials of the services, and the fees due until then remain due. The clauses that by their nature must continue (ownership, disclaimer, liability, indemnity, confidentiality, law and forum) continue. Nexwall may also end this agreement for any reason, by notice to you of at least 30 days, and in that case it refunds the part of the fees paid in advance that covers the time after the end."
       ],
       [
         "Confidentiality",
@@ -197,7 +197,7 @@
       ],
       [
         "General, law and forum",
-        "If a part of this agreement is not valid, the rest stays in force. It cannot be transferred by you without the written consent of Nexwall. Neither party is liable for delay caused by events outside its control, but this does not excuse payment. This agreement is governed by the laws of Brazil and the forum is {forum}; if you are a consumer, the forum of your domicile applies and the Consumer Defense Code applies to you in what it requires. The Portuguese version prevails over translations in case of doubt. Contact: {email}."
+        "If a part of this agreement is not valid, the rest stays in force. It cannot be transferred by you without the written consent of Nexwall. Neither party is liable for delay caused by events outside its control, but this does not excuse payment. This agreement is governed by the laws of Brazil and the forum is {forum}; if you are a consumer, the forum of your domicile applies and the Consumer Defense Code applies to you in what it requires. The Portuguese version prevails over translations in case of doubt. Contact: {email}. Before starting any court or arbitration proceeding, the parties must send each other a written notice describing the problem and give 30 days to try to solve it in good faith; this does not prevent urgent measures or the exercise of any right that the law does not allow to be restricted."
       ]
     ]
   },

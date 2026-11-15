@@ -53,7 +53,7 @@
       ],
       [
         "Vigencia, suspensión y terminación",
-        "Estos términos duran mientras usted use el software. Puede dejar de usarlo en cualquier momento. Nexwall puede suspender o terminar las licencias y los servicios si usted incumple estos términos o la licencia, si no se hace un pago debido, si el uso crea un riesgo de seguridad o una responsabilidad para Nexwall o para otros clientes, o si la ley lo exige. Los componentes de código abierto siguen bajo sus licencias. Al terminar la licencia debe dejar de usar los componentes de Nexwall y borrar las copias que tenga."
+        "Estos términos duran mientras usted use el software. Puede dejar de usarlo en cualquier momento. Nexwall puede suspender o terminar las licencias y los servicios si usted incumple estos términos o la licencia, si no se hace un pago debido, si el uso crea un riesgo de seguridad o una responsabilidad para Nexwall o para otros clientes, o si la ley lo exige. Los componentes de código abierto siguen bajo sus licencias. Al terminar la licencia debe dejar de usar los componentes de Nexwall y borrar las copias que tenga. Nexwall también puede terminar las licencias y los servicios por cualquier motivo, mediante aviso a usted con al menos 30 días de antelación y, en ese caso, devuelve la parte de cualquier importe pagado por adelantado que corresponda al período posterior al fin."
       ],
       [
         "Exportación, importación y sanciones",
@@ -65,7 +65,7 @@
       ],
       [
         "Ley aplicable y foro",
-        "Estos términos se rigen por las leyes de Brasil (incluidos el Código Civil, la Ley del Software, Ley 9.609/1998, y la Ley General de Protección de Datos, Ley 13.709/2018) y el foro es {forum}. Si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. Nada en estos términos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le da y que no pueden renunciarse."
+        "Estos términos se rigen por las leyes de Brasil (incluidos el Código Civil, la Ley del Software, Ley 9.609/1998, y la Ley General de Protección de Datos, Ley 13.709/2018) y el foro es {forum}. Si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. Nada en estos términos limita los derechos que las licencias de código abierto le dan sobre los componentes de código abierto, ni los derechos que la ley brasileña le da y que no pueden renunciarse. Antes de iniciar cualquier proceso judicial o arbitral, las partes deben enviarse un aviso por escrito que describa el problema y dar 30 días para intentar resolverlo de buena fe; esto no impide medidas urgentes ni el ejercicio de un derecho que la ley no permita restringir."
       ],
       [
         "Contacto",
@@ -181,7 +181,7 @@
       ],
       [
         "Suspensión y terminación",
-        "Cualquiera de las partes puede terminar este acuerdo si la otra lo incumple de forma relevante y no subsana el incumplimiento en 30 días desde el aviso. Nexwall puede suspender los servicios de inmediato, con aviso cuando sea posible, si hay una amenaza grave de seguridad, si el uso es ilícito o abusivo, si no se hace un pago debido o si la ley lo exige. Al terminar el acuerdo los servicios cesan, usted debe dejar de usar los datos y materiales de los servicios y los importes debidos hasta entonces siguen debiéndose. Las cláusulas que por su naturaleza deben continuar (propiedad, ausencia de garantía, responsabilidad, indemnización, confidencialidad, ley y foro) continúan."
+        "Cualquiera de las partes puede terminar este acuerdo si la otra lo incumple de forma relevante y no subsana el incumplimiento en 30 días desde el aviso. Nexwall puede suspender los servicios de inmediato, con aviso cuando sea posible, si hay una amenaza grave de seguridad, si el uso es ilícito o abusivo, si no se hace un pago debido o si la ley lo exige. Al terminar el acuerdo los servicios cesan, usted debe dejar de usar los datos y materiales de los servicios y los importes debidos hasta entonces siguen debiéndose. Las cláusulas que por su naturaleza deben continuar (propiedad, ausencia de garantía, responsabilidad, indemnización, confidencialidad, ley y foro) continúan. Nexwall también puede terminar este acuerdo por cualquier motivo, mediante aviso a usted con al menos 30 días de antelación y, en ese caso, devuelve la parte de los importes pagados por adelantado que corresponda al período posterior al fin."
       ],
       [
         "Confidencialidad",
@@ -197,7 +197,7 @@
       ],
       [
         "Disposiciones generales, ley y foro",
-        "Si una parte de este acuerdo no es válida, el resto sigue en vigor. Usted no puede transferirlo sin el consentimiento escrito de Nexwall. Ninguna de las partes responde por retrasos causados por hechos fuera de su control, pero esto no exime del pago. Este acuerdo se rige por las leyes de Brasil y el foro es {forum}; si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. En caso de duda, la versión en portugués prevalece sobre las traducciones. Contacto: {email}."
+        "Si una parte de este acuerdo no es válida, el resto sigue en vigor. Usted no puede transferirlo sin el consentimiento escrito de Nexwall. Ninguna de las partes responde por retrasos causados por hechos fuera de su control, pero esto no exime del pago. Este acuerdo se rige por las leyes de Brasil y el foro es {forum}; si usted es consumidor, rige el foro de su domicilio y se le aplica el Código de Defensa del Consumidor en lo que este exija. En caso de duda, la versión en portugués prevalece sobre las traducciones. Contacto: {email}. Antes de iniciar cualquier proceso judicial o arbitral, las partes deben enviarse un aviso por escrito que describa el problema y dar 30 días para intentar resolverlo de buena fe; esto no impide medidas urgentes ni el ejercicio de un derecho que la ley no permita restringir."
       ]
     ]
   },
