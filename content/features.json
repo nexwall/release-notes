@@ -1,21 +1,20 @@
 {
   "en": {
     "title": "What Nexwall includes",
-    "new_title": "New in 26.1",
+    "new_title": "New in 26.2",
     "base_title": "Already in the firewall",
     "new": [
-      "Web Protection: block websites by category",
-      "Inspection of encrypted (HTTPS) traffic",
-      "Antivirus for downloads",
-      "Profiles for home, school and company, websites included",
-      "SafeSearch and YouTube Restricted Mode",
-      "Traffic and applications in the Log Viewer, reports kept 35 days",
-      "Licenses as a bundle plus add-ons"
+      "Advanced and Collective Protection (AI): suspicious-behaviour scoring, advisory only",
+      "Collective Defense: threat indicators shared between firewalls, reviewed before publication",
+      "Web proxy fixes: changing destination addresses and ping/ICMP no longer disturb browsing",
+      "Web Protection, HTTPS inspection and antivirus for downloads (from 26.1)",
+      "Profiles for home, school and company; SafeSearch and YouTube Restricted Mode (from 26.1)",
+      "Licenses as a bundle plus add-ons (from 26.1)"
     ],
     "base": [
       "Network Protection (IPS) against attacks",
       "Application Control (DPI) with profiles",
-      "Threat Shield feeds: malicious IPs and domains blocked",
+      "Nexwall threat lists: malicious IPs and domains blocked",
       "DNS filtering",
       "IP and country (geo) blocking",
       "Log Viewer and Traffic Analytics",
@@ -27,21 +26,20 @@
   },
   "es": {
     "title": "Qué incluye Nexwall",
-    "new_title": "Novedades de 26.1",
+    "new_title": "Novedades de 26.2",
     "base_title": "Ya incluido en el firewall",
     "new": [
-      "Web Protection: bloqueo de sitios por categoría",
-      "Inspección del tráfico cifrado (HTTPS)",
-      "Antivirus para descargas",
-      "Perfiles para hogar, escuela y empresa, con los sitios web incluidos",
-      "SafeSearch y Modo restringido de YouTube",
-      "Tráfico y aplicaciones en el Visor de logs, informes de 35 días",
-      "Licencias en paquete más complementos"
+      "Protección Avanzada y Colectiva (IA): puntuación de comportamiento sospechoso, solo informativa",
+      "Defensa Colectiva: indicadores de amenaza compartidos entre firewalls, revisados antes de publicarse",
+      "Correcciones del proxy web: direcciones de destino cambiantes y ping/ICMP ya no afectan la navegación",
+      "Web Protection, inspección HTTPS y antivirus para descargas (desde 26.1)",
+      "Perfiles para hogar, escuela y empresa; SafeSearch y Modo restringido de YouTube (desde 26.1)",
+      "Licencias en paquete más complementos (desde 26.1)"
     ],
     "base": [
       "Network Protection (IPS) contra ataques",
       "Application Control (DPI) con perfiles",
-      "Threat Shield: IPs y dominios maliciosos bloqueados",
+      "Listas de amenazas de Nexwall: IPs y dominios maliciosos bloqueados",
       "Filtrado DNS",
       "Bloqueo por IP y por país (geo)",
       "Visor de logs y Traffic Analytics",
@@ -53,21 +51,20 @@
   },
   "pt-BR": {
     "title": "O que o Nexwall inclui",
-    "new_title": "Novidades da 26.1",
+    "new_title": "Novidades da 26.2",
     "base_title": "Já incluído no firewall",
     "new": [
-      "Web Protection: bloqueio de sites por categoria",
-      "Inspeção do tráfego criptografado (HTTPS)",
-      "Antivírus para downloads",
-      "Perfis para casa, escola e empresa, com sites incluídos",
-      "SafeSearch e Modo restrito do YouTube",
-      "Tráfego e aplicativos no Visualizador de logs, relatórios por 35 dias",
-      "Licenças em pacote mais complementos"
+      "Proteção Avançada e Coletiva (IA): pontuação de comportamento suspeito, apenas consultiva",
+      "Defesa Coletiva: indicadores de ameaça compartilhados entre firewalls, revisados antes de publicar",
+      "Correções do proxy web: endereços de destino que mudam e ping/ICMP não atrapalham mais a navegação",
+      "Web Protection, inspeção HTTPS e antivírus para downloads (desde a 26.1)",
+      "Perfis para casa, escola e empresa; SafeSearch e Modo restrito do YouTube (desde a 26.1)",
+      "Licenças em pacote mais complementos (desde a 26.1)"
     ],
     "base": [
       "Network Protection (IPS) contra ataques",
       "Application Control (DPI) com perfis",
-      "Threat Shield: IPs e domínios maliciosos bloqueados",
+      "Listas de ameaças da Nexwall: IPs e domínios maliciosos bloqueados",
       "Filtragem DNS",
       "Bloqueio por IP e por país (geo)",
       "Visualizador de logs e Traffic Analytics",
