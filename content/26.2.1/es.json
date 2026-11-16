@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.2.1",
   "summary": "Protección Avanzada y Colectiva (IA): un evaluador de comportamiento, modelos firmados, indicadores compartidos (3 firewalls o confirmados por Nexwall), una página nueva para controlarlos y medición de uso para el tamaño de la licencia.",
-  "overview": "Nexwall Firewall 26.2.1 añade la Protección Avanzada y la Protección Colectiva (IA) al firewall 26.1.3, con una página para controlarlas y observarlas en Servicios de protección. También mide los dispositivos activos y el caudal para el tamaño de la licencia, y conserva todas las correcciones de la 26.1.3. Es la 26.1.2 con las actualizaciones funcionando: el servidor de actualizaciones está completo, la imagen confía en la clave de paquetes de Nexwall y el firewall puede corregirse desde Sistema > Actualización. También corrige el número de reglas del IPS en el Panel, las lecturas de los principales consumidores en una red con mucho tráfico y la etapa Sandbox de Threat Analytics, y nombra el tráfico desconocido por su dominio. Web Protection decide por separado el bloqueo y la inspección de cada categoría, un sitio bloqueado puede mostrar una página que dice por qué, las páginas pueden juzgarse por su contenido y los archivos que pasan el antivirus pueden probarse en el sandbox de Nexwall. La interfaz es nueva (versión 3.0, clara y oscura), Threat Analytics y Traffic Analytics siguen al Panel y el Visor de registros lista el tráfico web y el tráfico que bloquea el firewall. El motor de tráfico se reforzó contra detenerse con carga, los sitios con respuestas DNS cambiantes se abren detrás del proxy web y la versión viene como una ISO de instalación para máquinas virtuales, memorias USB y equipos.",
+  "overview": "Nexwall Firewall 26.2.1 añade la Protección Avanzada y la Protección Colectiva (IA), con una página para controlarlas y observarlas en Servicios de protección, y mide los dispositivos activos y el caudal para el tamaño de la licencia. Mantiene todo lo de la 26.1.3: actualizaciones que funcionan desde Sistema > Actualización, decisiones separadas de bloquear e inspeccionar en Web Protection, páginas de bloqueo, el filtro de contenido, archivos probados en el sandbox de Nexwall, Threat Analytics y Traffic Analytics, la interfaz nueva (3.0, clara y oscura) y la ISO de instalación para máquinas virtuales, memorias USB y equipos.",
   "at_a_glance": [
     {
       "label": "Versión",
@@ -9,7 +9,7 @@
     },
     {
       "label": "Estado",
-      "value": "Candidata hasta que las imágenes estén construidas y probadas"
+      "value": "Estable: imagen e ISO de instalación construidas y probadas"
     },
     {
       "label": "Plataforma",
@@ -159,7 +159,7 @@
         {
           "tag": "improved",
           "title": "Threat Analytics muestra el estado real del sandbox",
-          "body": "La etapa Sandbox dice si el sandbox funciona, si no está activado en este firewall o si no está en el plan. Solo Advanced Threat Protection y Collective Defense aparecen como próximamente."
+          "body": "La etapa Sandbox dice si el sandbox funciona, si no está activado en este firewall o si no está en el plan. Advanced Threat Protection y Collective Defense aún aparecen como próximamente en esta versión (vea NXW-2018)."
         },
         {
           "tag": "improved",
@@ -320,12 +320,12 @@
     ]
   },
   "timeline": {
-    "intro": "Cómo se formó esta versión, desde la primera imagen hasta la versión candidata.",
+    "intro": "Cómo se formó esta versión, desde la primera imagen hasta la versión estable.",
     "entries": [
       {
         "date": "2026-10-20",
         "title": "De 26.1.3 a 26.2.1",
-        "text": "Protección Avanzada y Protección Colectiva (IA) con su página, distribución firmada de modelos, indicadores compartidos y revisión, medición de uso, componente de licencia 1.9.0, interfaz web 3.1.0 y las correcciones del proxy web probadas de nuevo."
+        "text": "Protección Avanzada y Protección Colectiva (IA) con su página, distribución firmada de modelos, indicadores compartidos y revisión, medición de uso, componente de licencia 1.9.0, interfaz web 3.1.1 y las correcciones del proxy web probadas de nuevo."
       },
       {
         "date": "2026-10-13",
@@ -355,7 +355,7 @@
     "Para inspeccionar el tráfico cifrado, instale en los dispositivos el certificado de inspección del firewall (Protección web, Inspección). Sin él los navegadores muestran una advertencia en los sitios inspeccionados.",
     "El antivirus necesita el almacenamiento de datos y descarga sus firmas después de activarse; tarda unos minutos. Elegir un perfil en el asistente lo activa si el firewall tiene licencia y almacenamiento.",
     "Las licencias de un revendedor se aplican a los firewalls desde un conjunto y pueden pasarse a otro firewall; un cambio llega al firewall en su próxima comprobación de licencia (aproximadamente una vez al día).",
-    "Un firewall con la 26.1.2 no puede instalar actualizaciones de paquetes (su imagen confía en otra clave). Instale la 26.1.3 desde la ISO o la imagen y restaure la configuración desde una copia de seguridad."
+    "Un firewall con la 26.1.2 no puede instalar actualizaciones de paquetes (su imagen confía en otra clave). Instale la 26.2.1 desde la ISO o la imagen y restaure la configuración desde una copia de seguridad."
   ],
   "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de Threat Shield se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete.",
   "performance": {

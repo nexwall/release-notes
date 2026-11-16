@@ -1,7 +1,7 @@
 {
   "title": "Nexwall Firewall 26.2.1",
   "summary": "Advanced and Collective Protection (AI): a behaviour scorer, signed models, shared indicators (3 firewalls or confirmed by Nexwall), a new page to control them, and usage measurement for the license size.",
-  "overview": "Nexwall Firewall 26.2.1 adds Advanced Protection and Collective Protection (AI) to the 26.1.3 firewall, with one page to control and watch them in Protection Services. It also measures the active devices and the throughput for the license size, and keeps all the 26.1.3 fixes. It is 26.1.2 with the updates working: the update server is complete, the image trusts the Nexwall package key, and the firewall can be fixed from System > Update. It also corrects the rule count of the IPS on the Dashboard, the Top talkers readings on a busy network and the Sandbox stage of Threat Analytics, and names unknown traffic by its domain. Web Protection decides the block and the inspection of every category separately, a blocked website can show a page that says why, pages can be judged by their content, and files that pass the antivirus can be tested in the Nexwall sandbox. The interface is new (version 3.0, light and dark), Threat Analytics and Traffic Analytics follow the Dashboard, and the Log Viewer lists the web traffic and the traffic the firewall blocks. The traffic engine was hardened against standing still under load, sites with changing DNS answers open behind the web proxy, and the release comes as an installer ISO for virtual machines, USB sticks and appliances.",
+  "overview": "Nexwall Firewall 26.2.1 adds Advanced Protection and Collective Protection (AI), with one page to control and watch them in Protection Services, and measures the active devices and the throughput for the license size. It keeps everything of 26.1.3: updates that work from System > Update, separate block and inspect choices in Web Protection, block pages, the content filter, files tested in the Nexwall sandbox, Threat Analytics and Traffic Analytics, the new interface (3.0, light and dark), and the installer ISO for virtual machines, USB sticks and appliances.",
   "at_a_glance": [
     {
       "label": "Version",
@@ -9,7 +9,7 @@
     },
     {
       "label": "Status",
-      "value": "Release candidate until the images are built and tested"
+      "value": "Stable: image and installer ISO built and tested"
     },
     {
       "label": "Platform",
@@ -159,7 +159,7 @@
         {
           "tag": "improved",
           "title": "Threat Analytics shows the real state of the sandbox",
-          "body": "The Sandbox stage says whether the sandbox is working, not enabled on this firewall, or not in the plan. Only Advanced Threat Protection and Collective Defense are marked as coming."
+          "body": "The Sandbox stage says whether the sandbox is working, not enabled on this firewall, or not in the plan. Advanced Threat Protection and Collective Defense are still marked as coming in this version (see NXW-2018)."
         },
         {
           "tag": "improved",
@@ -320,12 +320,12 @@
     ]
   },
   "timeline": {
-    "intro": "How this release came together, from the first image to the release candidate.",
+    "intro": "How this release came together, from the first image to the stable release.",
     "entries": [
       {
         "date": "2026-10-20",
         "title": "From 26.1.3 to 26.2.1",
-        "text": "Advanced Protection and Collective Protection (AI) with their page, signed model distribution, shared indicators and review, usage measurement, license component 1.9.0, web interface 3.1.0, and the web proxy fixes proved again."
+        "text": "Advanced Protection and Collective Protection (AI) with their page, signed model distribution, shared indicators and review, usage measurement, license component 1.9.0, web interface 3.1.1, and the web proxy fixes proved again."
       },
       {
         "date": "2026-10-13",
@@ -357,7 +357,7 @@
     "The licenses of a reseller are applied to firewalls from a pool and can be moved to another firewall; a change reaches the firewall at its next license check (about once a day).",
     "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
     "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again.",
-    "A firewall that runs 26.1.2 cannot install package updates (its image trusts another key). Install 26.1.3 from the ISO or the image and restore the configuration from a backup."
+    "A firewall that runs 26.1.2 cannot install package updates (its image trusts another key). Install 26.2.1 from the ISO or the image and restore the configuration from a backup."
   ],
   "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle.",
   "performance": {

@@ -601,9 +601,9 @@
     "pt-BR": "O antivírus precisa do armazenamento de dados"
    },
    "body": {
-    "en": "The antivirus does not start without the data storage, which holds its signatures (about 300 MB), and it is not active until the first download of the signatures has finished.",
-    "es": "El antivirus no arranca sin el almacenamiento de datos, que guarda sus firmas (unos 300 MB), y no está activo hasta que termina la primera descarga de las firmas.",
-    "pt-BR": "O antivírus não inicia sem o armazenamento de dados, que guarda as suas assinaturas (cerca de 300 MB), e não fica ativo até terminar o primeiro download das assinaturas."
+    "en": "The antivirus does not start without the data storage, which holds its signatures (the page asks for about 900 MB of free space), and it is not active until the first download of the signatures has finished.",
+    "es": "El antivirus no arranca sin el almacenamiento de datos, que guarda sus firmas (la página pide unos 900 MB libres), y no está activo hasta que termina la primera descarga de las firmas.",
+    "pt-BR": "O antivírus não inicia sem o armazenamento de dados, que guarda as suas assinaturas (a página pede cerca de 900 MB livres), e não fica ativo até o fim do primeiro download das assinaturas."
    },
    "workaround": {
     "en": "Check the Storage page; the antivirus page shows the state of each engine.",
@@ -640,14 +640,14 @@
    "fixed": null,
    "area": "performance",
    "title": {
-    "en": "Throughput of the inspection is not measured",
-    "es": "El rendimiento de la inspección no está medido",
-    "pt-BR": "A taxa de transferência da inspeção não foi medida"
+    "en": "Throughput of the inspection is measured only in one lab machine",
+    "es": "El rendimiento de la inspección se midió solo en una máquina de laboratorio",
+    "pt-BR": "A taxa de transferência da inspeção foi medida só em uma máquina de laboratório"
    },
    "body": {
-    "en": "Inspection of encrypted traffic uses one web proxy process, so it is limited to about one processor core, and the speed it reaches has not been measured yet. Only the categories that you list are inspected.",
-    "es": "La inspección del tráfico cifrado usa un solo proceso de proxy web, por lo que se limita a cerca de un núcleo de procesador, y aún no se midió la velocidad que alcanza. Solo se inspeccionan las categorías que usted indica.",
-    "pt-BR": "A inspeção do tráfego criptografado usa um único processo de proxy web, por isso fica limitada a cerca de um núcleo de processador, e a velocidade que alcança ainda não foi medida. Só são inspecionadas as categorias que você indica."
+    "en": "Inspection of encrypted traffic uses one web proxy process, so it is limited to about one processor core. The speed was measured only on one virtual machine with 4 cores (see Performance and recovery) and the figures are indicative, not a promise. Only the categories that you list are inspected.",
+    "es": "La inspección del tráfico cifrado usa un solo proceso del proxy web, por lo que se limita a un núcleo de procesador aproximadamente. La velocidad se midió solo en una máquina virtual con 4 núcleos (vea Rendimiento y recuperación) y las cifras son orientativas, no una promesa. Solo se inspeccionan las categorías que usted indique.",
+    "pt-BR": "A inspeção do tráfego criptografado usa um único processo do proxy web, então fica limitada a cerca de um núcleo de processador. A velocidade foi medida só em uma máquina virtual com 4 núcleos (veja Desempenho e recuperação) e os números são indicativos, não uma promessa. Só são inspecionadas as categorias que você listar."
    },
    "workaround": {
     "en": "Inspect only the categories you need, and keep large downloads and streaming out of the inspected list.",
@@ -662,14 +662,14 @@
    "fixed": null,
    "area": "licensing",
    "title": {
-    "en": "Advanced Threat Protection and Workspace Protection have no features yet",
-    "es": "La protección avanzada contra amenazas y la protección del espacio de trabajo aún no tienen funciones",
-    "pt-BR": "A proteção avançada contra ameaças e a proteção do ambiente de trabalho ainda não têm funções"
+    "en": "Workspace Protection has no features yet",
+    "es": "La protección del espacio de trabajo aún no tiene funciones",
+    "pt-BR": "A proteção do ambiente de trabalho ainda não tem funções"
    },
    "body": {
-    "en": "Advanced Threat Protection and Antivirus / Sandbox (its sandbox part) and Workspace Protection (ZTNA) appear in the license, but only the antivirus part of Antivirus / Sandbox is available in this release.",
-    "es": "La protección avanzada contra amenazas, el Antivirus / Sandbox (su parte de sandbox) y la protección del espacio de trabajo (ZTNA) aparecen en la licencia, pero en esta versión solo está disponible la parte de antivirus de Antivirus / Sandbox.",
-    "pt-BR": "A proteção avançada contra ameaças, o Antivírus / Sandbox (a parte de sandbox) e a proteção do ambiente de trabalho (ZTNA) aparecem na licença, mas nesta versão só está disponível a parte de antivírus do Antivírus / Sandbox."
+    "en": "Workspace Protection (ZTNA) appears in the license, but it has no features in this release. Advanced Threat Protection in the license unlocks Advanced and Collective Protection, and the sandbox part of Antivirus / Sandbox works as described in What is new.",
+    "es": "La protección del espacio de trabajo (ZTNA) aparece en la licencia, pero no tiene funciones en esta versión. Protección avanzada contra amenazas en la licencia habilita la Protección Avanzada y Colectiva, y la parte de sandbox de Antivirus / Sandbox funciona como se describe en Novedades.",
+    "pt-BR": "A proteção do ambiente de trabalho (ZTNA) aparece na licença, mas não tem funções nesta versão. A proteção avançada contra ameaças da licença libera a Proteção Avançada e Coletiva, e a parte de sandbox de Antivírus / Sandbox funciona como descrito em Novidades."
    },
    "workaround": {
     "en": "",
@@ -1111,6 +1111,28 @@
     "en": "The Sandbox stage now shows its real state: working, not enabled or not in the plan.",
     "es": "La etapa Sandbox ahora muestra su estado real: funcionando, no activado o fuera del plan.",
     "pt-BR": "A etapa Sandbox agora mostra seu estado real: funcionando, não ativado ou fora do plano."
+   }
+  },
+  {
+   "id": "NXW-2018",
+   "type": "known",
+   "introduced": "26.2.1",
+   "fixed": null,
+   "area": "threat-analytics",
+   "title": {
+    "en": "Threat Analytics still shows Advanced Threat Protection and Collective Defense as coming",
+    "es": "Threat Analytics aún muestra la protección avanzada contra amenazas y la Defensa Colectiva como próximas",
+    "pt-BR": "O Threat Analytics ainda mostra a proteção avançada contra ameaças e a Defesa Coletiva como em breve"
+   },
+   "body": {
+    "en": "The web interface of this release (3.1.1) marks the Advanced Threat Protection and Collective Defense steps of the Threat Analytics story as \"Coming\", although Advanced and Collective Protection are in this release and have their own page in Protection Services.",
+    "es": "La interfaz web de esta versión (3.1.1) marca como \"Próximamente\" los pasos de protección avanzada contra amenazas y Defensa Colectiva de la historia de Threat Analytics, aunque la Protección Avanzada y Colectiva están en esta versión y tienen su propia página en Servicios de protección.",
+    "pt-BR": "A interface web desta versão (3.1.1) marca como \"Em breve\" as etapas de proteção avançada contra ameaças e Defesa Coletiva da história do Threat Analytics, embora a Proteção Avançada e Coletiva estejam nesta versão e tenham página própria em Serviços de proteção."
+   },
+   "workaround": {
+    "en": "Use the Advanced and Collective Protection page in Protection Services to see their state and events.",
+    "es": "Use la página Protección Avanzada y Colectiva en Servicios de protección para ver su estado y sus eventos.",
+    "pt-BR": "Use a página Proteção Avançada e Coletiva em Serviços de proteção para ver o estado e os eventos."
    }
   }
  ]
