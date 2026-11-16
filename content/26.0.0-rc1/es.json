@@ -73,7 +73,7 @@
         },
         {
           "tag": "new",
-          "title": "Listas de Threat Shield",
+          "title": "Listas de amenazas",
           "body": "Nexwall ahora construye y sirve sus propias listas de bloqueo. El firewall las descarga de Nexwall, comprueba la firma y la suma de verificación de cada archivo y las aplica localmente, en lugar de leer listas de servidores de terceros.",
           "bullets": [
             "Doce categorías DNS, unas 3,2 millones de entradas en total: publicidad y rastreo, contenido para adultos, evasión de filtros, minería de criptomonedas, drogas, juegos de azar, malware (básico y ampliado), phishing, piratería, ransomware y estafas.",
@@ -191,7 +191,7 @@
         {
           "tag": "improved",
           "title": "Interfaz web",
-          "body": "La interfaz lleva el diseño de Nexwall y está disponible en inglés, español y portugués de Brasil; las pestañas siguen el idioma elegido. Las tablas de Threat Shield muestran título, número de entradas y confianza de cada lista, y las páginas de las funciones con licencia indican con claridad cuándo falta una licencia."
+          "body": "La interfaz lleva el diseño de Nexwall y está disponible en inglés, español y portugués de Brasil; las pestañas siguen el idioma elegido. Las tablas de las listas de amenazas muestran título, número de entradas y confianza de cada lista, y las páginas de las funciones con licencia indican con claridad cuándo falta una licencia."
         },
         {
           "tag": "improved",
@@ -206,7 +206,7 @@
         {
           "tag": "changed",
           "title": "Sin espejos de listas de terceros",
-          "body": "Threat Shield ya no lee listas de bloqueo de servidores de terceros ni de un espejo. Todo proviene del paquete firmado de Nexwall."
+          "body": "Las listas de amenazas ya no leen listas de bloqueo de servidores de terceros ni de un espejo. Todo proviene del paquete firmado de Nexwall."
         }
       ]
     }
@@ -312,7 +312,7 @@
       {
         "date": "2026-10-02",
         "title": "Rendimiento, listas de amenazas y valores predeterminados",
-        "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de Threat Shield, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
+        "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de amenazas, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
       },
       {
         "date": "2026-10-03",
@@ -335,5 +335,5 @@
     "Para comprobar el archivo en Linux ejecute sha256sum sobre él; en Windows ejecute Get-FileHash con -Algorithm SHA256 en PowerShell. El resultado debe ser igual al SHA-256 de la tabla de descargas.",
     "La guía de administración está en https://docs.nexwall.com.br."
   ],
-  "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de Threat Shield se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete."
+  "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de amenazas de Nexwall se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete."
 }

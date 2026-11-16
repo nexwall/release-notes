@@ -73,7 +73,7 @@
         },
         {
           "tag": "new",
-          "title": "Threat Shield feeds",
+          "title": "Threat lists",
           "body": "Nexwall now builds and serves its own block lists. A firewall downloads them from Nexwall, checks the signature and the checksum of every file and applies them locally, instead of reading lists from third-party servers.",
           "bullets": [
             "Twelve DNS categories, about 3.2 million entries in total: advertising and tracking, adult content, filter bypass, crypto mining, drugs, gambling, malware (core and extended), phishing, piracy, ransomware and scams.",
@@ -191,7 +191,7 @@
         {
           "tag": "improved",
           "title": "Web interface",
-          "body": "The interface carries the Nexwall design and is available in English, Spanish and Brazilian Portuguese; tabs follow the chosen language. The Threat Shield tables show titles, entry counts and confidence for every list, and the pages for the licensed features say clearly when a license is missing."
+          "body": "The interface carries the Nexwall design and is available in English, Spanish and Brazilian Portuguese; tabs follow the chosen language. The threat list tables show titles, entry counts and confidence for every list, and the pages for the licensed features say clearly when a license is missing."
         },
         {
           "tag": "improved",
@@ -206,7 +206,7 @@
         {
           "tag": "changed",
           "title": "No third-party list mirrors",
-          "body": "Threat Shield no longer reads block lists from third-party servers or from a mirror. Everything comes from the signed Nexwall bundle."
+          "body": "The threat lists no longer read block lists from third-party servers or from a mirror. Everything comes from the signed Nexwall bundle."
         }
       ]
     }
@@ -312,7 +312,7 @@
       {
         "date": "2026-10-02",
         "title": "Performance, threat feeds and defaults",
-        "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat Shield feeds, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
+        "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat lists, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
       },
       {
         "date": "2026-10-03",
@@ -337,5 +337,5 @@
     "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
     "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
   ],
-  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Nexwall threat lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
 }

@@ -215,7 +215,7 @@
       {
         "date": "2026-10-02",
         "title": "Performance, threat feeds and defaults",
-        "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat Shield feeds, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
+        "text": "Inspection threads, fast path, packet steering, larger buffers and the Engine monitor; Network Protection naming and Block default; daily refresh of signatures and catalog; Threat lists, geo-blocking and the memory warning; the default firewall rules; web interface 1.3.6; the release candidate image."
       },
       {
         "date": "2026-10-03",
@@ -245,5 +245,5 @@
     "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
     "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again."
   ],
-  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Nexwall threat lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle."
 }

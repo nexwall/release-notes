@@ -163,7 +163,7 @@
       {
         "date": "2026-10-02",
         "title": "Rendimiento, listas de amenazas y valores predeterminados",
-        "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de Threat Shield, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
+        "text": "Hilos de inspección, ruta rápida, distribución de paquetes, búferes grandes y el Monitor del motor; nombre de Protección de red y acción Bloquear predeterminada; actualización diaria de firmas y catálogo; listas de amenazas, bloqueo por país y aviso de memoria; reglas predeterminadas del firewall; interfaz web 1.3.6; la imagen de la versión candidata."
       },
       {
         "date": "2026-10-03",
@@ -196,5 +196,5 @@
     "Para comprobar el archivo en Linux ejecute sha256sum sobre él; en Windows ejecute Get-FileHash con -Algorithm SHA256 en PowerShell. El resultado debe ser igual al SHA-256 de la tabla de descargas.",
     "La guía de administración está en https://docs.nexwall.com.br."
   ],
-  "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de Threat Shield se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete."
+  "open_source": "Nexwall Firewall se basa en software de código abierto, entre otros OpenWrt, el kernel de Linux, nftables, Snort 3, Netify Agent y nDPI, dnsmasq, banIP, adblock y VictoriaMetrics. El firewall y las herramientas de operación se publican con sus licencias originales, y los textos de licencia y los avisos se entregan con la imagen y están disponibles a petición. Las listas de amenazas de Nexwall se construyen con fuentes abiertas cuyas licencias permiten la redistribución, y el aviso que las enumera forma parte de cada paquete."
 }

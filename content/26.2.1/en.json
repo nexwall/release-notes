@@ -359,7 +359,7 @@
     "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again.",
     "A firewall that runs 26.1.2 cannot install package updates (its image trusts another key). Install 26.2.1 from the ISO or the image and restore the configuration from a backup."
   ],
-  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Threat Shield lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle.",
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Nexwall threat lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle.",
   "performance": {
     "title": "Performance and recovery",
     "intro": "This section says what the lab tests of this release showed and how the firewall recovers by itself when its traffic engine stops answering. The numbers come from one small virtual machine and are meant to show how the protections add up, not to promise a throughput: size your firewall with the guidance at the end.",
