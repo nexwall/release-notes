@@ -64,6 +64,41 @@
    "en": "Web Protection",
    "es": "Protección web",
    "pt-BR": "Proteção web"
+  },
+  "dashboard": {
+   "en": "Dashboard",
+   "es": "Panel",
+   "pt-BR": "Painel"
+  },
+  "engine": {
+   "en": "Traffic engine",
+   "es": "Motor de tráfico",
+   "pt-BR": "Motor de tráfego"
+  },
+  "interface": {
+   "en": "Web interface",
+   "es": "Interfaz web",
+   "pt-BR": "Interface web"
+  },
+  "monitoring": {
+   "en": "Monitoring",
+   "es": "Monitoreo",
+   "pt-BR": "Monitoramento"
+  },
+  "system": {
+   "en": "System",
+   "es": "Sistema",
+   "pt-BR": "Sistema"
+  },
+  "threat-analytics": {
+   "en": "Threat Analytics",
+   "es": "Threat Analytics",
+   "pt-BR": "Threat Analytics"
+  },
+  "updates": {
+   "en": "Updates",
+   "es": "Actualizaciones",
+   "pt-BR": "Atualizações"
   }
  },
  "issues": [
@@ -422,14 +457,14 @@
    "fixed": null,
    "area": "licensing",
    "title": {
-    "en": "Additional subscriptions",
-    "es": "Suscripciones adicionales",
-    "pt-BR": "Assinaturas adicionais"
+    "en": "Add-on subscriptions without features yet",
+    "es": "Suscripciones adicionales sin funciones todavía",
+    "pt-BR": "Assinaturas adicionais ainda sem funções"
    },
    "body": {
-    "en": "Web Server Protection (WAF) and Email Protection (MTA) appear as subscriptions, but their features are not available yet.",
-    "es": "Protección de servidores web (WAF) y Protección de correo (MTA) aparecen como suscripciones, pero sus funciones aún no están disponibles.",
-    "pt-BR": "Proteção de servidores web (WAF) e Proteção de e-mail (MTA) aparecem como assinaturas, mas suas funções ainda não estão disponíveis."
+    "en": "Web Server Protection (WAF), Email Protection (MTA) and Workspace Protection (ZTNA) appear as subscriptions, but their features are not available yet.",
+    "es": "Protección de servidores web (WAF), Protección de correo (MTA) y Protección del espacio de trabajo (ZTNA) aparecen como suscripciones, pero sus funciones aún no están disponibles.",
+    "pt-BR": "Proteção de servidores web (WAF), Proteção de e-mail (MTA) e Proteção do ambiente de trabalho (ZTNA) aparecem como assinaturas, mas suas funções ainda não estão disponíveis."
    },
    "workaround": {
     "en": "",
@@ -479,28 +514,6 @@
     "en": "Use https://firewall.lan.nexwall.com.br (the computer must use the firewall as DNS server, the default with DHCP), or http://192.168.1.1, which forwards to it.",
     "es": "Use https://firewall.lan.nexwall.com.br (el equipo debe usar el firewall como servidor DNS, lo predeterminado con DHCP), o http://192.168.1.1, que redirige a esa dirección.",
     "pt-BR": "Use https://firewall.lan.nexwall.com.br (o computador deve usar o firewall como servidor DNS, o padrão com DHCP), ou http://192.168.1.1, que redireciona para esse endereço."
-   }
-  },
-  {
-   "id": "NXW-2006",
-   "type": "known",
-   "introduced": "26.0.0-rc2",
-   "fixed": null,
-   "area": "dns",
-   "title": {
-    "en": "DNS block statistics",
-    "es": "Estadísticas de bloqueos DNS",
-    "pt-BR": "Estatísticas de bloqueios de DNS"
-   },
-   "body": {
-    "en": "Blocked domains are counted from the DNS log. A firewall installed before rc2 needs query logging switched on in its DNS settings to show them.",
-    "es": "Los dominios bloqueados se cuentan a partir del registro DNS. Un firewall instalado antes de rc2 necesita el registro de consultas activado en su configuración DNS para mostrarlos.",
-    "pt-BR": "Os domínios bloqueados são contados a partir do log DNS. Um firewall instalado antes do rc2 precisa do registro de consultas ativado em suas configurações DNS para exibi-los."
-   },
-   "workaround": {
-    "en": "Turn on query logging in the DNS settings.",
-    "es": "Active el registro de consultas en la configuración DNS.",
-    "pt-BR": "Ative o registro de consultas nas configurações DNS."
    }
   },
   {
@@ -574,19 +587,19 @@
    "fixed": null,
    "area": "web-protection",
    "title": {
-    "en": "Inspection needs the firewall certificate on the devices",
-    "es": "La inspección necesita el certificado del firewall en los dispositivos",
-    "pt-BR": "A inspeção precisa do certificado do firewall nos dispositivos"
+    "en": "Inspected websites and block pages need the firewall certificate on the devices",
+    "es": "Los sitios inspeccionados y las páginas de bloqueo necesitan el certificado del firewall en los dispositivos",
+    "pt-BR": "Sites inspecionados e páginas de bloqueio precisam do certificado do firewall nos dispositivos"
    },
    "body": {
-    "en": "Inspected sites show a certificate warning until the firewall's inspection certificate is installed on the device. Applications that pin their certificate fail when inspected.",
-    "es": "Los sitios inspeccionados muestran una advertencia de certificado hasta que se instala en el dispositivo el certificado de inspección del firewall. Las aplicaciones que fijan su certificado fallan al ser inspeccionadas.",
-    "pt-BR": "Os sites inspecionados mostram um aviso de certificado até que o certificado de inspeção do firewall seja instalado no dispositivo. Aplicações que fixam o certificado falham quando inspecionadas."
+    "en": "Inspected sites show a certificate warning until the firewall's inspection certificate is installed on the device. For the same reason a device without the certificate sees the warning, not the block page, when it opens a blocked https site (the site is still blocked; plain http sites show the page). Applications that pin their certificate fail when inspected.",
+    "es": "Los sitios inspeccionados muestran una advertencia de certificado hasta que el certificado de inspección del firewall esté instalado en el dispositivo. Por la misma razón, un dispositivo sin el certificado ve la advertencia, y no la página de bloqueo, al abrir un sitio https bloqueado (el sitio sigue bloqueado; los sitios http sin cifrado muestran la página). Las aplicaciones que fijan su certificado fallan cuando se inspeccionan.",
+    "pt-BR": "Os sites inspecionados mostram um aviso de certificado até que o certificado de inspeção do firewall seja instalado no dispositivo. Pelo mesmo motivo, um dispositivo sem o certificado vê o aviso, e não a página de bloqueio, ao abrir um site https bloqueado (o site continua bloqueado; sites http sem criptografia mostram a página). Aplicações que fixam o certificado falham quando inspecionadas."
    },
    "workaround": {
-    "en": "Install the certificate (Web Protection, Inspection) and add pinned applications as exceptions.",
-    "es": "Instale el certificado (Protección web, Inspección) y añada las aplicaciones con certificado fijo como excepciones.",
-    "pt-BR": "Instale o certificado (Proteção web, Inspeção) e adicione as aplicações com certificado fixo como exceções."
+    "en": "Install the certificate (Web Protection, Inspection) and add pinned applications as exceptions. Or use a rule without a block page: the connection is then reset.",
+    "es": "Instale el certificado (Protección web, Inspección) y añada las aplicaciones con certificado fijo como excepciones. O use una regla sin página de bloqueo: la conexión se reinicia.",
+    "pt-BR": "Instale o certificado (Proteção web, Inspeção) e adicione as aplicações com certificado fixo como exceções. Ou use uma regra sem página de bloqueio: a conexão é reiniciada."
    }
   },
   {
@@ -653,28 +666,6 @@
     "en": "Inspect only the categories you need, and keep large downloads and streaming out of the inspected list.",
     "es": "Inspeccione solo las categorías que necesite y deje las descargas grandes y el streaming fuera de la lista inspeccionada.",
     "pt-BR": "Inspecione só as categorias de que precisa e deixe downloads grandes e streaming fora da lista inspecionada."
-   }
-  },
-  {
-   "id": "NXW-2011",
-   "type": "known",
-   "introduced": "26.1.0",
-   "fixed": null,
-   "area": "licensing",
-   "title": {
-    "en": "Workspace Protection has no features yet",
-    "es": "La protección del espacio de trabajo aún no tiene funciones",
-    "pt-BR": "A proteção do ambiente de trabalho ainda não tem funções"
-   },
-   "body": {
-    "en": "Workspace Protection (ZTNA) appears in the license, but it has no features in this release. Advanced Threat Protection in the license unlocks Advanced and Collective Protection, and the sandbox part of Antivirus / Sandbox works as described in What is new.",
-    "es": "La protección del espacio de trabajo (ZTNA) aparece en la licencia, pero no tiene funciones en esta versión. Protección avanzada contra amenazas en la licencia habilita la Protección Avanzada y Colectiva, y la parte de sandbox de Antivirus / Sandbox funciona como se describe en Novedades.",
-    "pt-BR": "A proteção do ambiente de trabalho (ZTNA) aparece na licença, mas não tem funções nesta versão. A proteção avançada contra ameaças da licença libera a Proteção Avançada e Coletiva, e a parte de sandbox de Antivírus / Sandbox funciona como descrito em Novidades."
-   },
-   "workaround": {
-    "en": "",
-    "es": "",
-    "pt-BR": ""
    }
   },
   {
@@ -793,28 +784,6 @@
     "en": "The default WAN (eth1, DHCP) was decided before the network card drivers were loaded, so a virtual machine did not see the second card. It is now added later in the same start for units that were never configured.",
     "es": "El WAN por defecto (eth1, DHCP) se decidía antes de cargar los controladores de las tarjetas de red, así que una máquina virtual no veía la segunda tarjeta. Ahora se agrega más adelante en el mismo arranque en las unidades que nunca se configuraron.",
     "pt-BR": "O WAN padrão (eth1, DHCP) era decidido antes de os drivers das placas de rede serem carregados, então uma máquina virtual não via a segunda placa. Agora ele é adicionado mais adiante no mesmo início nas unidades que nunca foram configuradas."
-   }
-  },
-  {
-   "id": "NXW-2013",
-   "type": "known",
-   "introduced": "26.1.2",
-   "fixed": null,
-   "area": "web-protection",
-   "title": {
-    "en": "The block page on an encrypted website needs the firewall certificate on the device",
-    "es": "La página de bloqueo en un sitio cifrado necesita el certificado del firewall en el dispositivo",
-    "pt-BR": "A página de bloqueio em um site criptografado precisa do certificado do firewall no dispositivo"
-   },
-   "body": {
-    "en": "A device that has not installed the inspection certificate sees a certificate warning, not the block page, when it opens a blocked https site. The site is still blocked. Plain http sites show the page without the certificate.",
-    "es": "Un dispositivo que no instaló el certificado de inspección ve una advertencia de certificado, no la página de bloqueo, al abrir un sitio https bloqueado. El sitio sigue bloqueado. Los sitios http sin cifrado muestran la página sin el certificado.",
-    "pt-BR": "Um dispositivo que não instalou o certificado de inspeção vê um aviso de certificado, e não a página de bloqueio, ao abrir um site https bloqueado. O site continua bloqueado. Sites http sem criptografia mostram a página sem o certificado."
-   },
-   "workaround": {
-    "en": "Install the certificate on the devices (Web Protection, Inspection), or use a rule without a block page: the connection is then reset.",
-    "es": "Instale el certificado en los dispositivos (Web Protection, Inspección) o use una regla sin página de bloqueo: la conexión se reinicia.",
-    "pt-BR": "Instale o certificado nos dispositivos (Web Protection, Inspeção) ou use uma regra sem página de bloqueio: a conexão é reiniciada."
    }
   },
   {

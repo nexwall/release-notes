@@ -230,11 +230,8 @@ def build_release(lang, ui, rel, note, releases):
         esc(ui['tag_fixed']), esc(i['id']), esc(i['title'][lang]), paragraphs(i['body'][lang]), esc(area_name(ISSUES['areas'], lang, i['area']))) for i in fixed)
     section('resolved', ui['resolved_issues'], fixed_html or '<p class="note">%s</p>' % esc(ui['resolved_none']))
     known = issues_for_version(ISSUES['issues'], releases, ver, 'known')
-    issues = ''.join('<article class="item" data-tag="known"><header><span class="tag tag-known">%s</span><span class="code">%s</span><h3>%s</h3></header>%s%s<p class="meta-line">%s</p></article>' % (
-        esc(ui['tag_known']), esc(k['id']), esc(k['title'][lang]), paragraphs(k['body'][lang]),
-        ('<p class="note"><b>%s</b> %s</p>' % (esc(ui['workaround']), esc(k['workaround'][lang]))) if k['workaround'].get(lang) else '',
-        esc(area_name(ISSUES['areas'], lang, k['area']))) for k in known)
-    section('known-issues', ui['known_issues'], issues or '<p class="note">%s</p>' % esc(ui['known_none']))
+    known_html = ('<p>%s</p><p><a class="btn btn-sm" href="../known-issues/">%s</a></p>' % (esc(ui['known_summary'].replace('{n}', str(len(known)))), esc(ui['known_link']))) if known else '<p class="note">%s</p>' % esc(ui['known_none'])
+    section('known-issues', ui['known_issues'], known_html)
     comp = note['components']
     rows = ''.join('<tr><td>%s</td><td><code>%s</code></td><td>%s</td></tr>' % (esc(c['name']), esc(c['version']), esc(c['note'])) for c in comp['rows'])
     section('components', ui['components'], paragraphs(comp['intro']) + '<div class="table-wrap"><table><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>' % (

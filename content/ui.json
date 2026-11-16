@@ -110,7 +110,9 @@
     "privacy_link": "Privacy Notice",
     "download": "Download",
     "docs_link": "Documentation",
-    "services_link": "Services Agreement"
+    "services_link": "Services Agreement",
+    "known_summary": "{n} known issues are open in this version. They are listed with their workarounds in one table, outside the notes of the version.",
+    "known_link": "Open the known issues table"
   },
   "es": {
     "site": "Notas de versión",
@@ -223,7 +225,9 @@
     "privacy_link": "Aviso de privacidad",
     "download": "Descargar",
     "docs_link": "Documentación",
-    "services_link": "Acuerdo de Servicios"
+    "services_link": "Acuerdo de Servicios",
+    "known_summary": "{n} problemas conocidos están abiertos en esta versión. Se listan con sus soluciones alternativas en una sola tabla, fuera de las notas de la versión.",
+    "known_link": "Abrir la tabla de problemas conocidos"
   },
   "pt-BR": {
     "site": "Notas de versão",
@@ -336,6 +340,8 @@
     "privacy_link": "Aviso de privacidade",
     "download": "Baixar",
     "docs_link": "Documentação",
-    "services_link": "Contrato de Serviços"
+    "services_link": "Contrato de Serviços",
+    "known_summary": "{n} problemas conhecidos estão em aberto nesta versão. Eles são listados com as soluções alternativas em uma única tabela, fora das notas da versão.",
+    "known_link": "Abrir a tabela de problemas conhecidos"
   }
 }
