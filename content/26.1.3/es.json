@@ -280,12 +280,12 @@
       {
         "date": "2026-10-13",
         "title": "De 26.1.2 a 26.1.3",
-        "text": "La vía de actualización de paquetes (índice completo, clave de Nexwall en la imagen), las correcciones encontradas tras publicar la 26.1.2 (número de reglas del IPS, ventana de los principales consumidores, etapas de Threat Analytics, aplicaciones desconocidas) y la aplicación Nexwall en el catálogo."
+        "text": "Ruta de actualización de paquetes corregida (índice completo y clave de Nexwall en la imagen); correcciones de defectos encontrados tras la publicación de la 26.1.2 (número de reglas del IPS, ventana de los principales consumidores, etapas de Threat Analytics, aplicaciones desconocidas); aplicación Nexwall añadida al catálogo."
       },
       {
         "date": "2026-10-07 a 13",
         "title": "De 26.1.0 a 26.1.2",
-        "text": "Todo lo de 26.1.1 (página de bloqueo, filtro de contenido, cliente del sandbox, Threat Analytics y Traffic Analytics, panel y gráficos nuevos, pestañas del Visor de registros, WAN por defecto) y el trabajo de la semana tras las pruebas de laboratorio: las detenciones del motor encontradas y corregidas, la interfaz 3.0, el nuevo modelo de reglas, las correcciones del proxy bajo carga y con respuestas DNS cambiantes, las descargas de clientes VPN y la ISO de instalación."
+        "text": "Todos los cambios de la 26.1.1 (página de bloqueo, filtro de contenido, cliente de sandbox, Threat Analytics y Traffic Analytics, nuevo panel y gráficos, pestañas del Visor de registros, WAN predeterminada) y los cambios hechos tras las pruebas de laboratorio: correcciones de las paradas del motor de tráfico, interfaz 3.0, nuevo modelo de reglas, correcciones del proxy web bajo carga y con respuestas DNS cambiantes, descargas de clientes VPN e ISO de instalación."
       }
     ]
   },

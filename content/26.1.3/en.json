@@ -280,12 +280,12 @@
       {
         "date": "2026-10-13",
         "title": "From 26.1.2 to 26.1.3",
-        "text": "The package update path (complete index, Nexwall key in the image), the corrections found after 26.1.2 was published (IPS rule count, Top talkers window, Threat Analytics stages, unknown applications) and the Nexwall application in the catalog."
+        "text": "Package update path corrected (complete index and Nexwall key in the image); corrections to defects found after the publication of 26.1.2 (IPS rule count, Top talkers window, Threat Analytics stages, unknown applications); Nexwall application added to the catalog."
       },
       {
         "date": "2026-10-07 to 13",
         "title": "From 26.1.0 to 26.1.2",
-        "text": "Everything of 26.1.1 (block page, content filter, sandbox client, Threat Analytics and Traffic Analytics, new dashboard and plots, Log Viewer tabs, default WAN) and the work of the week after the lab tests: the engine stalls found and fixed, the interface 3.0, the new rule model, the proxy fixes under load and for changing DNS answers, the VPN client downloads and the installer ISO."
+        "text": "All changes of 26.1.1 (block page, content filter, sandbox client, Threat Analytics and Traffic Analytics, new dashboard and charts, Log Viewer tabs, default WAN) and the changes made after laboratory testing: traffic engine stall fixes, interface 3.0, new rule model, web proxy fixes under load and for changing DNS answers, VPN client downloads and the installer ISO."
       }
     ]
   },

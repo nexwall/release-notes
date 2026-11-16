@@ -42,7 +42,7 @@
         {
           "tag": "new",
           "title": "Advanced Protection: a behaviour scorer on the firewall",
-          "body": "A small service on the firewall (nexwall-atp) looks at how each internal host talks to the internet (flows and DNS) and gives it a score from a model trained by Nexwall. A high score raises an advisory event; it never blocks by itself. Models are downloaded as signed files and checked with the license server key before use; the previous model is kept for rollback. The service has a CPU budget of 3% of a core and stops scoring when it exceeds it. Be aware of the limits: the first models are trained on traffic generated in the Nexwall laboratory, so they find the behaviours that were simulated there (beacons, scans, floods) and will miss others and can flag normal regular check-ins. Treat the events as hints to look at, not as verdicts."
+          "body": "A small service on the firewall (nexwall-atp) looks at how each internal host talks to the internet (flows and DNS) and gives it a score from a model trained by Nexwall. A high score raises an advisory event; it never blocks by itself. Models are downloaded as signed files and checked with the license server key before use; the previous model is kept for rollback. The service has a CPU budget of 3% of a core and stops scoring when it exceeds it. Be aware of the limits: the first models are trained on traffic generated in the Nexwall laboratory, so they find the behaviours that were simulated there (beacons, scans, floods) and will not detect others and can flag normal periodic check-ins. Treat the events as indications to review, not as verdicts."
         },
         {
           "tag": "new",
@@ -129,7 +129,7 @@
         {
           "tag": "improved",
           "title": "Web proxy: destination address that changes, and ping, tested again",
-          "body": "Before this release the fixes for sites whose DNS answers change (the proxy goes to the address the client chose, no status 409) and for ping and ICMP errors (no timeouts in the web proxy) were proved again on a firewall running the previous image: 6 of 6 requests with a destination that does not match the name returned 200, no 409 in 23,100 log lines; 160 of 160 proxied requests succeeded with and without two ping streams running (p95 13.7 ms and 14.4 ms, 400 of 400 echo replies each); ICMP port unreachable reached the client in 0.05 s."
+          "body": "Before this release the fixes for sites whose DNS answers change (the proxy goes to the address the client chose, no status 409) and for ping and ICMP errors (no timeouts in the web proxy) were verified again on a firewall running the previous image: 6 of 6 requests with a destination that does not match the name returned 200, no 409 in 23,100 log lines; 160 of 160 proxied requests succeeded with and without two ping streams running (p95 13.7 ms and 14.4 ms, 400 of 400 echo replies each); ICMP port unreachable reached the client in 0.05 s."
         },
         {
           "tag": "improved",
@@ -164,7 +164,7 @@
         {
           "tag": "improved",
           "title": "The traffic engine no longer stalls under load",
-          "body": "Two causes of the engine standing still were found with core dumps from a lab firewall under load and are fixed: two threads waiting for each other inside two of the Nexwall plugins, and the capture thread ending when the kernel dropped a queued packet. A watchdog now checks the engine every minute and, if it stands still, takes the engine out of the path (traffic keeps flowing without analysis) and restarts it, with a cooldown and a limit of restarts per hour. The default when the engine cannot keep up is to let traffic through, not to block it."
+          "body": "Two causes of the traffic engine ceasing to respond were identified from core dumps of a laboratory firewall under load and are fixed: two threads waiting for each other inside two of the Nexwall plugins, and the capture thread ending when the kernel dropped a queued packet. A watchdog now checks the engine every minute and, if it stops responding, takes the engine out of the path (traffic keeps flowing without analysis) and restarts it, with a cooldown and a limit of restarts per hour. The default when the engine cannot keep up is to let traffic through, not to block it."
         },
         {
           "tag": "improved",
@@ -179,7 +179,7 @@
         {
           "tag": "improved",
           "title": "Refusals reach the client at once",
-          "body": "The \"port unreachable\" answer of a rejected connection, and the messages that path MTU discovery needs, were swallowed by the traffic engine queue. They now pass, so a browser whose QUIC is refused changes to HTTPS in a few milliseconds instead of after a timeout."
+          "body": "The \"port unreachable\" answer of a rejected connection, and the messages that path MTU discovery needs, were held back by the traffic engine queue. They now pass, so a browser whose QUIC is refused changes to HTTPS in a few milliseconds instead of after a timeout."
         },
         {
           "tag": "improved",
@@ -320,22 +320,22 @@
     ]
   },
   "timeline": {
-    "intro": "How this release came together, from the first image to the stable release.",
+    "intro": "Development history of this release, from the first image to the stable release.",
     "entries": [
       {
         "date": "2026-10-20",
         "title": "From 26.1.3 to 26.2.1",
-        "text": "Advanced Protection and Collective Protection (AI) with their page, signed model distribution, shared indicators and review, usage measurement, license component 1.9.0, web interface 3.1.1, and the web proxy fixes proved again."
+        "text": "Advanced Protection and Collective Protection (AI), with their control page, signed model distribution, shared indicators with review and usage measurement; license component 1.9.0; web interface 3.1.1; web proxy fixes verified again."
       },
       {
         "date": "2026-10-13",
         "title": "From 26.1.2 to 26.1.3",
-        "text": "The package update path (complete index, Nexwall key in the image), the corrections found after 26.1.2 was published (IPS rule count, Top talkers window, Threat Analytics stages, unknown applications) and the Nexwall application in the catalog."
+        "text": "Package update path corrected (complete index and Nexwall key in the image); corrections to defects found after the publication of 26.1.2 (IPS rule count, Top talkers window, Threat Analytics stages, unknown applications); Nexwall application added to the catalog."
       },
       {
         "date": "2026-10-07 to 13",
         "title": "From 26.1.0 to 26.1.2",
-        "text": "Everything of 26.1.1 (block page, content filter, sandbox client, Threat Analytics and Traffic Analytics, new dashboard and plots, Log Viewer tabs, default WAN) and the work of the week after the lab tests: the engine stalls found and fixed, the interface 3.0, the new rule model, the proxy fixes under load and for changing DNS answers, the VPN client downloads and the installer ISO."
+        "text": "All changes of 26.1.1 (block page, content filter, sandbox client, Threat Analytics and Traffic Analytics, new dashboard and charts, Log Viewer tabs, default WAN) and the changes made after laboratory testing: traffic engine stall fixes, interface 3.0, new rule model, web proxy fixes under load and for changing DNS answers, VPN client downloads and the installer ISO."
       }
     ]
   },
@@ -417,7 +417,7 @@
         [
           "5 minutes, everything on (final code), load average 16 to 18",
           "780 Mbps",
-          "most failed",
+          "most did not complete",
           "78 %"
         ],
         [
@@ -429,12 +429,12 @@
       ]
     },
     "reading": [
-      "The firewall was limited by its processor (system time above 90 % in the long test), not by memory or by the engine standing still: the more protections are on, the lower the throughput and the fewer new connections complete while the line is full.",
-      "The rows are not independent measurements: the machine and the test servers degraded after about an hour of repeated runs, so the order of the table is not a ranking of the features. Take them as indicative.",
+      "The firewall was limited by its processor (system time above 90 % in the long test), not by memory or by the traffic engine ceasing to respond: the more protections are on, the lower the throughput and the fewer new connections complete while the line is full.",
+      "The rows are not independent measurements: the machine and the test servers lost performance after about an hour of repeated runs, so the order of the table is not a ranking of the features. Take them as indicative.",
       "At the load of the long test the web proxy could no longer answer most HTTP connections within 3 seconds. A firewall that must carry 1 Gbps and open hundreds of connections per second with all protections on needs more than 4 cores."
     ],
     "recovery_title": "How the firewall recovers by itself",
-    "recovery_intro": "The traffic engine (Application Control) and the intrusion prevention engine read the packets that the firewall hands to them. If a reader stops answering, new connections that it was asked to look at hang while others keep working. A watchdog finds this and fixes it without anyone logging in:",
+    "recovery_intro": "The traffic engine (Application Control) and the intrusion prevention engine read the packets that the firewall hands to them. If a reader stops answering, new connections that it was asked to inspect stop progressing while others keep working. A watchdog finds this and fixes it without anyone logging in:",
     "recovery_steps": [
       "Every minute it takes three samples of each engine queue, 10 seconds apart.",
       "A queue is stalled when packets wait in all three samples and either its verdict counter did not move, or at least 64 packets wait and fewer than 10 verdicts per second are given. A reader that keeps up but is busy because the machine is overloaded is not restarted, because a restart would cost more than it gives.",

@@ -128,8 +128,8 @@
       "items": [
         {
           "tag": "improved",
-          "title": "Proxy web: dirección de destino que cambia, y ping, probados de nuevo",
-          "body": "Antes de esta versión se volvieron a probar, en un firewall con la imagen anterior, las correcciones para sitios cuyas respuestas DNS cambian (el proxy va a la dirección que eligió el cliente, sin estado 409) y para el ping y los errores ICMP (sin tiempos de espera en el proxy web): 6 de 6 solicitudes con un destino que no coincide con el nombre devolvieron 200, ningún 409 en 23.100 líneas de registro; 160 de 160 solicitudes por el proxy tuvieron éxito con y sin dos flujos de ping (p95 13,7 ms y 14,4 ms, 400 de 400 respuestas de eco cada uno); el ICMP puerto inalcanzable llegó al cliente en 0,05 s."
+          "title": "Proxy web: dirección de destino que cambia, y ping, verificados de nuevo",
+          "body": "Antes de esta versión se volvieron a verificar, en un firewall con la imagen anterior, las correcciones para sitios cuyas respuestas DNS cambian (el proxy va a la dirección que eligió el cliente, sin estado 409) y para el ping y los errores ICMP (sin tiempos de espera en el proxy web): 6 de 6 solicitudes con un destino que no coincide con el nombre devolvieron 200, ningún 409 en 23.100 líneas de registro; 160 de 160 solicitudes por el proxy tuvieron éxito con y sin dos flujos de ping (p95 13,7 ms y 14,4 ms, 400 de 400 respuestas de eco cada uno); el ICMP puerto inalcanzable llegó al cliente en 0,05 s."
         },
         {
           "tag": "improved",
@@ -320,22 +320,22 @@
     ]
   },
   "timeline": {
-    "intro": "Cómo se formó esta versión, desde la primera imagen hasta la versión estable.",
+    "intro": "Historial de desarrollo de esta versión, desde la primera imagen hasta la versión estable.",
     "entries": [
       {
         "date": "2026-10-20",
         "title": "De 26.1.3 a 26.2.1",
-        "text": "Protección Avanzada y Protección Colectiva (IA) con su página, distribución firmada de modelos, indicadores compartidos y revisión, medición de uso, componente de licencia 1.9.0, interfaz web 3.1.1 y las correcciones del proxy web probadas de nuevo."
+        "text": "Protección Avanzada y Protección Colectiva (IA), con su página de control, distribución firmada de modelos, indicadores compartidos con revisión y medición de uso; componente de licencia 1.9.0; interfaz web 3.1.1; correcciones del proxy web verificadas de nuevo."
       },
       {
         "date": "2026-10-13",
         "title": "De 26.1.2 a 26.1.3",
-        "text": "La vía de actualización de paquetes (índice completo, clave de Nexwall en la imagen), las correcciones encontradas tras publicar la 26.1.2 (número de reglas del IPS, ventana de los principales consumidores, etapas de Threat Analytics, aplicaciones desconocidas) y la aplicación Nexwall en el catálogo."
+        "text": "Ruta de actualización de paquetes corregida (índice completo y clave de Nexwall en la imagen); correcciones de defectos encontrados tras la publicación de la 26.1.2 (número de reglas del IPS, ventana de los principales consumidores, etapas de Threat Analytics, aplicaciones desconocidas); aplicación Nexwall añadida al catálogo."
       },
       {
         "date": "2026-10-07 a 13",
         "title": "De 26.1.0 a 26.1.2",
-        "text": "Todo lo de 26.1.1 (página de bloqueo, filtro de contenido, cliente del sandbox, Threat Analytics y Traffic Analytics, panel y gráficos nuevos, pestañas del Visor de registros, WAN por defecto) y el trabajo de la semana tras las pruebas de laboratorio: las detenciones del motor encontradas y corregidas, la interfaz 3.0, el nuevo modelo de reglas, las correcciones del proxy bajo carga y con respuestas DNS cambiantes, las descargas de clientes VPN y la ISO de instalación."
+        "text": "Todos los cambios de la 26.1.1 (página de bloqueo, filtro de contenido, cliente de sandbox, Threat Analytics y Traffic Analytics, nuevo panel y gráficos, pestañas del Visor de registros, WAN predeterminada) y los cambios hechos tras las pruebas de laboratorio: correcciones de las paradas del motor de tráfico, interfaz 3.0, nuevo modelo de reglas, correcciones del proxy web bajo carga y con respuestas DNS cambiantes, descargas de clientes VPN e ISO de instalación."
       }
     ]
   },
@@ -415,7 +415,7 @@
         [
           "5 minutos, todo activado (código final), carga media de 16 a 18",
           "780 Mbps",
-          "la mayoría falló",
+          "la mayoría no se completó",
           "78 %"
         ],
         [
@@ -428,7 +428,7 @@
     },
     "reading": [
       "El límite del firewall fue su procesador (tiempo de sistema por encima del 90 % en la prueba larga), no la memoria ni que el motor se detuviera: cuantas más protecciones están activas, menor el caudal y menos conexiones nuevas se completan con la línea llena.",
-      "Las filas no son mediciones independientes: la máquina y los servidores de prueba se degradaron tras cerca de una hora de ejecuciones repetidas, así que el orden de la tabla no es una clasificación de las funciones. Tómelas como indicativas.",
+      "Las filas no son mediciones independientes: la máquina y los servidores de prueba perdieron rendimiento tras cerca de una hora de ejecuciones repetidas, así que el orden de la tabla no es una clasificación de las funciones. Tómelas como indicativas.",
       "Con la carga de la prueba larga el proxy web ya no pudo responder la mayoría de las conexiones HTTP en 3 segundos. Un firewall que deba llevar 1 Gbps y abrir cientos de conexiones por segundo con todas las protecciones necesita más de 4 núcleos."
     ],
     "recovery_title": "Cómo se recupera el firewall por sí solo",

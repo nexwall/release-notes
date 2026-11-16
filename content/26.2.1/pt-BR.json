@@ -128,8 +128,8 @@
       "items": [
         {
           "tag": "improved",
-          "title": "Proxy web: endereço de destino que muda, e ping, testados de novo",
-          "body": "Antes desta versão foram testadas de novo, em um firewall com a imagem anterior, as correções para sites cujas respostas DNS mudam (o proxy vai ao endereço que o cliente escolheu, sem status 409) e para o ping e os erros ICMP (sem timeouts no proxy web): 6 de 6 requisições com um destino que não combina com o nome devolveram 200, nenhum 409 em 23.100 linhas de log; 160 de 160 requisições pelo proxy tiveram sucesso com e sem dois fluxos de ping (p95 13,7 ms e 14,4 ms, 400 de 400 respostas de eco cada um); o ICMP porta inalcançável chegou ao cliente em 0,05 s."
+          "title": "Proxy web: endereço de destino que muda, e ping, verificados novamente",
+          "body": "Antes desta versão foram verificadas novamente, em um firewall com a imagem anterior, as correções para sites cujas respostas DNS mudam (o proxy vai ao endereço que o cliente escolheu, sem status 409) e para o ping e os erros ICMP (sem timeouts no proxy web): 6 de 6 requisições com um destino que não combina com o nome devolveram 200, nenhum 409 em 23.100 linhas de log; 160 de 160 requisições pelo proxy tiveram sucesso com e sem dois fluxos de ping (p95 13,7 ms e 14,4 ms, 400 de 400 respostas de eco cada um); o ICMP porta inalcançável chegou ao cliente em 0,05 s."
         },
         {
           "tag": "improved",
@@ -179,7 +179,7 @@
         {
           "tag": "improved",
           "title": "As recusas chegam ao cliente na hora",
-          "body": "A resposta \"porta inalcançável\" de uma conexão recusada, e as mensagens de que a descoberta de MTU do caminho precisa, eram engolidas pela fila do motor de tráfego. Agora elas passam, de modo que um navegador cujo QUIC é recusado muda para HTTPS em alguns milissegundos e não depois de um tempo limite."
+          "body": "A resposta \"porta inalcançável\" de uma conexão recusada, e as mensagens de que a descoberta de MTU do caminho precisa, eram retidas pela fila do motor de tráfego. Agora elas passam, de modo que um navegador cujo QUIC é recusado muda para HTTPS em alguns milissegundos e não depois de um tempo limite."
         },
         {
           "tag": "improved",
@@ -320,22 +320,22 @@
     ]
   },
   "timeline": {
-    "intro": "Como esta versão foi formada, da primeira imagem até a versão estável.",
+    "intro": "Histórico de desenvolvimento desta versão, da primeira imagem até a versão estável.",
     "entries": [
       {
         "date": "2026-10-20",
         "title": "De 26.1.3 a 26.2.1",
-        "text": "Proteção Avançada e Proteção Coletiva (IA) com sua página, distribuição assinada de modelos, indicadores compartilhados e revisão, medição de uso, componente de licença 1.9.0, interface web 3.1.1 e as correções do proxy web testadas de novo."
+        "text": "Proteção Avançada e Proteção Coletiva (IA), com sua página de controle, distribuição assinada de modelos, indicadores compartilhados com revisão e medição de uso; componente de licença 1.9.0; interface web 3.1.1; correções do proxy web verificadas novamente."
       },
       {
         "date": "2026-10-13",
         "title": "De 26.1.2 a 26.1.3",
-        "text": "O caminho de atualização de pacotes (índice completo, chave da Nexwall na imagem), as correções encontradas após a 26.1.2 ser publicada (número de regras do IPS, janela dos maiores consumidores, etapas do Threat Analytics, aplicações desconhecidas) e a aplicação Nexwall no catálogo."
+        "text": "Caminho de atualização de pacotes corrigido (índice completo e chave da Nexwall na imagem); correções de defeitos encontrados após a publicação da 26.1.2 (contagem de regras do IPS, janela dos maiores consumidores, etapas do Threat Analytics, aplicações desconhecidas); aplicação Nexwall adicionada ao catálogo."
       },
       {
         "date": "2026-10-07 a 13",
         "title": "De 26.1.0 a 26.1.2",
-        "text": "Tudo o que havia na 26.1.1 (página de bloqueio, filtro de conteúdo, cliente do sandbox, Threat Analytics e Traffic Analytics, painel e gráficos novos, abas do Visualizador de logs, WAN padrão) e o trabalho da semana após os testes de laboratório: as paradas do motor encontradas e corrigidas, a interface 3.0, o novo modelo de regras, as correções do proxy sob carga e com respostas DNS que mudam, os downloads dos clientes VPN e a ISO de instalação."
+        "text": "Todas as mudanças da 26.1.1 (página de bloqueio, filtro de conteúdo, cliente de sandbox, Threat Analytics e Traffic Analytics, novo painel e gráficos, abas do Visualizador de logs, WAN padrão) e as mudanças feitas após os testes de laboratório: correções das paradas do motor de tráfego, interface 3.0, novo modelo de regras, correções do proxy web sob carga e com respostas DNS variáveis, downloads dos clientes VPN e ISO de instalação."
       }
     ]
   },
@@ -415,7 +415,7 @@
         [
           "5 minutos, tudo ligado (código final), carga média de 16 a 18",
           "780 Mbps",
-          "a maioria falhou",
+          "a maioria não foi concluída",
           "78 %"
         ],
         [
@@ -428,7 +428,7 @@
     },
     "reading": [
       "O limite do firewall foi o processador (tempo de sistema acima de 90 % no teste longo), não a memória nem o motor parar: quanto mais proteções ligadas, menor a vazão e menos conexões novas se completam com a linha cheia.",
-      "As linhas não são medições independentes: a máquina e os servidores de teste se degradaram após cerca de uma hora de execuções repetidas, então a ordem da tabela não é um ranking dos recursos. Considere-as indicativas.",
+      "As linhas não são medições independentes: a máquina e os servidores de teste perderam desempenho após cerca de uma hora de execuções repetidas, então a ordem da tabela não é um ranking dos recursos. Considere-as indicativas.",
       "Com a carga do teste longo o proxy web não conseguiu mais responder a maioria das conexões HTTP em 3 segundos. Um firewall que precise levar 1 Gbps e abrir centenas de conexões por segundo com todas as proteções precisa de mais de 4 núcleos."
     ],
     "recovery_title": "Como o firewall se recupera sozinho",
