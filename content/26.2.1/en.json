@@ -1,6 +1,6 @@
 {
   "title": "Nexwall Firewall 26.2.1",
-  "summary": "Advanced and Collective Protection (AI): a behaviour scorer, signed models, shared indicators (3 firewalls or confirmed by Nexwall), a new page to control them, and usage measurement for the license size.",
+  "summary": "Advanced and Collective Protection (AI) with a control page, and usage measurement for the license size.",
   "overview": "Nexwall Firewall 26.2.1 adds Advanced Protection and Collective Protection (AI), with one page to control and watch them in Protection Services, and measures the active devices and the throughput for the license size. It keeps everything of 26.1.3: updates that work from System > Update, separate block and inspect choices in Web Protection, block pages, the content filter, files tested in the Nexwall sandbox, Threat Analytics and Traffic Analytics, the new interface (3.0, light and dark), and the installer ISO for virtual machines, USB sticks and appliances.",
   "at_a_glance": [
     {
@@ -32,92 +32,92 @@
     {
       "id": "whats-new",
       "title": "What is new",
-      "intro": "The features below are new in this release.",
+      "intro": "The first five items are new in 26.2.1; the others come from 26.1.x.",
       "items": [
         {
           "tag": "new",
-          "title": "Advanced and Collective Protection (AI): one page",
-          "body": "Protection Services has a new page after IP & Geo Blocking. It has one switch for Advanced Protection and one for Collective Protection, a note on each, the real state of both engines at the top right (running, degraded or stopped, read from the services), a monitor with CPU, memory and rates like the DPI, IPS and Web Proxy pages, the updates of models and lists with an Update now button and the update frequency, the recent advisory events and the privacy notice."
+          "title": "Advanced and Collective Protection page",
+          "body": "Protection Services has a new page with one switch for each protection, the real state of both engines (running, degraded or stopped), a resource monitor, model and list updates with an Update now button, recent advisory events and the privacy notice."
         },
         {
           "tag": "new",
-          "title": "Advanced Protection: a behaviour scorer on the firewall",
-          "body": "A small service on the firewall (nexwall-atp) looks at how each internal host talks to the internet (flows and DNS) and gives it a score from a model trained by Nexwall. A high score raises an advisory event; it never blocks by itself. Models are downloaded as signed files and checked with the license server key before use; the previous model is kept for rollback. The service has a CPU budget of 3% of a core and stops scoring when it exceeds it. Be aware of the limits: the first models are trained on traffic generated in the Nexwall laboratory, so they find the behaviours that were simulated there (beacons, scans, floods) and will not detect others and can flag normal periodic check-ins. Treat the events as indications to review, not as verdicts."
+          "title": "Advanced Protection: behaviour scoring",
+          "body": "The nexwall-atp service scores how each internal host talks to the internet (flows and DNS) with a model trained by Nexwall. A high score raises an advisory event; it never blocks. Models are signed, verified with the license server key before use, and the previous one is kept for rollback. The service is limited to about 3% of one core. The first models were trained on laboratory traffic (beacons, scans, floods): they do not detect other behaviours and can flag normal periodic check-ins. Treat events as indications to review, not verdicts."
         },
         {
           "tag": "new",
-          "title": "Collective Protection: what one firewall learns protects the others",
-          "body": "Indicators (addresses and domains) reported by firewalls are gathered on the Nexwall server. An indicator reported by at least 3 different firewalls within 14 days is published at once; one reported by fewer appears in the review page of the Nexwall team (with a notice in the admin panel), and when the team confirms it, it protects all firewalls. Each published indicator expires after 14 days unless it is seen again. Approved indicators are published as two threat-list categories (atp_ip and atp_dns) that firewalls download with the other threat lists, and a firewall that has Collective Protection on blocks them like any other list. A report from a single firewall never blocks anything on other firewalls by itself, so a false positive stays on the firewall that raised it unless the team approves it; the team can reject an indicator and it is not published again."
+          "title": "Collective Protection",
+          "body": "Firewalls report suspicious addresses and domains to the Nexwall server. An indicator reported by at least 3 different firewalls within 14 days is published automatically; one reported by fewer goes to Nexwall's review page and is published only when confirmed. Published indicators expire after 14 days unless seen again, and rejected ones are not published again. They are distributed as two threat-list categories (atp_ip and atp_dns) and blocked on firewalls with Collective Protection on. A report from a single firewall never blocks traffic on other firewalls by itself."
         },
         {
           "tag": "new",
-          "title": "Sharing reports is on by default, and what it sends",
-          "body": "The sharing switch is on by default, with a text next to it in the setup wizard and on the page. The firewall sends only reports about suspicious indicators: the external address or domain, the kind of behaviour and a score, with the date, signed by the firewall. It never sends traffic content, files, user names, internal addresses or browsing history. You can switch sharing off at any time on the page; the firewall then still receives the collective lists if Collective Protection is on. The privacy notice is at the link on the page and on the release page."
+          "title": "Report sharing is on by default",
+          "body": "Sharing is on by default, explained in the setup wizard and on the page. Reports contain only the external address or domain, the kind of behaviour, a score and the date, signed by the firewall. Traffic content, files, user names, internal addresses and browsing history are never sent. Sharing can be switched off at any time; the firewall still receives the collective lists if Collective Protection is on."
         },
         {
           "tag": "new",
           "title": "Usage measurement for the license size",
-          "body": "The firewall counts the active devices (including OpenVPN remote-access users) and the throughput on the internal networks and sends only these numbers with the daily license check. IPsec and WireGuard tunnels are not measured. Nothing is blocked or switched off when a size is exceeded; the figures only let Nexwall and the partner see whether the license size fits. No addresses leave the firewall."
+          "body": "The firewall counts active devices (including OpenVPN remote-access users) and throughput on the internal networks, and sends only these numbers with the daily license check. IPsec and WireGuard tunnels are not measured. Nothing is blocked when a size is exceeded; the figures let Nexwall and the partner check the license size. No addresses leave the firewall."
         },
         {
           "tag": "new",
           "title": "Block page for blocked websites",
-          "body": "When a rule with \"Show a block page\" blocks a website category, the person sees a page in Portuguese, Spanish or English (the language of the browser) with the category, the rule and a reference code, instead of a connection error. The page is offered for the categories the web proxy can open (together up to 500,000 domains, the smallest lists first); large lists such as adult content keep the plain block, so nothing is ever opened up. If the check that serves the page is down, the request fails: it is never let through. The reference code is also written to the log."
+          "body": "When a rule with \"Show a block page\" blocks a website category, the user sees a page in Portuguese, Spanish or English (browser language) with the category, the rule and a reference code, which is also logged. The page is offered for categories the web proxy can open (up to 500,000 domains in total, smallest lists first); larger lists such as adult content keep the plain block. If the service that serves the page is down, the request fails and is never let through."
         },
         {
           "tag": "new",
           "title": "Content filter: School, Private and Work",
-          "body": "The pages that pass through the web proxy are read and given a score from 0 to 100 for adult content, violence, drugs, gambling, hate speech and self-harm. A page whose score reaches the threshold of the profile is replaced by a block page that shows the subject and the score, or is only recorded, as you choose. Three profiles come ready (School is strict, Private is moderate, Work is light) and are set by the Standard, School and Restricted choices of the setup wizard; the Content filter tab of Web Protection shows them and lets you change the threshold, the subjects and where pages are read. Pages that talk about a subject for study, health or news, and pages that offer help, score lower. It reads words, not pictures, and only pages the proxy can open (websites without encryption and the categories it decrypts)."
+          "body": "Pages passing through the web proxy are scored from 0 to 100 for adult content, violence, drugs, gambling, hate speech and self-harm. A page that reaches the profile threshold is replaced by a block page showing the subject and score, or only recorded, as configured. Three profiles are provided (School strict, Private moderate, Work light), selected by the Standard, School and Restricted choices of the setup wizard; the Content filter tab lets you change threshold, subjects and where pages are read. Pages about study, health or news, and pages offering help, score lower. The filter reads text, not images, and only pages the proxy can open (unencrypted sites and decrypted categories)."
         },
         {
           "tag": "new",
           "title": "Intelligent Threat Block: files tested in a sandbox",
-          "body": "A file that passes the antivirus can be sent to the Nexwall sandbox, a safe machine where it is opened and watched. With the hold option the download waits for the verdict (between 15 and 300 seconds, you choose) and a file judged malicious is blocked with a page that explains why; a verdict already known is answered at once. Each firewall has its own limits: 60 files an hour, 500 files and 500 MB a day, 20 MB per file and 2 at the same time (a trial gets half). It works while the license of the firewall includes it, and the settings, the status and the verdicts are in Web Protection and in Threat Analytics."
+          "body": "A file that passes the antivirus can be sent to the Nexwall sandbox, where it is opened and observed. With the hold option the download waits for the verdict (15 to 300 seconds, configurable) and a file judged malicious is blocked with an explanatory page; known verdicts are answered immediately. Limits per firewall: 60 files per hour, 500 files and 500 MB per day, 20 MB per file, 2 at a time (half during a trial). Available while the license includes it; settings, status and verdicts are in Web Protection and Threat Analytics."
         },
         {
           "tag": "new",
           "title": "Threat Analytics and Traffic Analytics",
-          "body": "The menu now has two analytics pages after the Dashboard. Threat Analytics tells what was stopped: the story from block, antivirus and sandbox to the advanced layers, the devices at risk, the web categories, the top sources and reasons and a table of events, kept for 35 days, with an executive report in PDF that is free in every plan. Traffic Analytics tells where the traffic goes: total, busiest hour, top application and device, traffic by hour and ranked lists of devices, applications, remote hosts and protocols that you can follow with a click, for today, 7 or 30 days. The Monitor no longer has the Daily traffic tab."
+          "body": "Two analytics pages follow the Dashboard. Threat Analytics shows what was stopped (block, antivirus, sandbox and advanced layers), devices at risk, web categories, top sources and reasons, and an event table kept for 35 days, with an executive report in PDF that is free in every plan. Traffic Analytics shows total traffic, busiest hour, top application and device, traffic by hour, and ranked lists of devices, applications, remote hosts and protocols for today, 7 or 30 days. The Monitor no longer has the Daily traffic tab."
         },
         {
           "tag": "new",
-          "title": "A redesigned interface (3.0)",
-          "body": "One blue family in light and dark mode: a pale blue menu and top bar in light mode, a navy interface in dark mode, a blue accent, and a page, card and table style that is the same everywhere. The top bar has the page path, a search (Ctrl+K), the language, help, the status center with the alerts of the firewall and the unit chip with the health dot, serial number, version, uptime and license. Every page opens with its tabs, then one paragraph that says what the page is for; the pages of the Policy section have tighter table rows, the side panels follow the density of the menu, and Firewall Rules and Zones & Policies have a column of summary cards on the right (rules by action, busiest zone pairs, tags that filter the list with a click). The Dashboard shows the protection of the firewall in one view and the traffic of today, 7 or 30 days. The Web Protection settings have an engine monitor, rules are deleted from a three-dots menu so that it is harder to do by mistake, and the Monitor tabs follow the same design."
+          "title": "Interface 3.0",
+          "body": "New design in light and dark mode, consistent across all pages. The top bar has the page path, search (Ctrl+K), language, help, the status center and the unit chip (health, serial number, version, uptime, license). Each page opens with its tabs and a one-line purpose. Policy pages have tighter tables; Firewall Rules and Zones & Policies have a summary column (rules by action, busiest zone pairs, filter tags). The Dashboard shows the protection state and traffic for today, 7 or 30 days. Rules are deleted from a menu to avoid accidents."
         },
         {
           "tag": "new",
           "title": "Web Protection rules: block and inspect are separate choices",
-          "body": "In the rule editor every category can be blocked, allowed or inspected on its own. The blocked column and the allowed column each have an \"inspect all\" switch and a tick for every category: blocking is decided from the server name without opening the connection, and inspecting is what opens a category in the web proxy, for the antivirus, the content filter and the certificate checks in the allowed column, or for the block page in the blocked column. A category that is blocked and not inspected costs the proxy nothing."
+          "body": "In the rule editor each category can be blocked, allowed or inspected independently. Blocking is decided from the server name without opening the connection; inspecting opens a category in the web proxy for the antivirus, content filter and certificate checks (allowed categories) or the block page (blocked categories). Each column has an \"inspect all\" switch. A category that is blocked and not inspected costs the proxy nothing."
         },
         {
           "tag": "new",
           "title": "A QUIC switch in Web Protection",
-          "body": "QUIC (HTTP/3) carries web traffic over UDP, where no proxy can read it. The new switch \"Block QUIC (HTTP/3)\" in the Web Protection settings (on by default) refuses UDP port 443 for the clients of the rules that filter the web, so their browsers use HTTPS over TCP at once and the block pages, SafeSearch, the antivirus and the content filter apply to everything. The refusal now reaches the client at once (see the fixes), so there is no wait before the browser falls back."
+          "body": "QUIC (HTTP/3) carries web traffic over UDP, where the proxy cannot read it. The new \"Block QUIC (HTTP/3)\" switch in Web Protection settings (on by default) refuses UDP port 443 for clients of web-filtering rules, so browsers fall back to HTTPS over TCP and block pages, SafeSearch, antivirus and content filter apply to all traffic. The refusal reaches the client immediately."
         },
         {
           "tag": "new",
-          "title": "What is really running, not only what is switched on",
-          "body": "The pages of Application Control, Network Protection (IPS), Web Protection and the antivirus show a badge that is green only when the service is running (its process is up and bound to what it needs); a service that is switched on but not running turns red. The reading comes from the firewall itself (processes and traffic queues) and is the same one the Dashboard uses."
+          "title": "Real service state",
+          "body": "The Application Control, Network Protection (IPS), Web Protection and antivirus pages show a badge that is green only when the service is actually running (process up and bound to what it needs) and red when it is switched on but not running. The Dashboard uses the same reading."
         },
         {
           "tag": "new",
           "title": "Nexwall VPN clients on the Remote Access page",
-          "body": "The Remote Access (OpenVPN) page lists the latest builds of the Nexwall VPN clients for your users: Windows (64-bit Intel / AMD, ARM64 and 32-bit), Android, and Linux packages for Debian and Ubuntu (64-bit Intel / AMD and ARM64). The macOS client is not published yet. The clients are test builds and are not code-signed."
+          "body": "The Remote Access (OpenVPN) page lists the latest Nexwall VPN clients: Windows (64-bit Intel/AMD, ARM64, 32-bit), Android, and Debian and Ubuntu packages (64-bit Intel/AMD and ARM64). The macOS client is not published yet. The clients are test builds and are not code-signed."
         },
         {
           "tag": "new",
-          "title": "Packet loss and longer windows on the WAN uplinks and Performance pages",
-          "body": "The plots show packet loss instead of the delivery rate, and the WAN uplinks and Performance pages offer 1 hour (the default), 6, 12 and 24 hours, 7 and 30 days. Every plot is a card with the current, peak and average value of each series above the line, and the lines are smoothed without rounding off the peaks: for long windows each point is the highest value of its step (the lowest for free memory), so a short spike of CPU, memory, load or packet loss is still visible. The history is kept for 7 days, or a year when the firewall has a data disk."
+          "title": "Packet loss and longer windows on WAN uplinks and Performance",
+          "body": "Charts show packet loss instead of delivery rate. The WAN uplinks and Performance pages offer 1 hour (default), 6, 12 and 24 hours, 7 and 30 days, with current, peak and average values above each chart. For long windows each point is the highest value of its interval (lowest for free memory), so short spikes remain visible. History is kept for 7 days, or a year with a data disk."
         },
         {
           "tag": "new",
           "title": "Log Viewer: Web Protection tab",
-          "body": "A new tab lists all the web traffic the proxy handled, allowed or blocked, with block pages, files stopped by the antivirus or the sandbox, content blocks and requests the proxy refused; a check adds the messages of the services. Alerts of the intrusion prevention engine and the proxy requests are now sent to the Log Viewer."
+          "body": "A new tab lists all web traffic handled by the proxy, allowed or blocked, including block pages, files stopped by the antivirus or sandbox, content blocks and refused requests, plus service messages. Intrusion prevention alerts and proxy requests are now sent to the Log Viewer."
         },
         {
           "tag": "new",
           "title": "Installer ISO",
-          "body": "Besides the disk image, the release comes as an installer ISO: write it to a USB stick (for example with Rufus) and start the appliance from it. The installer checks its image, offers only internal disks (never the USB stick), asks you to type INSTALL before it erases a disk, writes the image and reads it back from the disk to compare it. The appliance must start in UEFI mode."
+          "body": "The release is also provided as an installer ISO. Write it to a USB stick (for example with Rufus) and boot the appliance in UEFI mode. The installer verifies its image, lists only internal disks, requires typing INSTALL before erasing a disk, and reads the written image back to compare it."
         }
       ]
     },
@@ -128,93 +128,93 @@
       "items": [
         {
           "tag": "improved",
-          "title": "Web proxy: destination address that changes, and ping, tested again",
-          "body": "Before this release the fixes for sites whose DNS answers change (the proxy goes to the address the client chose, no status 409) and for ping and ICMP errors (no timeouts in the web proxy) were verified again on a firewall running the previous image: 6 of 6 requests with a destination that does not match the name returned 200, no 409 in 23,100 log lines; 160 of 160 proxied requests succeeded with and without two ping streams running (p95 13.7 ms and 14.4 ms, 400 of 400 echo replies each); ICMP port unreachable reached the client in 0.05 s."
+          "title": "Web proxy fixes verified again",
+          "body": "The fixes for sites whose DNS answers change (the proxy uses the address the client chose, no status 409) and for ping and ICMP errors (no proxy timeouts) were verified again on a firewall running the previous image: 6 of 6 requests with a mismatched destination returned 200 and no 409 in 23,100 log lines; 160 of 160 proxied requests succeeded with and without two ping streams (p95 13.7 ms and 14.4 ms, 400 of 400 echo replies each); ICMP port unreachable reached the client in 0.05 s."
         },
         {
           "tag": "improved",
-          "title": "Protection overview and menu show the new engines",
-          "body": "The protection layers shown in the interface now include Advanced Protection and Collective Protection with their real state (running, degraded, stopped, off or not in the plan)."
+          "title": "Protection overview shows the new engines",
+          "body": "The protection layers in the interface include Advanced Protection and Collective Protection with their real state (running, degraded, stopped, off or not in the plan)."
         },
         {
           "tag": "improved",
-          "title": "System > Update installs the fixes of the firewall",
-          "body": "Check for updates now finds the packages of the firewall, shows no error the first time, and installs them. The package index of the update server was incomplete and the image trusted a different key from the one that signs the updates; both are fixed, so any later fix can reach the firewalls from this page."
+          "title": "System > Update installs firewall fixes",
+          "body": "Check for updates now finds the firewall packages, no longer fails the first time, and installs them. The update server index was incomplete and the image trusted a different key from the one that signs updates; both are fixed."
         },
         {
           "tag": "improved",
-          "title": "The IPS shows the rules it really loads",
-          "body": "The number of rules on the Dashboard is now the number of rules loaded for the chosen policy, the same as on the IPS Settings tab (before it counted the rules of the catalog that only raise an alert)."
+          "title": "IPS rule count",
+          "body": "The Dashboard shows the number of rules loaded for the chosen policy, the same as the IPS Settings tab. It previously included catalog rules that only raise alerts."
         },
         {
           "tag": "improved",
-          "title": "Top talkers stay correct on a busy network",
-          "body": "With many connections the statistics window of the traffic engine could be read as one second or less, which showed a rate several times too high, or an empty list. The window is now at least ten seconds and measured to the millisecond."
+          "title": "Top talkers on busy networks",
+          "body": "With many connections the statistics window could be read as one second or less, showing rates several times too high or an empty list. The window is now at least ten seconds and measured to the millisecond."
         },
         {
           "tag": "improved",
-          "title": "Fewer \"Unknown\" in the reports",
-          "body": "Traffic to a site the application catalog does not know is listed under the domain of the site (for example example.com) instead of \"Unknown\". The catalog also has a Nexwall application, so the traffic of the firewall to its own services is classified."
+          "title": "Fewer \"Unknown\" in reports",
+          "body": "Traffic to sites missing from the application catalog is listed under the site's domain instead of \"Unknown\". The catalog now includes a Nexwall application, so the firewall's own service traffic is classified."
         },
         {
           "tag": "improved",
-          "title": "Threat Analytics shows the real state of the sandbox",
-          "body": "The Sandbox stage says whether the sandbox is working, not enabled on this firewall, or not in the plan. Advanced Threat Protection and Collective Defense are still marked as coming in this version (see NXW-2018)."
+          "title": "Threat Analytics sandbox state",
+          "body": "The Sandbox stage shows whether the sandbox is working, not enabled on this firewall or not in the plan. Advanced Threat Protection and Collective Defense are still marked as coming in this version (see NXW-2018)."
         },
         {
           "tag": "improved",
-          "title": "The traffic engine no longer stalls under load",
-          "body": "Two causes of the traffic engine ceasing to respond were identified from core dumps of a laboratory firewall under load and are fixed: two threads waiting for each other inside two of the Nexwall plugins, and the capture thread ending when the kernel dropped a queued packet. A watchdog now checks the engine every minute and, if it stops responding, takes the engine out of the path (traffic keeps flowing without analysis) and restarts it, with a cooldown and a limit of restarts per hour. The default when the engine cannot keep up is to let traffic through, not to block it."
+          "title": "The traffic engine no longer stops responding under load",
+          "body": "Two causes of the traffic engine ceasing to respond were identified from core dumps of a laboratory firewall under load and are fixed: two threads waiting for each other inside two Nexwall plugins, and the capture thread ending when the kernel dropped a queued packet. A watchdog now checks the engine every minute; if it stops responding it takes the engine out of the path (traffic continues without analysis) and restarts it, with a cooldown and an hourly restart limit. By default, when the engine cannot keep up, traffic is let through, not blocked."
         },
         {
           "tag": "improved",
           "title": "Sites with changing DNS answers open behind the web proxy",
-          "body": "Some sites (streaming services and other CDNs) answer the client and the proxy with different addresses. The proxy used to refuse such an intercepted connection with an error 409, and the site did not load. It now sends the connection to the address the client chose, as it already did for plain HTTP, without caching it."
+          "body": "Some sites (streaming services and other CDNs) answer the client and the proxy with different addresses. The proxy used to refuse such intercepted connections with error 409. It now connects to the address the client chose, as it already did for plain HTTP, without caching."
         },
         {
           "tag": "improved",
-          "title": "Blocked traffic from the internet is in the Log Viewer",
-          "body": "The WAN zone now logs what it rejects (at most 10 lines a minute), so the Firewall traffic tab shows blocked traffic and not only the allowed one."
+          "title": "Blocked internet traffic in the Log Viewer",
+          "body": "The WAN zone logs what it rejects (at most 10 lines per minute), so the Firewall traffic tab shows blocked traffic as well as allowed."
         },
         {
           "tag": "improved",
-          "title": "Refusals reach the client at once",
-          "body": "The \"port unreachable\" answer of a rejected connection, and the messages that path MTU discovery needs, were held back by the traffic engine queue. They now pass, so a browser whose QUIC is refused changes to HTTPS in a few milliseconds instead of after a timeout."
+          "title": "Refusals reach the client immediately",
+          "body": "The \"port unreachable\" answer to a rejected connection and the messages path MTU discovery needs were held back by the traffic engine queue. They now pass, so a browser whose QUIC is refused falls back to HTTPS in milliseconds instead of after a timeout."
         },
         {
           "tag": "improved",
-          "title": "The web proxy keeps working under load",
-          "body": "The proxy could run out of open files (a limit of 1,024) and the antivirus connection was switched off for minutes after a burst of failures. The limit is now 16,384, up to 256 files can be scanned at the same time and the scanner connection is retried after 10 seconds."
+          "title": "The web proxy under load",
+          "body": "The proxy could run out of open files (limit 1,024) and the antivirus connection stayed off for minutes after a burst of failures. The limit is now 16,384, up to 256 files can be scanned at once, and the scanner connection is retried after 10 seconds."
         },
         {
           "tag": "improved",
-          "title": "WireGuard tunnels keep the internet links apart",
-          "body": "A tunnel no longer pins the route to its peer to the internet link that happened to be the default when the tunnel came up. On a firewall with two internet links a stale route of that kind could cut the license, the updates and the threat lists."
+          "title": "WireGuard tunnels and internet links",
+          "body": "A tunnel no longer pins the route to its peer to whichever internet link was the default when it came up. On a firewall with two internet links, a stale route could cut off the license, updates and threat lists."
         },
         {
           "tag": "improved",
-          "title": "Application Control: an engine switch and a true state",
-          "body": "Application Control has an engine switch, Web Protection turns the engine on when it needs it, and the Dashboard and the pages show the real state of Network Protection (IPS) and Application Control. The traffic of the Top talkers card and Traffic Analytics counts the same flows."
+          "title": "Application Control: engine switch and real state",
+          "body": "Application Control has an engine switch, Web Protection turns the engine on when it needs it, and the Dashboard and pages show the real state of Network Protection (IPS) and Application Control. Top talkers and Traffic Analytics count the same flows."
         },
         {
           "tag": "improved",
-          "title": "Safe by default also for the web",
-          "body": "A firewall that nobody has configured now starts with the Standard profile applied to the web as well: the website categories of the profile, the Work content filter and, when the license and the storage allow it, the antivirus. The setup wizard can change every choice afterwards."
+          "title": "Safe by default for the web",
+          "body": "An unconfigured firewall starts with the Standard profile applied to the web: the profile's website categories, the Work content filter and, when the license and storage allow, the antivirus. The setup wizard can change every choice."
         },
         {
           "tag": "improved",
-          "title": "The WAN is there at the first start",
-          "body": "A firewall started without running the setup wizard now has its WAN on the second network card (eth1), asking for an address by DHCP, in the wan zone. On virtual machines the card was not yet visible when the default was decided, so the WAN was missing; a second step later in the same start fixes it for units that were never configured."
+          "title": "WAN at first start",
+          "body": "A firewall started without the setup wizard has its WAN on the second network card (eth1), by DHCP, in the wan zone. On virtual machines the card was not yet visible when the default was decided; a later step in the same start now fixes this for unconfigured units."
         },
         {
           "tag": "improved",
-          "title": "YouTube and SafeSearch restrictions work together with Application Control",
-          "body": "The addresses that SafeSearch and YouTube Restricted Mode use are kept out of the analysis engine and of the inspection, and the DNS answers them with plain addresses, so Google, Bing and YouTube open in their restricted modes even when Application Control blocks streaming or social networks for the same devices."
+          "title": "YouTube and SafeSearch with Application Control",
+          "body": "The addresses used by SafeSearch and YouTube Restricted Mode are kept out of the analysis engine and the inspection, and DNS answers them with plain addresses, so Google, Bing and YouTube open in restricted mode even when Application Control blocks streaming or social networks for the same devices."
         },
         {
           "tag": "improved",
-          "title": "The Logs page fills the window",
-          "body": "The system log uses the whole width and height of the page, with the search, the number of rows and the options in one row above it."
+          "title": "Logs page uses the full window",
+          "body": "The system log uses the full width and height, with search, row count and options in one row above it."
         }
       ]
     }
@@ -340,34 +340,33 @@
     ]
   },
   "requirements": [
-    "x86-64 processor, UEFI firmware with Secure Boot off.",
-    "At least two network interfaces (one for the internal network, one for the internet).",
-    "2 GB of memory without Web Protection; 4 GB or more with the antivirus and the inspection of encrypted traffic, and 8 GB recommended when the antivirus, the inspection, the intrusion prevention and Application Control all run on a busy network (on 4 GB the antivirus engine can be stopped by the system under heavy load).",
-    "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at the first start. Smaller disks work, without the antivirus signatures store, the swap file and the space kept for a second system copy.",
-    "Internet access to updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, categories, rules, threat feeds and registration, and to the ClamAV mirrors for the antivirus signatures."
+    "x86-64 processor and UEFI firmware with Secure Boot off.",
+    "At least two network interfaces (internal network and internet).",
+    "2 GB of memory without Web Protection; 4 GB or more with the antivirus and inspection of encrypted traffic; 8 GB recommended when the antivirus, inspection, IPS and Application Control all run on a busy network (on 4 GB the system can stop the antivirus engine under heavy load).",
+    "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at first start. Smaller disks work without the signature store, the swap file and the space for a second system copy.",
+    "Internet access to updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br (updates, licenses, categories, rules, threat feeds, registration) and to the ClamAV mirrors (antivirus signatures)."
   ],
   "upgrade": [
-    "The release is an installable disk image for virtual machines and appliances. Check its SHA-256 first.",
-    "After the first start the internal interface answers on 192.168.1.1. Change the administrator password on the first login.",
-    "To check the file on Linux run sha256sum on it; on Windows run Get-FileHash with -Algorithm SHA256 in PowerShell. The result must equal the SHA-256 in the Downloads table.",
+    "The release is an installable disk image for virtual machines and appliances. Verify its SHA-256 first: sha256sum on Linux, or Get-FileHash -Algorithm SHA256 in PowerShell on Windows. The result must match the Downloads table.",
+    "After the first start the internal interface answers on 192.168.1.1. Change the administrator password at the first login.",
     "The administration guide is at https://docs.nexwall.com.br.",
-    "Firewalls running 26.0.0-rc4 or earlier are not upgraded in place by this release: the disk layout changed (system partition 1 GB, boot partition 64 MB). Install the image on a test machine or a new disk and compare. Restoring a configuration backup taken on an earlier build was not tested.",
-    "To inspect encrypted traffic, install the firewall's inspection certificate on the devices (Web Protection, Inspection). Without it browsers show a warning for inspected sites.",
-    "The antivirus needs the data storage and downloads its signatures after it is switched on; this takes a few minutes. Choosing a profile in the setup wizard switches it on when the firewall is licensed and has storage.",
-    "The licenses of a reseller are applied to firewalls from a pool and can be moved to another firewall; a change reaches the firewall at its next license check (about once a day).",
-    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps the settings it has. Add the two rules by hand on an existing firewall and keep DROP DEFAULT at the end of the list.",
-    "A firewall that is reinstalled while it is assigned to a customer needs its device reset by the reseller before it can get its license again.",
-    "A firewall that runs 26.1.2 cannot install package updates (its image trusts another key). Install 26.2.1 from the ISO or the image and restore the configuration from a backup."
+    "Firewalls running 26.0.0-rc4 or earlier cannot be upgraded in place: the disk layout changed (1 GB system partition, 64 MB boot partition). Install the image on a test machine or a new disk and compare. Restoring a configuration backup taken on an earlier build was not tested.",
+    "To inspect encrypted traffic, install the firewall's inspection certificate on the devices (Web Protection, Inspection). Without it, browsers show a warning for inspected sites.",
+    "The antivirus needs the data storage and downloads its signatures after it is switched on, which takes a few minutes. Choosing a profile in the setup wizard switches it on when the firewall is licensed and has storage.",
+    "A reseller's licenses are applied to firewalls from a pool and can be moved to another firewall; a change reaches the firewall at its next license check (about once a day).",
+    "The LAN -> WAN and DROP DEFAULT rules, packet steering and larger network card buffers are part of the default configuration. A firewall installed earlier keeps its settings: add the two rules by hand and keep DROP DEFAULT at the end of the list.",
+    "A firewall reinstalled while assigned to a customer needs its device reset by the reseller before it can get its license again.",
+    "A firewall running 26.1.2 cannot install package updates (its image trusts another key). Install 26.2.1 from the ISO or the image and restore the configuration from a backup."
   ],
-  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses, and the license texts and notices are shipped with the image and available on request. The Nexwall threat lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle.",
+  "open_source": "Nexwall Firewall is built on open source software, among them OpenWrt, the Linux kernel, nftables, Snort 3, Netify Agent and nDPI, dnsmasq, banIP, adblock and VictoriaMetrics. The firewall and the operator tools are published under their original licenses; the license texts and notices ship with the image and are available on request. The Nexwall threat lists are built from open sources whose licenses allow redistribution, and the notice that lists them is part of every bundle.",
   "performance": {
     "title": "Performance and recovery",
-    "intro": "This section says what the lab tests of this release showed and how the firewall recovers by itself when its traffic engine stops answering. The numbers come from one small virtual machine and are meant to show how the protections add up, not to promise a throughput: size your firewall with the guidance at the end.",
+    "intro": "Results of the laboratory tests of this release and how the firewall recovers when its traffic engine stops answering. The figures come from one small virtual machine and show how the protections add up; they are not a throughput guarantee. Size the firewall with the guidance at the end.",
     "setup_title": "The lab and the method",
     "setup": [
-      "Firewall: virtual machine with 4 processor cores and 4 GB of memory, Application Control, Network Protection (IPS), Web Protection with the antivirus, and the inspection of encrypted traffic, with the category lists loaded.",
-      "Load: a client behind the firewall and a server on its internet side. Four parallel iperf3 streams (throughput), 100 new HTTP connections per second through the web proxy and 50 new HTTPS connections per second, all at once, for 60 seconds per configuration.",
-      "A connection counts as completed when the whole answer arrived within 3 seconds (8 seconds for HTTPS)."
+      "Firewall: virtual machine with 4 cores and 4 GB of memory; Application Control, Network Protection (IPS), Web Protection with antivirus and inspection of encrypted traffic, category lists loaded.",
+      "Load: a client behind the firewall and a server on the internet side. Four parallel iperf3 streams (throughput), 100 new HTTP connections per second through the web proxy and 50 new HTTPS connections per second, simultaneously, 60 seconds per configuration.",
+      "A connection counts as completed when the whole answer arrives within 3 seconds (8 seconds for HTTPS)."
     ],
     "results_title": "Results",
     "table": {
@@ -429,37 +428,37 @@
       ]
     },
     "reading": [
-      "The firewall was limited by its processor (system time above 90 % in the long test), not by memory or by the traffic engine ceasing to respond: the more protections are on, the lower the throughput and the fewer new connections complete while the line is full.",
-      "The rows are not independent measurements: the machine and the test servers lost performance after about an hour of repeated runs, so the order of the table is not a ranking of the features. Take them as indicative.",
-      "At the load of the long test the web proxy could no longer answer most HTTP connections within 3 seconds. A firewall that must carry 1 Gbps and open hundreds of connections per second with all protections on needs more than 4 cores."
+      "The processor was the limit (system time above 90 % in the long test), not memory or the traffic engine: the more protections are on, the lower the throughput and the fewer new connections complete while the line is full.",
+      "The rows are not independent measurements: the machine and the test servers lost performance after about an hour of repeated runs, so the table is not a ranking of the features. Take the figures as indicative.",
+      "At the load of the long test the web proxy could not answer most HTTP connections within 3 seconds. A firewall that must carry 1 Gbps and open hundreds of connections per second with all protections on needs more than 4 cores."
     ],
     "recovery_title": "How the firewall recovers by itself",
-    "recovery_intro": "The traffic engine (Application Control) and the intrusion prevention engine read the packets that the firewall hands to them. If a reader stops answering, new connections that it was asked to inspect stop progressing while others keep working. A watchdog finds this and fixes it without anyone logging in:",
+    "recovery_intro": "The traffic engine (Application Control) and the intrusion prevention engine read the packets the firewall hands them. If a reader stops answering, new connections it was asked to inspect stop progressing while others continue. A watchdog detects this and corrects it without intervention:",
     "recovery_steps": [
       "Every minute it takes three samples of each engine queue, 10 seconds apart.",
-      "A queue is stalled when packets wait in all three samples and either its verdict counter did not move, or at least 64 packets wait and fewer than 10 verdicts per second are given. A reader that keeps up but is busy because the machine is overloaded is not restarted, because a restart would cost more than it gives.",
-      "On a stall it saves a report (queue state, memory, processes; the newest 10 are kept in /root/nfq-stall) and, at once, takes the engine's queue rules out of the path, so traffic flows without analysis until the engine is back. With the \"block\" overload choice, and for the IPS, the rules are left alone.",
-      "It then restarts the engine that owns the stalled queue. Limits: at most 6 restarts an hour and a pause of 90 seconds between two; over the limit it only reports.",
-      "It records the event in the log (tag nexwall-nfq-watchdog), raises an alert (Status center, Dashboard) and writes a metric. The engine puts its rules back when it starts again."
+      "A queue is stalled when packets wait in all three samples and either the verdict counter did not move, or at least 64 packets wait and fewer than 10 verdicts per second are given. A reader that keeps up but is busy because the machine is overloaded is not restarted.",
+      "On a stall it saves a report (queue state, memory, processes; the newest 10 are kept in /root/nfq-stall) and takes the engine's queue rules out of the path, so traffic flows without analysis until the engine is back. With the \"block\" overload choice, and for the IPS, the rules are left alone.",
+      "It then restarts the engine that owns the stalled queue: at most 6 restarts per hour, with 90 seconds between two; beyond the limit it only reports.",
+      "It records the event in the log (tag nexwall-nfq-watchdog), raises an alert (Status center, Dashboard) and writes a metric. The engine restores its rules when it starts again."
     ],
     "limits_title": "Other protections that fail open",
     "limits": [
-      "When the engine cannot keep up the default is to let traffic through (setting \"when the engine is overloaded\" in Application Control), not to block it.",
+      "When the engine cannot keep up, the default is to let traffic through (setting \"when the engine is overloaded\" in Application Control), not to block it.",
       "If the web proxy stops answering, the guard removes the redirect and web traffic flows without inspection until the proxy is back.",
-      "If the antivirus engine is down the files are delivered unscanned (fail open) and the pages and the Dashboard show the antivirus as not running.",
+      "If the antivirus engine is down, files are delivered unscanned (fail open) and the pages and the Dashboard show the antivirus as not running.",
       "Settings are in /etc/config/netifyd (section watchdog): enabled, restart, max_restarts, backlog, min_rate, failsafe and core (a core dump of a stalled engine for analysis).",
-      "Sizing: 2 GB of memory is the least; use 8 GB when the antivirus, the inspection, the IPS and Application Control all run on a busy network. On 4 GB the system can stop the antivirus engine under heavy load."
+      "Sizing: 2 GB of memory is the minimum; use 8 GB when the antivirus, inspection, IPS and Application Control all run on a busy network. On 4 GB the system can stop the antivirus engine under heavy load."
     ],
     "tested_title": "What was tested",
     "tested": [
-      "Stress and soak: the load above in eight configurations, one 5 minute soak with everything on and a rate ramp up to 1,500 new connections per second against the firewall.",
-      "Recovery: the watchdog was tested with 31 automatic cases (frozen counter, slow backlog, fast backlog that is only load, cooldown, hourly limit, failsafe) and met in the lab five times under load (before the speed rule was added; a 5 minute soak at load 16 to 18 afterwards caused no restart); each time it took the engine out of the path and restarted it, and traffic kept flowing.",
-      "Web Protection, on a real client: block page on HTTPS and HTTP, SafeSearch for Google, Bing and DuckDuckGo, YouTube restricted mode, content filter (a normal page passes, an adult page is blocked), antivirus (an EICAR test file is blocked, a clean file passes), inspection with the firewall certificate, QUIC refusal, and connections to sites whose DNS answers differ.",
+      "Stress and soak: the load above in eight configurations, one 5-minute soak with everything on, and a ramp up to 1,500 new connections per second.",
+      "Recovery: the watchdog was tested with 31 automatic cases (frozen counter, slow backlog, fast backlog that is only load, cooldown, hourly limit, failsafe) and triggered five times under load in the laboratory (before the speed rule was added; a 5-minute soak at load 16 to 18 afterwards caused no restart). Each time it took the engine out of the path and restarted it, and traffic kept flowing.",
+      "Web Protection, on a real client: block page on HTTPS and HTTP, SafeSearch for Google, Bing and DuckDuckGo, YouTube restricted mode, content filter (a normal page passes, an adult page is blocked), antivirus (an EICAR test file is blocked, a clean file passes), inspection with the firewall certificate, QUIC refusal, and sites whose DNS answers differ.",
       "Logging: every event above reached the Log Viewer (Firewall traffic, Application Control, Web Protection, system)."
     ],
     "not_tested_title": "Not tested",
     "not_tested": [
-      "Intrusion detection with real attack signatures (the probes sent did not raise alerts, so the IPS alert path was not exercised in this round).",
+      "Intrusion detection with real attack signatures (the probes sent raised no alerts, so the IPS alert path was not exercised).",
       "Runs longer than 5 minutes, hardware appliances, and more than one client at a time.",
       "The installer ISO was started in UEFI and reached its language menu; installing to a disk from this exact build is checked separately."
     ]
