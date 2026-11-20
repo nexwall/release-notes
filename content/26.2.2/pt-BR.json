@@ -1,0 +1,481 @@
+{
+  "title": "Nexwall Firewall 26.2.2",
+  "summary": "Support Packets: diagnósticos fixos e somente leitura que o Nexwall Cloud Controller pode executar no firewall para casos de suporte.",
+  "overview": "O Nexwall Firewall 26.2.2 adiciona o módulo Support Packets (ns.support): 26 diagnósticos fixos e somente leitura que o Nexwall Cloud Controller pode executar em um firewall para reunir evidências de um caso de suporte. Mantém tudo da versão 26.2.1.",
+  "at_a_glance": [
+    {
+      "label": "Versão",
+      "value": "26.2.2"
+    },
+    {
+      "label": "Situação",
+      "value": "Estável: imagem compilada, assinada e verificada"
+    },
+    {
+      "label": "Plataforma",
+      "value": "x86-64, boot UEFI"
+    },
+    {
+      "label": "Sistema base",
+      "value": "OpenWrt 25.12.5, kernel 6.12"
+    },
+    {
+      "label": "Idiomas da interface",
+      "value": "Inglês, espanhol, português do Brasil"
+    },
+    {
+      "label": "Recursos licenciados",
+      "value": "Teste incluído"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whats-new",
+      "title": "Novidades",
+      "intro": "O primeiro item é novo na 26.2.2; os demais vêm de versões anteriores.",
+      "items": [
+        {
+          "tag": "new",
+          "title": "Support Packets para diagnóstico remoto",
+          "body": "O firewall tem um módulo novo, ns.support, com 26 diagnósticos fixos (links e rotas, ping, DNS, portas, certificado web, serviços, logs, capturas de pacotes, estado da licença e mais). O Nexwall Cloud Controller executa um pacote por vez e somente depois que o parceiro confirma na tela Suporte. Não é possível digitar nenhum comando: cada pacote é escolhido pelo nome e seus dados de entrada (endereços, nomes, portas) são validados antes do uso. Os pacotes são somente leitura, têm limite de tempo e de saída e apagam suas capturas temporárias. A lista com os dados de entrada de cada pacote está em https://support.nexwall.com.br/pt-BR/#packets."
+        },
+        {
+          "tag": "new",
+          "title": "Página de Proteção Avançada e Coletiva",
+          "body": "Serviços de proteção tem uma página nova com uma chave para cada proteção, o estado real dos dois motores (funcionando, degradado ou parado), um monitor de recursos, atualizações de modelos e listas com o botão Atualizar agora, os eventos informativos recentes e o aviso de privacidade."
+        },
+        {
+          "tag": "new",
+          "title": "Proteção Avançada: pontuação de comportamento",
+          "body": "O serviço nexwall-atp pontua como cada equipamento interno se comunica com a internet (fluxos e DNS) com um modelo treinado pela Nexwall. Uma pontuação alta gera um evento informativo; nunca bloqueia. Os modelos são assinados, verificados com a chave do servidor de licenças antes do uso, e o anterior é mantido para reversão. O serviço é limitado a cerca de 3 % de um núcleo. Os primeiros modelos foram treinados com tráfego de laboratório (beacons, varreduras, inundações): não detectam outros comportamentos e podem marcar verificações periódicas normais. Trate os eventos como indicações para revisar, não como veredictos."
+        },
+        {
+          "tag": "new",
+          "title": "Proteção Coletiva",
+          "body": "Os firewalls informam endereços e domínios suspeitos ao servidor da Nexwall. Um indicador informado por pelo menos 3 firewalls diferentes em 14 dias é publicado automaticamente; o informado por menos vai para a página de revisão da Nexwall e só é publicado se confirmado. Os indicadores publicados expiram em 14 dias se não forem vistos de novo, e os rejeitados não são publicados novamente. São distribuídos como duas categorias de listas de ameaças (atp_ip e atp_dns) e bloqueados nos firewalls com a Proteção Coletiva ligada. O relatório de um único firewall nunca bloqueia, por si só, o tráfego de outros."
+        },
+        {
+          "tag": "new",
+          "title": "O envio de relatórios vem ligado por padrão",
+          "body": "O envio vem ligado por padrão e é explicado no assistente de configuração e na página. Os relatórios contêm apenas o endereço ou domínio externo, o tipo de comportamento, uma pontuação e a data, assinados pelo firewall. Nunca são enviados conteúdo do tráfego, arquivos, nomes de usuário, endereços internos nem histórico de navegação. O envio pode ser desligado a qualquer momento; o firewall continua recebendo as listas coletivas se a Proteção Coletiva estiver ligada."
+        },
+        {
+          "tag": "new",
+          "title": "Medição de uso para o tamanho da licença",
+          "body": "O firewall conta os dispositivos ativos (incluindo usuários de acesso remoto OpenVPN) e a vazão das redes internas, e envia somente esses números com a verificação diária da licença. Túneis IPsec e WireGuard não são medidos. Nada é bloqueado quando um tamanho é excedido; os números permitem à Nexwall e ao parceiro verificar o tamanho da licença. Nenhum endereço sai do firewall."
+        },
+        {
+          "tag": "new",
+          "title": "Página de bloqueio para sites bloqueados",
+          "body": "Quando uma regra com \"Mostrar página de bloqueio\" bloqueia uma categoria de sites, o usuário vê uma página em português, espanhol ou inglês (idioma do navegador) com a categoria, a regra e um código de referência, que também é registrado. A página é oferecida para as categorias que o proxy web consegue abrir (até 500.000 domínios no total, das listas menores para as maiores); listas maiores, como conteúdo adulto, mantêm o bloqueio simples. Se o serviço que entrega a página estiver parado, a requisição falha e nunca é deixada passar."
+        },
+        {
+          "tag": "new",
+          "title": "Filtro de conteúdo: Escola, Privado e Trabalho",
+          "body": "As páginas que passam pelo proxy web recebem uma pontuação de 0 a 100 em conteúdo adulto, violência, drogas, jogos de azar, discurso de ódio e automutilação. Uma página que atinge o limite do perfil é substituída por uma página de bloqueio com o assunto e a pontuação, ou apenas registrada, conforme a configuração. Há três perfis (Escola rigoroso, Privado moderado, Trabalho leve), escolhidos pelas opções Padrão, Escola e Restrito do assistente; a aba Filtro de conteúdo permite alterar limite, assuntos e onde as páginas são lidas. Páginas sobre estudo, saúde ou notícias, e as que oferecem ajuda, pontuam menos. O filtro lê texto, não imagens, e só páginas que o proxy consegue abrir (sites sem criptografia e categorias decifradas)."
+        },
+        {
+          "tag": "new",
+          "title": "Intelligent Threat Block: arquivos testados em um sandbox",
+          "body": "Um arquivo que passa pelo antivírus pode ser enviado ao sandbox da Nexwall, onde é aberto e observado. Com a opção de reter, o download espera o veredicto (de 15 a 300 segundos, configurável) e um arquivo julgado malicioso é bloqueado com uma página explicativa; veredictos já conhecidos são respondidos na hora. Limites por firewall: 60 arquivos por hora, 500 arquivos e 500 MB por dia, 20 MB por arquivo e 2 ao mesmo tempo (metade durante o teste). Disponível enquanto a licença incluir; as configurações, o estado e os veredictos estão em Web Protection e Threat Analytics."
+        },
+        {
+          "tag": "new",
+          "title": "Threat Analytics e Traffic Analytics",
+          "body": "Duas páginas de análise seguem o Painel. O Threat Analytics mostra o que foi barrado (bloqueio, antivírus, sandbox e camadas avançadas), os dispositivos em risco, as categorias web, as principais origens e motivos, e uma tabela de eventos mantida por 35 dias, com relatório executivo em PDF gratuito em todos os planos. O Traffic Analytics mostra o tráfego total, a hora de maior uso, a aplicação e o dispositivo principais, o tráfego por hora e listas ordenadas de dispositivos, aplicações, hosts remotos e protocolos de hoje, 7 ou 30 dias. O Monitor não tem mais a aba Tráfego diário."
+        },
+        {
+          "tag": "new",
+          "title": "Interface 3.0",
+          "body": "Design novo nos modos claro e escuro, consistente em todas as páginas. A barra superior tem o caminho da página, a busca (Ctrl+K), o idioma, a ajuda, a central de status e o chip da unidade (saúde, número de série, versão, tempo ativo, licença). Cada página abre com suas abas e uma linha com a sua finalidade. As páginas de Políticas têm tabelas mais compactas; Regras de firewall e Zonas e políticas têm uma coluna de resumo (regras por ação, pares de zonas mais ativos, etiquetas de filtro). O Painel mostra o estado da proteção e o tráfego de hoje, 7 ou 30 dias. As regras são excluídas por um menu para evitar enganos."
+        },
+        {
+          "tag": "new",
+          "title": "Regras do Web Protection: bloquear e inspecionar são escolhas separadas",
+          "body": "No editor de regras cada categoria pode ser bloqueada, permitida ou inspecionada separadamente. O bloqueio é decidido pelo nome do servidor sem abrir a conexão; inspecionar abre uma categoria no proxy web para o antivírus, o filtro de conteúdo e a verificação de certificados (categorias permitidas) ou para a página de bloqueio (categorias bloqueadas). Cada coluna tem uma chave \"inspecionar tudo\". Uma categoria bloqueada e não inspecionada não custa nada ao proxy."
+        },
+        {
+          "tag": "new",
+          "title": "Uma chave de QUIC no Web Protection",
+          "body": "O QUIC (HTTP/3) leva o tráfego web sobre UDP, onde o proxy não consegue lê-lo. A nova chave \"Bloquear QUIC (HTTP/3)\" nas configurações do Web Protection (ligada por padrão) recusa a porta UDP 443 para os clientes das regras que filtram a web, de modo que os navegadores usam HTTPS sobre TCP e as páginas de bloqueio, o SafeSearch, o antivírus e o filtro de conteúdo valem para todo o tráfego. A recusa chega ao cliente imediatamente."
+        },
+        {
+          "tag": "new",
+          "title": "Estado real dos serviços",
+          "body": "As páginas de Controle de aplicações, Proteção de rede (IPS), Web Protection e antivírus mostram um selo que fica verde somente quando o serviço está realmente funcionando (processo ativo e ligado ao que precisa) e vermelho quando está ligado mas não funciona. O Painel usa a mesma leitura."
+        },
+        {
+          "tag": "new",
+          "title": "Clientes VPN da Nexwall na página Acesso remoto",
+          "body": "A página Acesso remoto (OpenVPN) lista os clientes VPN da Nexwall mais recentes: Windows (Intel/AMD de 64 bits, ARM64 e 32 bits), Android e pacotes para Debian e Ubuntu (Intel/AMD de 64 bits e ARM64). O cliente para macOS ainda não foi publicado. Os clientes são versões de teste e não são assinados."
+        },
+        {
+          "tag": "new",
+          "title": "Perda de pacotes e janelas maiores nos links WAN e em Desempenho",
+          "body": "Os gráficos mostram a perda de pacotes em vez da taxa de entrega. As páginas Links WAN e Desempenho oferecem 1 hora (padrão), 6, 12 e 24 horas, 7 e 30 dias, com o valor atual, máximo e médio acima de cada gráfico. Em janelas longas cada ponto é o maior valor do seu intervalo (o menor, na memória livre), então picos curtos continuam visíveis. O histórico é mantido por 7 dias, ou um ano com disco de dados."
+        },
+        {
+          "tag": "new",
+          "title": "Visualizador de logs: aba Web Protection",
+          "body": "Uma nova aba lista todo o tráfego web tratado pelo proxy, permitido ou bloqueado, com páginas de bloqueio, arquivos barrados pelo antivírus ou sandbox, bloqueios de conteúdo e requisições recusadas, além das mensagens dos serviços. Os alertas do motor de prevenção de intrusões e as requisições do proxy agora são enviados ao Visualizador de logs."
+        },
+        {
+          "tag": "new",
+          "title": "ISO de instalação",
+          "body": "A versão também é oferecida como ISO de instalação. Grave-a em um pendrive (por exemplo com o Rufus) e inicie o equipamento em modo UEFI. O instalador verifica a sua imagem, lista somente discos internos, exige digitar INSTALL antes de apagar um disco e relê a imagem gravada para compará-la."
+        }
+      ]
+    },
+    {
+      "id": "improvements",
+      "title": "Melhorias e mudanças",
+      "intro": "",
+      "items": [
+        {
+          "tag": "improved",
+          "title": "Correções do proxy web verificadas novamente",
+          "body": "As correções para sites cujas respostas DNS mudam (o proxy usa o endereço que o cliente escolheu, sem status 409) e para ping e erros ICMP (sem tempos limite no proxy) foram verificadas novamente em um firewall com a imagem anterior: 6 de 6 requisições com destino diferente do nome retornaram 200 e não houve 409 em 23.100 linhas de log; 160 de 160 requisições pelo proxy tiveram sucesso com e sem dois fluxos de ping (p95 de 13,7 ms e 14,4 ms, 400 de 400 respostas de eco); o ICMP de porta inalcançável chegou ao cliente em 0,05 s."
+        },
+        {
+          "tag": "improved",
+          "title": "A visão de proteção mostra os novos motores",
+          "body": "As camadas de proteção da interface incluem a Proteção Avançada e a Proteção Coletiva com o seu estado real (funcionando, degradado, parado, desligado ou fora do plano)."
+        },
+        {
+          "tag": "improved",
+          "title": "Sistema > Atualização instala as correções do firewall",
+          "body": "Verificar atualizações agora encontra os pacotes do firewall, não falha mais na primeira vez e os instala. O índice do servidor de atualizações estava incompleto e a imagem confiava em uma chave diferente da que assina as atualizações; ambos estão corrigidos."
+        },
+        {
+          "tag": "improved",
+          "title": "Contagem de regras do IPS",
+          "body": "O Painel mostra o número de regras carregadas para a política escolhida, igual à aba Ajustes do IPS. Antes incluía regras do catálogo que apenas geram alertas."
+        },
+        {
+          "tag": "improved",
+          "title": "Maiores consumidores em redes com muito tráfego",
+          "body": "Com muitas conexões, a janela de estatísticas podia ser lida como um segundo ou menos, mostrando taxas várias vezes maiores ou uma lista vazia. A janela agora é de pelo menos dez segundos e medida ao milissegundo."
+        },
+        {
+          "tag": "improved",
+          "title": "Menos \"Desconhecido\" nos relatórios",
+          "body": "O tráfego para sites ausentes do catálogo de aplicações é listado com o domínio do site em vez de \"Desconhecido\". O catálogo agora inclui uma aplicação Nexwall, de modo que o tráfego do firewall para os seus próprios serviços fica classificado."
+        },
+        {
+          "tag": "improved",
+          "title": "Estado do sandbox no Threat Analytics",
+          "body": "A etapa Sandbox indica se o sandbox está funcionando, se não está ativado neste firewall ou se não está no plano. O Advanced Threat Protection e o Collective Defense ainda aparecem como em breve nesta versão (veja NXW-2018)."
+        },
+        {
+          "tag": "improved",
+          "title": "O motor de tráfego não deixa mais de responder sob carga",
+          "body": "Duas causas de o motor de tráfego deixar de responder foram identificadas a partir de despejos de memória de um firewall de laboratório sob carga e estão corrigidas: duas threads que esperavam uma pela outra dentro de dois plugins da Nexwall, e a thread de captura que terminava quando o kernel descartava um pacote na fila. Um vigia agora verifica o motor a cada minuto; se ele deixa de responder, tira-o do caminho (o tráfego continua sem análise) e o reinicia, com uma pausa e um limite de reinícios por hora. Por padrão, quando o motor não dá conta, o tráfego passa e não é bloqueado."
+        },
+        {
+          "tag": "improved",
+          "title": "Sites com respostas DNS variáveis abrem atrás do proxy web",
+          "body": "Alguns sites (serviços de streaming e outras CDNs) respondem ao cliente e ao proxy com endereços diferentes. O proxy recusava essas conexões interceptadas com o erro 409. Agora ele conecta ao endereço que o cliente escolheu, como já fazia com HTTP simples, sem guardar em cache."
+        },
+        {
+          "tag": "improved",
+          "title": "Tráfego bloqueado da internet no Visualizador de logs",
+          "body": "A zona WAN registra o que rejeita (no máximo 10 linhas por minuto), de modo que a aba Tráfego do firewall mostra o tráfego bloqueado além do permitido."
+        },
+        {
+          "tag": "improved",
+          "title": "As recusas chegam ao cliente imediatamente",
+          "body": "A resposta \"porta inalcançável\" de uma conexão rejeitada e as mensagens de que a descoberta de MTU do caminho precisa eram retidas pela fila do motor de tráfego. Agora passam, de modo que um navegador cujo QUIC é recusado muda para HTTPS em milissegundos e não após um tempo limite."
+        },
+        {
+          "tag": "improved",
+          "title": "O proxy web sob carga",
+          "body": "O proxy podia ficar sem arquivos abertos (limite de 1.024) e a conexão do antivírus ficava desligada por minutos após uma rajada de falhas. O limite agora é de 16.384, até 256 arquivos podem ser varridos ao mesmo tempo e a conexão com o verificador é tentada de novo após 10 segundos."
+        },
+        {
+          "tag": "improved",
+          "title": "Túneis WireGuard e links de internet",
+          "body": "Um túnel não fixa mais a rota para o seu par no link de internet que era o padrão quando ele subiu. Em um firewall com dois links de internet, uma rota obsoleta podia cortar a licença, as atualizações e as listas de ameaças."
+        },
+        {
+          "tag": "improved",
+          "title": "Controle de aplicações: chave do motor e estado real",
+          "body": "O Controle de aplicações tem uma chave do motor, o Web Protection liga o motor quando precisa dele, e o Painel e as páginas mostram o estado real da Proteção de rede (IPS) e do Controle de aplicações. Os maiores consumidores e o Traffic Analytics contam os mesmos fluxos."
+        },
+        {
+          "tag": "improved",
+          "title": "Seguro por padrão também para a web",
+          "body": "Um firewall sem configuração inicia com o perfil Padrão aplicado à web: as categorias de sites do perfil, o filtro de conteúdo Trabalho e, quando a licença e o armazenamento permitem, o antivírus. O assistente de configuração pode alterar cada escolha."
+        },
+        {
+          "tag": "improved",
+          "title": "A WAN existe desde o primeiro início",
+          "body": "Um firewall iniciado sem o assistente tem a WAN na segunda placa de rede (eth1), por DHCP, na zona wan. Em máquinas virtuais a placa ainda não estava visível quando o padrão era decidido; uma etapa posterior no mesmo início agora corrige isso nas unidades sem configuração."
+        },
+        {
+          "tag": "improved",
+          "title": "Restrições de YouTube e SafeSearch junto com o Controle de aplicações",
+          "body": "Os endereços usados pelo SafeSearch e pelo Modo restrito do YouTube ficam fora do motor de análise e da inspeção, e o DNS os responde com endereços simples, de modo que Google, Bing e YouTube abrem em modo restrito mesmo quando o Controle de aplicações bloqueia streaming ou redes sociais para os mesmos dispositivos."
+        },
+        {
+          "tag": "improved",
+          "title": "A página Logs ocupa toda a janela",
+          "body": "O log do sistema usa toda a largura e a altura, com a busca, o número de linhas e as opções em uma linha acima dele."
+        }
+      ]
+    }
+  ],
+  "components": {
+    "intro": "As versões abaixo formam a imagem. A maioria é fixada por checksum, de modo que a imagem contém sempre exatamente estas versões. O pacote de assinaturas, o catálogo de aplicações e as listas de ameaças não fazem parte da imagem: são baixados e atualizados todos os dias.",
+    "rows": [
+      {
+        "name": "Imagem",
+        "version": "26.2.2",
+        "note": "x86-64, UEFI, imagem de disco compactada"
+      },
+      {
+        "name": "Fontes do firmware",
+        "version": "ca5e6c2e0a050117a6fbdf90fff99419f52e0c01",
+        "note": "Commit do repositório público do firewall do qual a imagem é construída; a etiqueta da versão vem depois"
+      },
+      {
+        "name": "Módulo Support Packets",
+        "version": "ns-api 3.8.0-r18",
+        "note": "ns.support: 26 diagnósticos fixos somente leitura, entradas validadas, um por vez, limites de tempo e de saída"
+      },
+      {
+        "name": "Sistema base",
+        "version": "OpenWrt 25.12.5",
+        "note": "Kernel Linux 6.12, nftables 1.1"
+      },
+      {
+        "name": "Interface web",
+        "version": "3.0.0",
+        "note": "Inglês, espanhol, português do Brasil"
+      },
+      {
+        "name": "Componente de licenciamento",
+        "version": "1.7.1",
+        "note": "Atualiza-se pelo canal assinado; conhece os novos módulos de licença"
+      },
+      {
+        "name": "Proteção web",
+        "version": "0.10.0",
+        "note": "Categorias, perfis, bloquear e inspecionar por categoria, página de bloqueio, filtro de conteúdo, cliente do sandbox, inspeção, controle do antivírus, opções de SafeSearch, YouTube e QUIC"
+      },
+      {
+        "name": "Serviços de proteção web",
+        "version": "1.5.0",
+        "note": "Serviço de varredura, conector do proxy, página de bloqueio, filtro de conteúdo e guardião, licenciado"
+      },
+      {
+        "name": "Proxy web",
+        "version": "Squid 7.1",
+        "note": "Inspeção do tráfego criptografado, uma autoridade certificadora por firewall; os túneis interceptados seguem o destino do cliente"
+      },
+      {
+        "name": "Antivírus",
+        "version": "ClamAV 1.4.3, YARA 4.5.0",
+        "note": "Assinaturas baixadas pelo firewall; regras YARA do servidor de licenças"
+      },
+      {
+        "name": "Categorias de sites",
+        "version": "2026.10.06.1",
+        "note": "59 categorias, 5,4 milhões de domínios (UT1, CC BY-SA 4.0); atualizadas toda semana"
+      },
+      {
+        "name": "Regras YARA",
+        "version": "2026.10.06.1",
+        "note": "3.435 regras de coleções abertas e da Nexwall; atualizadas toda semana"
+      },
+      {
+        "name": "Motor de classificação de tráfego",
+        "version": "5.2.8 (release 8)",
+        "note": "Netify Agent com plugins da Nexwall"
+      },
+      {
+        "name": "Plugins do motor de tráfego",
+        "version": "1.0.3",
+        "note": "Cinco plugins, compilados para a versão 6 do motor"
+      },
+      {
+        "name": "Motor de prevenção de intrusões",
+        "version": "Snort 3.10.0.0",
+        "note": "Com o plugin de controle da Nexwall 1.0.1"
+      },
+      {
+        "name": "Assinaturas de intrusão",
+        "version": "pacote diário",
+        "note": "Comunidade, regras abertas convertidas e Nexwall Labs; 2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Catálogo de aplicações",
+        "version": "pacote diário",
+        "note": "2026.10.02.1 na publicação"
+      },
+      {
+        "name": "Listas de ameaças",
+        "version": "2026.10.02.3",
+        "note": "12 categorias de DNS, 2 listas de IP, listas por país; reconstruídas todos os dias"
+      },
+      {
+        "name": "Advanced Protection scorer",
+        "version": "0.3.0",
+        "note": "Avaliador de comportamento com modelos assinados; apenas eventos de aviso"
+      },
+      {
+        "name": "Collective Protection lists",
+        "version": "atp_ip, atp_dns",
+        "note": "Categorias de listas de ameaças alimentadas por relatórios revisados pela Nexwall; atualizadas com as listas de ameaças"
+      }
+    ]
+  },
+  "timeline": {
+    "intro": "Histórico de desenvolvimento desta versão, da primeira imagem até a versão estável.",
+    "entries": [
+      {
+        "date": "2026-11-20",
+        "title": "Da 26.2.1 para a 26.2.2",
+        "text": "Módulo Support Packets (ns.support) para o Nexwall Cloud Controller; sem outras mudanças nas funções do firewall."
+      },
+      {
+        "date": "2026-10-20",
+        "title": "De 26.1.3 a 26.2.1",
+        "text": "Proteção Avançada e Proteção Coletiva (IA), com sua página de controle, distribuição assinada de modelos, indicadores compartilhados com revisão e medição de uso; componente de licença 1.9.0; interface web 3.1.1; correções do proxy web verificadas novamente."
+      },
+      {
+        "date": "2026-10-13",
+        "title": "De 26.1.2 a 26.1.3",
+        "text": "Caminho de atualização de pacotes corrigido (índice completo e chave da Nexwall na imagem); correções de defeitos encontrados após a publicação da 26.1.2 (contagem de regras do IPS, janela dos maiores consumidores, etapas do Threat Analytics, aplicações desconhecidas); aplicação Nexwall adicionada ao catálogo."
+      },
+      {
+        "date": "2026-10-07 a 13",
+        "title": "De 26.1.0 a 26.1.2",
+        "text": "Todas as mudanças da 26.1.1 (página de bloqueio, filtro de conteúdo, cliente de sandbox, Threat Analytics e Traffic Analytics, novo painel e gráficos, abas do Visualizador de logs, WAN padrão) e as mudanças feitas após os testes de laboratório: correções das paradas do motor de tráfego, interface 3.0, novo modelo de regras, correções do proxy web sob carga e com respostas DNS variáveis, downloads dos clientes VPN e ISO de instalação."
+      }
+    ]
+  },
+  "requirements": [
+    "Processador x86-64 e firmware UEFI com Secure Boot desligado.",
+    "Pelo menos duas interfaces de rede (rede interna e internet).",
+    "2 GB de memória sem Web Protection; 4 GB ou mais com o antivírus e a inspeção do tráfego criptografado; recomendados 8 GB quando o antivírus, a inspeção, o IPS e o Controle de aplicações funcionam juntos em uma rede com muito tráfego (com 4 GB o sistema pode parar o motor do antivírus sob carga alta).",
+    "Um disco de 16 GB ou mais: o firewall cria o seu armazenamento de dados (logs, relatórios, assinaturas do antivírus, arquivo de troca) no primeiro início. Discos menores funcionam sem o armazém de assinaturas, o arquivo de troca e o espaço para uma segunda cópia do sistema.",
+    "Acesso à internet a updates.nexwall.com.br, license.nexwall.com.br e services.nexwall.com.br (atualizações, licenças, categorias, regras, feeds de ameaças, registro) e aos espelhos do ClamAV (assinaturas do antivírus)."
+  ],
+  "upgrade": [
+    "A versão é uma imagem de disco instalável para máquinas virtuais e equipamentos. Verifique primeiro o SHA-256: sha256sum no Linux ou Get-FileHash -Algorithm SHA256 no PowerShell do Windows. O resultado deve ser igual ao da tabela de Downloads.",
+    "Após o primeiro início, a interface interna responde em 192.168.1.1. Altere a senha do administrador no primeiro login.",
+    "O guia de administração está em https://docs.nexwall.com.br.",
+    "Firewalls com a 26.0.0-rc4 ou anterior não são atualizados no local: o layout do disco mudou (partição de sistema de 1 GB, partição de boot de 64 MB). Instale a imagem em uma máquina de teste ou em um disco novo e compare. Restaurar um backup de configuração feito em uma versão anterior não foi testado.",
+    "Para inspecionar tráfego criptografado, instale o certificado de inspeção do firewall nos dispositivos (Web Protection, Inspeção). Sem ele, os navegadores mostram um aviso nos sites inspecionados.",
+    "O antivírus precisa do armazenamento de dados e baixa as suas assinaturas depois de ligado, o que leva alguns minutos. Escolher um perfil no assistente de configuração o liga quando o firewall tem licença e armazenamento.",
+    "As licenças de um revendedor são aplicadas aos firewalls a partir de um conjunto e podem ser movidas para outro firewall; uma mudança chega ao firewall na próxima verificação de licença (cerca de uma vez ao dia).",
+    "As regras LAN -> WAN e DROP DEFAULT, a distribuição de pacotes e os buffers maiores das placas de rede fazem parte da configuração padrão. Um firewall instalado antes mantém as suas configurações: adicione as duas regras manualmente e mantenha DROP DEFAULT no fim da lista.",
+    "Um firewall reinstalado enquanto está atribuído a um cliente precisa que o revendedor redefina o seu dispositivo antes de obter a licença de novo.",
+    "Um firewall com a 26.1.2 não consegue instalar atualizações de pacotes (a imagem confia em outra chave). Instale a 26.2.2 pela ISO ou pela imagem e restaure a configuração de um backup."
+  ],
+  "open_source": "O Nexwall Firewall é construído sobre software de código aberto, entre outros OpenWrt, o kernel do Linux, nftables, Snort 3, Netify Agent e nDPI, dnsmasq, banIP, adblock e VictoriaMetrics. O firewall e as ferramentas do operador são publicados sob as licenças originais; os textos das licenças e os avisos acompanham a imagem e estão disponíveis sob solicitação. As listas de ameaças da Nexwall são construídas a partir de fontes abertas cujas licenças permitem a redistribuição, e o aviso que as enumera faz parte de cada pacote.",
+  "performance": {
+    "title": "Desempenho e recuperação",
+    "intro": "Resultados dos testes de laboratório desta versão e como o firewall se recupera quando o seu motor de tráfego deixa de responder. Os números vêm de uma única máquina virtual pequena e mostram como as proteções se somam; não são uma garantia de vazão. Dimensione o firewall com a orientação do final.",
+    "setup_title": "O laboratório e o método",
+    "setup": [
+      "Firewall: máquina virtual com 4 núcleos e 4 GB de memória; Controle de aplicações, Proteção de rede (IPS), Web Protection com antivírus e inspeção do tráfego criptografado, e listas de categorias carregadas.",
+      "Carga: um cliente atrás do firewall e um servidor do lado da internet. Quatro fluxos iperf3 em paralelo (vazão), 100 novas conexões HTTP por segundo pelo proxy web e 50 novas conexões HTTPS por segundo, ao mesmo tempo, por 60 segundos em cada configuração.",
+      "Uma conexão conta como concluída quando a resposta inteira chega em 3 segundos (8 segundos para HTTPS)."
+    ],
+    "results_title": "Resultados",
+    "table": {
+      "headers": [
+        "Configuração",
+        "Vazão",
+        "HTTP concluídas",
+        "HTTPS concluídas"
+      ],
+      "rows": [
+        [
+          "Tudo desligado (referência)",
+          "1,48 Gbps",
+          "99 %",
+          "99 %"
+        ],
+        [
+          "Só Controle de aplicações",
+          "1,99 Gbps",
+          "72 %",
+          "48 %"
+        ],
+        [
+          "Controle de aplicações e IPS",
+          "1,64 Gbps",
+          "46 %",
+          "84 %"
+        ],
+        [
+          "Mais o proxy web, sem inspeção",
+          "1,33 Gbps",
+          "30 %",
+          "74 %"
+        ],
+        [
+          "Mais inspeção do tráfego criptografado",
+          "1,22 Gbps",
+          "43 %",
+          "69 %"
+        ],
+        [
+          "Tudo ligado, todas as regras, listas de categorias carregadas",
+          "1,22 Gbps",
+          "97 %",
+          "99 %"
+        ],
+        [
+          "5 minutos, tudo ligado (código final), carga média de 16 a 18",
+          "780 Mbps",
+          "a maioria não foi concluída",
+          "78 %"
+        ],
+        [
+          "Proxy web sozinho, 100 conexões HTTP por segundo",
+          "não medido",
+          "90 %",
+          "não medido"
+        ]
+      ]
+    },
+    "reading": [
+      "O limite foi o processador (tempo de sistema acima de 90 % no teste longo), não a memória nem o motor de tráfego: quanto mais proteções ligadas, menor a vazão e menos conexões novas se completam com a linha cheia.",
+      "As linhas não são medições independentes: a máquina e os servidores de teste perderam desempenho após cerca de uma hora de execuções repetidas, então a tabela não é um ranking das funções. Tome os números como indicativos.",
+      "Com a carga do teste longo o proxy web não conseguiu responder à maioria das conexões HTTP em 3 segundos. Um firewall que precise levar 1 Gbps e abrir centenas de conexões por segundo com todas as proteções ligadas precisa de mais de 4 núcleos."
+    ],
+    "recovery_title": "Como o firewall se recupera sozinho",
+    "recovery_intro": "O motor de tráfego (Controle de aplicações) e o motor de prevenção de intrusões leem os pacotes que o firewall entrega a eles. Se um leitor deixa de responder, as conexões novas que ele devia inspecionar deixam de avançar enquanto as outras continuam. Um vigia detecta isso e corrige sem intervenção:",
+    "recovery_steps": [
+      "A cada minuto coleta três amostras de cada fila do motor, com 10 segundos de intervalo.",
+      "Uma fila está parada quando há pacotes esperando nas três amostras e o contador de veredictos não se moveu, ou há pelo menos 64 pacotes esperando e são dados menos de 10 veredictos por segundo. Um leitor que acompanha mas está ocupado porque a máquina está sobrecarregada não é reiniciado.",
+      "Numa parada ele salva um relatório (estado das filas, memória, processos; os 10 mais recentes ficam em /root/nfq-stall) e tira do caminho as regras de fila do motor, de modo que o tráfego flui sem análise até o motor voltar. Com a opção de sobrecarga \"bloquear\", e para o IPS, as regras não são mexidas.",
+      "Depois reinicia o motor dono da fila parada: no máximo 6 reinícios por hora, com 90 segundos entre dois; acima do limite apenas informa.",
+      "Registra o evento no log (tag nexwall-nfq-watchdog), gera um alerta (Central de status, Painel) e escreve uma métrica. O motor repõe as regras ao iniciar de novo."
+    ],
+    "limits_title": "Outras proteções que falham abertas",
+    "limits": [
+      "Quando o motor não dá conta, o padrão é deixar o tráfego passar (configuração \"quando o motor está sobrecarregado\" no Controle de aplicações), não bloqueá-lo.",
+      "Se o proxy web deixa de responder, o guardião remove o redirecionamento e o tráfego web flui sem inspeção até o proxy voltar.",
+      "Se o motor do antivírus está parado, os arquivos são entregues sem varredura (falha aberta) e as páginas e o Painel mostram o antivírus como parado.",
+      "As configurações estão em /etc/config/netifyd (seção watchdog): enabled, restart, max_restarts, backlog, min_rate, failsafe e core (um despejo de memória do motor parado para análise).",
+      "Dimensionamento: 2 GB de memória é o mínimo; use 8 GB quando o antivírus, a inspeção, o IPS e o Controle de aplicações funcionam juntos em uma rede com muito tráfego. Com 4 GB o sistema pode parar o motor do antivírus sob carga alta."
+    ],
+    "tested_title": "O que foi testado",
+    "tested": [
+      "Estresse e resistência: a carga acima em oito configurações, um teste de 5 minutos com tudo ligado e uma rampa de até 1.500 novas conexões por segundo.",
+      "Recuperação: o vigia foi testado com 31 casos automáticos (contador congelado, fila lenta, fila rápida que é só carga, pausa, limite por hora, failsafe) e acionou cinco vezes sob carga no laboratório (antes de a regra de velocidade ser adicionada; um teste de 5 minutos com carga de 16 a 18 depois não causou reinício). Todas as vezes tirou o motor do caminho e o reiniciou, e o tráfego continuou fluindo.",
+      "Web Protection, em um cliente real: página de bloqueio em HTTPS e HTTP, SafeSearch para Google, Bing e DuckDuckGo, modo restrito do YouTube, filtro de conteúdo (uma página normal passa, uma adulta é bloqueada), antivírus (um arquivo de teste EICAR é bloqueado, um limpo passa), inspeção com o certificado do firewall, recusa de QUIC e sites com respostas DNS diferentes.",
+      "Logs: todos os eventos acima chegaram ao Visualizador de logs (Tráfego do firewall, Controle de aplicações, Web Protection, sistema)."
+    ],
+    "not_tested_title": "Não foi testado",
+    "not_tested": [
+      "Detecção de intrusões com assinaturas de ataque reais (as sondas enviadas não geraram alertas, então o caminho de alertas do IPS não foi exercitado).",
+      "Execuções de mais de 5 minutos, equipamentos físicos e mais de um cliente ao mesmo tempo.",
+      "A ISO de instalação foi iniciada em UEFI e chegou ao menu de idioma; a instalação em um disco com esta compilação exata é verificada separadamente."
+    ]
+  }
+}

@@ -1,5 +1,24 @@
 [
  {
+  "version": "26.2.2",
+  "date": "2026-11-20",
+  "status": "stable",
+  "downloads": [
+   {
+    "name": "NEXWALL-Installer-26.2.2.iso",
+    "url": "https://updates.nexwall.com.br/dev/26.2.2/targets/x86/64/NEXWALL-Installer-26.2.2.iso",
+    "sha256": "298ad76baff83f1bad97cf438b0fd634c38219a1d35f0026b69baf3d24abb0ff",
+    "size": "456.1 MB (456,130,560 bytes)"
+   },
+   {
+    "name": "nexwall-26.2.2-x86-64-generic-squashfs-combined-efi.img.gz",
+    "url": "https://updates.nexwall.com.br/dev/26.2.2/targets/x86/64/nexwall-26.2.2-x86-64-generic-squashfs-combined-efi.img.gz",
+    "sha256": "f43b72949004fb05c494ee8c73594bb2f2057b4a7c360bcdf6e67d1069e07038",
+    "size": "107.0 MB (106,997,211 bytes)"
+   }
+  ]
+ },
+ {
   "version": "26.2.1",
   "date": "2026-11-15",
   "status": "stable",
