@@ -13,7 +13,7 @@
     },
     {
       "label": "Platform",
-      "value": "x86-64, UEFI boot"
+      "value": "x86-64, UEFI or BIOS boot"
     },
     {
       "label": "Base system",
@@ -230,7 +230,7 @@
       {
         "name": "Image",
         "version": "26.2.2",
-        "note": "x86-64, UEFI, compressed disk image"
+        "note": "x86-64, UEFI or legacy BIOS, compressed disk image"
       },
       {
         "name": "Firmware sources",
@@ -355,7 +355,7 @@
     ]
   },
   "requirements": [
-    "x86-64 processor and UEFI firmware with Secure Boot off.",
+    "x86-64 processor and UEFI firmware with Secure Boot off. The disk image also starts on legacy BIOS (SeaBIOS), checked in QEMU; on physical hardware use UEFI.",
     "At least two network interfaces (internal network and internet).",
     "2 GB of memory without Web Protection; 4 GB or more with the antivirus and inspection of encrypted traffic; 8 GB recommended when the antivirus, inspection, IPS and Application Control all run on a busy network (on 4 GB the system can stop the antivirus engine under heavy load).",
     "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at first start. Smaller disks work without the signature store, the swap file and the space for a second system copy.",

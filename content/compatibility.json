@@ -1,7 +1,7 @@
 {
  "en": {
   "title": "Compatibility",
-  "lead": "Hardware, virtualization platforms and drivers of release 26.0.0-rc4. The drivers come from the image itself (package list and kernel configuration of the build); the Status column says what Nexwall has tested.",
+  "lead": "Hardware, virtualization platforms and drivers of release 26.2.2. The drivers come from the image itself (package list and kernel configuration of the build); the Status column says what Nexwall has tested.",
   "sections": [
    {
     "id": "platform",
@@ -17,15 +17,19 @@
      ],
      [
       "Firmware",
-      "UEFI with Secure Boot off. The image boots in UEFI mode only."
+      "UEFI is recommended, with Secure Boot off. The disk image also starts on legacy BIOS (SeaBIOS, the default of Proxmox and KVM). On physical hardware use UEFI."
      ],
      [
       "Memory",
-      "2 GB with the default threat categories; 4 GB or more with the adult, advertising and extended malware DNS lists."
+      "2 GB of memory without Web Protection; 4 GB or more with the antivirus and inspection of encrypted traffic; 8 GB recommended when the antivirus, inspection, IPS and Application Control all run on a busy network (on 4 GB the system can stop the antivirus engine under heavy load)."
      ],
      [
       "Image",
-      "97.9 MB compressed, 316 MiB written to the disk."
+      "Disk image: 107 MB compressed, 1.1 GB expanded. Installer ISO: 456 MB."
+     ],
+     [
+      "Disk",
+      "A disk of 16 GB or more: the firewall creates its data storage (logs, reports, antivirus signatures, swap file) at first start. Smaller disks work without the signature store, the swap file and the space for a second system copy."
      ],
      [
       "Network interfaces",
@@ -55,7 +59,7 @@
      [
       "KVM, QEMU, Proxmox",
       "virtio-net",
-      "Driver in the kernel. Not tested."
+      "Driver in the kernel. The 26.2.2 image was started in QEMU with SeaBIOS and runs in a partner's Proxmox VM."
      ],
      [
       "Microsoft Hyper-V",
@@ -181,12 +185,12 @@
      [
       "Memory",
       "4 GB on the SWH models (8 GB on WEA-AT1581N) and 8 GB on the Datacom.",
-      "2 GB minimum; 4 GB or more with the extra DNS lists (see Platform)."
+      "2 GB minimum without Web Protection; 4 GB or more with the antivirus and inspection of encrypted traffic; 8 GB recommended on a busy network (see Platform)."
      ],
      [
       "Storage",
       "SATA or mSATA SSD of 64 to 128 GB.",
-      "316 MiB written to disk; SATA (AHCI) driver in the kernel."
+      "A disk of 16 GB or more (see Platform); SATA (AHCI) driver in the kernel."
      ],
      [
       "2.5 Gigabit network",
@@ -320,7 +324,7 @@
      "Nexwall has not tested these appliances. Compatibility comes from the drivers included in the image (package list of the 26.2.1 x86-64 build) and from the makers' datasheets.",
      "Datacom and SWH are independent makers. The hardware is supplied and warranted by the maker.",
      "Some revisions of the Intel I225 controller have shown unstable links at 2.5 Gbit/s. If a port drops or renegotiates, update the appliance BIOS and compare with the link fixed at 1 Gbit/s.",
-     "Firmware: confirm that the appliance boots in UEFI mode with Secure Boot off (see Platform).",
+     "Firmware: UEFI is recommended and is what to use on physical hardware, with Secure Boot off (see Platform).",
      "The order of the ports (eth0, eth1 and so on) may not match the labels on the chassis. The first port is the internal network and the second the internet; identify them in the network interface list.",
      "Results on real hardware are welcome; this table will be updated."
     ]
@@ -339,7 +343,7 @@
  },
  "es": {
   "title": "Compatibilidad",
-  "lead": "Hardware, plataformas de virtualización y controladores de la versión 26.0.0-rc4. Los controladores salen de la propia imagen (lista de paquetes y configuración del kernel de la compilación); la columna Estado indica qué ha probado Nexwall.",
+  "lead": "Hardware, plataformas de virtualización y controladores de la versión 26.2.2. Los controladores vienen de la propia imagen (lista de paquetes y configuración del kernel de la compilación); la columna Situación indica lo que Nexwall probó.",
   "sections": [
    {
     "id": "platform",
@@ -355,15 +359,19 @@
      ],
      [
       "Firmware",
-      "UEFI con Secure Boot desactivado. La imagen arranca solo en modo UEFI."
+      "Se recomienda UEFI, con Secure Boot desactivado. La imagen de disco también inicia en BIOS heredado (SeaBIOS, el valor predeterminado de Proxmox y KVM). En hardware físico use UEFI."
      ],
      [
       "Memoria",
-      "2 GB con las categorías de amenazas predeterminadas; 4 GB o más con las listas DNS de adultos, publicidad y malware extendido."
+      "2 GB de memoria sin Web Protection; 4 GB o más con el antivirus y la inspección del tráfico cifrado; se recomiendan 8 GB cuando el antivirus, la inspección, el IPS y el Control de aplicaciones funcionan juntos en una red con mucho tráfico (con 4 GB el sistema puede detener el motor del antivirus bajo carga alta)."
      ],
      [
       "Imagen",
-      "97,9 MB comprimida, 316 MiB escritos en el disco."
+      "Imagen de disco: 107 MB comprimida, 1,1 GB expandida. ISO de instalación: 456 MB."
+     ],
+     [
+      "Disco",
+      "Un disco de 16 GB o más: el firewall crea su almacenamiento de datos (registros, informes, firmas del antivirus, archivo de intercambio) en el primer arranque. Los discos menores funcionan sin el almacén de firmas, el archivo de intercambio y el espacio para una segunda copia del sistema."
      ],
      [
       "Interfaces de red",
@@ -393,7 +401,7 @@
      [
       "KVM, QEMU, Proxmox",
       "virtio-net",
-      "Controlador en el kernel. No probado."
+      "Controlador en el kernel. La imagen 26.2.2 se inició en QEMU con SeaBIOS y funciona en una VM Proxmox de un socio."
      ],
      [
       "Microsoft Hyper-V",
@@ -519,12 +527,12 @@
      [
       "Memoria",
       "4 GB en los modelos SWH (8 GB en el WEA-AT1581N) y 8 GB en el Datacom.",
-      "Mínimo de 2 GB; 4 GB o más con las listas DNS adicionales (vea Plataforma)."
+      "Mínimo de 2 GB sin Web Protection; 4 GB o más con el antivirus y la inspección de tráfico cifrado; se recomiendan 8 GB en una red con mucha carga (vea Plataforma)."
      ],
      [
       "Almacenamiento",
       "SSD SATA o mSATA de 64 a 128 GB.",
-      "316 MiB escritos en el disco; controlador SATA (AHCI) en el kernel."
+      "Un disco de 16 GB o más (vea Plataforma); controlador SATA (AHCI) en el kernel."
      ],
      [
       "Red de 2,5 Gigabit",
@@ -658,7 +666,7 @@
      "Nexwall no probó estos equipos. La compatibilidad se basa en los controladores incluidos en la imagen (lista de paquetes de la compilación 26.2.1 x86-64) y en las fichas técnicas de los fabricantes.",
      "Datacom y SWH son fabricantes independientes. El hardware lo suministra y garantiza el fabricante.",
      "Algunas revisiones del controlador Intel I225 han mostrado enlaces inestables a 2,5 Gbit/s. Si un puerto se cae o renegocia, actualice la BIOS del equipo y compare con el enlace fijado a 1 Gbit/s.",
-     "Firmware: confirme que el equipo inicia en modo UEFI con Secure Boot desactivado (vea Plataforma).",
+     "Firmware: se recomienda UEFI y es lo que debe usarse en hardware físico, con Secure Boot desactivado (vea Plataforma).",
      "El orden de los puertos (eth0, eth1 y así sucesivamente) puede no coincidir con las etiquetas del chasis. El primer puerto es la red interna y el segundo internet; identifíquelos en la lista de interfaces de red.",
      "Los resultados en hardware real son bienvenidos; esta tabla se actualizará."
     ]
@@ -677,7 +685,7 @@
  },
  "pt-BR": {
   "title": "Compatibilidade",
-  "lead": "Hardware, plataformas de virtualização e drivers da versão 26.0.0-rc4. Os drivers vêm da própria imagem (lista de pacotes e configuração do kernel da compilação); a coluna Situação informa o que a Nexwall testou.",
+  "lead": "Hardware, plataformas de virtualização e drivers da versão 26.2.2. Os drivers vêm da própria imagem (lista de pacotes e configuração do kernel da compilação); a coluna Situação informa o que a Nexwall testou.",
   "sections": [
    {
     "id": "platform",
@@ -693,15 +701,19 @@
      ],
      [
       "Firmware",
-      "UEFI com Secure Boot desligado. A imagem inicia somente em modo UEFI."
+      "UEFI é o recomendado, com Secure Boot desligado. A imagem de disco também inicia em BIOS legado (SeaBIOS, o padrão do Proxmox e do KVM). Em hardware físico use UEFI."
      ],
      [
       "Memória",
-      "2 GB com as categorias de ameaças padrão; 4 GB ou mais com as listas DNS de adultos, publicidade e malware estendido."
+      "2 GB de memória sem Web Protection; 4 GB ou mais com o antivírus e a inspeção do tráfego criptografado; recomendados 8 GB quando o antivírus, a inspeção, o IPS e o Controle de aplicações funcionam juntos em uma rede com muito tráfego (com 4 GB o sistema pode parar o motor do antivírus sob carga alta)."
      ],
      [
       "Imagem",
-      "97,9 MB compactada, 316 MiB gravados no disco."
+      "Imagem de disco: 107 MB compactada, 1,1 GB expandida. ISO de instalação: 456 MB."
+     ],
+     [
+      "Disco",
+      "Um disco de 16 GB ou mais: o firewall cria o seu armazenamento de dados (logs, relatórios, assinaturas do antivírus, arquivo de troca) no primeiro início. Discos menores funcionam sem o armazém de assinaturas, o arquivo de troca e o espaço para uma segunda cópia do sistema."
      ],
      [
       "Interfaces de rede",
@@ -731,7 +743,7 @@
      [
       "KVM, QEMU, Proxmox",
       "virtio-net",
-      "Driver no kernel. Não testado."
+      "Driver no kernel. A imagem 26.2.2 foi iniciada no QEMU com SeaBIOS e roda na VM Proxmox de um parceiro."
      ],
      [
       "Microsoft Hyper-V",
@@ -857,12 +869,12 @@
      [
       "Memória",
       "4 GB nos modelos SWH (8 GB no WEA-AT1581N) e 8 GB na Datacom.",
-      "Mínimo de 2 GB; 4 GB ou mais com as listas DNS adicionais (veja Plataforma)."
+      "Mínimo de 2 GB sem Web Protection; 4 GB ou mais com o antivírus e a inspeção de tráfego criptografado; 8 GB recomendados em rede movimentada (veja Plataforma)."
      ],
      [
       "Armazenamento",
       "SSD SATA ou mSATA de 64 a 128 GB.",
-      "316 MiB gravados no disco; driver SATA (AHCI) no kernel."
+      "Um disco de 16 GB ou mais (veja Plataforma); driver SATA (AHCI) no kernel."
      ],
      [
       "Rede de 2,5 Gigabit",
@@ -996,7 +1008,7 @@
      "A Nexwall não testou estes equipamentos. A compatibilidade vem dos drivers incluídos na imagem (lista de pacotes da compilação 26.2.1 x86-64) e das fichas técnicas dos fabricantes.",
      "Datacom e SWH são fabricantes independentes. O hardware é fornecido e garantido pelo fabricante.",
      "Algumas revisões do controlador Intel I225 apresentaram link instável a 2,5 Gbit/s. Se uma porta cair ou renegociar a velocidade, atualize a BIOS do equipamento e compare com o link fixado em 1 Gbit/s.",
-     "Firmware: confirme que o equipamento inicia em modo UEFI com Secure Boot desligado (veja Plataforma).",
+     "Firmware: UEFI é o recomendado e é o que se deve usar em hardware físico, com Secure Boot desligado (veja Plataforma).",
      "A ordem das portas (eth0, eth1 e assim por diante) pode não coincidir com as etiquetas do chassi. A primeira porta é a rede interna e a segunda a internet; identifique-as na lista de interfaces de rede.",
      "Resultados em hardware real são bem-vindos; esta tabela será atualizada."
     ]

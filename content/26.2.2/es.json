@@ -13,7 +13,7 @@
     },
     {
       "label": "Plataforma",
-      "value": "x86-64, arranque UEFI"
+      "value": "x86-64, arranque UEFI o BIOS"
     },
     {
       "label": "Sistema base",
@@ -230,7 +230,7 @@
       {
         "name": "Imagen",
         "version": "26.2.2",
-        "note": "x86-64, UEFI, imagen de disco comprimida"
+        "note": "x86-64, UEFI o BIOS heredado, imagen de disco comprimida"
       },
       {
         "name": "Fuentes del firmware",
@@ -355,7 +355,7 @@
     ]
   },
   "requirements": [
-    "Procesador x86-64 y firmware UEFI con Secure Boot desactivado.",
+    "Procesador x86-64 y firmware UEFI con Secure Boot desactivado. La imagen de disco también inicia en BIOS heredado (SeaBIOS), comprobado en QEMU; en hardware físico use UEFI.",
     "Al menos dos interfaces de red (red interna e internet).",
     "2 GB de memoria sin Web Protection; 4 GB o más con el antivirus y la inspección del tráfico cifrado; se recomiendan 8 GB cuando el antivirus, la inspección, el IPS y el Control de aplicaciones funcionan juntos en una red con mucho tráfico (con 4 GB el sistema puede detener el motor del antivirus bajo carga alta).",
     "Un disco de 16 GB o más: el firewall crea su almacenamiento de datos (registros, informes, firmas del antivirus, archivo de intercambio) en el primer arranque. Los discos menores funcionan sin el almacén de firmas, el archivo de intercambio y el espacio para una segunda copia del sistema.",
