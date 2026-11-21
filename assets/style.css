@@ -214,3 +214,10 @@ tr[hidden] { display: none; }
 /* features: plain lists, no boxes */
 .feat-col, .feat-new { background: none; border: 0; border-radius: 0; padding: 0; }
 .feat-new h3 { color: var(--brand); }
+
+/* compatibility tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: .3rem; margin: 1.2rem 0 -1.45rem; }
+.tab { padding: .55rem 1rem; border: 1px solid var(--line); border-bottom: 0; border-radius: 8px 8px 0 0; color: var(--muted); text-decoration: none; background: var(--bg); font-weight: 600; }
+.tab:hover { color: var(--text); }
+.tab.on { color: var(--brand); background: var(--bg); border-color: var(--brand); }
+.tab-panel[hidden] { display: none; }

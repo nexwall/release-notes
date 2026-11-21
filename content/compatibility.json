@@ -35,7 +35,8 @@
       "Internet access",
       "updates.nexwall.com.br, license.nexwall.com.br and services.nexwall.com.br for updates, licenses, threat lists and registration."
      ]
-    ]
+    ],
+    "tab": "virtual"
    },
    {
     "id": "virtualization",
@@ -70,6 +71,137 @@
       "Amazon EC2",
       "Elastic Network Adapter (ena)",
       "Module in the image. Not tested."
+     ]
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "notes",
+    "title": "Notes",
+    "items": [
+     "In virtual machines with emulated Intel e1000 adapters throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall: use vmxnet3 or virtio for performance tests.",
+     "The fast path is off by default. It was verified for correctness, but its gain has not been measured on physical hardware yet.",
+     "Nexwall has tested this release in virtual machines only. Results on physical hardware are welcome; the Status column will be updated."
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "appliances-datacom",
+    "tab": "hardware",
+    "title": "Datacom",
+    "head": [
+     "Model",
+     "Processor",
+     "Memory",
+     "Storage",
+     "Network",
+     "Other"
+    ],
+    "rows": [
+     [
+      "DM8630 6GT (code 800.5209)",
+      "Intel Atom C3558, 4 cores",
+      "8 GB DDR4 with ECC",
+      "64 GB, TPM module included",
+      "6 ports 10/100/1000BASE-T RJ-45",
+      "Compact 1U desktop chassis, 2 USB type A, RJ-45 console, no Wi-Fi"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-swh",
+    "tab": "hardware",
+    "title": "SWH (WEA series)",
+    "head": [
+     "Model",
+     "Processor",
+     "Memory",
+     "Storage",
+     "Network",
+     "Other"
+    ],
+    "rows": [
+     [
+      "WEA-SW1P4L",
+      "Intel Celeron J4125 2.0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "mSATA SSD 64 GB",
+      "4 x Intel I225 2.5 Gigabit",
+      "Mini-ITX"
+     ],
+     [
+      "WEA-ROJ414L (the maker datasheet text says WEA-GTJ644L)",
+      "Intel Celeron J4125 2.0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SATA SSD 128 GB",
+      "4 x Intel I225 2.5 Gigabit",
+      "1U rackmount"
+     ],
+     [
+      "WEA-GTJ646L",
+      "Intel Celeron J6412 2.0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SATA SSD 128 GB",
+      "6 x Intel I225 2.5 Gigabit",
+      "1U rackmount"
+     ],
+     [
+      "WEA-AT1581N",
+      "Intel Core i5-7500 3.8 GHz, AES-NI",
+      "8 GB DDR4 2400",
+      "SATA SSD 128 GB",
+      "8 x Intel I225 2.5 Gigabit",
+      "1U rackmount"
+     ],
+     [
+      "Optional fiber module",
+      "-",
+      "-",
+      "-",
+      "2 x SFP 10 Gb (the maker does not state the controller)",
+      "Add-on card"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-why",
+    "tab": "hardware",
+    "title": "Why these appliances are supported",
+    "head": [
+     "Requirement",
+     "What the appliances have",
+     "What the Nexwall image includes"
+    ],
+    "rows": [
+     [
+      "64-bit x86 processor",
+      "Atom C3558, Celeron J4125 and J6412, Core i5-7500: all 64-bit x86.",
+      "Image for 64-bit x86 (see Platform)."
+     ],
+     [
+      "Memory",
+      "4 GB on the SWH models (8 GB on WEA-AT1581N) and 8 GB on the Datacom.",
+      "2 GB minimum; 4 GB or more with the extra DNS lists (see Platform)."
+     ],
+     [
+      "Storage",
+      "SATA or mSATA SSD of 64 to 128 GB.",
+      "316 MiB written to disk; SATA (AHCI) driver in the kernel."
+     ],
+     [
+      "2.5 Gigabit network",
+      "Intel I225 on every SWH model.",
+      "igc driver (Intel I225 and I226) included."
+     ],
+     [
+      "Gigabit network of the Datacom",
+      "6 RJ-45 ports; the maker does not state the controller. On the Atom C3558 the ports are usually Intel X553 or I210/I211.",
+      "ixgbe (X520, X540, X550 family, which includes the X553) and igb (I210, I211, I350) included."
+     ],
+     [
+      "10 Gigabit fiber module",
+      "2 x SFP 10 Gb.",
+      "ixgbe (X520, X540, X550) and i40e (X710) included. Mellanox and Aquantia are not included."
      ]
     ]
    },
@@ -142,7 +274,8 @@
       "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, USB Ethernet adapters, Wi-Fi adapters",
       "Not included."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
     "id": "storage",
@@ -176,16 +309,31 @@
       "LSI Fusion-MPT (SAS, SPI)",
       "Driver in the kernel. Not tested."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
-    "id": "notes",
-    "title": "Notes",
+    "id": "appliances-notes",
+    "tab": "hardware",
+    "title": "Notes on appliances",
     "items": [
-     "In virtual machines with emulated Intel e1000 adapters throughput stays around 0.7 to 1 Gbit/s whatever the CPU. This is a limit of the emulation, not of the firewall: use vmxnet3 or virtio for performance tests.",
-     "The fast path is off by default. It was verified for correctness, but its gain has not been measured on physical hardware yet.",
-     "Nexwall has tested this release in virtual machines only. Results on physical hardware are welcome; the Status column will be updated."
+     "Nexwall has not tested these appliances. Compatibility comes from the drivers included in the image (package list of the 26.2.1 x86-64 build) and from the makers' datasheets.",
+     "Datacom and SWH are independent makers. The hardware is supplied and warranted by the maker.",
+     "Some revisions of the Intel I225 controller have shown unstable links at 2.5 Gbit/s. If a port drops or renegotiates, update the appliance BIOS and compare with the link fixed at 1 Gbit/s.",
+     "Firmware: confirm that the appliance boots in UEFI mode with Secure Boot off (see Platform).",
+     "The order of the ports (eth0, eth1 and so on) may not match the labels on the chassis. The first port is the internal network and the second the internet; identify them in the network interface list.",
+     "Results on real hardware are welcome; this table will be updated."
     ]
+   }
+  ],
+  "tabs": [
+   {
+    "id": "virtual",
+    "label": "Virtual Platforms"
+   },
+   {
+    "id": "hardware",
+    "label": "Hardware Appliances"
    }
   ]
  },
@@ -225,7 +373,8 @@
       "Acceso a internet",
       "updates.nexwall.com.br, license.nexwall.com.br y services.nexwall.com.br para actualizaciones, licencias, listas de amenazas y registro."
      ]
-    ]
+    ],
+    "tab": "virtual"
    },
    {
     "id": "virtualization",
@@ -260,6 +409,137 @@
       "Amazon EC2",
       "Elastic Network Adapter (ena)",
       "Módulo en la imagen. No probado."
+     ]
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "notes",
+    "title": "Notas",
+    "items": [
+     "En máquinas virtuales con adaptadores Intel e1000 emulados el rendimiento se mantiene entre 0,7 y 1 Gbit/s sea cual sea la CPU. Es un límite de la emulación, no del firewall: use vmxnet3 o virtio para pruebas de rendimiento.",
+     "La ruta rápida está desactivada de forma predeterminada. Se verificó su corrección, pero su beneficio aún no se ha medido en hardware físico.",
+     "Nexwall ha probado esta versión solo en máquinas virtuales. Los resultados en hardware físico son bienvenidos; la columna Estado se actualizará."
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "appliances-datacom",
+    "tab": "hardware",
+    "title": "Datacom",
+    "head": [
+     "Modelo",
+     "Procesador",
+     "Memoria",
+     "Almacenamiento",
+     "Red",
+     "Otros"
+    ],
+    "rows": [
+     [
+      "DM8630 6GT (código 800.5209)",
+      "Intel Atom C3558, 4 núcleos",
+      "8 GB DDR4 con ECC",
+      "64 GB, módulo TPM incluido",
+      "6 puertos 10/100/1000BASE-T RJ-45",
+      "Chasis 1U compacto de escritorio, 2 USB tipo A, consola RJ-45, sin Wi-Fi"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-swh",
+    "tab": "hardware",
+    "title": "SWH (serie WEA)",
+    "head": [
+     "Modelo",
+     "Procesador",
+     "Memoria",
+     "Almacenamiento",
+     "Red",
+     "Otros"
+    ],
+    "rows": [
+     [
+      "WEA-SW1P4L",
+      "Intel Celeron J4125 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD mSATA 64 GB",
+      "4 x Intel I225 2,5 Gigabit",
+      "Mini-ITX"
+     ],
+     [
+      "WEA-ROJ414L (el texto de la ficha técnica del fabricante dice WEA-GTJ644L)",
+      "Intel Celeron J4125 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD SATA 128 GB",
+      "4 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "WEA-GTJ646L",
+      "Intel Celeron J6412 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD SATA 128 GB",
+      "6 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "WEA-AT1581N",
+      "Intel Core i5-7500 3,8 GHz, AES-NI",
+      "8 GB DDR4 2400",
+      "SSD SATA 128 GB",
+      "8 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "Módulo opcional de fibra",
+      "-",
+      "-",
+      "-",
+      "2 x SFP 10 Gb (el fabricante no informa el controlador)",
+      "Tarjeta adicional"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-why",
+    "tab": "hardware",
+    "title": "Por qué estos appliances son compatibles",
+    "head": [
+     "Requisito",
+     "Qué ofrecen los equipos",
+     "Qué incluye la imagen de Nexwall"
+    ],
+    "rows": [
+     [
+      "Procesador x86 de 64 bits",
+      "Atom C3558, Celeron J4125 y J6412, Core i5-7500: todos x86 de 64 bits.",
+      "Imagen para x86 de 64 bits (vea Plataforma)."
+     ],
+     [
+      "Memoria",
+      "4 GB en los modelos SWH (8 GB en el WEA-AT1581N) y 8 GB en el Datacom.",
+      "Mínimo de 2 GB; 4 GB o más con las listas DNS adicionales (vea Plataforma)."
+     ],
+     [
+      "Almacenamiento",
+      "SSD SATA o mSATA de 64 a 128 GB.",
+      "316 MiB escritos en el disco; controlador SATA (AHCI) en el kernel."
+     ],
+     [
+      "Red de 2,5 Gigabit",
+      "Intel I225 en todos los modelos SWH.",
+      "Controlador igc (Intel I225 e I226) incluido."
+     ],
+     [
+      "Red gigabit del Datacom",
+      "6 puertos RJ-45; el fabricante no informa el controlador. En el Atom C3558 los puertos suelen ser Intel X553 o I210/I211.",
+      "ixgbe (familia X520, X540, X550, que incluye el X553) e igb (I210, I211, I350) incluidos."
+     ],
+     [
+      "Módulo de fibra de 10 Gigabit",
+      "2 x SFP 10 Gb.",
+      "ixgbe (X520, X540, X550) e i40e (X710) incluidos. Mellanox y Aquantia no están incluidos."
      ]
     ]
    },
@@ -332,7 +612,8 @@
       "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, adaptadores Ethernet USB, adaptadores Wi-Fi",
       "No incluido."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
     "id": "storage",
@@ -366,16 +647,31 @@
       "LSI Fusion-MPT (SAS, SPI)",
       "Controlador en el kernel. No probado."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
-    "id": "notes",
-    "title": "Notas",
+    "id": "appliances-notes",
+    "tab": "hardware",
+    "title": "Observaciones sobre los appliances",
     "items": [
-     "En máquinas virtuales con adaptadores Intel e1000 emulados el rendimiento se mantiene entre 0,7 y 1 Gbit/s sea cual sea la CPU. Es un límite de la emulación, no del firewall: use vmxnet3 o virtio para pruebas de rendimiento.",
-     "La ruta rápida está desactivada de forma predeterminada. Se verificó su corrección, pero su beneficio aún no se ha medido en hardware físico.",
-     "Nexwall ha probado esta versión solo en máquinas virtuales. Los resultados en hardware físico son bienvenidos; la columna Estado se actualizará."
+     "Nexwall no probó estos equipos. La compatibilidad se basa en los controladores incluidos en la imagen (lista de paquetes de la compilación 26.2.1 x86-64) y en las fichas técnicas de los fabricantes.",
+     "Datacom y SWH son fabricantes independientes. El hardware lo suministra y garantiza el fabricante.",
+     "Algunas revisiones del controlador Intel I225 han mostrado enlaces inestables a 2,5 Gbit/s. Si un puerto se cae o renegocia, actualice la BIOS del equipo y compare con el enlace fijado a 1 Gbit/s.",
+     "Firmware: confirme que el equipo inicia en modo UEFI con Secure Boot desactivado (vea Plataforma).",
+     "El orden de los puertos (eth0, eth1 y así sucesivamente) puede no coincidir con las etiquetas del chasis. El primer puerto es la red interna y el segundo internet; identifíquelos en la lista de interfaces de red.",
+     "Los resultados en hardware real son bienvenidos; esta tabla se actualizará."
     ]
+   }
+  ],
+  "tabs": [
+   {
+    "id": "virtual",
+    "label": "Plataformas virtuales"
+   },
+   {
+    "id": "hardware",
+    "label": "Appliances de hardware"
    }
   ]
  },
@@ -415,7 +711,8 @@
       "Acesso à internet",
       "updates.nexwall.com.br, license.nexwall.com.br e services.nexwall.com.br para atualizações, licenças, listas de ameaças e registro."
      ]
-    ]
+    ],
+    "tab": "virtual"
    },
    {
     "id": "virtualization",
@@ -450,6 +747,137 @@
       "Amazon EC2",
       "Elastic Network Adapter (ena)",
       "Módulo na imagem. Não testado."
+     ]
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "notes",
+    "title": "Observações",
+    "items": [
+     "Em máquinas virtuais com adaptadores Intel e1000 emulados o desempenho fica entre 0,7 e 1 Gbit/s qualquer que seja a CPU. É um limite da emulação, não do firewall: use vmxnet3 ou virtio para testes de desempenho.",
+     "O caminho rápido vem desligado por padrão. Sua correção foi verificada, mas o ganho ainda não foi medido em hardware físico.",
+     "A Nexwall testou esta versão somente em máquinas virtuais. Resultados em hardware físico são bem-vindos; a coluna Situação será atualizada."
+    ],
+    "tab": "virtual"
+   },
+   {
+    "id": "appliances-datacom",
+    "tab": "hardware",
+    "title": "Datacom",
+    "head": [
+     "Modelo",
+     "Processador",
+     "Memória",
+     "Armazenamento",
+     "Rede",
+     "Outros"
+    ],
+    "rows": [
+     [
+      "DM8630 6GT (código 800.5209)",
+      "Intel Atom C3558, 4 núcleos",
+      "8 GB DDR4 com ECC",
+      "64 GB, módulo TPM incluído",
+      "6 portas 10/100/1000BASE-T RJ-45",
+      "Gabinete 1U compacto de mesa, 2 USB tipo A, console RJ-45, sem Wi-Fi"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-swh",
+    "tab": "hardware",
+    "title": "SWH (série WEA)",
+    "head": [
+     "Modelo",
+     "Processador",
+     "Memória",
+     "Armazenamento",
+     "Rede",
+     "Outros"
+    ],
+    "rows": [
+     [
+      "WEA-SW1P4L",
+      "Intel Celeron J4125 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD mSATA 64 GB",
+      "4 x Intel I225 2,5 Gigabit",
+      "Mini-ITX"
+     ],
+     [
+      "WEA-ROJ414L (o texto da ficha técnica do fabricante cita WEA-GTJ644L)",
+      "Intel Celeron J4125 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD SATA 128 GB",
+      "4 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "WEA-GTJ646L",
+      "Intel Celeron J6412 2,0 GHz, AES-NI",
+      "4 GB DDR4 2400 SODIMM",
+      "SSD SATA 128 GB",
+      "6 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "WEA-AT1581N",
+      "Intel Core i5-7500 3,8 GHz, AES-NI",
+      "8 GB DDR4 2400",
+      "SSD SATA 128 GB",
+      "8 x Intel I225 2,5 Gigabit",
+      "Rack 1U"
+     ],
+     [
+      "Módulo opcional de fibra",
+      "-",
+      "-",
+      "-",
+      "2 x SFP 10 Gb (o fabricante não informa o controlador)",
+      "Placa adicional"
+     ]
+    ]
+   },
+   {
+    "id": "appliances-why",
+    "tab": "hardware",
+    "title": "Por que estes appliances são compatíveis",
+    "head": [
+     "Requisito",
+     "O que os equipamentos oferecem",
+     "O que a imagem Nexwall inclui"
+    ],
+    "rows": [
+     [
+      "Processador x86 de 64 bits",
+      "Atom C3558, Celeron J4125 e J6412, Core i5-7500: todos x86 de 64 bits.",
+      "Imagem para x86 de 64 bits (veja Plataforma)."
+     ],
+     [
+      "Memória",
+      "4 GB nos modelos SWH (8 GB no WEA-AT1581N) e 8 GB na Datacom.",
+      "Mínimo de 2 GB; 4 GB ou mais com as listas DNS adicionais (veja Plataforma)."
+     ],
+     [
+      "Armazenamento",
+      "SSD SATA ou mSATA de 64 a 128 GB.",
+      "316 MiB gravados no disco; driver SATA (AHCI) no kernel."
+     ],
+     [
+      "Rede de 2,5 Gigabit",
+      "Intel I225 em todos os modelos SWH.",
+      "Driver igc (Intel I225 e I226) incluído."
+     ],
+     [
+      "Rede gigabit da Datacom",
+      "6 portas RJ-45; o fabricante não informa o controlador. No Atom C3558 as portas costumam ser Intel X553 ou I210/I211.",
+      "ixgbe (família X520, X540, X550, que inclui o X553) e igb (I210, I211, I350) incluídos."
+     ],
+     [
+      "Módulo de fibra de 10 Gigabit",
+      "2 x SFP 10 Gb.",
+      "ixgbe (X520, X540, X550) e i40e (X710) incluídos. Mellanox e Aquantia não estão incluídos."
      ]
     ]
    },
@@ -522,7 +950,8 @@
       "Intel E810 (ice), Mellanox (mlx4, mlx5), Aquantia, adaptadores Ethernet USB, adaptadores Wi-Fi",
       "Não incluído."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
     "id": "storage",
@@ -556,16 +985,31 @@
       "LSI Fusion-MPT (SAS, SPI)",
       "Driver no kernel. Não testado."
      ]
-    ]
+    ],
+    "tab": "hardware"
    },
    {
-    "id": "notes",
-    "title": "Observações",
+    "id": "appliances-notes",
+    "tab": "hardware",
+    "title": "Observações sobre os appliances",
     "items": [
-     "Em máquinas virtuais com adaptadores Intel e1000 emulados o desempenho fica entre 0,7 e 1 Gbit/s qualquer que seja a CPU. É um limite da emulação, não do firewall: use vmxnet3 ou virtio para testes de desempenho.",
-     "O caminho rápido vem desligado por padrão. Sua correção foi verificada, mas o ganho ainda não foi medido em hardware físico.",
-     "A Nexwall testou esta versão somente em máquinas virtuais. Resultados em hardware físico são bem-vindos; a coluna Situação será atualizada."
+     "A Nexwall não testou estes equipamentos. A compatibilidade vem dos drivers incluídos na imagem (lista de pacotes da compilação 26.2.1 x86-64) e das fichas técnicas dos fabricantes.",
+     "Datacom e SWH são fabricantes independentes. O hardware é fornecido e garantido pelo fabricante.",
+     "Algumas revisões do controlador Intel I225 apresentaram link instável a 2,5 Gbit/s. Se uma porta cair ou renegociar a velocidade, atualize a BIOS do equipamento e compare com o link fixado em 1 Gbit/s.",
+     "Firmware: confirme que o equipamento inicia em modo UEFI com Secure Boot desligado (veja Plataforma).",
+     "A ordem das portas (eth0, eth1 e assim por diante) pode não coincidir com as etiquetas do chassi. A primeira porta é a rede interna e a segunda a internet; identifique-as na lista de interfaces de rede.",
+     "Resultados em hardware real são bem-vindos; esta tabela será atualizada."
     ]
+   }
+  ],
+  "tabs": [
+   {
+    "id": "virtual",
+    "label": "Plataformas virtuais"
+   },
+   {
+    "id": "hardware",
+    "label": "Appliances de hardware"
    }
   ]
  }

@@ -67,6 +67,42 @@
     });
   });
 
+  // compatibility page: switch between the tabs (all panels stay visible without script)
+  var tabLinks = document.querySelectorAll('.tabs [data-tab]');
+  var panels = document.querySelectorAll('[data-tab-panel]');
+  function showTab(id) {
+    var found = false;
+    panels.forEach(function (p) { if (p.getAttribute('data-tab-panel') === id) { found = true; } });
+    if (!found) { return false; }
+    panels.forEach(function (p) { p.hidden = p.getAttribute('data-tab-panel') !== id; });
+    tabLinks.forEach(function (t) {
+      var on = t.getAttribute('data-tab') === id;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    return true;
+  }
+  if (tabLinks.length) {
+    tabLinks.forEach(function (t) {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        var id = t.getAttribute('data-tab');
+        showTab(id);
+        if (history.replaceState) { history.replaceState(null, '', '#' + id); }
+      });
+    });
+    var fromHash = function () {
+      var h = decodeURIComponent(location.hash.slice(1));
+      if (!h) { return; }
+      if (showTab(h)) { return; }
+      var target = document.getElementById(h);
+      var panel = target && target.closest('[data-tab-panel]');
+      if (panel) { showTab(panel.getAttribute('data-tab-panel')); target.scrollIntoView(); }
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+  }
+
   // highlight the section being read in the table of contents
   var links = document.querySelectorAll('.toc a');
   if (links.length && 'IntersectionObserver' in window) {

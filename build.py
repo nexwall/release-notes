@@ -326,19 +326,34 @@ def build_known_page(lang, ui, releases):
 
 def build_compat_page(lang, ui):
     c = COMPAT[lang]
-    parts = []
-    for sec in c['sections']:
+    tabs = c.get('tabs') or [{'id': 'all', 'label': ''}]
+
+    def render(sec):
         if sec.get('items'):
             inner = '<ul>%s</ul>' % ''.join('<li>%s</li>' % esc(i) for i in sec['items'])
         else:
             inner = '<div class="table-wrap"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (
                 ''.join('<th>%s</th>' % esc(h) for h in sec['head']),
                 ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % esc(cell) for cell in row) for row in sec['rows']))
-        parts.append('<section id="%s"><h2>%s</h2>%s</section>' % (sec['id'], esc(sec['title']), inner))
-    toc = ''.join('<li><a href="#%s">%s</a></li>' % (sec['id'], esc(sec['title'])) for sec in c['sections'])
-    body = ('<div class="release-head"><div class="wrap"><h1>%s</h1><p class="lead">%s</p></div></div>'
-            '<div class="wrap layout"><aside class="toc" aria-label="%s"><p class="toc-title">%s</p><ol>%s</ol></aside>'
-            '<main id="main" class="doc">%s</main></div>') % (esc(c['title']), esc(c['lead']), esc(ui['on_this_page']), esc(ui['on_this_page']), toc, ''.join(parts))
+        return '<section id="%s"><h2>%s</h2>%s</section>' % (sec['id'], esc(sec['title']), inner)
+
+    panels = []
+    for n, tab in enumerate(tabs):
+        secs = [s for s in c['sections'] if s.get('tab', tabs[0]['id']) == tab['id']]
+        toc = ''.join('<li><a href="#%s">%s</a></li>' % (s['id'], esc(s['title'])) for s in secs)
+        hidden = '' if n == 0 else ' hidden'
+        panels.append('<div class="tab-panel" id="tab-%s" data-tab-panel="%s"%s>'
+                      '<div class="wrap layout"><aside class="toc" aria-label="%s"><p class="toc-title">%s</p><ol>%s</ol></aside>'
+                      '<main class="doc">%s</main></div></div>' % (
+                          esc(tab['id']), esc(tab['id']), hidden, esc(ui['on_this_page']), esc(ui['on_this_page']), toc, ''.join(render(s) for s in secs)))
+    tabbar = ''
+    if len(tabs) > 1:
+        tabbar = '<nav class="tabs" role="tablist">%s</nav>' % ''.join(
+            '<a role="tab" class="tab%s" href="#tab-%s" data-tab="%s" aria-selected="%s">%s</a>' % (
+                ' on' if n == 0 else '', esc(t['id']), esc(t['id']), 'true' if n == 0 else 'false', esc(t['label']))
+            for n, t in enumerate(tabs))
+    body = ('<div class="release-head"><div class="wrap"><h1>%s</h1><p class="lead">%s</p>%s</div></div>'
+            '<noscript><style>.tab-panel[hidden] { display: block; }</style></noscript><div id="main">%s</div>') % (esc(c['title']), esc(c['lead']), tabbar, ''.join(panels))
     write('%s/compatibility/index.html' % lang, shell(lang, ui, '%s | Nexwall' % c['title'], body, 2, 'compatibility/'))
 
 
